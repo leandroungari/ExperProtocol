@@ -1,0 +1,140 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.6 }
+
+\bibitem[Banker 2011]{banker2011mongodb}
+\abntrefinfo{Banker}{BANKER}{2011}
+{BANKER, K. \emph{MongoDB in action}. [S.l.]: Manning Publications Co., 2011.}
+
+\bibitem[Basili, Shull e Lanubile 1999]{Basili99}
+\abntrefinfo{Basili, Shull e Lanubile}{BASILI; SHULL; LANUBILE}{1999}
+{BASILI, V.~R.; SHULL, F.; LANUBILE, F. Building knowledge through families of
+  experiments.
+\emph{IEEE Transactions on Software Engineering}, v.~25, n.~4, p. 456--473,
+  1999.}
+
+\bibitem[Brazil 2011]{brazil2011bpm}
+\abntrefinfo{Brazil}{BRAZIL}{2011}
+{BRAZIL, A. \emph{BPM CBOK V3. 0: Guia para o Gerenciamento de Processos de
+  Neg{\'o}cio-Corpo Comum de Conhecimento, 3{\textordfeminine} edi{\c{c}}{\~a}o
+  . ABPMP Brazil}. 2011.}
+
+\bibitem[Brito 2010]{brito2010bancos}
+\abntrefinfo{Brito}{BRITO}{2010}
+{BRITO, R.~W. Bancos de dados nosql x sgbds relacionais: an{\'a}lise
+  comparativa.
+\emph{Faculdade Farias Brito e Universidade de Fortaleza}, 2010.}
+
+\bibitem[Cassandra 2014]{cassandra2014apache}
+\abntrefinfo{Cassandra}{CASSANDRA}{2014}
+{CASSANDRA, A. Apache cassandra.
+\emph{Website. Available online at http://planetcassandra.
+  org/what-is-apache-cassandra}, p.~13, 2014.}
+
+\bibitem[Chang et al. 2008]{chang2008bigtable}
+\abntrefinfo{Chang et al.}{CHANG et al.}{2008}
+{CHANG, F. et al. Bigtable: A distributed storage system for structured data.
+\emph{ACM Transactions on Computer Systems (TOCS)}, ACM, v.~26, n.~2, p.~4,
+  2008.}
+
+\bibitem[Committee et al. 2016]{object2016business}
+\abntrefinfo{Committee et al.}{COMMITTEE et al.}{2016}
+{COMMITTEE, O. M. G. B.~T. et al. \emph{Business Process Model and Notation,
+  version 2.0, 2010}. 2016.}
+
+\bibitem[Correia e Abreu 2015]{correia2015enhancing}
+\abntrefinfo{Correia e Abreu}{CORREIA; ABREU}{2015}
+{CORREIA, A.; ABREU, F.~B. e. Enhancing the correctness of bpmn models. In:
+  \emph{Improving Organizational Effectiveness with Enterprise Information
+  Systems}. [S.l.]: IGI Global, 2015. p. 241--261.}
+
+\bibitem[Garcia et al. 2008]{Garcia08}
+\abntrefinfo{Garcia et al.}{GARCIA et al.}{2008}
+{GARCIA, R.~E. et al. An ontology for controlled experiments on software
+  engineering. In:  \emph{Int. Conf. Software Engineering and Knowledge
+  Engineering}. [S.l.]: Knowledge Systems Institute Graduate School, 2008. p.
+  685--690.}
+
+\bibitem[Kitchenham 2008]{Kitchenham2008}
+\abntrefinfo{Kitchenham}{KITCHENHAM}{2008}
+{KITCHENHAM, B. The role of replications in empirical software engineering--a
+  word of warning.
+\emph{Empirical Software Engineering}, Kluwer Academic Publishers, Hingham, MA,
+  USA, v.~13, n.~2, p. 219--221, 2008.
+ISSN 1382-3256.}
+
+\bibitem[Mendonça et al. 2008]{Mendonca08}
+\abntrefinfo{Mendonça et al.}{MENDONçA et al.}{2008}
+{MENDONçA, M.~G. de et al. A framework for software engineering experimental
+  replications. In:  \emph{ICECCS}. [S.l.: s.n.], 2008. p. 203--212.}
+
+\bibitem[Miller 2005]{Miller:2005}
+\abntrefinfo{Miller}{MILLER}{2005}
+{MILLER, J. Replicating software engineering experiments: A poisoned chalice or
+  the holy grail.
+\emph{Inf. Softw. Technol.}, Butterworth-Heinemann, Newton, MA, USA, v.~47,
+  n.~4, p. 233--244, mar. 2005.
+ISSN 0950-5849.
+Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1016/j.infsof.2004.08.005}.}
+
+\bibitem[MySQL 2001]{mysql2001mysql}
+\abntrefinfo{MySQL}{MYSQL}{2001}
+{MYSQL, A. \emph{MySQL}. 2001.}
+
+\bibitem[{Pucci Neto} et al. 2014]{Pucci2014}
+\abntrefinfo{{Pucci Neto} et al.}{{Pucci Neto} et al.}{2014}
+{{Pucci Neto}, J. et al. Exptool: a tool to conduct, package and replicate
+  controlled experiments in software engineering. In:  \emph{Proc. 12th. Int.
+  Conf. on Software Engineering Research and Practice}. [S.l.: s.n.], 2014.
+  Disponível em http://worldcomp-proceedings.com/proc/p2014/SER7199.pdf.}
+
+\bibitem[Scatalon, Garcia e Correia 2011]{Scatalon11}
+\abntrefinfo{Scatalon, Garcia e Correia}{SCATALON; GARCIA; CORREIA}{2011}
+{SCATALON, L.~P.; GARCIA, R.~E.; CORREIA, R. C.~M. Packaging controlled
+  experiments using an evolutionary approach based on ontology. In:
+  \emph{International Conference on Software Engineering and Knowledge
+  Engineering {(SEKE 2011)}}. [S.l.: s.n.], 2011. p. 408--413.}
+
+\bibitem[Shull et al. 2003]{Shull03}
+\abntrefinfo{Shull et al.}{SHULL et al.}{2003}
+{SHULL, F. et al. Replicated studies: building a body of knowledge about
+  software reading techniques. In:  \emph{Lecture notes on empirical software
+  engineering}. River Edge, NJ, USA: World Scientific Publishing Co., Inc.,
+  2003. p. 39--84.}
+
+\bibitem[Sivasubramanian 2012]{sivasubramanian2012amazon}
+\abntrefinfo{Sivasubramanian}{SIVASUBRAMANIAN}{2012}
+{SIVASUBRAMANIAN, S. Amazon dynamodb: a seamlessly scalable non-relational
+  database service. In:  ACM. \emph{Proceedings of the 2012 ACM SIGMOD
+  International Conference on Management of Data}. [S.l.], 2012. p. 729--730.}
+
+\bibitem[Toth 2011]{toth2011abordagem}
+\abntrefinfo{Toth}{TOTH}{2011}
+{TOTH, R.~M. Abordagem nosql--uma real alternativa.
+\emph{Sorocaba, S{\~a}o Paulo, Brasil: Abril}, v.~13, 2011.}
+
+\bibitem[Travassos, Gurov e Amaral 2002]{Travassos02}
+\abntrefinfo{Travassos, Gurov e Amaral}{TRAVASSOS; GUROV; AMARAL}{2002}
+{TRAVASSOS, G.~H.; GUROV, D.; AMARAL, E. A.~G. \emph{Introdução à Engenharia
+  de Software Experimental}.
+[S.l.], 2002.}
+
+\bibitem[Vaish 2013]{vaish2013getting}
+\abntrefinfo{Vaish}{VAISH}{2013}
+{VAISH, G. \emph{Getting started with NoSQL}. [S.l.]: Packt Publishing Ltd,
+  2013.}
+
+\bibitem[Weske 2012]{Weske2012}
+\abntrefinfo{Weske}{WESKE}{2012}
+{WESKE, M. \emph{Business Process Management: Concepts, Languages,
+  Architectures}. New York: Springer Heidelberg Dordrecht, London, 2012.}
+
+\bibitem[Wohlin et al. 2012]{Wohlin2012}
+\abntrefinfo{Wohlin et al.}{WOHLIN et al.}{2012}
+{WOHLIN, C. et al. \emph{Experimentation in Software Engineering: An
+  introduction}. Boston, USA: Kluwer Academic Publishers, 2012.}
+
+\end{thebibliography}

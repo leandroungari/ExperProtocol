@@ -1,0 +1,16 @@
+\select@language {brazil}
+\contentsline {figure}{\numberline {1}{\ignorespaces Processo de Experimenta\IeC {\c c}\IeC {\~a}o -- adaptado de~\cite {Wohlin2012}.}}{4}{figure.2.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Ontologia para Experimentos Controlados~\cite {Garcia08}.}}{6}{figure.2.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Ontologia para Pacotes de Laborat\IeC {\'o}rio~\cite {Garcia08}.}}{7}{figure.2.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Exemplo de diagrama BPMN \IeC {\textendash } adaptado de \cite {Weske2012}.}}{12}{figure.3.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Conjunto de elementos que comp\IeC {\~o}em a vers\IeC {\~a}o BPMN 2.0 \cite {object2016business}.}}{12}{figure.3.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Processo de atribui\IeC {\c c}\IeC {\~a}o de participantes aos grupos.}}{13}{figure.3.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Diagrama BPM referente \IeC {\`a}s atividades dos participantes do primeiro grupo.}}{14}{figure.3.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Diagrama BPM referente \IeC {\`a}s atividades dos participantes do segundo grupo.}}{15}{figure.3.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Interface de modelagem da nota\IeC {\c c}\IeC {\~a}o.}}{17}{figure.4.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Menu de op\IeC {\c c}\IeC {\~o}es da ferramenta.}}{18}{figure.4.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Painel de elementos da categoria de eventos.}}{18}{figure.4.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Painel de elementos}}{19}{figure.4.12}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Categoria de \textit {gateways}}}}{19}{figure.4.12}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Categoria de piscinas e raias}}}{19}{figure.4.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Exemplo de elemento \textit {MessageTask}.}}{19}{figure.4.13}

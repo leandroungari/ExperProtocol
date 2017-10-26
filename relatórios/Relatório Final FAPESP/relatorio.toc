@@ -1,0 +1,66 @@
+\changetocdepth {4}
+\select@language {brazil}
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\contentsline {chapter}{Sum\'ario}{ii}{section*.1}
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\contentsline {chapter}{Lista de ilustra\c {c}\~{o}es}{iv}{section*.2}
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\contentsline {chapter}{Lista de tabelas}{vi}{section*.3}
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\contentsline {section}{Resumo}{vii}{chapter*.4}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Introdu\IeC {\c c}\IeC {\~a}o}}{1}{chapter.1}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Engenharia de Software Experimental}}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Estudos Experimentais}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Processo de Experimenta\IeC {\c c}\IeC {\~a}o}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}Processo de Replica\IeC {\c c}\IeC {\~a}o}{9}{section.2.3}
+\contentsline {section}{\numberline {2.4}Considera\IeC {\c c}\IeC {\~o}es Finais}{11}{section.2.4}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Pacotes de Laborat\IeC {\'o}rio}}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Modelo para Melhoria da Experimenta\IeC {\c c}\IeC {\~a}o}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}\textit {ExperOntology}}{15}{section.3.2}
+\contentsline {section}{\numberline {3.3}Bancos de Dados N\IeC {\~a}o-Relacionais}{18}{section.3.3}
+\contentsline {section}{\numberline {3.4}Considera\IeC {\c c}\IeC {\~o}es Finais}{20}{section.3.4}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Modelagem de Processo de Neg\IeC {\'o}cio}}{21}{chapter.4}
+\contentsline {section}{\numberline {4.1}\textit {Business Process Modeling and Notation}}{22}{section.4.1}
+\contentsline {section}{\numberline {4.2}Protocolos de experimenta\IeC {\c c}\IeC {\~a}o usando BPM}{24}{section.4.2}
+\contentsline {section}{\numberline {4.3}Considera\IeC {\c c}\IeC {\~o}es Finais}{29}{section.4.3}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Ferramenta de Apoio de Protocolos de Experimenta\IeC {\c c}\IeC {\~a}o}}{31}{chapter.5}
+\contentsline {section}{\numberline {5.1}Estrutura da Ferramenta}{31}{section.5.1}
+\contentsline {section}{\numberline {5.2}Arquitetura da Ferramenta}{32}{section.5.2}
+\contentsline {section}{\numberline {5.3}Diagramas de Sequ\IeC {\^e}ncia}{33}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Caso de Uso - Abrir Protocolo}{33}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Caso de Uso - Salvar Protocolo}{33}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Caso de Uso - Abrir Pacote}{33}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Caso de Uso - Salvar Pacote}{34}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}Caso de Uso - Exportar Imagem}{35}{subsection.5.3.5}
+\contentsline {section}{\numberline {5.4}Diagramas de Classes}{35}{section.5.4}
+\contentsline {section}{\numberline {5.5}Implementa\IeC {\c c}\IeC {\~a}o da Ferramenta}{38}{section.5.5}
+\contentsline {section}{\numberline {5.6}Interface da Ferramenta}{39}{section.5.6}
+\contentsline {section}{\numberline {5.7}Considera\IeC {\c c}\IeC {\~o}es Finais}{40}{section.5.7}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Constru\IeC {\c c}\IeC {\~a}o de Protocolo de Experimenta\IeC {\c c}\IeC {\~a}o}}{41}{chapter.6}
+\contentsline {section}{\numberline {6.1}Experimento de Demonstra\IeC {\c c}\IeC {\~a}o: Avalia\IeC {\c c}\IeC {\~a}o da \textit {SofVisOAH}}{41}{section.6.1}
+\contentsline {section}{\numberline {6.2}Elabora\IeC {\c c}\IeC {\~a}o do Protocolo de Experimenta\IeC {\c c}\IeC {\~a}o}{42}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Fase de Defini\IeC {\c c}\IeC {\~a}o}{42}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Fase de Planejamento}{43}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Fase de Opera\IeC {\c c}\IeC {\~a}o}{46}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Fase de An\IeC {\'a}lise e Interpreta\IeC {\c c}\IeC {\~a}o}{47}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Fase de Empacotamento e Apresenta\IeC {\c c}\IeC {\~a}o}{48}{subsection.6.2.5}
+\contentsline {section}{\numberline {6.3}Considera\IeC {\c c}\IeC {\~o}es Finais}{49}{section.6.3}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {7}\MakeTextUppercase {Considera\IeC {\c c}\IeC {\~o}es Finais}}{51}{chapter.7}
+\contentsline {section}{\numberline {7.1}Cronograma Inicial}{51}{section.7.1}
+\contentsline {section}{\numberline {7.2}Atividades Realizadas}{51}{section.7.2}
+\contentsline {section}{\numberline {7.3}Contribui\IeC {\c c}\IeC {\~o}es}{53}{section.7.3}
+\contentsline {section}{\numberline {7.4}Trabalhos Futuros}{53}{section.7.4}
+\contentsline {section}{\numberline {7.5}Proposta de Renova\IeC {\c c}\IeC {\~a}o}{54}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}Contexto, Motiva\IeC {\c c}\IeC {\~a}o e Justificativa}{54}{subsection.7.5.1}
+\contentsline {subsection}{\numberline {7.5.2}Formula\IeC {\c c}\IeC {\~a}o do Problema e Objetivo do Projeto}{54}{subsection.7.5.2}
+\contentsline {subsection}{\numberline {7.5.3}Metodologia e Plano de Trabalho}{54}{subsection.7.5.3}
+\vspace {\cftbeforechapterskip }
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\contentsline {chapter}{\uppercase {Refer\IeC {\^e}ncias Bibliogr\IeC {\'a}ficas}}{57}{section*.7}

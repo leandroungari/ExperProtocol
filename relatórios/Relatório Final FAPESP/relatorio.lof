@@ -1,0 +1,43 @@
+\select@language {brazil}
+\contentsline {figure}{\numberline {1}{\ignorespaces Processo de Experimenta\IeC {\c c}\IeC {\~a}o -- adaptado de~\citeauthoronline {Wohlin2012}~(\citeyear {Wohlin2012}).}}{6}{figure.2.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Fase de Defini\IeC {\c c}\IeC {\~a}o~\cite {Garcia06}.}}{6}{figure.2.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Fase de Planejamento~\cite {Garcia06}.}}{7}{figure.2.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Fase de Opera\IeC {\c c}\IeC {\~a}o~\cite {Garcia06}.}}{8}{figure.2.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Fase de An\IeC {\'a}lise e Interpreta\IeC {\c c}\IeC {\~a}o~\cite {Garcia06}.}}{9}{figure.2.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Replica\IeC {\c c}\IeC {\~o}es de um experimento e o Pacote de Laborat\IeC {\'o}rio~\cite {Garcia06}.}}{11}{figure.2.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Ciclos do processo \textit {FIRE}~\cite {mendoncca2008framework}.}}{14}{figure.3.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Ontologia para Experimentos Controlados~\cite {Garcia08}.}}{16}{figure.3.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Ontologia para Pacotes de Laborat\IeC {\'o}rio~\cite {Garcia08}.}}{17}{figure.3.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Metamodelo da modelagem de processo de neg\IeC {\'o}cio~\cite {Weske2012}.}}{23}{figure.4.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Exemplo de diagrama BPMN -- adaptado de \cite {Weske2012}.}}{24}{figure.4.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Conjunto de elementos que comp\IeC {\~o}em a vers\IeC {\~a}o BPMN 2.0~\cite {object2016business}.}}{25}{figure.4.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Modelo de processo de neg\IeC {\'o}cio referente a Fase de Defini\IeC {\c c}\IeC {\~a}o.}}{26}{figure.4.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces Modelo de processo de neg\IeC {\'o}cio referente a Fase de Planejamento.}}{27}{figure.4.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces Atribui\IeC {\c c}\IeC {\~a}o de participantes aos grupos.}}{27}{figure.4.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces Diagrama BPM referente \IeC {\`a}s atividades dos participantes do primeiro grupo.}}{28}{figure.4.16}
+\contentsline {figure}{\numberline {17}{\ignorespaces Diagrama BPM referente \IeC {\`a}s atividades dos participantes do segundo grupo.}}{28}{figure.4.17}
+\contentsline {figure}{\numberline {18}{\ignorespaces Modelo de processo de neg\IeC {\'o}cio referente a Fase de An\IeC {\'a}lise e Interpreta\IeC {\c c}\IeC {\~a}o.}}{29}{figure.4.18}
+\contentsline {figure}{\numberline {19}{\ignorespaces Sequ\IeC {\^e}ncia de atividades para a concep\IeC {\c c}\IeC {\~a}o e constru\IeC {\c c}\IeC {\~a}o de protocolos de experimenta\IeC {\c c}\IeC {\~a}o.}}{31}{figure.5.19}
+\contentsline {figure}{\numberline {20}{\ignorespaces Diagrama de Casos de Uso.}}{32}{figure.5.20}
+\contentsline {figure}{\numberline {21}{\ignorespaces Diagrama de Sequ\IeC {\^e}ncia -- Abrir Protocolo.}}{33}{figure.5.21}
+\contentsline {figure}{\numberline {22}{\ignorespaces Diagrama de Sequ\IeC {\^e}ncia -- Salvar Protocolo.}}{34}{figure.5.22}
+\contentsline {figure}{\numberline {23}{\ignorespaces Diagrama de Sequ\IeC {\^e}ncia -- Abrir Pacote.}}{34}{figure.5.23}
+\contentsline {figure}{\numberline {24}{\ignorespaces Diagrama de Sequ\IeC {\^e}ncia -- Salvar Pacote.}}{35}{figure.5.24}
+\contentsline {figure}{\numberline {25}{\ignorespaces Diagrama de Sequ\IeC {\^e}ncia -- Exportar Imagem.}}{36}{figure.5.25}
+\contentsline {figure}{\numberline {26}{\ignorespaces Diagrama de Classes do Experimento -- Simplificado.}}{36}{figure.5.26}
+\contentsline {figure}{\numberline {27}{\ignorespaces Diagrama de Classes do Modelo de Processo -- Simplificado.}}{37}{figure.5.27}
+\contentsline {figure}{\numberline {28}{\ignorespaces Instant\IeC {\^a}neo da ferramenta de constru\IeC {\c c}\IeC {\~a}o de protocolo de experimenta\IeC {\c c}\IeC {\~a}o.}}{40}{figure.5.28}
+\contentsline {figure}{\numberline {29}{\ignorespaces Protocolo de Experimenta\IeC {\c c}\IeC {\~a}o referente \IeC {\`a} Fase de Defini\IeC {\c c}\IeC {\~a}o.}}{42}{figure.6.29}
+\contentsline {figure}{\numberline {30}{\ignorespaces Quest\IeC {\~o}es e M\IeC {\'e}tricas elaboradas na Atividade Planejamento~\cite {d2012avaliaccao}.}}{43}{figure.6.30}
+\contentsline {figure}{\numberline {31}{\ignorespaces Hip\IeC {\'o}teses elaboradas na Atividade Planejamento~\cite {d2012avaliaccao}.}}{43}{figure.6.31}
+\contentsline {figure}{\numberline {32}{\ignorespaces Vari\IeC {\'a}veis Independentes elaboradas na Atividade Planejamento~\cite {d2012avaliaccao}.}}{43}{figure.6.32}
+\contentsline {figure}{\numberline {33}{\ignorespaces Vari\IeC {\'a}veis Dependentes elaboradas na Atividade Planejamento~\cite {d2012avaliaccao}.}}{44}{figure.6.33}
+\contentsline {figure}{\numberline {34}{\ignorespaces Instrumenta\IeC {\c c}\IeC {\~a}o \IeC {\textendash } Ferramentas Informatizadas \IeC {\textendash } Planejamento~\cite {d2012avaliaccao}.}}{44}{figure.6.34}
+\contentsline {figure}{\numberline {35}{\ignorespaces Instrumenta\IeC {\c c}\IeC {\~a}o \IeC {\textendash } Materiais de Realizacao de Testes \IeC {\textendash } Planejamento~\cite {d2012avaliaccao}.}}{45}{figure.6.35}
+\contentsline {figure}{\numberline {36}{\ignorespaces Instrumenta\IeC {\c c}\IeC {\~a}o \IeC {\textendash } Materiais de Treinamento \IeC {\textendash } Planejamento~\cite {d2012avaliaccao}.}}{45}{figure.6.36}
+\contentsline {figure}{\numberline {37}{\ignorespaces Instrumenta\IeC {\c c}\IeC {\~a}o \IeC {\textendash } Question\IeC {\'a}rios \IeC {\textendash } Planejamento~\cite {d2012avaliaccao}.}}{45}{figure.6.37}
+\contentsline {figure}{\numberline {38}{\ignorespaces Instrumenta\IeC {\c c}\IeC {\~a}o \IeC {\textendash } Formul\IeC {\'a}rios \IeC {\textendash } Planejamento~\cite {d2012avaliaccao}.}}{46}{figure.6.38}
+\contentsline {figure}{\numberline {39}{\ignorespaces Protocolo de Experimenta\IeC {\c c}\IeC {\~a}o referente \IeC {\`a} Fase de Planejamento.}}{46}{figure.6.39}
+\contentsline {figure}{\numberline {40}{\ignorespaces Protocolo de Experimenta\IeC {\c c}\IeC {\~a}o referente \IeC {\`a} Fase de Opera\IeC {\c c}\IeC {\~a}o.}}{47}{figure.6.40}
+\contentsline {figure}{\numberline {41}{\ignorespaces Protocolo de Experimenta\IeC {\c c}\IeC {\~a}o referente \IeC {\`a} Fase de An\IeC {\'a}lise e Interpreta\IeC {\c c}\IeC {\~a}o.}}{48}{figure.6.41}
+\contentsline {figure}{\numberline {42}{\ignorespaces Protocolo de Experimenta\IeC {\c c}\IeC {\~a}o referente \IeC {\`a} Fase de Empacotamento e Apresenta\IeC {\c c}\IeC {\~a}o.}}{49}{figure.6.42}

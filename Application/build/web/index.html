@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<title>BPMN Tool</title>
+	<link rel="stylesheet" href="assets/style/base/bpmn.css">
+	<link rel="stylesheet" href="assets/style/layout/painel-desenho.css">
+	<link rel="stylesheet" href="assets/style/icon.css">
+
+
+	<!--<script src="assets/script/svg-pan-zoom.min.js"></script>-->
+
+	<!-- Base -->
+	<link rel="stylesheet" href="assets/style/base/fonts.css">
+
+	<!-- Layout -->
+	<link rel="stylesheet" href="assets/style/layout/menu.css">
+
+	<!-- Modules -->
+	<link rel="stylesheet" href="assets/style/modules/tools.css">
+        
+        <link rel="icon" href="assets/style/favicon.ico">
+
+	<!-- Script -->
+
+
+	<script src="assets/script/d3.v4.min.js"></script>
+	<script src="assets/script/html2canvas.min.js"></script>
+       
+	<!-- ========================= -->
+	<script src="assets/script/library/BPMNSettings.js"></script>
+
+	
+	<script src="assets/script/library/BPMNElement.js"></script>
+	<script src="assets/script/library/BPMNFlowObject.js"></script>
+	<script src="assets/script/library/BPMNConnectionObject.js"></script>
+	<script src="assets/script/library/BPMNArtifact.js"></script>
+	<script src="assets/script/library/BPMNData.js"></script>
+	<script src="assets/script/library/BPMNSwimlane.js"></script>
+	<script src="assets/script/library/BPMNDiagram.js"></script>
+
+	<!--<script src="assets/script/svg-pan-zoom.min.js"></script>-->
+	<script src="assets/script/FileSaver.min.js"></script>
+	<script src="assets/script/jquery-3.2.1.min.js"></script>
+
+	<script src="assets/script/graphic-user-interface.js"></script>
+	<script src="assets/script/index.js"></script>
+
+</head>
+
+<body>
+	<div class="main-bar">
+		<ul>
+			<li class="drop-menu">
+				<div class="rect"></div>
+				<div class="rect"></div>
+				<div class="rect"></div>
+				<ul class='menu'>
+					<li class="open-file">Abrir... </li>
+					<li class="new-file">Novo</li>
+					<li class="save-file">Salvar como...</li>
+					<li class="export-file">Exportar</li>
+				</ul>
+			</li>
+		</ul>
+		<div class="main-title">BPMN Tool</div>
+	</div>
+	<div class="mouse-box">
+
+
+	</div>
+    
+
+        
+        <div class="box-descricao">
+            
+            <div class="titulo">Exibir detalhes</div>
+            <div class="close">x</div>
+            <div class="content"></div>
+        </div>
+        
+
+    
+	<div class="box-shadow box-01">
+		<div class="box-open-dialog">
+			<p>Selecione o formato de arquivo:</p><br>
+			<form enctype="multipart/form-data">
+				<input type='radio' name="opcao-abrir" checked>Pacote de Laboratório</input><br>
+				<input type='radio' name="opcao-abrir">Protocolo de Experimentação</input><br><br>
+				<input type="file" name="fileInput" />
+			</form><br>
+			<p class="options"><span class="open-option-open-dialog text-button">Abrir</span><span class="cancel-option-open-dialog text-button">Cancelar</span></p>
+		</div>
+	</div>
+	<div class="box-shadow box-02">
+		<div class="box-save-dialog">
+			<p>Selecione o formato de arquivo:</p><br>
+			<form>
+				<input type='radio' name="opcao-salvar" checked>Pacote de Laboratório</input><br>
+				<input type='radio' name="opcao-salvar">Protocolo de Experimentação</input><br><br>
+				<label for="nome-arquivo">Arquivo </label><input autocomplete="off" type='text' name='nome-arquivo'></input>
+			</form><br>
+			<p class="options"><span class="save-option-save-dialog text-button">Salvar</span><span class="cancel-option-save-dialog text-button">Cancelar</span></p>
+		</div>
+	</div>
+    
+	<svg class="bpmn-diagram" style="z-index: -20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<defs>
+			<linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#05a" />
+				<stop offset="100%" stop-color="#0a5" />
+			</linearGradient>
+			<radialGradient id="raio" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+				<stop offset="0%" style="stop-color:#00bcb0; stop-opacity:1" />
+				<stop offset="100%" style="stop-color:#96fff8;stop-opacity:1" />
+			</radialGradient>
+		</defs>
+		<filter id="dropshadow" height="130%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+			<!-- stdDeviation is how much to blur -->
+			<feOffset dx="2" dy="2" result="offsetblur" />
+			<!-- how much to offset -->
+			<feMerge>
+				<feMergeNode/>
+				<!-- this contains the offset blurred image -->
+				<feMergeNode in="SourceGraphic" />
+				<!-- this contains the element that the filter is applied to -->
+			</feMerge>
+		</filter>
+
+
+		<defs>
+			<marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+				<path d="M0,0 L0,6 L9,3 z" fill="#000" />
+			</marker>
+			<marker id="arrow-white" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+				<path d="M0,0 L0,6 L9,3 z" fill="#fff" stroke-width="1" stroke="#000" />
+			</marker>
+
+		</defs>
+		<g class="transition"></g>
+	</svg>
+
+	<div class="painel-lateral">
+		<div class='button'>◄</div>
+		<div class="nome">
+			<p>Modificar Elemento</p>
+		</div>
+		<div class="options">
+			<p>Sem seleção</p>
+		</div>
+		<div class="button-save">Salvar Alterações</div>
+	</div>
+        
+	<ul class="context-menu">
+
+	</ul>
+        
+        
+</body>
+
+</html>
