@@ -754,7 +754,7 @@ class BPMNDiagram {
 
 							let container = get(id);
 							let parent = get(`${id}`.substring(0, `${id}`.indexOf('lane')));
-							console.log(`(${parent.x} - ${parent.dx} + ${container.x}), (${parent.y} - ${parent.dy} + ${container.y})`);
+							//console.log(`(${parent.x} - ${parent.dx} + ${container.x}), (${parent.y} - ${parent.dy} + ${container.y})`);
 							let element = diagram.createElement(d3.event.x - (parent.x - parent.dx + container.x), d3.event.y - (parent.y - parent.dy + container.y), diagram.numElements++);
 							element.container = container.id;
 							window.elements.push(element);
@@ -815,7 +815,14 @@ class BPMNDiagram {
 				}
 			})
 			.on('drag', function() {
+				
 				d3.select(this).attr('transform', `translate(${d3.event.x - x},${d3.event.y - y})`);
+
+				window.elements.filter((e) => {return e.transicoesOrigem != null && e.transicoesOrigem.length > 0;}).forEach((e) => {
+
+					BPMNDiagram.reposicionarTransicoesPool(e);
+				});
+
 			})
 			.on('end', function(){
 				
