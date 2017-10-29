@@ -21,25 +21,30 @@ class BPMNDiagram {
 
 		//////////////////////////////////////////
 		///
-		var svg = d3.select("svg");
+		
+		this.component = document.querySelector(this.selector);
+		d3.select(this.selector)
+		.style('border','1px dashed #000');
+
+		/*var svg = d3.select("svg");
 		svg
-			.call(d3.zoom()
-				.scaleExtent([1 / 2, 8])
-				.on("zoom", zoomed)
-			);
+		.call(d3.zoom()
+			.scaleExtent([1 / 2, 8])
+			.on("zoom", zoomed)
+		);
 
 
 		function zoomed() {
-			svg.attr("transform", d3.event.transform);
-
-		}
+			//svg.attr("transform", d3.event.transform);
+			console.log(d3.event.transform + " ");
+		}*/
 
 		/////////////////////////////////////////
 		this.icon = document.createElement('i');
 		this.icon.className = 'mouse-icon';
 		document.querySelector('body').appendChild(this.icon);
 
-		this.component = document.querySelector(this.selector);
+		
 
 		d3.select(this.selector).attr('width', window.innerWidth).attr('height', window.innerHeight);
 
@@ -63,135 +68,135 @@ class BPMNDiagram {
 
 	}
         
-        import(json){
+    import(json){
             
-            let data = JSON.parse(json);            
-            let transitions = [];
-            let protocol = data.protocol;
+        let data = JSON.parse(json);            
+        let transitions = [];
+        let protocol = data.protocol;
             
    
-            if (protocol.element != null) {
-                this.analyse(protocol.element, transitions);
-            
-            }
-            
-            BPMNSettings.diagramSelector = this.selector;
-            this.link(transitions);
-            BPMNSettings.diagramSelector = this.selector;
-
-        }
-        
-        link(array){
-            
-            if (array.length === 0) return;
-            
-            let transition = array.pop();
-            
-            if (transition.container != this.selector) BPMNSettings.diagramSelector = `${transition.container} .content-lane`;
-            else BPMNSettings.diagramSelector = `${this.selector} .transition`;
-            
-            BPMNDiagram.desenharTransicao(transition.origem, transition.destino);
-            
-            array = array.filter((t) => {
-                return (!(transition.origem == t.origem && transition.destino == t.destino));
-            }, transition);
-            
-            this.link(array);
+        if (protocol.element != null) {
+            this.analyse(protocol.element, transitions);
             
         }
+            
+        BPMNSettings.diagramSelector = this.selector;
+        this.link(transitions);
+        BPMNSettings.diagramSelector = this.selector;
+
+    }
         
-        analyse(array, transitions, container = this.selector){
+    link(array){
             
-            if (array == null) return;
+        if (array.length === 0) return;
             
-            if (Array.isArray(array)) {
+        let transition = array.pop();
+            
+        if (transition.container != this.selector) BPMNSettings.diagramSelector = `${transition.container} .content-lane`;
+        else BPMNSettings.diagramSelector = `${this.selector} .transition`;
+            
+        BPMNDiagram.desenharTransicao(transition.origem, transition.destino);
+            
+        array = array.filter((t) => {
+            return (!(transition.origem == t.origem && transition.destino == t.destino));
+        }, transition);
+            
+        this.link(array);
+            
+    }
+        
+    analyse(array, transitions, container = this.selector){
+            
+        if (array == null) return;
+            
+        if (Array.isArray(array)) {
                 
-                array.forEach((a) => {
-                    a.container = container;
-                    this.classify(a);
-                    this.createLanes(a);
+            array.forEach((a) => {
+                a.container = container;
+                this.classify(a);
+                this.createLanes(a);
                     
-                    //transição
-                    if (a["bpmn.factory.json.Transicao"] != null) {
+                //transição
+                if (a["bpmn.factory.json.Transicao"] != null) {
 
-                        if (Array.isArray(a["bpmn.factory.json.Transicao"])) {
+                    if (Array.isArray(a["bpmn.factory.json.Transicao"])) {
 
-                            a["bpmn.factory.json.Transicao"].forEach((t) => {
-                                    t.container = container;
-                                    transitions.push(t);
-                            });
-                        }
-                        else{
-                            
-                            a["bpmn.factory.json.Transicao"].container = container;
-                            transitions.push(a["bpmn.factory.json.Transicao"]);
-                        }
-                    }
-                    
-                    //elementos
-                    this.analyse(a.element, transitions, a.id);
-                    
-                });
-            }
-            else{
-                
-                array.container = container;
-                this.classify(array);
-                this.createLanes(array);
-                
-                if (array["bpmn.factory.json.Transicao"] != null) {
-
-                    if (Array.isArray(array["bpmn.factory.json.Transicao"])) {
-
-                        array["bpmn.factory.json.Transicao"].forEach((t) => {
-                            transitions.push(t);
+                        a["bpmn.factory.json.Transicao"].forEach((t) => {
+                                t.container = container;
+                                transitions.push(t);
                         });
                     }
                     else{
-
-                        transitions.push(array["bpmn.factory.json.Transicao"]);
+                            
+                        a["bpmn.factory.json.Transicao"].container = container;
+                        transitions.push(a["bpmn.factory.json.Transicao"]);
                     }
                 }
-                
+                    
                 //elementos
-                this.analyse(array.element, transitions, array.id);
-            }
-            
+                this.analyse(a.element, transitions, a.id);
+                    
+            });
         }
-        
-        
-        createLanes(pool){
-            
-            if (pool.name != 'participant') return;
-            
-            //console.log(pool);
-            
-            let list = [];
-            if (Array.isArray(pool.element)) {
+        else{
                 
-                    pool.element.forEach((t) => {
-                            list.push(t);
-                    });
-            }
-            else{
+            array.container = container;
+            this.classify(array);
+            this.createLanes(array);
+                
+            if (array["bpmn.factory.json.Transicao"] != null) {
 
-                    list.push(pool.element);
+                if (Array.isArray(array["bpmn.factory.json.Transicao"])) {
+
+                    array["bpmn.factory.json.Transicao"].forEach((t) => {
+                        transitions.push(t);
+                    });
+                }
+                else{
+
+                    transitions.push(array["bpmn.factory.json.Transicao"]);
+                }
             }
+                
+            //elementos
+            this.analyse(array.element, transitions, array.id);
+        }
             
-            list.sort((a, b) => {
-                if (a.y < b.y) return -1;
-                else if (a.y > b.y) return 1;
-                return 0;
-            });
+    }
+        
+        
+    createLanes(pool){
             
+        if (pool.name != 'participant') return;
             
+        //console.log(pool);
             
-            let parent = get(pool.id.substring(1));
-            list.forEach((lane) => {
-                //console.log(lane);
-                parent.insert(lane.id); 
+        let list = [];
+        if (Array.isArray(pool.element)) {
+                
+            pool.element.forEach((t) => {
+                list.push(t);
             });
         }
+        else{
+
+            list.push(pool.element);
+        }
+            
+        list.sort((a, b) => {
+            if (a.y < b.y) return -1;
+            else if (a.y > b.y) return 1;
+            return 0;
+        });
+            
+            
+            
+        let parent = get(pool.id.substring(1));
+        list.forEach((lane) => {
+            //console.log(lane);
+            parent.insert(lane.id); 
+        });
+    }
         
         classify(element){
             
@@ -277,23 +282,23 @@ class BPMNDiagram {
                 
                 novoElemento.container = element.container;
                 
-                let attributes = [
-                    element.description
-                ];
+        let attributes = [
+            element.description
+        ];
                 
-                novoElemento.atualizar(attributes);
+        novoElemento.atualizar(attributes);
             
-                novoElemento.vinculos = [];
+        novoElemento.vinculos = [];
 
-                if (element.string != null) element.string.forEach((a) => {
-                    novoElemento.vinculos.push(a);
-                });
-                //console.log(document.querySelector('#pool0'));
+        if (element.string != null) element.string.forEach((a) => {
+            novoElemento.vinculos.push(a);
+        });
+
 
 		window.elements.push(novoElemento);
-                BPMNSettings.diagramSelector = this.selector;
+        BPMNSettings.diagramSelector = this.selector;
             
-        }
+    }
 
 	export() {
 
@@ -691,7 +696,7 @@ class BPMNDiagram {
 
 	static refreshListener() {
 
-		d3.selectAll('.item, .bpmn-diagram')
+		d3.selectAll('.item')
 			.call(d3.drag()
 				.on('start', function () {
 					d3.select(this).raise().style('cursor', 'move');
@@ -699,7 +704,7 @@ class BPMNDiagram {
 				.on('drag', function () {
 
 					BPMNDiagram.drag(d3.select(this));
-
+					
 					d3.select(`${diagram.selector} .transition`).raise();
 
 					BPMNDiagram.reposicionarTransicoesPool(get(d3.select(this)._groups[0][0].id));
@@ -795,6 +800,27 @@ class BPMNDiagram {
 				d3.select(`${diagram.selector} .transition`).raise();
 			})
 
+		
+		let x, y;
+		d3.select(diagram.selector)
+		.call(d3.drag()
+			.on('start', function() {
+				x = d3.event.x; y = d3.event.y;
+
+				let transform = d3.select(this).attr('transform');
+				if (transform != null) {
+					
+					let offset = (transform.substring(transform.indexOf("(") + 1, transform.length - 1).split(","));
+					x -= Number.parseInt(offset[0]); y -= Number.parseInt(offset[1]);
+				}
+			})
+			.on('drag', function() {
+				d3.select(this).attr('transform', `translate(${d3.event.x - x},${d3.event.y - y})`);
+			})
+			.on('end', function(){
+				
+			})
+		);
 	}
 
 
@@ -941,43 +967,7 @@ class BPMNDiagram {
 
 	initialize() {
 
-		/*BPMNDiagram.SCREW_WRENCH = {
-			type: 'auxiliar',
-			icon: 'screw-wrench'
-		}
-		BPMNDiagram.TRASH = {
-			type: 'auxiliar',
-			icon: 'trash'
-		}
-		BPMNDiagram.LASSO = {
-			type: 'auxiliar',
-			icon: 'lasso-tool'
-		}
-		BPMNDiagram.HAND = {
-			type: 'auxiliar',
-			icon: 'hand-tool'
-		}
-
-		////////////////////////////////////////////
-		BPMNSequenceFlow.NORMAL = {
-			type: 'connection',
-			icon: 'sequence-flow'
-		}
-
-		BPMNMessageFlow.NORMAL = {
-			type: 'connection',
-			icon: 'message-flow'
-		}
-
-		BPMNAssociation.NORMAL = {
-			type: 'connection',
-			icon: 'association'
-		}*/
-
-		////////////////////////////////////////////
-		////////////////////////////////////////////
-		////////////////////////////////////////////
-
+		
 		BPMNEvent.START_EVENT_NONE = {
 			type: 'start-event',
 			icon: 'start-event-none',
@@ -2075,7 +2065,6 @@ class BPMNDiagram {
 		}
 
 	}
-
 
 }
 
