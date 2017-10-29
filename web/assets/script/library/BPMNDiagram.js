@@ -512,7 +512,7 @@ class BPMNDiagram {
 				.attr('stroke-width', '1.5')
 				.attr('marker-end', 'url(#arrow)');
                         
-                        type = "data-association";
+            type = "data-association";
 		}
 		else if (a.container.substring(0, a.container.indexOf('lane')) != b.container.substring(0, b.container.indexOf('lane'))) {
 
@@ -538,7 +538,7 @@ class BPMNDiagram {
 
 			d3.select(`${container} .transition`).raise();
                         
-                        type = "message-flow";
+            type = "message-flow";
 		}
 		else {
                     
@@ -564,7 +564,7 @@ class BPMNDiagram {
 				.attr('stroke-width', '1.5')
 				.attr('marker-end', 'url(#arrow)');
                         
-                        type = "sequence-flow"
+            type = "sequence-flow"
 		}
 
 		//Adiciona a nova transição a lista de transições de cada elemento
@@ -573,7 +573,7 @@ class BPMNDiagram {
 		b.transicoesDestino.push('transicao' + diagram.numElements);
 
 		diagram.numElements++;
-                transicao.tipo = type;
+        transicao.tipo = type;
 		window.elements.push(transicao);
 	}
 
@@ -589,6 +589,7 @@ class BPMNDiagram {
 		else {
 			container = get(entry.item.container.substring(1));
 		}
+
 
 		if (0 < entry.x && entry.x < container.width && 0 < entry.y && entry.y < container.height) {
 			return true;
@@ -753,7 +754,7 @@ class BPMNDiagram {
 
 							let container = get(id);
 							let parent = get(`${id}`.substring(0, `${id}`.indexOf('lane')));
-
+							console.log(`(${parent.x} - ${parent.dx} + ${container.x}), (${parent.y} - ${parent.dy} + ${container.y})`);
 							let element = diagram.createElement(d3.event.x - (parent.x - parent.dx + container.x), d3.event.y - (parent.y - parent.dy + container.y), diagram.numElements++);
 							element.container = container.id;
 							window.elements.push(element);
