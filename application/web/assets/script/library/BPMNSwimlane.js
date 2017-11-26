@@ -22,8 +22,7 @@ class BPMNLane {
 
 		this.x = x;
 		this.y = y;
-                
-                this.name = "lane";
+        this.name = "lane";
 
 	}
 
@@ -48,11 +47,11 @@ class BPMNLane {
 			type: this.constructor.name,
 			x: this.x,
 			y: this.y,
-                        name: this.name,
+            name: this.name,
 			height: this.height,
 			description: this.attributes.Descrição,
 			elements: [],
-                        vinculos: this.vinculos
+            vinculos: this.vinculos
 		}
 	}
 
@@ -68,23 +67,24 @@ class BPMNPool extends BPMNSwimlane {
 
 
 		if (currentId === true) super(`pool${count}`, `<g>${name.content}${text}<g class='content-swim'></g></g>`);
-                else super(currentId, `<g>${name.content}${text}<g class='content-swim'></g></g>`);
-                
-                this.name = name.icon;
-		this.numLanes = 0;
-		this.attributes = {};
-		this.attributes.Descrição = "Exemplo";
-
-		this.width = 600;
+        else super(currentId, `<g>${name.content}${text}<g class='content-swim'></g></g>`);
+             
+        this.width = 600;
 		this.height = 0;
+
+        this.name = name.icon;
+		this.numLanes = 0;
+		this.attributes = {
+			Descrição: "Exemplo",
+			Largura: this.width 
+		};
+		
 
 		this.x = x;
 		this.y = y;
 
 		this.dx = this.width / 2;
-		this.dy = this.height / 2;
-
-        
+		this.dy = this.height / 2;        
 
 		this.element
 			.attr('class', 'item')
@@ -93,7 +93,6 @@ class BPMNPool extends BPMNSwimlane {
 		this.lanes = [];
 		if (hasLane) this.addLaneBelow();
                 
-                //console.log(document.querySelector(this.id));
 
 	}
 
@@ -111,7 +110,7 @@ class BPMNPool extends BPMNSwimlane {
 			.append('rect')
 			.attr('stroke-width', 5)
 			.attr('stroke', '#000')
-			.attr('width', 570)
+			.attr('width', this.width-30)
 			.attr('height', 200)
 			.attr('fill', 'transparent');
 
@@ -194,7 +193,7 @@ class BPMNPool extends BPMNSwimlane {
 			.append('rect')
 			.attr('stroke-width', 5)
 			.attr('stroke', '#000')
-			.attr('width', 570)
+			.attr('width', this.width-30)
 			.attr('height', 200)
 			.attr('fill', 'transparent');
 
@@ -214,7 +213,7 @@ class BPMNPool extends BPMNSwimlane {
 
 		let l = new BPMNLane(this.numLanes, this.id, 30, distancia);
 		this.lanes.push(l);
-		window.elements.push(l); //`${this.id} .content-swim`;
+		window.elements.push(l); 
 
 		let select = d3.select(this.id);
 
@@ -236,7 +235,7 @@ class BPMNPool extends BPMNSwimlane {
 		BPMNDiagram.refreshListener();
 	}
 
-        insert(id) {
+    insert(id) {
 
 		let distancia = 0;
 
@@ -256,7 +255,7 @@ class BPMNPool extends BPMNSwimlane {
 			.append('rect')
 			.attr('stroke-width', 5)
 			.attr('stroke', '#000')
-			.attr('width', 570)
+			.attr('width', this.width-30)
 			.attr('height', 200)
 			.attr('fill', 'transparent');
 
@@ -294,9 +293,7 @@ class BPMNPool extends BPMNSwimlane {
 		this.height += 200;
 		this.y += 100;
 		this.dy = this.height / 2;
-                
-                
-                //corrigindo o posicionamento da piscina
+    
 		this.y -= 100;
 
 		d3.select(this.id)
@@ -305,29 +302,48 @@ class BPMNPool extends BPMNSwimlane {
 
 		//reposicionando as transições
 		BPMNDiagram.reposicionarTransicoesPool(this);
-                
-
 		BPMNDiagram.refreshListener();
 	}
 
 	atualizar(lista) {
 
 		this.attributes.Descrição = lista[0];
+		this.attributes.Largura = Number.parseInt(lista[1]);
+		this.width = this.attributes.Largura;
+		this.x -= this.dx;
+		this.dx = this.width/2;
+		this.x += this.dx;
+
+		let l = this.width - 30;
+
 		$('.value-pool', this.id).text(this.attributes.Descrição);
+
+		this.element.select('.c1')
+		.attr('width', this.attributes.Largura);
+
+		this.element.select('.content-swim')
+		.selectAll('.lane').each(function(){
+			
+			let element = get(d3.select(this).attr('id'));
+			element.width = l;
+
+			d3.select(this).select('rect')
+			.attr('width', l);
+		});
 	}
         
-        extract() {
+    extract() {
 
 		return {
 			id: this.id,
 			type: this.constructor.name,
 			x: this.x,
 			y: this.y,
-                        name: this.name,
+            name: this.name,
 			width: this.width,
 			description: this.attributes.Descrição,
 			elements: [],
-                        vinculos: this.vinculos
+            vinculos: this.vinculos
 		}
 	}
 

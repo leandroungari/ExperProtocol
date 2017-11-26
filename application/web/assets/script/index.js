@@ -6,8 +6,9 @@ window.onload = function(){
 	let selector = ".bpmn-diagram";
 
 	diagram = new BPMNDiagram(selector);
-	diagram.initialize();
+	
 
+	BPMNSettings.initialize();
 	BPMNSettings.diagramSelector = selector;
 	
 
