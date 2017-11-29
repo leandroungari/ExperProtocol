@@ -1,4 +1,0 @@
-\beamer@endinputifotherversion {3.36pt}
-\beamer@sectionintoc {1}{Engenharia de Software Experimental}{11}{0}{1}
-\beamer@sectionintoc {2}{Pacotes de Laborat\IeC {\'o}rio}{26}{0}{2}
-\beamer@sectionintoc {3}{Modelagem de Processo de Neg\IeC {\'o}cio}{37}{0}{3}
