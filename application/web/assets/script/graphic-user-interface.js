@@ -240,20 +240,9 @@ function loadGUI() {
             return;
         }
 
-        html2canvas($(diagram.selector), {
-            onrendered: function (canvas) {
-
-                canvas.toBlob(function (blob) {
-                    saveAs(blob, "diagrama.jpg");
-                }, "image/jpeg");
-
-            }
-        });
-
+        var node = document.querySelector(diagram.selector);
+        saveAs(new Blob([node.outerHTML]), "diagrama.svg");
     });
-
-
-
 
     //////////////////////////////////////////////////////
     //////////////////////////////////////////////////////
