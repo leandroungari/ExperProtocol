@@ -1,21 +1,24 @@
-let diagram; 
+let diagram;
 
-window.onload = function(){
+window.onload = function () {
 
 
 	let selector = ".bpmn-diagram";
 
 	diagram = new BPMNDiagram(selector);
-	
+
+
 
 	BPMNSettings.initialize();
 	BPMNSettings.diagramSelector = selector;
-	
 
-	d3.select("svg").on("dblclick.zoom", null);
 
-        BPMNDiagram.protocol = null;
-        BPMNDiagram.experiment = null;
+	d3.select("svg")
+	.style('background-color','#fff')
+	.on("dblclick.zoom", null);
+
+	BPMNDiagram.protocol = null;
+	BPMNDiagram.experiment = null;
 
 
 	loadGUI();

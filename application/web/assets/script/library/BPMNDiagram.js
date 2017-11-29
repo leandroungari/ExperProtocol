@@ -4,13 +4,13 @@
 class BPMNDiagram {
 
 	/** Construtor BPMNDiagram
-	 * 
-	 * @param String selector Refere-se ao seletor do elemento DOM do diagrama. 
-	 */
-	 constructor(selector) {
+	* 
+	* @param String selector Refere-se ao seletor do elemento DOM do diagrama. 
+	*/
+	constructor(selector) {
 
-	 	this.selector = selector;
-	 	this.numElements = 0;
+		this.selector = selector;
+		this.numElements = 0;
 
 		//Lista de todos os elementos no diagrama
 		window.elements = [];
@@ -21,29 +21,29 @@ class BPMNDiagram {
 
 		//////////////////////////////////////////
 		///
-		
+
 		this.component = document.querySelector(this.selector);
-		
+
 
 		/*var svg = d3.select("svg");
 		svg
 		.call(d3.zoom()
-			.scaleExtent([1 / 2, 8])
-			.on("zoom", zoomed)
-		);
-
-
-		function zoomed() {
-			//svg.attr("transform", d3.event.transform);
-			console.log(d3.event.transform + " ");
-		}*/
+		.scaleExtent([1 / 2, 8])
+		.on("zoom", zoomed)
+	);
+	
+	
+	function zoomed() {
+		//svg.attr("transform", d3.event.transform);
+		console.log(d3.event.transform + " ");
+	}*/
 
 		/////////////////////////////////////////
 		this.icon = document.createElement('i');
 		this.icon.className = 'mouse-icon';
 		document.querySelector('body').appendChild(this.icon);
 
-		
+
 
 		d3.select(this.selector).attr('width', window.innerWidth).attr('height', window.innerHeight);
 
@@ -67,9 +67,9 @@ class BPMNDiagram {
 
 	}
 
-	import(json){
+	import(json) {
 
-		let data = JSON.parse(json);            
+		let data = JSON.parse(json);
 		let transitions = [];
 		let protocol = data.protocol;
 
@@ -86,7 +86,7 @@ class BPMNDiagram {
 
 	}
 
-	link(array){
+	link(array) {
 
 		if (array.length === 0) return;
 
@@ -105,7 +105,7 @@ class BPMNDiagram {
 
 	}
 
-	analyse(array, transitions, container = this.selector){
+	analyse(array, transitions, container = this.selector) {
 
 		if (array == null) return;
 
@@ -116,29 +116,29 @@ class BPMNDiagram {
 				this.classify(a);
 				this.createLanes(a);
 
-                //transição
-                if (a["bpmn.factory.json.Transicao"] != null) {
+				//transição
+				if (a["bpmn.factory.json.Transicao"] != null) {
 
-                	if (Array.isArray(a["bpmn.factory.json.Transicao"])) {
+					if (Array.isArray(a["bpmn.factory.json.Transicao"])) {
 
-                		a["bpmn.factory.json.Transicao"].forEach((t) => {
-                			t.container = container;
-                			transitions.push(t);
-                		});
-                	}
-                	else{
+						a["bpmn.factory.json.Transicao"].forEach((t) => {
+							t.container = container;
+							transitions.push(t);
+						});
+					}
+					else {
 
-                		a["bpmn.factory.json.Transicao"].container = container;
-                		transitions.push(a["bpmn.factory.json.Transicao"]);
-                	}
-                }
+						a["bpmn.factory.json.Transicao"].container = container;
+						transitions.push(a["bpmn.factory.json.Transicao"]);
+					}
+				}
 
-                //elementos
-                this.analyse(a.element, transitions, a.id);
+				//elementos
+				this.analyse(a.element, transitions, a.id);
 
-            });
+			});
 		}
-		else{
+		else {
 
 			array.container = container;
 			this.classify(array);
@@ -152,368 +152,368 @@ class BPMNDiagram {
 						transitions.push(t);
 					});
 				}
-				else{
+				else {
 
 					transitions.push(array["bpmn.factory.json.Transicao"]);
 				}
 			}
 
-            //elementos
-            this.analyse(array.element, transitions, array.id);
-        }
+			//elementos
+			this.analyse(array.element, transitions, array.id);
+		}
 
-    }
+	}
 
 
-    createLanes(pool){
+	createLanes(pool) {
 
-    	if (pool.name != 'participant') return;
+		if (pool.name != 'participant') return;
 
-        //console.log(pool);
+		//console.log(pool);
 
-        let list = [];
-        if (Array.isArray(pool.element)) {
+		let list = [];
+		if (Array.isArray(pool.element)) {
 
-        	pool.element.forEach((t) => {
-        		list.push(t);
-        	});
-        }
-        else{
+			pool.element.forEach((t) => {
+				list.push(t);
+			});
+		}
+		else {
 
-        	list.push(pool.element);
-        }
+			list.push(pool.element);
+		}
 
-        list.sort((a, b) => {
-        	if (a.y < b.y) return -1;
-        	else if (a.y > b.y) return 1;
-        	return 0;
-        });
+		list.sort((a, b) => {
+			if (a.y < b.y) return -1;
+			else if (a.y > b.y) return 1;
+			return 0;
+		});
 
 
 
-        let parent = get(pool.id.substring(1));
-        list.forEach((lane) => {
-            //console.log(lane);
-            parent.insert(lane.id); 
-        });
-    }
+		let parent = get(pool.id.substring(1));
+		list.forEach((lane) => {
+			//console.log(lane);
+			parent.insert(lane.id);
+		});
+	}
 
-    classify(element){
+	classify(element) {
 
-    	let type = element.type;
-    	let nome = element.name;
+		let type = element.type;
+		let nome = element.name;
 
-    	let object = eval(type + "." + nome.toUpperCase().replace(/-/g, "_"));
+		let object = eval(type + "." + nome.toUpperCase().replace(/-/g, "_"));
 
-    	let name = object;
-    	let xcoor = element.x;
-    	let ycoor = element.y;
-    	let novoElemento;
-    	this.numElements++;
+		let name = object;
+		let xcoor = element.x;
+		let ycoor = element.y;
+		let novoElemento;
+		this.numElements++;
 
 
-            //corrigir a criação de lanes
-            if (nome == 'lane-none') {
+		//corrigir a criação de lanes
+		if (nome == 'lane-none') {
 
-                //console.log("aqui");
-                return;
-            }
-            
-            if (element.container != this.selector) BPMNSettings.diagramSelector = `${element.container} .content-lane`;
-            else BPMNSettings.diagramSelector = element.container;
-            
-            
-            
-            switch (name.type) {
+			//console.log("aqui");
+			return;
+		}
 
-            	case "start-event":
-            	case "intermediate-event":
-            	case "end-event":
+		if (element.container != this.selector) BPMNSettings.diagramSelector = `${element.container} .content-lane`;
+		else BPMNSettings.diagramSelector = element.container;
 
-            	novoElemento = new BPMNEvent(xcoor, ycoor, name, 0);
 
-            	break;
 
-            	case "gateway":
+		switch (name.type) {
 
-            	novoElemento = new BPMNGateway(xcoor, ycoor, name, 0);
+			case "start-event":
+			case "intermediate-event":
+			case "end-event":
 
-            	break;
+				novoElemento = new BPMNEvent(xcoor, ycoor, name, 0);
 
-            	case "data":
+				break;
 
-            	novoElemento = new BPMNData(xcoor, ycoor, name, 0);
+			case "gateway":
 
-            	break;
+				novoElemento = new BPMNGateway(xcoor, ycoor, name, 0);
 
-            	case "lane":
+				break;
 
-            	novoElemento = new BPMNPool(xcoor, ycoor, name, 0, false, element.id.substring(1));
-            	console.log(novoElemento.width + "");
-            	console.log(element)
-            	break;
+			case "data":
 
-            	case "annotation":
+				novoElemento = new BPMNData(xcoor, ycoor, name, 0);
 
-            	novoElemento = new BPMNTextAnnotation(xcoor, ycoor, name, 0);
+				break;
 
-            	break;
+			case "lane":
 
-            	case "activity":
+				novoElemento = new BPMNPool(xcoor, ycoor, name, 0, false, element.id.substring(1));
+				console.log(novoElemento.width + "");
+				console.log(element)
+				break;
 
-            	novoElemento = new BPMNActivity(xcoor, ycoor, name, 0);
+			case "annotation":
 
-            	break;
+				novoElemento = new BPMNTextAnnotation(xcoor, ycoor, name, 0);
 
-            	default:
+				break;
 
-            	console.log("erro");
-            }
+			case "activity":
 
+				novoElemento = new BPMNActivity(xcoor, ycoor, name, 0);
 
+				break;
 
+			default:
 
-            let idAntigo = novoElemento.id;
-            novoElemento.id = element.id;
+				console.log("erro");
+		}
 
 
-            novoElemento.element = d3.select(idAntigo);
-            novoElemento.element.attr('id', novoElemento.id.substring(1));
-            novoElemento.element = d3.select(novoElemento.id.substring(1));
 
-            novoElemento.container = element.container;
 
-            let attributes = [
-            element.description,
-            element.width
-            ];
+		let idAntigo = novoElemento.id;
+		novoElemento.id = element.id;
 
-            novoElemento.atualizar(attributes);
 
-            novoElemento.vinculos = [];
+		novoElemento.element = d3.select(idAntigo);
+		novoElemento.element.attr('id', novoElemento.id.substring(1));
+		novoElemento.element = d3.select(novoElemento.id.substring(1));
 
-            if (element.string != null) element.string.forEach((a) => {
-            	novoElemento.vinculos.push(a);
-            });
+		novoElemento.container = element.container;
 
+		let attributes = [
+			element.description,
+			element.width
+		];
 
-            	window.elements.push(novoElemento);
-            	BPMNSettings.diagramSelector = this.selector;
+		novoElemento.atualizar(attributes);
 
-            }
+		novoElemento.vinculos = [];
 
-            export() {
+		if (element.string != null) element.string.forEach((a) => {
+			novoElemento.vinculos.push(a);
+		});
 
-            	let diagram = {
 
+		window.elements.push(novoElemento);
+		BPMNSettings.diagramSelector = this.selector;
 
+	}
 
-            		elements: []
+	export() {
 
-            	}
+		let diagram = {
 
-            	window.elements.filter((e) => { return e.container == this.selector }).forEach((e) => {
-            		let novo = e.extract();
-            		diagram.elements.push(novo);
-            	});
 
-            	diagram.elements.forEach((e) => {
 
-            		window.elements
-            		.filter((a) => {
+			elements: []
 
-            			if (a.container == null) return false;
+		}
 
-            			let c = (a.container.startsWith('#') ? a.container : `#${a.container}`);
-            			return c == e.id;
-            		})
-            		.forEach((el) => {
+		window.elements.filter((e) => { return e.container == this.selector }).forEach((e) => {
+			let novo = e.extract();
+			diagram.elements.push(novo);
+		});
 
-            			let novo = el.extract();
-            			e.elements.push(novo);
+		diagram.elements.forEach((e) => {
 
-            			window.elements
-            			.filter((al) => {
+			window.elements
+				.filter((a) => {
 
-            				if (al.container == null) return false;
+					if (a.container == null) return false;
 
-            				let c = (al.container.startsWith('#') ? al.container : `#${al.container}`);
-            				return c == novo.id;
-            			})
-            			.forEach((o) => {
+					let c = (a.container.startsWith('#') ? a.container : `#${a.container}`);
+					return c == e.id;
+				})
+				.forEach((el) => {
 
-            				let novoE = o.extract();
-            				novo.elements.push(novoE);
-            			});
-            		});
+					let novo = el.extract();
+					e.elements.push(novo);
 
+					window.elements
+						.filter((al) => {
 
-            	}, window.elements);
+							if (al.container == null) return false;
 
-            	return diagram;
-            }
+							let c = (al.container.startsWith('#') ? al.container : `#${al.container}`);
+							return c == novo.id;
+						})
+						.forEach((o) => {
 
-            createElement(xcoor, ycoor, count) {
+							let novoE = o.extract();
+							novo.elements.push(novoE);
+						});
+				});
 
-            	let name = this.newElement;
 
-            	let novoElemento;
-            	switch (name.type) {
+		}, window.elements);
 
-            		case "start-event":
-            		case "intermediate-event":
-            		case "end-event":
+		return diagram;
+	}
 
-            		novoElemento = new BPMNEvent(xcoor, ycoor, name, count);
+	createElement(xcoor, ycoor, count) {
 
-            		break;
+		let name = this.newElement;
 
-            		case "gateway":
+		let novoElemento;
+		switch (name.type) {
 
-            		novoElemento = new BPMNGateway(xcoor, ycoor, name, count);
+			case "start-event":
+			case "intermediate-event":
+			case "end-event":
 
-            		break;
+				novoElemento = new BPMNEvent(xcoor, ycoor, name, count);
 
-            		case "data":
+				break;
 
-            		novoElemento = new BPMNData(xcoor, ycoor, name, count);
+			case "gateway":
 
-            		break;
+				novoElemento = new BPMNGateway(xcoor, ycoor, name, count);
 
-            		case "lane":
+				break;
 
-            		novoElemento = new BPMNPool(xcoor, ycoor, name, count);
-            		break;
+			case "data":
 
-            		case "annotation":
+				novoElemento = new BPMNData(xcoor, ycoor, name, count);
 
-            		novoElemento = new BPMNTextAnnotation(xcoor, ycoor, name, count);
+				break;
 
-            		break;
+			case "lane":
 
-            		case "activity":
+				novoElemento = new BPMNPool(xcoor, ycoor, name, count);
+				break;
 
-            		novoElemento = new BPMNActivity(xcoor, ycoor, name, count);
+			case "annotation":
 
-            		break;
+				novoElemento = new BPMNTextAnnotation(xcoor, ycoor, name, count);
 
-            		default:
+				break;
 
-            		console.log("erro");
-            	}
+			case "activity":
 
-            	return novoElemento;
-            }
+				novoElemento = new BPMNActivity(xcoor, ycoor, name, count);
 
-            setIconMouse(element = null) {
+				break;
 
-            	if (element == null) {
+			default:
 
-            		document.querySelector('.mouse-icon').removeEventListener('mouse', function () { });
-            		this.icon.style.display = 'none';
-            		return;
-            	}
+				console.log("erro");
+		}
 
-            	this.newElement = element;
-            	this.icon.className = 'mouse-icon bpmn-icon-' + element.icon;
-            	this.icon.style.display = 'block';
+		return novoElemento;
+	}
 
-            	this.component.addEventListener('mousemove', (event) => {
+	setIconMouse(element = null) {
 
-            		event.stopPropagation();
-            		this.icon.style.top = (event.y - 10) + 'px';
-            		this.icon.style.left = (event.x + 10) + 'px';
-            	});
-            }
+		if (element == null) {
 
+			document.querySelector('.mouse-icon').removeEventListener('mouse', function () { });
+			this.icon.style.display = 'none';
+			return;
+		}
 
-            static desenharTransicao(origem, destino) {
+		this.newElement = element;
+		this.icon.className = 'mouse-icon bpmn-icon-' + element.icon;
+		this.icon.style.display = 'block';
 
-            	let a = get(origem);
-            	let b = get(destino);
+		this.component.addEventListener('mousemove', (event) => {
 
-            	let transicao = {};
-            	transicao.origem = origem;
-            	transicao.destino = destino;
+			event.stopPropagation();
+			this.icon.style.top = (event.y - 10) + 'px';
+			this.icon.style.left = (event.x + 10) + 'px';
+		});
+	}
 
-            	origem = (a.container == '.bpmn-diagram' ? { x: 0, y: 0 } : get(a.container.substring(1)));
-            	destino = (b.container == '.bpmn-diagram' ? { x: 0, y: 0 } : get(b.container.substring(1)));
 
+	static desenharTransicao(origem, destino) {
 
-            	let distancia = new Array();
-            	let l = 0, m = 0;
+		let a = get(origem);
+		let b = get(destino);
 
-            	let po, pd;
+		let transicao = {};
+		transicao.origem = origem;
+		transicao.destino = destino;
 
-            	if ((a.container != '.bpmn-diagram' && b.container != '.bpmn-diagram') &&
-            		(a.container.substring(0, a.container.indexOf('lane')) != b.container.substring(0, b.container.indexOf('lane')))) {
+		origem = (a.container == '.bpmn-diagram' ? { x: 0, y: 0 } : get(a.container.substring(1)));
+		destino = (b.container == '.bpmn-diagram' ? { x: 0, y: 0 } : get(b.container.substring(1)));
 
 
+		let distancia = new Array();
+		let l = 0, m = 0;
 
-            		po = get(get(a.container.substring(1)).container.substring(1));
-            	pd = get(get(b.container.substring(1)).container.substring(1));
+		let po, pd;
 
+		if ((a.container != '.bpmn-diagram' && b.container != '.bpmn-diagram') &&
+			(a.container.substring(0, a.container.indexOf('lane')) != b.container.substring(0, b.container.indexOf('lane')))) {
 
-            	for (let i = 0; i < a.points.length; i++) {
 
-            		distancia[i] = new Array();
-            		for (let j = 0; j < b.points.length; j++) {
 
-            			distancia[i][j] = Math.sqrt(Math.pow(((a.x + a.points[i].x + origem.x + po.x - po.dx) - (b.x + b.points[j].x + destino.x + pd.x - pd.dx)), 2) + Math.pow(((a.y + a.points[i].y + origem.y + po.y - po.dy) - (b.y + b.points[j].y + destino.y + pd.y - pd.dy)), 2));
-            			if (distancia[i][j] < distancia[l][m]) {
-            				l = i;
-            				m = j;
-            			}
-            		}
-            	}
-            }
-            else {
-            	for (let i = 0; i < a.points.length; i++) {
+			po = get(get(a.container.substring(1)).container.substring(1));
+			pd = get(get(b.container.substring(1)).container.substring(1));
 
-            		distancia[i] = new Array();
-            		for (let j = 0; j < b.points.length; j++) {
 
-            			distancia[i][j] = Math.sqrt(Math.pow(((a.x + a.points[i].x + origem.x) - (b.x + b.points[j].x + destino.x)), 2) + Math.pow(((a.y + a.points[i].y + origem.y) - (b.y + b.points[j].y + destino.y)), 2));
-            			if (distancia[i][j] < distancia[l][m]) {
-            				l = i;
-            				m = j;
-            			}
-            		}
-            	}
-            }
+			for (let i = 0; i < a.points.length; i++) {
 
+				distancia[i] = new Array();
+				for (let j = 0; j < b.points.length; j++) {
 
-            transicao.pontoOrigem = l;
-            transicao.pontoDestino = m;
-            transicao.id = '#transicao' + diagram.numElements;
+					distancia[i][j] = Math.sqrt(Math.pow(((a.x + a.points[i].x + origem.x + po.x - po.dx) - (b.x + b.points[j].x + destino.x + pd.x - pd.dx)), 2) + Math.pow(((a.y + a.points[i].y + origem.y + po.y - po.dy) - (b.y + b.points[j].y + destino.y + pd.y - pd.dy)), 2));
+					if (distancia[i][j] < distancia[l][m]) {
+						l = i;
+						m = j;
+					}
+				}
+			}
+		}
+		else {
+			for (let i = 0; i < a.points.length; i++) {
 
-            let container;
-            let type;
-            if (a.container == b.container) container = BPMNSettings.diagramSelector;
-            else container = `${get(a.container.substring(1)).container} .content-swim`;
+				distancia[i] = new Array();
+				for (let j = 0; j < b.points.length; j++) {
 
-            if (a.id.startsWith("#textannotation") || b.id.startsWith("#textannotation")) {
-            	d3.select(container).append('polyline')
-            	.attr('id', 'transicao' + diagram.numElements)
-            	.attr('stroke-dasharray', '4,4')
-            	.attr('points', `${a.x + a.points[l].x},${a.y + a.points[l].y} ${b.x + b.points[m].x},${b.y + b.points[m].y}`)
-            	.attr('stroke', '#000')
-            	.attr('stroke-width', '4');
+					distancia[i][j] = Math.sqrt(Math.pow(((a.x + a.points[i].x + origem.x) - (b.x + b.points[j].x + destino.x)), 2) + Math.pow(((a.y + a.points[i].y + origem.y) - (b.y + b.points[j].y + destino.y)), 2));
+					if (distancia[i][j] < distancia[l][m]) {
+						l = i;
+						m = j;
+					}
+				}
+			}
+		}
 
-            	type = "association";
-            }
+
+		transicao.pontoOrigem = l;
+		transicao.pontoDestino = m;
+		transicao.id = '#transicao' + diagram.numElements;
+
+		let container;
+		let type;
+		if (a.container == b.container) container = BPMNSettings.diagramSelector;
+		else container = `${get(a.container.substring(1)).container} .content-swim`;
+
+		if (a.id.startsWith("#textannotation") || b.id.startsWith("#textannotation")) {
+			d3.select(container).append('polyline')
+				.attr('id', 'transicao' + diagram.numElements)
+				.attr('stroke-dasharray', '4,4')
+				.attr('points', `${a.x + a.points[l].x},${a.y + a.points[l].y} ${b.x + b.points[m].x},${b.y + b.points[m].y}`)
+				.attr('stroke', '#000')
+				.attr('stroke-width', '4');
+
+			type = "association";
+		}
 		//Não existe transição entre dois elementos do tipo "data"
 		else if (a.id.startsWith("#data") && b.id.startsWith("#data")) {
 			return;
 		}
 		else if (a.id.startsWith("#data") || b.id.startsWith("#data")) {
 			d3.select(container).append('polyline')
-			.attr('id', 'transicao' + diagram.numElements)
-			.attr('stroke-dasharray', '1.5,3')
-			.attr('points', `${a.x + a.points[l].x},${a.y + a.points[l].y} ${b.x + b.points[m].x},${b.y + b.points[m].y}`)
-			.attr('stroke', '#000')
-			.attr('stroke-width', '1.5')
-			.attr('marker-end', 'url(#arrow)');
+				.attr('id', 'transicao' + diagram.numElements)
+				.attr('stroke-dasharray', '1.5,3')
+				.attr('points', `${a.x + a.points[l].x},${a.y + a.points[l].y} ${b.x + b.points[m].x},${b.y + b.points[m].y}`)
+				.attr('stroke', '#000')
+				.attr('stroke-width', '1.5')
+				.attr('marker-end', 'url(#arrow)');
 
 			type = "data-association";
 		}
@@ -532,12 +532,12 @@ class BPMNDiagram {
 			container = diagram.selector;
 
 			d3.select(`${container} .transition`).append('polyline')
-			.attr('id', 'transicao' + diagram.numElements)
-			.attr('stroke-dasharray', '6,6')
-			.attr('points', `${ox},${oy} ${dx},${dy}`)
-			.attr('stroke', '#000')
-			.attr('stroke-width', '1.5')
-			.attr('marker-end', 'url(#arrow-white)');
+				.attr('id', 'transicao' + diagram.numElements)
+				.attr('stroke-dasharray', '6,6')
+				.attr('points', `${ox},${oy} ${dx},${dy}`)
+				.attr('stroke', '#000')
+				.attr('stroke-width', '1.5')
+				.attr('marker-end', 'url(#arrow-white)');
 
 			d3.select(`${container} .transition`).raise();
 
@@ -561,11 +561,11 @@ class BPMNDiagram {
 			}
 
 			d3.select(container).append('polyline')
-			.attr('id', 'transicao' + diagram.numElements)
-			.attr('points', `${ox},${oy} ${dx},${dy}`)
-			.attr('stroke', '#000')
-			.attr('stroke-width', '1.5')
-			.attr('marker-end', 'url(#arrow)');
+				.attr('id', 'transicao' + diagram.numElements)
+				.attr('points', `${ox},${oy} ${dx},${dy}`)
+				.attr('stroke', '#000')
+				.attr('stroke-width', '1.5')
+				.attr('marker-end', 'url(#arrow)');
 
 			type = "sequence-flow"
 		}
@@ -611,126 +611,126 @@ class BPMNDiagram {
 			y: d3.event.y
 		}) == false) return;
 
-			a.attr('transform', `translate(${d3.event.x - alvo.dx},${d3.event.y - alvo.dy})`);
-			alvo.x = d3.event.x;
-			alvo.y = d3.event.y;
+		a.attr('transform', `translate(${d3.event.x - alvo.dx},${d3.event.y - alvo.dy})`);
+		alvo.x = d3.event.x;
+		alvo.y = d3.event.y;
 
-			BPMNDiagram.corrigirTransições(alvo);
-		}
+		BPMNDiagram.corrigirTransições(alvo);
+	}
 
 	/**
-	 * Corrige o posicionamento de todas as transições de todos os elementos pertence a swimlane.
-	 * @param BPMNSwimlane alvo Instância da classe do objeto alvo
-	 */
-	 static corrigirTransições(alvo) {
+	* Corrige o posicionamento de todas as transições de todos os elementos pertence a swimlane.
+	* @param BPMNSwimlane alvo Instância da classe do objeto alvo
+	*/
+	static corrigirTransições(alvo) {
 
-	 	let ponto, po, pc;
+		let ponto, po, pc;
 
-	 	for (let x in alvo.transicoesOrigem) {
+		for (let x in alvo.transicoesOrigem) {
 
-	 		let t = get(alvo.transicoesOrigem[x]);
-	 		let tc = get(t.destino);
+			let t = get(alvo.transicoesOrigem[x]);
+			let tc = get(t.destino);
 
-	 		if ((alvo.container != '.bpmn-diagram' && tc.container != '.bpmn-diagram') &&
-	 			(alvo.container.substring(0, alvo.container.indexOf('lane')) != tc.container.substring(0, tc.container.indexOf('lane')))) {
+			if ((alvo.container != '.bpmn-diagram' && tc.container != '.bpmn-diagram') &&
+				(alvo.container.substring(0, alvo.container.indexOf('lane')) != tc.container.substring(0, tc.container.indexOf('lane')))) {
 
-	 			po = get(get(alvo.container.substring(1)).container.substring(1));
-	 		pc = get(alvo.container.substring(1));
+				po = get(get(alvo.container.substring(1)).container.substring(1));
+				pc = get(alvo.container.substring(1));
 
-	 		ponto = {
-	 			x: po.x - po.dx + pc.x,
-	 			y: po.y - po.dy + pc.y
-	 		}
-	 	}
-	 	else if (alvo.container != tc.container) {
+				ponto = {
+					x: po.x - po.dx + pc.x,
+					y: po.y - po.dy + pc.y
+				}
+			}
+			else if (alvo.container != tc.container) {
 
-	 		ponto = get(alvo.container.substring(1));
-	 	}
-	 	else {
-	 		ponto = { x: 0, y: 0 };
-	 	}
-	 	let points = d3.select('#' + alvo.transicoesOrigem[x]).attr('points').split(" ");
-	 	d3.select('#' + alvo.transicoesOrigem[x])
-	 	.attr('points', `${alvo.x + alvo.points[t.pontoOrigem].x + ponto.x},${alvo.y + alvo.points[t.pontoOrigem].y + ponto.y} ${points[1]}`);
-	 }
+				ponto = get(alvo.container.substring(1));
+			}
+			else {
+				ponto = { x: 0, y: 0 };
+			}
+			let points = d3.select('#' + alvo.transicoesOrigem[x]).attr('points').split(" ");
+			d3.select('#' + alvo.transicoesOrigem[x])
+				.attr('points', `${alvo.x + alvo.points[t.pontoOrigem].x + ponto.x},${alvo.y + alvo.points[t.pontoOrigem].y + ponto.y} ${points[1]}`);
+		}
 
-	 for (let x in alvo.transicoesDestino) {
+		for (let x in alvo.transicoesDestino) {
 
-	 	let t = get(alvo.transicoesDestino[x]);
-	 	let tc = get(t.origem)
+			let t = get(alvo.transicoesDestino[x]);
+			let tc = get(t.origem)
 
-	 	if ((alvo.container != '.bpmn-diagram' && tc.container != '.bpmn-diagram') &&
-	 		(alvo.container.substring(0, alvo.container.indexOf('lane')) != tc.container.substring(0, tc.container.indexOf('lane')))) {
+			if ((alvo.container != '.bpmn-diagram' && tc.container != '.bpmn-diagram') &&
+				(alvo.container.substring(0, alvo.container.indexOf('lane')) != tc.container.substring(0, tc.container.indexOf('lane')))) {
 
-	 		po = get(get(alvo.container.substring(1)).container.substring(1));
-	 	pc = get(alvo.container.substring(1));
+				po = get(get(alvo.container.substring(1)).container.substring(1));
+				pc = get(alvo.container.substring(1));
 
-	 	ponto = {
-	 		x: po.x - po.dx + pc.x,
-	 		y: po.y - po.dy + pc.y
-	 	}
-	 }
-	 else if (alvo.container != tc.container) {
+				ponto = {
+					x: po.x - po.dx + pc.x,
+					y: po.y - po.dy + pc.y
+				}
+			}
+			else if (alvo.container != tc.container) {
 
-	 	ponto = get(alvo.container.substring(1));
-	 }
-	 else {
-	 	ponto = { x: 0, y: 0 };
-	 }
+				ponto = get(alvo.container.substring(1));
+			}
+			else {
+				ponto = { x: 0, y: 0 };
+			}
 
-	 let points = d3.select('#' + alvo.transicoesDestino[x]).attr('points').split(" ");
-	 d3.select('#' + alvo.transicoesDestino[x])
-	 .attr('points', `${points[0]} ${alvo.x + alvo.points[t.pontoDestino].x + ponto.x},${alvo.y + alvo.points[t.pontoDestino].y + ponto.y}`);
+			let points = d3.select('#' + alvo.transicoesDestino[x]).attr('points').split(" ");
+			d3.select('#' + alvo.transicoesDestino[x])
+				.attr('points', `${points[0]} ${alvo.x + alvo.points[t.pontoDestino].x + ponto.x},${alvo.y + alvo.points[t.pontoDestino].y + ponto.y}`);
 
+		}
 	}
-}
 
-static reposicionarTransicoesPool(alvo) {
+	static reposicionarTransicoesPool(alvo) {
 
-	d3.selectAll(`${alvo.id} .content-swim .lane`).each(function () {
+		d3.selectAll(`${alvo.id} .content-swim .lane`).each(function () {
 
-		d3.select(this).selectAll(`.content-lane .item`).each(function () {
+			d3.select(this).selectAll(`.content-lane .item`).each(function () {
 
-			BPMNDiagram.corrigirTransições(get(d3.select(this)._groups[0][0].id));
+				BPMNDiagram.corrigirTransições(get(d3.select(this)._groups[0][0].id));
+			});
+
 		});
+	}
 
-	});
-}
+	static refreshListener() {
 
-static refreshListener() {
+		d3.selectAll('.item')
+			.call(d3.drag()
+				.on('start', function () {
+					d3.select(this).raise().style('cursor', 'move');
+				})
+				.on('drag', function () {
 
-	d3.selectAll('.item')
-	.call(d3.drag()
-		.on('start', function () {
-			d3.select(this).raise().style('cursor', 'move');
-		})
-		.on('drag', function () {
+					BPMNDiagram.drag(d3.select(this));
 
-			BPMNDiagram.drag(d3.select(this));
+					d3.select(`${diagram.selector} .transition`).raise();
 
-			d3.select(`${diagram.selector} .transition`).raise();
+					BPMNDiagram.reposicionarTransicoesPool(get(d3.select(this)._groups[0][0].id));
 
-			BPMNDiagram.reposicionarTransicoesPool(get(d3.select(this)._groups[0][0].id));
+				})
+				.on('end', function () {
 
-		})
-		.on('end', function () {
+					d3.select(this).style('cursor', 'normal');
+				})
+			);
 
-			d3.select(this).style('cursor', 'normal');
-		})
-		);
-
-	d3.selectAll('.item, .lane')
-	.on('focus', function () {
+		d3.selectAll('.item, .lane')
+			.on('focus', function () {
 
 				//sugestões:
 				//melhorar usabilidade da interface observando o uso do foco
 
 				//d3.select(`${diagram.selector} .transition`).raise();				
 			})
-	.on('click', function () {
+			.on('click', function () {
 
-		d3.event.stopPropagation();
-		let id = d3.select(this)._groups[0][0].id;
+				d3.event.stopPropagation();
+				let id = d3.select(this)._groups[0][0].id;
 
 				//para a inserção de elementos em lanes de swimlanes
 				if (id.indexOf('lane') != -1) {
@@ -792,8 +792,8 @@ static refreshListener() {
 
 				d3.select(`${diagram.selector} .transition`).raise();
 			})
-	.on('contextmenu', function () {
-		d3.event.preventDefault();
+			.on('contextmenu', function () {
+				d3.event.preventDefault();
 
 				//let id = d3.select(this)._groups[0][0].id;
 
@@ -804,223 +804,223 @@ static refreshListener() {
 			})
 
 
-	let x, y;
-	d3.select(diagram.selector)
-	.call(d3.drag()
-		.on('start', function() {
-			x = d3.event.x; y = d3.event.y;
+		let x, y;
+		d3.select(diagram.selector)
+			.call(d3.drag()
+				.on('start', function () {
+					x = d3.event.x; y = d3.event.y;
 
-			let transform = d3.select(this).attr('transform');
-			if (transform != null) {
+					let transform = d3.select(this).attr('transform');
+					if (transform != null) {
 
-				let offset = (transform.substring(transform.indexOf("(") + 1, transform.length - 1).split(","));
-				x -= Number.parseInt(offset[0]); y -= Number.parseInt(offset[1]);
-			}
-		})
-		.on('drag', function() {
+						let offset = (transform.substring(transform.indexOf("(") + 1, transform.length - 1).split(","));
+						x -= Number.parseInt(offset[0]); y -= Number.parseInt(offset[1]);
+					}
+				})
+				.on('drag', function () {
 
-			d3.select(this).attr('transform', `translate(${d3.event.x - x},${d3.event.y - y})`);
+					d3.select(this).attr('transform', `translate(${d3.event.x - x},${d3.event.y - y})`);
 
-			window.elements.filter((e) => {return e.transicoesOrigem != null && e.transicoesOrigem.length > 0;}).forEach((e) => {
+					window.elements.filter((e) => { return e.transicoesOrigem != null && e.transicoesOrigem.length > 0; }).forEach((e) => {
 
-				BPMNDiagram.reposicionarTransicoesPool(e);
-			});
+						BPMNDiagram.reposicionarTransicoesPool(e);
+					});
 
-		})
-		.on('end', function(){
+				})
+				.on('end', function () {
 
-			let offset = [
-			d3.event.x - x,
-			d3.event.y - y
-			];
+					let offset = [
+						d3.event.x - x,
+						d3.event.y - y
+					];
 
-			let width = Number.parseInt(d3.select(this).attr('width'));
-			let height = Number.parseInt(d3.select(this).attr('height'));
+					let width = Number.parseInt(d3.select(this).attr('width'));
+					let height = Number.parseInt(d3.select(this).attr('height'));
 
-			if (offset[0] > 0 || offset[0] + width < window.innerWidth) {
-				d3.select(this).attr('width', width + Math.abs(offset[0]));
-				if (offset[0] > 0) {
-					d3.select(this).attr('transform', `translate(0,${offset[1]})`);
-					offset[0] = 0;
-				}
-			}
+					if (offset[0] > 0 || offset[0] + width < window.innerWidth) {
+						d3.select(this).attr('width', width + Math.abs(offset[0]));
+						if (offset[0] > 0) {
+							d3.select(this).attr('transform', `translate(0,${offset[1]})`);
+							offset[0] = 0;
+						}
+					}
 
-			if (offset[1] > 0 || offset[1] + height < window.innerHeight) {	
-				d3.select(this).attr('height', height + Math.abs(offset[1]));
-				if (offset[1] > 0) {
-					d3.select(this).attr('transform', `translate(${offset[0]}, 0)`);
-					offset[1] = 0;
-				}
-			}
+					if (offset[1] > 0 || offset[1] + height < window.innerHeight) {
+						d3.select(this).attr('height', height + Math.abs(offset[1]));
+						if (offset[1] > 0) {
+							d3.select(this).attr('transform', `translate(${offset[0]}, 0)`);
+							offset[1] = 0;
+						}
+					}
 
-			offset = [
-			d3.event.x - x,
-			d3.event.y - y
-			];
+					offset = [
+						d3.event.x - x,
+						d3.event.y - y
+					];
 
-			d3.selectAll(`svg > .item`).each(function(){
+					d3.selectAll(`svg > .item`).each(function () {
 
-				let tr = d3.select(this).attr('transform');
-				let off = (tr.substring(tr.indexOf("(") + 1, tr.length - 1).split(","));
+						let tr = d3.select(this).attr('transform');
+						let off = (tr.substring(tr.indexOf("(") + 1, tr.length - 1).split(","));
 
-				off[0] = Number.parseInt(off[0]);
-				off[1] = Number.parseInt(off[1]);
-
-
-				d3.select(this).attr('transform', `translate(${off[0] + (offset[0] > 0 ? offset[0] : 0)},${off[1] + (offset[1] > 0 ? offset[1] : 0)})`);
-
-			});	
+						off[0] = Number.parseInt(off[0]);
+						off[1] = Number.parseInt(off[1]);
 
 
-		})
-		);
-}
+						d3.select(this).attr('transform', `translate(${off[0] + (offset[0] > 0 ? offset[0] : 0)},${off[1] + (offset[1] > 0 ? offset[1] : 0)})`);
+
+					});
 
 
-static createBoxMenu() {
+				})
+			);
+	}
 
-	let menuPrincipal = [
-	{ className: 'BPMNEvent', value: BPMNEvent.START_EVENT_NONE },
-	{ className: 'BPMNActivity', value: BPMNActivity.TASK_NONE },
-	{ className: 'BPMNGateway', value: BPMNGateway.GATEWAY_NONE },
-	{ className: 'BPMNLane', value: BPMNLane.PARTICIPANT },
-	{ className: 'BPMNData', value: BPMNData.DATA_OBJECT },
-	{ className: 'BPMNTextAnnotation', value: BPMNTextAnnotation.TEXT_ANNOTATION }
-	];
 
-	let subMenu = [
-	[
-	BPMNEvent.START_EVENT_NONE,
-	BPMNEvent.START_EVENT_NON_INTERRUPTING_PARALLEL_MULTIPLE,
-	BPMNEvent.START_EVENT_CONDITION,
-	BPMNEvent.START_EVENT_MESSAGE,
-	BPMNEvent.START_EVENT_NON_INTERRUPTING_MESSAGE,
-	BPMNEvent.START_EVENT_NON_INTERRUPTING_TIMER,
-	BPMNEvent.START_EVENT_ESCALATION,
-	BPMNEvent.START_EVENT_NON_INTERRUPTING_MULTIPLE,
-	BPMNEvent.START_EVENT_PARALLEL_MULTIPLE,
-	BPMNEvent.START_EVENT_SIGNAL,
-	BPMNEvent.START_EVENT_MULTIPLE,
-	BPMNEvent.START_EVENT_NON_INTERRUPTING_CONDITION,
-	BPMNEvent.START_EVENT_COMPENSATION,
-	BPMNEvent.START_EVENT_NON_INTERRUPTING_SIGNAL,
-	BPMNEvent.START_EVENT_ERROR,
-	BPMNEvent.START_EVENT_TIMER,
-	BPMNEvent.START_EVENT_NON_INTERRUPTING_ESCALATION,
-	BPMNEvent.INTERMEDIATE_EVENT_NONE,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_TIMER,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_SIGNAL,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_TIMER,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_MESSAGE,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_ESCALATION,
-	BPMNEvent.INTERMEDIATE_EVENT_THROW_MESSAGE,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_CANCEL,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_PARALLEL_MULTIPLE,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_ERROR,
-	BPMNEvent.INTERMEDIATE_EVENT_THROW_COMPENSATION,
-	BPMNEvent.INTERMEDIATE_EVENT_THROW_LINK,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_MULTIPLE,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_MESSAGE,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_COMPENSATION,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_CONDITION,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_LINK,
-	BPMNEvent.INTERMEDIATE_EVENT_THROW_ESCALATION,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_SIGNAL,
-	BPMNEvent.INTERMEDIATE_EVENT_THROW_SIGNAL,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_PARALLEL_MULTIPLE,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_ESCALATION,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_MULTIPLE,
-	BPMNEvent.INTERMEDIATE_EVENT_THROW_MULTIPLE,
-	BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_CONDITION,
-	BPMNEvent.END_EVENT_NONE,
-	BPMNEvent.END_EVENT_CANCEL,
-	BPMNEvent.END_EVENT_MULTIPLE,
-	BPMNEvent.END_EVENT_COMPENSATION,
-	BPMNEvent.END_EVENT_ERROR,
-	BPMNEvent.END_EVENT_TERMINATE,
-	BPMNEvent.END_EVENT_MESSAGE,
-	BPMNEvent.END_EVENT_ESCALATION,
-	BPMNEvent.END_EVENT_SIGNAL,
-	BPMNEvent.END_EVENT_LINK
-	],
-	[
-	BPMNActivity.MANUAL_TASK,
-	BPMNActivity.SCRIPT_TASK,
-	BPMNActivity.SEND_TASK,
-	BPMNActivity.SERVICE_TASK,
-	BPMNActivity.USER_TASK,
-	BPMNActivity.BUSINESS_RULE_TASK,
-	BPMNActivity.RECEIVE_TASK,
-	BPMNActivity.TASK_NONE
-	],
-	[
-	BPMNGateway.GATEWAY_PARALLEL,
-	BPMNGateway.GATEWAY_NONE,
-	BPMNGateway.GATEWAY_OR,
-	BPMNGateway.GATEWAY_COMPLEX,
-	BPMNGateway.GATEWAY_XOR,
-	BPMNGateway.GATEWAY_EVENTBASED
-	],
-	[
-	BPMNLane.PARTICIPANT,
+	static createBoxMenu() {
+
+		let menuPrincipal = [
+			{ className: 'BPMNEvent', value: BPMNEvent.START_EVENT_NONE },
+			{ className: 'BPMNActivity', value: BPMNActivity.TASK_NONE },
+			{ className: 'BPMNGateway', value: BPMNGateway.GATEWAY_NONE },
+			{ className: 'BPMNLane', value: BPMNLane.PARTICIPANT },
+			{ className: 'BPMNData', value: BPMNData.DATA_OBJECT },
+			{ className: 'BPMNTextAnnotation', value: BPMNTextAnnotation.TEXT_ANNOTATION }
+		];
+
+		let subMenu = [
+			[
+				BPMNEvent.START_EVENT_NONE,
+				BPMNEvent.START_EVENT_NON_INTERRUPTING_PARALLEL_MULTIPLE,
+				BPMNEvent.START_EVENT_CONDITION,
+				BPMNEvent.START_EVENT_MESSAGE,
+				BPMNEvent.START_EVENT_NON_INTERRUPTING_MESSAGE,
+				BPMNEvent.START_EVENT_NON_INTERRUPTING_TIMER,
+				BPMNEvent.START_EVENT_ESCALATION,
+				BPMNEvent.START_EVENT_NON_INTERRUPTING_MULTIPLE,
+				BPMNEvent.START_EVENT_PARALLEL_MULTIPLE,
+				BPMNEvent.START_EVENT_SIGNAL,
+				BPMNEvent.START_EVENT_MULTIPLE,
+				BPMNEvent.START_EVENT_NON_INTERRUPTING_CONDITION,
+				BPMNEvent.START_EVENT_COMPENSATION,
+				BPMNEvent.START_EVENT_NON_INTERRUPTING_SIGNAL,
+				BPMNEvent.START_EVENT_ERROR,
+				BPMNEvent.START_EVENT_TIMER,
+				BPMNEvent.START_EVENT_NON_INTERRUPTING_ESCALATION,
+				BPMNEvent.INTERMEDIATE_EVENT_NONE,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_TIMER,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_SIGNAL,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_TIMER,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_MESSAGE,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_ESCALATION,
+				BPMNEvent.INTERMEDIATE_EVENT_THROW_MESSAGE,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_CANCEL,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_PARALLEL_MULTIPLE,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_ERROR,
+				BPMNEvent.INTERMEDIATE_EVENT_THROW_COMPENSATION,
+				BPMNEvent.INTERMEDIATE_EVENT_THROW_LINK,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_MULTIPLE,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_MESSAGE,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_COMPENSATION,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_CONDITION,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_LINK,
+				BPMNEvent.INTERMEDIATE_EVENT_THROW_ESCALATION,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_SIGNAL,
+				BPMNEvent.INTERMEDIATE_EVENT_THROW_SIGNAL,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_PARALLEL_MULTIPLE,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_ESCALATION,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_MULTIPLE,
+				BPMNEvent.INTERMEDIATE_EVENT_THROW_MULTIPLE,
+				BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_CONDITION,
+				BPMNEvent.END_EVENT_NONE,
+				BPMNEvent.END_EVENT_CANCEL,
+				BPMNEvent.END_EVENT_MULTIPLE,
+				BPMNEvent.END_EVENT_COMPENSATION,
+				BPMNEvent.END_EVENT_ERROR,
+				BPMNEvent.END_EVENT_TERMINATE,
+				BPMNEvent.END_EVENT_MESSAGE,
+				BPMNEvent.END_EVENT_ESCALATION,
+				BPMNEvent.END_EVENT_SIGNAL,
+				BPMNEvent.END_EVENT_LINK
+			],
+			[
+				BPMNActivity.MANUAL_TASK,
+				BPMNActivity.SCRIPT_TASK,
+				BPMNActivity.SEND_TASK,
+				BPMNActivity.SERVICE_TASK,
+				BPMNActivity.USER_TASK,
+				BPMNActivity.BUSINESS_RULE_TASK,
+				BPMNActivity.RECEIVE_TASK,
+				BPMNActivity.TASK_NONE
+			],
+			[
+				BPMNGateway.GATEWAY_PARALLEL,
+				BPMNGateway.GATEWAY_NONE,
+				BPMNGateway.GATEWAY_OR,
+				BPMNGateway.GATEWAY_COMPLEX,
+				BPMNGateway.GATEWAY_XOR,
+				BPMNGateway.GATEWAY_EVENTBASED
+			],
+			[
+				BPMNLane.PARTICIPANT,
 				//BPMNLane.LANE_DIVIDE_THREE,
 				//BPMNLane.LANE_DIVIDE_TWO,
 				BPMNLane.LANE_INSERT_BELOW,
 				BPMNLane.LANE_INSERT_ABOVE
-				],
-				[
+			],
+			[
 				BPMNData.DATA_STORE,
 				BPMNData.DATA_INPUT,
 				BPMNData.DATA_OBJECT,
 				BPMNData.DATA_OUTPUT
-				],
-				[
+			],
+			[
 				BPMNTextAnnotation.TEXT_ANNOTATION
-				]
-				];
+			]
+		];
 
 
-				let mouseBox = document.querySelector('.mouse-box');
+		let mouseBox = document.querySelector('.mouse-box');
 
-				for (let e in menuPrincipal) {
+		for (let e in menuPrincipal) {
 
-					let div = document.createElement('div');
-					div.className = 'box-item';
+			let div = document.createElement('div');
+			div.className = 'box-item';
 
-					let i = document.createElement('i');
-					i.className = 'bpmn-icon-' + menuPrincipal[e].value.icon;
-					i.title = menuPrincipal[e].value.title.en;
+			let i = document.createElement('i');
+			i.className = 'bpmn-icon-' + menuPrincipal[e].value.icon;
+			i.title = menuPrincipal[e].value.title.en;
 
-					div.appendChild(i);
-					mouseBox.appendChild(div);
+			div.appendChild(i);
+			mouseBox.appendChild(div);
 
-					let submenuContext = document.createElement('div');
-					submenuContext.className = 'sub-menu';
+			let submenuContext = document.createElement('div');
+			submenuContext.className = 'sub-menu';
 
-					for (let a in subMenu[e]) {
+			for (let a in subMenu[e]) {
 
-						let icon = document.createElement('i');
-						icon.className = 'item-context bpmn-icon-' + subMenu[e][a].icon;
-						icon.setAttribute("data-class", menuPrincipal[e].className);
-						icon.setAttribute("data-link", subMenu[e][a].icon);
-						icon.title = subMenu[e][a].title.en;
-						icon.addEventListener('click', () => {
+				let icon = document.createElement('i');
+				icon.className = 'item-context bpmn-icon-' + subMenu[e][a].icon;
+				icon.setAttribute("data-class", menuPrincipal[e].className);
+				icon.setAttribute("data-link", subMenu[e][a].icon);
+				icon.title = subMenu[e][a].title.en;
+				icon.addEventListener('click', () => {
 
-							let object = eval(icon.getAttribute("data-class") + "." + icon.getAttribute("data-link").toUpperCase().replace(/-/g, "_"));
-							diagram.setIconMouse(object);
-						});
+					let object = eval(icon.getAttribute("data-class") + "." + icon.getAttribute("data-link").toUpperCase().replace(/-/g, "_"));
+					diagram.setIconMouse(object);
+				});
 
-						submenuContext.appendChild(icon);
-					}
-
-					div.appendChild(submenuContext);
-				}
+				submenuContext.appendChild(icon);
 			}
 
-
-
-
+			div.appendChild(submenuContext);
 		}
+	}
+
+
+
+
+}
 
 
 

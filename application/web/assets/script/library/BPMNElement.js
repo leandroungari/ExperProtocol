@@ -11,13 +11,13 @@ class BPMNElement {
 
 		this.rx = 0;
 		this.ry = 0;
-                
-                this.vinculos = [];
+
+		this.vinculos = [];
 	}
 
 	wrap(text, width, x) {
 
-		
+
 		var
 			words = text.text().split(/\s+/).reverse(),
 			word,
@@ -28,7 +28,7 @@ class BPMNElement {
 		while (word = words.pop()) {
 			line.push(word);
 			tspan.text(line.join(" "));
-			
+
 			if (tspan.node().getComputedTextLength() > width) {
 				line.pop();
 				tspan.text(line.join(" "));
@@ -37,6 +37,6 @@ class BPMNElement {
 			}
 		}
 	}
-	
+
 
 }
