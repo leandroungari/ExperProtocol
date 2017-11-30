@@ -30,13 +30,13 @@ class BPMNDiagram {
 		.call(d3.zoom()
 		.scaleExtent([1 / 2, 8])
 		.on("zoom", zoomed)
-	);
 	
 	
-	function zoomed() {
-		//svg.attr("transform", d3.event.transform);
-		console.log(d3.event.transform + " ");
-	}*/
+	
+		function zoomed() {
+			//svg.attr("transform", d3.event.transform);
+			console.log(d3.event.transform + " ");
+		}*/
 
 		/////////////////////////////////////////
 		this.icon = document.createElement('i');
@@ -163,7 +163,6 @@ class BPMNDiagram {
 		}
 
 	}
-
 
 	createLanes(pool) {
 
@@ -512,7 +511,7 @@ class BPMNDiagram {
 				.attr('stroke-dasharray', '1.5,3')
 				.attr('points', `${a.x + a.points[l].x},${a.y + a.points[l].y} ${b.x + b.points[m].x},${b.y + b.points[m].y}`)
 				.attr('stroke', '#000')
-				.attr('stroke-width', '1.5')
+				.attr('stroke-width', '2.1')
 				.attr('marker-end', 'url(#arrow)');
 
 			type = "data-association";
@@ -536,7 +535,7 @@ class BPMNDiagram {
 				.attr('stroke-dasharray', '6,6')
 				.attr('points', `${ox},${oy} ${dx},${dy}`)
 				.attr('stroke', '#000')
-				.attr('stroke-width', '1.5')
+				.attr('stroke-width', '1.8')
 				.attr('marker-end', 'url(#arrow-white)');
 
 			d3.select(`${container} .transition`).raise();
@@ -564,11 +563,13 @@ class BPMNDiagram {
 				.attr('id', 'transicao' + diagram.numElements)
 				.attr('points', `${ox},${oy} ${dx},${dy}`)
 				.attr('stroke', '#000')
-				.attr('stroke-width', '1.5')
+				.attr('stroke-width', '1.8')
 				.attr('marker-end', 'url(#arrow)');
 
 			type = "sequence-flow"
 		}
+
+		
 
 		//Adiciona a nova transição a lista de transições de cada elemento
 		//let t = document.querySelector('#' + 'transicao' + diagram.numElements);
@@ -578,6 +579,8 @@ class BPMNDiagram {
 		diagram.numElements++;
 		transicao.tipo = type;
 		window.elements.push(transicao);
+
+		BPMNDiagram.refreshListener();
 	}
 
 	static verificarLimites(entry) {
@@ -793,14 +796,22 @@ class BPMNDiagram {
 				d3.select(`${diagram.selector} .transition`).raise();
 			})
 			.on('contextmenu', function () {
+				
 				d3.event.preventDefault();
-
-				//let id = d3.select(this)._groups[0][0].id;
-
 				d3.event.stopPropagation();
-				window.menuContexto(d3.event.x, d3.event.y, 1, d3.select(this).attr('id'));
+				window.menuContexto(d3.event.x, d3.event.y, "element", d3.select(this).attr('id'));
 
 				d3.select(`${diagram.selector} .transition`).raise();
+			})
+
+
+			d3.selectAll('[id^="transicao"]')
+			.on('contextmenu', function() {
+
+				d3.event.preventDefault();
+				d3.event.stopPropagation();
+				console.log(d3.select(this))
+				window.menuContexto(d3.event.x, d3.event.y, "transition", d3.select(this).attr('id'));
 			})
 
 

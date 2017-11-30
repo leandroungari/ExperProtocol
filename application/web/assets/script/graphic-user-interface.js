@@ -22,8 +22,6 @@ function loadGUI() {
         event.stopPropagation();
         event.preventDefault();
 
-
-
         let opcao = document.querySelector('[name="opcao-abrir"]').checked;
         //console.log(opcao);
         //console.log(event.dataTransfer.files);
@@ -367,7 +365,23 @@ class Interface {
         window.elements = window.elements.filter((a) => { return id != a.id.substring(1); });
         window.elements = window.elements.filter((a) => { return a.id.indexOf('transicao') == -1 || (a.origem != id && a.destino != id) })
 
-        $(`#${id}`).remove();
+        d3.select(`#${id}`).remove();
+    }
+
+    static removerTransicao(id) {
+
+        let transicao = get(id);
+
+        window.elements.filter((e) => { return e.transicoesOrigem != null; }).forEach((a) => {
+
+            a.transicoesOrigem = a.transicoesOrigem.filter((u) => { return u != id; });
+            a.transicoesDestino = a.transicoesDestino.filter((u) => { return u != id; });
+        });
+
+        window.elements = window.elements.filter((a) => { return a.id != `#${id}`; });
+
+        d3.select(`#${id}`).remove();
+
     }
 
     static modificar(id) {
@@ -384,7 +398,6 @@ class Interface {
         Interface.id = id;
         painelVinculação(id)
         $('.painel-lateral .button').trigger('click');
-
 
     }
 
@@ -483,51 +496,56 @@ function menuContexto(x, y, categoria, id) {
     d3.select('.context-menu').html('').style('display', 'block');
     d3.select('.context-menu').style('top', `${y}px`).style('left', `${x}px`);
 
-    d3.select('.context-menu')
-        .append('li')
-        .attr('class', 'modificar')
-        .text('Modificar descrição')
-        .on('click', function () {
-            Interface.modificar(id);
-        });
-
-    //Se for uma lane não adiciona botão de remover
-    if (id.indexOf('lane') == -1) {
+    if (categoria == "element") {
 
         d3.select('.context-menu')
             .append('li')
-            .attr('class', 'remover')
-            .text('Remover')
+            .attr('class', 'modificar')
+            .text('Modificar descrição')
             .on('click', function () {
-
-                Interface.remover(id);
-                $('.context-menu').trigger('mouseleave');
-            });
-    }
-
-    if (BPMNDiagram.experiment != null && id.indexOf('lane') == -1 && id.indexOf('pool')) {
-
-        d3.select('.context-menu')
-            .append('li')
-            .attr('class', 'vincular')
-            .text('Vincular ...')
-            .on('click', () => {
-
-
-                Interface.vincular(id);
-
+                Interface.modificar(id);
             });
 
+        //Se for uma lane não adiciona botão de remover
+        if (id.indexOf('lane') == -1) {
+
+            d3.select('.context-menu')
+                .append('li')
+                .attr('class', 'remover')
+                .text('Remover')
+                .on('click', function () {
+
+                    Interface.remover(id);
+                    $('.context-menu').trigger('mouseleave');
+                });
+        }
+
+        if (BPMNDiagram.experiment != null && id.indexOf('lane') == -1 && id.indexOf('pool')) {
+
+            d3.select('.context-menu')
+                .append('li')
+                .attr('class', 'exibir')
+                .text('Exibir detalhes')
+                .on('click', () => {
+
+                    Interface.exibir(id);
+                })
+        }
+    }
+    else {
 
         d3.select('.context-menu')
-            .append('li')
-            .attr('class', 'exibir')
-            .text('Exibir detalhes')
-            .on('click', () => {
+        .append('li')
+        .attr('class', 'remover-transicao')
+        .text('Remover')
+        .on('click', () => {
 
-                Interface.exibir(id);
-            })
+            Interface.removerTransicao(id);
+            $('.context-menu').trigger('mouseleave');
+        })
     }
+
+
 }
 
 function painelLateral(id) {
@@ -548,128 +566,3 @@ function painelLateral(id) {
     $('.painel-lateral .button-save').css('display', 'inline');
 }
 
-function painelVinculação(id) {
-
-    //let painel = d3.select('.painel-lateral > .options');
-
-    BPMNDiagram.painelVinculacao = true;
-
-    $('.painel-lateral > .options').empty();
-
-    //painel de vinculo
-
-    //console.log(BPMNDiagram.experiment)
-
-    collapse(BPMNDiagram.experiment, '.painel-lateral > .options');
-
-    $('.painel-lateral .button-save').css('display', 'inline');
-}
-
-function collapse(object, container) {
-
-    d3.select(container)
-        .append('ul')
-        .attr('id', 'tree')
-        .attr('class', 'collapsibleList')
-        .attr('style', 'margin-top: 30px; margin-left: 20px;')
-
-    let num = 0;
-
-    classify(object, d3.select('.collapsibleList'), ++num, "experimento");
-
-
-}
-
-function classify(object, container, num, nome) {
-
-
-    if (object.constructor === Array) {
-
-        container
-            .append('ul')
-            .attr('id', `element${num}`)
-            .append('li')
-            .attr('class', 'list-array')
-            .text(nome)
-            .append('ul');
-
-
-
-        $(`#element${num} > li`).click((event) => {
-
-
-            event.stopPropagation();
-            //console.log(`#element${num} > li > ul`)
-            $(`#element${num - 1} ul`).slideToggle();
-        });
-
-        let novo = d3.select(`#element${num} ul`);
-        object.forEach((e, i) => {
-
-            classify(e, novo, ++num, i);
-        });
-    }
-    else if (object.constructor === Object) {
-
-        container
-            .append('ul')
-            .attr('id', `element${num}`)
-            .style('position', 'relative')
-            .append('li')
-            .attr('class', 'list-attribute')
-            .text(nome)
-            .append('ul');
-
-
-
-
-
-        let novo = d3.select(`#element${num} ul`);
-
-        for (let x in object) {
-            if (x == "diagrama") continue;
-            classify(object[x], novo, ++num, x);
-        }
-
-    }
-    else {
-
-        if (object === "") return;
-        else if (nome == "id") {
-
-
-            container.node().parentElement
-                .setAttribute('id', object);
-
-
-
-            if (object.indexOf("experimento") == -1) d3.select(d3.select(`#${object}`)._groups["0"]["0"].parentElement)
-                .append('input')
-                .attr('type', 'checkbox')
-                .attr('name', 'item-check')
-                .attr('value', object);
-
-            /*d3.select(`#${object}`).on('click', () => {
-                    
-                     
-                    
-                d3.select(`#${object} > li`)
-                .style("background","#000")
-                .style("color","#fff");
-            });*/
-
-
-
-
-
-
-            return;
-        }
-
-        container
-            .append('li')
-            .attr('class', 'list-item')
-            .text(`${nome}: ${object}`);
-
-    }
-}
