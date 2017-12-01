@@ -435,7 +435,7 @@ class BPMNDiagram {
 	}
 
 	static calcularTransicao(origem, destino) {
-		
+
 		let a = get(origem);
 		let b = get(destino);
 
@@ -639,13 +639,39 @@ class BPMNDiagram {
 		BPMNDiagram.corrigirTransições(alvo);
 	}
 
+	static posicionarContainer(alvo, tc) {
+
+		let ponto, po, pc;
+
+		if ((alvo.container != diagram.selector && tc.container != diagram.selector) &&
+			(alvo.container.substring(0, alvo.container.indexOf('lane')) != tc.container.substring(0, tc.container.indexOf('lane')))) {
+
+			po = get(get(alvo.container.substring(1)).container.substring(1));
+			pc = get(alvo.container.substring(1));
+
+			ponto = {
+				x: po.x - po.dx + pc.x,
+				y: po.y - po.dy + pc.y
+			}
+		}
+		else if (alvo.container != tc.container) {
+
+			ponto = get(alvo.container.substring(1));
+		}
+		else {
+			ponto = { x: 0, y: 0 };
+		}
+
+		return ponto;
+	}
+
 	/**
 	* Corrige o posicionamento de todas as transições de todos os elementos pertence a swimlane.
 	* @param BPMNSwimlane alvo Instância da classe do objeto alvo
 	*/
 	static corrigirTransições(alvo) {
 
-		let ponto, po, pc;
+		let ponto, pontoOposto;
 
 		for (let x in alvo.transicoesOrigem) {
 
@@ -653,34 +679,18 @@ class BPMNDiagram {
 
 			//fazer o calculo das posições novas e atribuir
 			let tc = get(t.destino);
-			
+
 			let transicao = BPMNDiagram.calcularTransicao(t.origem, t.destino);
 			t.pontoOrigem = transicao.pontoOrigem;
 			t.pontoDestino = transicao.pontoDestino;
 
-			if ((alvo.container != diagram.selector && tc.container != diagram.selector) &&
-				(alvo.container.substring(0, alvo.container.indexOf('lane')) != tc.container.substring(0, tc.container.indexOf('lane')))) {
-
-				po = get(get(alvo.container.substring(1)).container.substring(1));
-				pc = get(alvo.container.substring(1));
-
-				ponto = {
-					x: po.x - po.dx + pc.x,
-					y: po.y - po.dy + pc.y
-				}
-			}
-			else if (alvo.container != tc.container) {
-
-				ponto = get(alvo.container.substring(1));
-			}
-			else {
-				ponto = { x: 0, y: 0 };
-			}
+			ponto = BPMNDiagram.posicionarContainer(alvo, tc);
+			pontoOposto = BPMNDiagram.posicionarContainer(tc, alvo);
 
 			//let points = d3.select('#' + alvo.transicoesOrigem[x]).attr('points').split(" ");
 			d3.select('#' + alvo.transicoesOrigem[x])
 				.attr('points', `${alvo.x + alvo.points[t.pontoOrigem].x + ponto.x},${alvo.y + alvo.points[t.pontoOrigem].y + ponto.y} 
-								 ${tc.x + tc.points[t.pontoDestino].x + ponto.x},${tc.y + tc.points[t.pontoDestino].y + ponto.y}
+								 ${tc.x + tc.points[t.pontoDestino].x + pontoOposto.x},${tc.y + tc.points[t.pontoDestino].y + pontoOposto.y}
 				`);
 		}
 
@@ -693,30 +703,13 @@ class BPMNDiagram {
 			t.pontoOrigem = transicao.pontoOrigem;
 			t.pontoDestino = transicao.pontoDestino;
 
-			if ((alvo.container != '.bpmn-diagram' && tc.container != '.bpmn-diagram') &&
-				(alvo.container.substring(0, alvo.container.indexOf('lane')) != tc.container.substring(0, tc.container.indexOf('lane')))) {
-
-				po = get(get(alvo.container.substring(1)).container.substring(1));
-				pc = get(alvo.container.substring(1));
-
-				ponto = {
-					x: po.x - po.dx + pc.x,
-					y: po.y - po.dy + pc.y
-				}
-			}
-			else if (alvo.container != tc.container) {
-
-				ponto = get(alvo.container.substring(1));
-			}
-			else {
-				ponto = { x: 0, y: 0 };
-			}
-
+			ponto = BPMNDiagram.posicionarContainer(alvo, tc);
+			pontoOposto = BPMNDiagram.posicionarContainer(tc, alvo);
 
 			//let points = d3.select('#' + alvo.transicoesDestino[x]).attr('points').split(" ");
 			//${tc.x + tc.points[t.pontoDestino].x + ponto.x},${tc.y + tc.points[t.pontoDestino].y + ponto.y}
 			d3.select('#' + alvo.transicoesDestino[x])
-				.attr('points', `${tc.x + tc.points[t.pontoOrigem].x + ponto.x},${tc.y + tc.points[t.pontoOrigem].y + ponto.y}  
+				.attr('points', `${tc.x + tc.points[t.pontoOrigem].x + pontoOposto.x},${tc.y + tc.points[t.pontoOrigem].y + pontoOposto.y}  
 								 ${alvo.x + alvo.points[t.pontoDestino].x + ponto.x},${alvo.y + alvo.points[t.pontoDestino].y + ponto.y}
 				`);
 
@@ -925,7 +918,7 @@ class BPMNDiagram {
 
 					d3.selectAll(`svg > .item`).each(function () {
 
-				
+
 						let tr = d3.select(this).attr('transform');
 						let off = (tr.substring(tr.indexOf("(") + 1, tr.length - 1).split(","));
 
