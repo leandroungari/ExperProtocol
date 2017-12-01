@@ -463,7 +463,7 @@ class BPMNDiagram {
 				for (let j = 0; j < b.points.length; j++) {
 
 					distancia[i][j] = Math.sqrt(Math.pow(((a.x + a.points[i].x + origem.x + po.x - po.dx) - (b.x + b.points[j].x + destino.x + pd.x - pd.dx)), 2) + Math.pow(((a.y + a.points[i].y + origem.y + po.y - po.dy) - (b.y + b.points[j].y + destino.y + pd.y - pd.dy)), 2));
-					if (distancia[i][j] < distancia[transicao.pontoOrigem][transicao.pontoDestino]) {
+					if (distancia[i][j] < distancia[l][m]) {
 						l = i;
 						m = j;
 					}
@@ -499,6 +499,9 @@ class BPMNDiagram {
 		let b = get(destino);
 
 		let transicao = BPMNDiagram.calcularTransicao(origem, destino);
+
+		origem = (a.container == '.bpmn-diagram' ? { x: 0, y: 0 } : get(a.container.substring(1)));
+		destino = (b.container == '.bpmn-diagram' ? { x: 0, y: 0 } : get(b.container.substring(1)));
 
 		let container;
 		let type;
@@ -567,6 +570,7 @@ class BPMNDiagram {
 				dy = b.y + b.points[transicao.pontoDestino].y;
 			}
 			else {
+
 				ox = a.x + a.points[transicao.pontoOrigem].x + origem.x;
 				oy = a.y + a.points[transicao.pontoOrigem].y + origem.y;
 				dx = b.x + b.points[transicao.pontoDestino].x + destino.x;
@@ -707,6 +711,7 @@ class BPMNDiagram {
 			else {
 				ponto = { x: 0, y: 0 };
 			}
+
 
 			//let points = d3.select('#' + alvo.transicoesDestino[x]).attr('points').split(" ");
 			//${tc.x + tc.points[t.pontoDestino].x + ponto.x},${tc.y + tc.points[t.pontoDestino].y + ponto.y}
