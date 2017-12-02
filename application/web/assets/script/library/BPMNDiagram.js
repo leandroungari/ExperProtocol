@@ -832,7 +832,7 @@ class BPMNDiagram {
 					let parent = get(id);
 
 					if (parent.container != '.bpmn-diagram') BPMNSettings.diagramSelector = `${parent.container} .content-lane`;
-
+					else BPMNSettings.diagramSelector = `${diagram.selector} .transition`;
 					BPMNDiagram.desenharTransicao(window.listaTransicao[0], window.listaTransicao[1]);
 					BPMNSettings.diagramSelector = box;
 					//esvaziando a lista
@@ -892,6 +892,11 @@ class BPMNDiagram {
 						d3.event.y - y
 					];
 
+					let diffBounds = [
+						0, //document.querySelector(diagram.selector).width.baseVal.value - width,
+						0  //document.querySelector(diagram.selector).height.baseVal.value - height
+					];
+
 					let width = Number.parseInt(d3.select(this).attr('width'));
 					let height = Number.parseInt(d3.select(this).attr('height'));
 
@@ -900,7 +905,9 @@ class BPMNDiagram {
 						if (offset[0] > 0) {
 							d3.select(this).attr('transform', `translate(0,${offset[1]})`);
 							offset[0] = 0;
+							diffBounds[0] = document.querySelector(diagram.selector).width.baseVal.value - width;
 						}
+						
 					}
 
 					if (offset[1] > 0 || offset[1] + height < window.innerHeight) {
@@ -908,6 +915,7 @@ class BPMNDiagram {
 						if (offset[1] > 0) {
 							d3.select(this).attr('transform', `translate(${offset[0]}, 0)`);
 							offset[1] = 0;
+							diffBounds[1] = document.querySelector(diagram.selector).height.baseVal.value - height;
 						}
 					}
 
@@ -918,22 +926,30 @@ class BPMNDiagram {
 
 					d3.selectAll(`svg > .item`).each(function () {
 
-
-						let tr = d3.select(this).attr('transform');
-						let off = (tr.substring(tr.indexOf("(") + 1, tr.length - 1).split(","));
-
-						off[0] = Number.parseInt(off[0]);
-						off[1] = Number.parseInt(off[1]);
-
+						let matrix = document.querySelector(`#${d3.select(this).attr('id')}`).transform.baseVal[0].matrix;
+						let off = [
+							matrix.e, matrix.f
+						];
 
 						d3.select(this).attr('transform', `translate(${off[0] + (offset[0] > 0 ? offset[0] : 0)},${off[1] + (offset[1] > 0 ? offset[1] : 0)})`);
 
 					});
 
-					window.elements.filter((e) => { return e.transicoesOrigem != null && e.transicoesOrigem.length > 0; }).forEach((e) => {
+					
+					let deslocamento;
+					let boundTransition = document.querySelector('.transition').transform.baseVal[0];
+					if (boundTransition != null) {
+						deslocamento = [
+							boundTransition.matrix.e,
+							boundTransition.matrix.f
+						];
+					}
+					else {
+						deslocamento = [0,0];
+					}
 
-						BPMNDiagram.reposicionarTransicoesPool(e);
-					});
+					d3.select('.transition')
+					.attr('transform', `translate(${diffBounds[0] + deslocamento[0]},${diffBounds[1] + deslocamento[1]})`);
 				})
 			);
 	}
