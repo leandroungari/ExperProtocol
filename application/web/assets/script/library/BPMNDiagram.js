@@ -643,6 +643,7 @@ class BPMNDiagram {
 
 		let ponto, po, pc;
 
+		//não é o svg
 		if ((alvo.container != diagram.selector && tc.container != diagram.selector) &&
 			(alvo.container.substring(0, alvo.container.indexOf('lane')) != tc.container.substring(0, tc.container.indexOf('lane')))) {
 
@@ -654,12 +655,36 @@ class BPMNDiagram {
 				y: po.y - po.dy + pc.y
 			}
 		}
+		//entre piscinas diferentes
 		else if (alvo.container != tc.container) {
 
 			ponto = get(alvo.container.substring(1));
 		}
+		//no svg
 		else {
-			ponto = { x: 0, y: 0 };
+
+			ponto = { 
+				x: 0, 
+				y: 0
+			};
+
+			/*let box = document.querySelector('.transition').transform.baseVal[0];
+
+			if (box != null) {
+				ponto = { 
+					x: - box.matrix.e, 
+					y: - box.matrix.f 
+				};
+			}
+			else {
+				ponto = { 
+					x: 0, 
+					y: 0
+				};
+			}
+
+			console.log(ponto)*/
+			
 		}
 
 		return ponto;
@@ -672,6 +697,7 @@ class BPMNDiagram {
 	static corrigirTransições(alvo) {
 
 		let ponto, pontoOposto;
+		//console.log(alvo)
 
 		for (let x in alvo.transicoesOrigem) {
 
@@ -688,10 +714,17 @@ class BPMNDiagram {
 			pontoOposto = BPMNDiagram.posicionarContainer(tc, alvo);
 
 			//let points = d3.select('#' + alvo.transicoesOrigem[x]).attr('points').split(" ");
+			console.log(alvo)
+			console.log(tc)
+			//console.log(ponto)
+			//console.log(pontoOposto)
+			
 			d3.select('#' + alvo.transicoesOrigem[x])
 				.attr('points', `${alvo.x + alvo.points[t.pontoOrigem].x + ponto.x},${alvo.y + alvo.points[t.pontoOrigem].y + ponto.y} 
 								 ${tc.x + tc.points[t.pontoDestino].x + pontoOposto.x},${tc.y + tc.points[t.pontoDestino].y + pontoOposto.y}
 				`);
+
+			
 		}
 
 		for (let x in alvo.transicoesDestino) {
@@ -712,6 +745,8 @@ class BPMNDiagram {
 				.attr('points', `${tc.x + tc.points[t.pontoOrigem].x + pontoOposto.x},${tc.y + tc.points[t.pontoOrigem].y + pontoOposto.y}  
 								 ${alvo.x + alvo.points[t.pontoDestino].x + ponto.x},${alvo.y + alvo.points[t.pontoDestino].y + ponto.y}
 				`);
+			
+
 
 		}
 	}
@@ -721,7 +756,7 @@ class BPMNDiagram {
 		d3.selectAll(`${alvo.id} .content-swim .lane`).each(function () {
 
 			d3.select(this).selectAll(`.content-lane .item`).each(function () {
-
+				
 				BPMNDiagram.corrigirTransições(get(d3.select(this)._groups[0][0].id));
 			});
 
@@ -884,17 +919,14 @@ class BPMNDiagram {
 						BPMNDiagram.reposicionarTransicoesPool(e);
 					});
 
+		
+
 				})
 				.on('end', function () {
 
 					let offset = [
 						d3.event.x - x,
 						d3.event.y - y
-					];
-
-					let diffBounds = [
-						0, //document.querySelector(diagram.selector).width.baseVal.value - width,
-						0  //document.querySelector(diagram.selector).height.baseVal.value - height
 					];
 
 					let width = Number.parseInt(d3.select(this).attr('width'));
@@ -905,7 +937,6 @@ class BPMNDiagram {
 						if (offset[0] > 0) {
 							d3.select(this).attr('transform', `translate(0,${offset[1]})`);
 							offset[0] = 0;
-							diffBounds[0] = document.querySelector(diagram.selector).width.baseVal.value - width;
 						}
 						
 					}
@@ -915,7 +946,6 @@ class BPMNDiagram {
 						if (offset[1] > 0) {
 							d3.select(this).attr('transform', `translate(${offset[0]}, 0)`);
 							offset[1] = 0;
-							diffBounds[1] = document.querySelector(diagram.selector).height.baseVal.value - height;
 						}
 					}
 
@@ -933,9 +963,21 @@ class BPMNDiagram {
 
 						d3.select(this).attr('transform', `translate(${off[0] + (offset[0] > 0 ? offset[0] : 0)},${off[1] + (offset[1] > 0 ? offset[1] : 0)})`);
 
+						let target = get(d3.select(this).attr('id'));
+						console.log(target)
+						if (offset[0] > 0) {
+							target.x += offset[0];
+						}
+
+						if (offset[1] > 0) {
+							target.y += offset[1];
+						}
+						//BPMNDiagram.reposicionarTransicoesPool(get(d3.select(this).attr('id')))
+
+						BPMNDiagram.corrigirTransições(target);
 					});
 
-					
+					/*
 					let deslocamento;
 					let boundTransition = document.querySelector('.transition').transform.baseVal[0];
 					if (boundTransition != null) {
@@ -950,6 +992,7 @@ class BPMNDiagram {
 
 					d3.select('.transition')
 					.attr('transform', `translate(${diffBounds[0] + deslocamento[0]},${diffBounds[1] + deslocamento[1]})`);
+					*/
 				})
 			);
 	}
