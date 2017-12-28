@@ -176,7 +176,7 @@ class BPMNPool extends BPMNSwimlane {
 	addLaneBelow() {
 
 		let distancia = 0;
-		console.log(this.width + "");
+		//console.log(this.width + "");
 		for (let x in this.lanes) {
 			distancia += this.lanes[x].height;
 		}
