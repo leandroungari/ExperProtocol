@@ -8,9 +8,6 @@
 	<link rel="stylesheet" href="assets/style/layout/painel-desenho.css">
 	<link rel="stylesheet" href="assets/style/icon.css">
 
-
-	<!--<script src="assets/script/svg-pan-zoom.min.js"></script>-->
-
 	<!-- Base -->
 	<link rel="stylesheet" href="assets/style/base/fonts.css">
 
@@ -19,16 +16,16 @@
 
 	<!-- Modules -->
 	<link rel="stylesheet" href="assets/style/modules/tools.css">
-        
-        <link rel="icon" href="assets/style/favicon.ico">
+
+	<link rel="icon" href="assets/style/favicon.ico">
 
 	<!-- Script -->
 	<script src="assets/script/d3.v4.min.js"></script>
-       
+
 	<!-- ========================= -->
 	<script src="assets/script/library/BPMNSettings.js"></script>
 
-	
+
 	<script src="assets/script/library/BPMNElement.js"></script>
 	<script src="assets/script/library/BPMNFlowObject.js"></script>
 	<script src="assets/script/library/BPMNConnectionObject.js"></script>
@@ -41,7 +38,9 @@
 	<script src="assets/script/FileSaver.min.js"></script>
 	<script src="assets/script/jquery-3.2.1.min.js"></script>
 
+	<script src="assets/script/language.js"></script>
 	<script src="assets/script/graphic-user-interface.js"></script>
+	
 	<script src="assets/script/index.js"></script>
 
 </head>
@@ -58,6 +57,7 @@
 					<li class="new-file">Novo</li>
 					<li class="save-file">Salvar como...</li>
 					<li class="export-file">Exportar</li>
+					<li class="preferences">Preferências</li>
 				</ul>
 			</li>
 		</ul>
@@ -67,41 +67,72 @@
 
 
 	</div>
-    
 
-        
-        <div class="box-descricao">
-            
-            <div class="titulo">Exibir detalhes</div>
-            <div class="close">x</div>
-            <div class="content"></div>
-        </div>
-        
 
-    
+
+	<div class="box-descricao">
+
+		<div class="titulo">Exibir detalhes</div>
+		<div class="close">x</div>
+		<div class="content"></div>
+	</div>
+
+	<div class="settings">
+		<div class="titulo">Preferências</div>
+		<div class="close">x</div>
+		<div class="content">
+			<p class="language-text">Idioma padrão: </p>
+			<br>
+			<br>
+			<form class="language">
+				<input type="radio" name="idioma" class="radio-pt" value="pt" checked><p class="opcao-pt">Português Brasileiro</p>
+				<input type="radio" name="idioma" class="radio-en" value="en"><p class="opcao-en">Inglês</p>
+			</form>
+		</div>
+	</div>
+
+
+
 	<div class="box-shadow box-01">
 		<div class="box-open-dialog">
-			<p>Selecione o formato de arquivo:</p><br>
+			<p>Selecione o formato de arquivo:</p>
+			<br>
 			<form enctype="multipart/form-data">
-				<input type='radio' name="opcao-abrir" checked>Pacote de Laboratório</input><br>
-				<input type='radio' name="opcao-abrir">Protocolo de Experimentação</input><br><br>
+				<input type='radio' name="opcao-abrir" checked>Pacote de Laboratório</input>
+				<br>
+				<input type='radio' name="opcao-abrir">Protocolo de Experimentação</input>
+				<br>
+				<br>
 				<input type="file" name="fileInput" />
-			</form><br>
-			<p class="options"><span class="open-option-open-dialog text-button">Abrir</span><span class="cancel-option-open-dialog text-button">Cancelar</span></p>
+			</form>
+			<br>
+			<p class="options">
+				<span class="open-option-open-dialog text-button">Abrir</span>
+				<span class="cancel-option-open-dialog text-button">Cancelar</span>
+			</p>
 		</div>
 	</div>
 	<div class="box-shadow box-02">
 		<div class="box-save-dialog">
-			<p>Selecione o formato de arquivo:</p><br>
+			<p>Selecione o formato de arquivo:</p>
+			<br>
 			<form>
-				<input type='radio' name="opcao-salvar" checked>Pacote de Laboratório</input><br>
-				<input type='radio' name="opcao-salvar">Protocolo de Experimentação</input><br><br>
-				<label for="nome-arquivo">Arquivo </label><input autocomplete="off" type='text' name='nome-arquivo'></input>
-			</form><br>
-			<p class="options"><span class="save-option-save-dialog text-button">Salvar</span><span class="cancel-option-save-dialog text-button">Cancelar</span></p>
+				<input type='radio' name="opcao-salvar" checked>Pacote de Laboratório</input>
+				<br>
+				<input type='radio' name="opcao-salvar">Protocolo de Experimentação</input>
+				<br>
+				<br>
+				<label for="nome-arquivo">Arquivo </label>
+				<input autocomplete="off" type='text' name='nome-arquivo'></input>
+			</form>
+			<br>
+			<p class="options">
+				<span class="save-option-save-dialog text-button">Salvar</span>
+				<span class="cancel-option-save-dialog text-button">Cancelar</span>
+			</p>
 		</div>
 	</div>
-    
+
 	<svg class="bpmn-diagram" style="z-index: -20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<defs>
 			<linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -149,12 +180,12 @@
 		</div>
 		<div class="button-save">Salvar Alterações</div>
 	</div>
-        
+
 	<ul class="context-menu">
 
 	</ul>
-        
-        
+
+
 </body>
 
 </html>

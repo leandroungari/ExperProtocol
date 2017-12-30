@@ -52,7 +52,7 @@
 /******************************/
 
 
-.box-descricao{
+.box-descricao, .settings{
     position: absolute;
     width: 600px; height: 400px;
     top: -420px; left: calc(50vw - 300px);
@@ -62,7 +62,7 @@
     background: #fff;
 }
 
-.box-descricao .titulo{
+.box-descricao .titulo, .settings .titulo{
     position: absolute;
     left: 0; top: 15px;
     width: 100px; height: 20px;
@@ -74,7 +74,7 @@
     color: #fff;
 }
 
-.box-descricao .content{
+.box-descricao .content, .settings .content{
     background: #fff;
     position: absolute;
     padding: 25px 15px;
@@ -88,7 +88,7 @@
     
 }
 
-.box-descricao .close{
+.box-descricao .close, .settings .close{
     background: #000;
     color:#fff;
     position: absolute;
@@ -102,10 +102,27 @@
     width: 25px; height: 25px;
 }
 
+/**
+*/
+
 .box-item{
     border-bottom: 1px solid #ccc; 
 }
 
 .box-item:last-child{
     border-bottom: 0;
+}
+
+
+/*
+    Settings
+*/
+.settings input[type='radio'] {
+    margin-right: 3px;
+    margin-left: 7px; 
+    cursor: pointer;
+}
+
+.settings p {
+    display: inline;
 }
