@@ -52,7 +52,7 @@
 /******************************/
 
 
-.box-descricao, .settings{
+.box-descricao, .settings, .caixa-experimento{
     position: absolute;
     width: 600px; height: 400px;
     top: -420px; left: calc(50vw - 300px);
@@ -62,10 +62,10 @@
     background: #fff;
 }
 
-.box-descricao .titulo, .settings .titulo{
+.box-descricao .titulo, .settings .titulo, .caixa-experimento .titulo{
     position: absolute;
     left: 0; top: 15px;
-    width: 100px; height: 20px;
+    min-width: 120px; height: 20px;
     padding: 4px 8px;
     background: #000;
     font-family: DinPro;
@@ -74,7 +74,7 @@
     color: #fff;
 }
 
-.box-descricao .content, .settings .content{
+.box-descricao .content, .settings .content, .caixa-experimento .content{
     background: #fff;
     position: absolute;
     padding: 25px 15px;
@@ -88,7 +88,7 @@
     
 }
 
-.box-descricao .close, .settings .close{
+.box-descricao .close, .settings .close, .caixa-experimento .close{
     background: #000;
     color:#fff;
     position: absolute;

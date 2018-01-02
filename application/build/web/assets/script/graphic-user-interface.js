@@ -6,9 +6,9 @@ function loadGUI() {
     /////////////////////////////////////////////
     /////////////////////////////////////////////
 
-	/**
-	 * Mostra o painel de abrir arquivo
-	 */
+    /**
+     * Mostra o painel de abrir arquivo
+     */
     let box01 = document.querySelector('.box-01');
 
     document.querySelector('.open-file').addEventListener('click', () => {
@@ -37,12 +37,12 @@ function loadGUI() {
                     let data = reader.result;
 
                     $.ajax({
-                        url: (window.location.href + "/abrirPacote "),
-                        type: "post",
-                        async: true,
-                        data: data,
-                        cache: false
-                    })
+                            url: (window.location.href + "/abrirPacote "),
+                            type: "post",
+                            async: true,
+                            data: data,
+                            cache: false
+                        })
                         .done(function (data) {
 
                             //console.log(data);
@@ -67,8 +67,7 @@ function loadGUI() {
 
             reader.readAsBinaryString(valor);
 
-        }
-        else {
+        } else {
             //protocolo de experimentação
 
             let valor = document.querySelector('[name="fileInput"]').files[0];
@@ -81,12 +80,12 @@ function loadGUI() {
                     let data = reader.result;
 
                     $.ajax({
-                        url: (window.location.href + "/abrirProtocolo"),
-                        type: "post",
-                        async: true,
-                        data: data,
-                        cache: false
-                    })
+                            url: (window.location.href + "/abrirProtocolo"),
+                            type: "post",
+                            async: true,
+                            data: data,
+                            cache: false
+                        })
                         .done(function (data) {
 
                             diagram.import(data);
@@ -115,15 +114,15 @@ function loadGUI() {
     //////////////////////////////////////////////
     //////////////////////////////////////////////
     //////////////////////////////////////////////
-	/**
-	 * Mostra o painel de salvar arquivo
-	 */
+    /**
+     * Mostra o painel de salvar arquivo
+     */
     let box02 = document.querySelector('.box-02');
 
     document.querySelector('.save-file').addEventListener('click', () => {
 
-		/*let blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-		saveAs(blob, "hello world.txt");*/
+        /*let blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "hello world.txt");*/
         box02.style.display = 'block';
 
     });
@@ -152,12 +151,12 @@ function loadGUI() {
             }
 
             $.ajax({
-                url: (window.location.href + "/salvarPacote"),
-                type: "post",
-                async: true,
-                data: `{"box": ${JSON.stringify(data)}}`,
-                cache: false
-            })
+                    url: (window.location.href + "/salvarPacote"),
+                    type: "post",
+                    async: true,
+                    data: `{"box": ${JSON.stringify(data)}}`,
+                    cache: false
+                })
                 .done(function (data) {
 
                     saveAs(new Blob([data]), nome);
@@ -165,8 +164,7 @@ function loadGUI() {
                 .fail(function () {
                     console.log("pãã");
                 });
-        }
-        else {
+        } else {
             //Protocolo de Experimentação
 
             let struct = diagram.export();
@@ -185,12 +183,12 @@ function loadGUI() {
             }
 
             $.ajax({
-                url: (window.location.href + "/salvarProtocolo"),
-                type: "post",
-                async: true,
-                data: data,
-                cache: false
-            })
+                    url: (window.location.href + "/salvarProtocolo"),
+                    type: "post",
+                    async: true,
+                    data: data,
+                    cache: false
+                })
                 .done(function (data) {
 
                     saveAs(new Blob([data]), nome);
@@ -216,9 +214,9 @@ function loadGUI() {
     //////////////////////////////////////////////
     //////////////////////////////////////////////
     //////////////////////////////////////////////
-	/**
-	 * Carrega um novo diagrama vazio
-	 */
+    /**
+     * Carrega um novo diagrama vazio
+     */
     document.querySelector('.new-file').addEventListener('click', () => {
 
         if (window.elements.length == 0) window.location.reload();
@@ -242,6 +240,46 @@ function loadGUI() {
         saveAs(new Blob([node.outerHTML]), "diagrama.svg");
     });
 
+
+    document.querySelector('.preferences').addEventListener('click', () => {
+
+        $('.settings').animate({
+            top: 100
+        }, 1000);
+    });
+
+    document.querySelector('.settings .close').addEventListener('click', () => {
+
+        $('.settings').animate({
+            top: -500
+        }, 1000);
+    });
+
+    $('.caixa-experimento .close').click(function() {
+
+        $(this).parent().animate({
+            top: -500
+        }, 1000);
+    });
+        
+     
+
+    document.querySelector('.radio-pt').addEventListener('click', () => {
+
+        Object.entries(language.pt).forEach(([k, v]) => {
+
+            document.querySelector(k).innerHTML = v;
+        });
+    });
+
+    document.querySelector('.radio-en').addEventListener('click', () => {
+
+        Object.entries(language.en).forEach(([k, v]) => {
+
+            document.querySelector(k).innerHTML = v;
+        });
+    });
+
     //////////////////////////////////////////////////////
     //////////////////////////////////////////////////////
     //////////////////////////////////////////////////////
@@ -262,8 +300,7 @@ function loadGUI() {
             });
 
             $(this).html('▶');
-        }
-        else {
+        } else {
             $('.painel-lateral').animate({
                 right: -253
             });
@@ -302,8 +339,7 @@ function loadGUI() {
 
             BPMNDiagram.painelVinculacao = false;
 
-        }
-        else {
+        } else {
 
             let lista = [];
 
@@ -336,7 +372,9 @@ function loadGUI() {
 
 function get(id) {
 
-    return window.elements.filter((value) => { return value.id == "#" + id })[0];
+    return window.elements.filter((value) => {
+        return value.id == "#" + id
+    })[0];
 }
 
 class Interface {
@@ -356,14 +394,24 @@ class Interface {
             $(`#${objeto.transicoesDestino[x]}`).remove();
         }
 
-        window.elements.filter((el) => { return el.transicoesOrigem != null }).forEach((e) => {
-            e.transicoesOrigem = e.transicoesOrigem.filter((a) => { return !lista.includes(a) });
-            e.transicoesDestino = e.transicoesDestino.filter((b) => { return !lista.includes(b) });
+        window.elements.filter((el) => {
+            return el.transicoesOrigem != null
+        }).forEach((e) => {
+            e.transicoesOrigem = e.transicoesOrigem.filter((a) => {
+                return !lista.includes(a)
+            });
+            e.transicoesDestino = e.transicoesDestino.filter((b) => {
+                return !lista.includes(b)
+            });
         });
 
 
-        window.elements = window.elements.filter((a) => { return id != a.id.substring(1); });
-        window.elements = window.elements.filter((a) => { return a.id.indexOf('transicao') == -1 || (a.origem != id && a.destino != id) })
+        window.elements = window.elements.filter((a) => {
+            return id != a.id.substring(1);
+        });
+        window.elements = window.elements.filter((a) => {
+            return a.id.indexOf('transicao') == -1 || (a.origem != id && a.destino != id)
+        })
 
         d3.select(`#${id}`).remove();
     }
@@ -372,13 +420,21 @@ class Interface {
 
         let transicao = get(id);
 
-        window.elements.filter((e) => { return e.transicoesOrigem != null; }).forEach((a) => {
+        window.elements.filter((e) => {
+            return e.transicoesOrigem != null;
+        }).forEach((a) => {
 
-            a.transicoesOrigem = a.transicoesOrigem.filter((u) => { return u != id; });
-            a.transicoesDestino = a.transicoesDestino.filter((u) => { return u != id; });
+            a.transicoesOrigem = a.transicoesOrigem.filter((u) => {
+                return u != id;
+            });
+            a.transicoesDestino = a.transicoesDestino.filter((u) => {
+                return u != id;
+            });
         });
 
-        window.elements = window.elements.filter((a) => { return a.id != `#${id}`; });
+        window.elements = window.elements.filter((a) => {
+            return a.id != `#${id}`;
+        });
 
         d3.select(`#${id}`).remove();
 
@@ -429,8 +485,7 @@ function exibirDescricao(id) {
             .style('vertical-align', 'middle')
             .style('text-align', 'center')
             .text('Não há elementos do experimento vinculados.')
-    }
-    else {
+    } else {
 
         element.vinculos.forEach((a) => {
             getObjectById(BPMNDiagram.experiment, a);
@@ -447,8 +502,7 @@ function exibirDescricao(id) {
                         .append('h1')
                         .style('font-size', '20px')
                         .text(`ID: #${result.id}`)
-                }
-                else {
+                } else {
                     d3.select(`.item-${result.id}`)
                         .append('p')
                         .style('font-size', '14px')
@@ -531,18 +585,66 @@ function menuContexto(x, y, categoria, id) {
                     Interface.exibir(id);
                 })
         }
-    }
-    else {
+
+        const show = () => {
+            //console.log();
+            $(`.${d3.event.target.className.substring(3)}`).animate({
+                top: 100
+            }, 1000);
+        };
+
+        //se é um objeto de dados
+        if (id.indexOf('data') != -1) {
+            d3.select('.context-menu')
+                .append('li')
+                .attr('class', 'experimento')
+                .text('Experimento')
+                .attr('class', 'menu-experimento')
+                .append('ul');
+
+            d3.select('.menu-experimento ul')
+                .append('li')
+                .attr('class', 'li-definicao')
+                .text('Definição')
+                .on('click', show)
+
+            d3.select('.menu-experimento ul')
+                .append('li')
+                .attr('class', 'li-planejamento')
+                .text('Planejamento')
+                .on('click', show)
+
+            d3.select('.menu-experimento ul')
+                .append('li')
+                .attr('class', 'li-execucao')
+                .text('Execução')
+                .on('click', show)
+
+            d3.select('.menu-experimento ul')
+                .append('li')
+                .attr('class', 'li-analise')
+                .text('Análise e Interpretação')
+                .on('click', show)
+
+            d3.select('.menu-experimento ul')
+                .append('li')
+                .attr('class', 'li-apresentacao')
+                .text('Apresentação e Empacotamento')
+                .on('click', show)
+
+        }
+
+    } else {
 
         d3.select('.context-menu')
-        .append('li')
-        .attr('class', 'remover-transicao')
-        .text('Remover')
-        .on('click', () => {
+            .append('li')
+            .attr('class', 'remover-transicao')
+            .text('Remover')
+            .on('click', () => {
 
-            Interface.removerTransicao(id);
-            $('.context-menu').trigger('mouseleave');
-        })
+                Interface.removerTransicao(id);
+                $('.context-menu').trigger('mouseleave');
+            })
     }
 
 
@@ -565,4 +667,3 @@ function painelLateral(id) {
 
     $('.painel-lateral .button-save').css('display', 'inline');
 }
-

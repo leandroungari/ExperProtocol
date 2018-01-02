@@ -255,6 +255,15 @@ function loadGUI() {
         }, 1000);
     });
 
+    $('.caixa-experimento .close').click(function() {
+
+        $(this).parent().animate({
+            top: -500
+        }, 1000);
+    });
+        
+     
+
     document.querySelector('.radio-pt').addEventListener('click', () => {
 
         Object.entries(language.pt).forEach(([k, v]) => {
@@ -576,6 +585,55 @@ function menuContexto(x, y, categoria, id) {
                     Interface.exibir(id);
                 })
         }
+
+        const show = () => {
+            //console.log();
+            $(`.${d3.event.target.className.substring(3)}`).animate({
+                top: 100
+            }, 1000);
+        };
+
+        //se é um objeto de dados
+        if (id.indexOf('data') != -1) {
+            d3.select('.context-menu')
+                .append('li')
+                .attr('class', 'experimento')
+                .text('Experimento')
+                .attr('class', 'menu-experimento')
+                .append('ul');
+
+            d3.select('.menu-experimento ul')
+                .append('li')
+                .attr('class', 'li-definicao')
+                .text('Definição')
+                .on('click', show)
+
+            d3.select('.menu-experimento ul')
+                .append('li')
+                .attr('class', 'li-planejamento')
+                .text('Planejamento')
+                .on('click', show)
+
+            d3.select('.menu-experimento ul')
+                .append('li')
+                .attr('class', 'li-execucao')
+                .text('Execução')
+                .on('click', show)
+
+            d3.select('.menu-experimento ul')
+                .append('li')
+                .attr('class', 'li-analise')
+                .text('Análise e Interpretação')
+                .on('click', show)
+
+            d3.select('.menu-experimento ul')
+                .append('li')
+                .attr('class', 'li-apresentacao')
+                .text('Apresentação e Empacotamento')
+                .on('click', show)
+
+        }
+
     } else {
 
         d3.select('.context-menu')
