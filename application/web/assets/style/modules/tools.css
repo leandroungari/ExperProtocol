@@ -193,4 +193,18 @@
 
 .menu-experimento li {
 	width: 180px;
+	background: #fff;
+}
+
+/**
+ * 
+ * Caixa de experimento
+ */
+.caixa-experimento li{
+	margin: 3px 5px 3px 25px;
+	cursor: pointer;
+}
+
+.caixa-experimento li:hover{
+	text-decoration: underline;
 }

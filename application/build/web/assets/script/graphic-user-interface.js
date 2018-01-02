@@ -594,7 +594,7 @@ function menuContexto(x, y, categoria, id) {
         };
 
         //se é um objeto de dados
-        if (id.indexOf('data') != -1) {
+        if (id.indexOf('data') != -1 || id.indexOf('activity') != -1) {
             d3.select('.context-menu')
                 .append('li')
                 .attr('class', 'experimento')
