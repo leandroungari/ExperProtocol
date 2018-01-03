@@ -13,9 +13,9 @@ public class Pessoa extends Element {
     private String email;
     private String telefone;
     
-    private String senha;
-    private String emailLogin;
-    private String emailSenha; 
+    //private String senha;
+    //private String emailLogin;
+    //private String emailSenha; 
     
     private Instituicao instituicao;
 
@@ -23,15 +23,15 @@ public class Pessoa extends Element {
         super("pessoa");
     }
 
-    public Pessoa(int idpessoa, String nome, String email, String telefone, String senha, String emailLogin, String emailSenha, Instituicao instituicao) {
+    public Pessoa(int idpessoa, String nome, String email, String telefone/*, String senha, String emailLogin, String emailSenha, */, Instituicao instituicao) {
         super("pessoa");
         this.idpessoa = idpessoa;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
-        this.senha = senha;
-        this.emailLogin = emailLogin;
-        this.emailSenha = emailSenha;
+        //this.senha = senha;
+        //this.emailLogin = emailLogin;
+        //this.emailSenha = emailSenha;
         this.instituicao = instituicao;
     }
 
@@ -67,7 +67,7 @@ public class Pessoa extends Element {
         this.telefone = telefone;
     }
 
-    public String getSenha() {
+    /*public String getSenha() {
         return senha;
     }
 
@@ -89,7 +89,7 @@ public class Pessoa extends Element {
 
     public void setEmailSenha(String emailSenha) {
         this.emailSenha = emailSenha;
-    }
+    }*/
 
     public Instituicao getInstituicao() {
         return instituicao;

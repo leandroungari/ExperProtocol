@@ -11,8 +11,8 @@ public class Grupo extends Element {
     //private int estudo_idestudo;
     private boolean protegido = false;
     
-    private ArrayList<Participante> listaParticipante = new ArrayList<>();
-    private ArrayList<Configuracao> configuracoes = new ArrayList<>();
+    //private ArrayList<Participante> listaParticipante = new ArrayList<>();
+    //private ArrayList<Configuracao> configuracoes = new ArrayList<>();
     private ArrayList<ArquivoInterpretacao> arquivosInterpretacaoGrupo = new ArrayList<>();
     private ArrayList<Interpretacao> interpretacoes = new ArrayList<>();
     
@@ -53,21 +53,21 @@ public class Grupo extends Element {
         this.protegido = protegido;
     }
 
-    public ArrayList<Participante> getListaParticipante() {
+    /*public ArrayList<Participante> getListaParticipante() {
         return listaParticipante;
     }
 
     public void setListaParticipante(ArrayList<Participante> listaParticipante) {
         this.listaParticipante = listaParticipante;
-    }
+    }*/
 
-    public ArrayList<Configuracao> getConfiguracoes() {
+    /*public ArrayList<Configuracao> getConfiguracoes() {
         return configuracoes;
     }
 
     public void setConfiguracoes(ArrayList<Configuracao> configuracoes) {
         this.configuracoes = configuracoes;
-    }
+    }*/
 
     public ArrayList<ArquivoInterpretacao> getArquivosInterpretacaoGrupo() {
         return arquivosInterpretacaoGrupo;

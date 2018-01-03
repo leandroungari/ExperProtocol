@@ -2,7 +2,10 @@ package experiment;
 
 import java.util.ArrayList;
 
-
+/**
+ * Cada artefato é um tipo de instrumentação
+ * 
+ */
 public class Artefato  extends Element{
     
     //private int idartefato;

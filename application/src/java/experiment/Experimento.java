@@ -2,7 +2,6 @@ package experiment;
 
 import bpmn.BusinessProcessDiagram;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 
 
@@ -22,48 +21,65 @@ public class Experimento  extends Element{
     
     private BusinessProcessDiagram diagrama;
     
-    private Calendar data_inicial;
+    //private Calendar data_inicial;
     
     private ArrayList<Experimentador> experimentadores = new ArrayList<>();
     
     private Definicao definicao = new Definicao();
     
-    private Contexto contexto = new Contexto();
+    private ArrayList<Caracterizacao> questoes = new ArrayList<>();
     
     private ArrayList<Hipotese> hipoteses = new ArrayList<>();
+    
+    private ArrayList<VariavelDependente> variaveisDependentes = new ArrayList<>();
+    
+    private ArrayList<VariavelIndependente> variaveisIndependentes = new ArrayList<>();
 
+    private ArrayList<Participante> participantes = new ArrayList<>();
+    
+    private ArrayList<Artefato> artefatos = new ArrayList<>();
+    
     private ArrayList<Validade> validades = new ArrayList<>();
     
-    private ArrayList<Metrica> metricas = new ArrayList<>();
-    
-    private ArrayList<Tecnica> tecnicas = new ArrayList<>();
+    private ArrayList<Grupo> grupos = new ArrayList<>();
     
     private ArrayList<Defeito> defeitos = new ArrayList<>();
 
-    private ArrayList<Grupo> grupos = new ArrayList<>();
+    private ArrayList<Interpretacao> interpretacoes = new ArrayList<>();
     
-    private Interpretacao interpretacao = new Interpretacao();
-    private ArrayList<ArquivoInterpretacao> arquivoInterpretacao = new ArrayList<>();
+    private ArrayList<Conclusao> conclusoes = new ArrayList<>();
 
     public Experimento() {
         
         super("experimento");
     }
 
-    public Experimento(String nome, String descricao, String tema, String areatecnica, String tipo, String dominio, String idioma, int status, int replicacao, Calendar data_inicial) {
-        super("experimento");
-        this.nome = nome;
-        this.descricao = descricao;
-        this.tema = tema;
-        this.areatecnica = areatecnica;
-        this.tipo = tipo;
-        this.dominio = dominio;
-        this.idioma = idioma;
-        this.status = status;
-        this.replicacao = replicacao;
-        this.data_inicial = data_inicial;
+    public ArrayList<Caracterizacao> getQuestoes() {
+        return questoes;
     }
 
+    public void setQuestoes(ArrayList<Caracterizacao> questoes) {
+        this.questoes = questoes;
+    }
+
+    public ArrayList<Interpretacao> getInterpretacoes() {
+        return interpretacoes;
+    }
+
+    public void setInterpretacoes(ArrayList<Interpretacao> interpretacoes) {
+        this.interpretacoes = interpretacoes;
+    }
+
+    public ArrayList<Conclusao> getConclusoes() {
+        return conclusoes;
+    }
+
+    public void setConclusoes(ArrayList<Conclusao> conclusoes) {
+        this.conclusoes = conclusoes;
+    }
+
+    
+    
     public BusinessProcessDiagram getDiagrama() {
         return diagrama;
     }
@@ -72,6 +88,41 @@ public class Experimento  extends Element{
         this.diagrama = diagrama;
     }
 
+    public ArrayList<Artefato> getArtefatos() {
+        return artefatos;
+    }
+
+    public void setArtefatos(ArrayList<Artefato> artefatos) {
+        this.artefatos = artefatos;
+    }
+    
+    
+
+    public ArrayList<VariavelDependente> getVariaveisDependentes() {
+        return variaveisDependentes;
+    }
+
+    public void setVariaveisDependentes(ArrayList<VariavelDependente> variaveisDependentes) {
+        this.variaveisDependentes = variaveisDependentes;
+    }
+
+    public ArrayList<VariavelIndependente> getVariaveisIndependentes() {
+        return variaveisIndependentes;
+    }
+
+    public void setVariaveisIndependentes(ArrayList<VariavelIndependente> variaveisIndependentes) {
+        this.variaveisIndependentes = variaveisIndependentes;
+    }
+
+    public ArrayList<Participante> getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(ArrayList<Participante> participantes) {
+        this.participantes = participantes;
+    }
+
+    
     
     
     public String getNome() {
@@ -146,13 +197,13 @@ public class Experimento  extends Element{
         this.replicacao = replicacao;
     }
 
-    public Calendar getData_inicial() {
+    /*public Calendar getData_inicial() {
         return data_inicial;
     }
 
     public void setData_inicial(Calendar data_inicial) {
         this.data_inicial = data_inicial;
-    }
+    }*/
 
     public ArrayList<Experimentador> getExperimentadores() {
         return experimentadores;
@@ -169,14 +220,16 @@ public class Experimento  extends Element{
     public void setDefinicao(Definicao definicao) {
         this.definicao = definicao;
     }
+    
+    
 
-    public Contexto getContexto() {
+    /*public Contexto getContexto() {
         return contexto;
     }
 
     public void setContexto(Contexto contexto) {
         this.contexto = contexto;
-    }
+    }*/
 
     public ArrayList<Hipotese> getHipoteses() {
         return hipoteses;
@@ -194,21 +247,21 @@ public class Experimento  extends Element{
         this.validades = validades;
     }
 
-    public ArrayList<Metrica> getMetricas() {
+    /*public ArrayList<Metrica> getMetricas() {
         return metricas;
     }
 
     public void setMetricas(ArrayList<Metrica> metricas) {
         this.metricas = metricas;
-    }
+    }*/
 
-    public ArrayList<Tecnica> getTecnicas() {
+    /*public ArrayList<Tecnica> getTecnicas() {
         return tecnicas;
     }
 
     public void setTecnicas(ArrayList<Tecnica> tecnicas) {
         this.tecnicas = tecnicas;
-    }
+    }*/
 
     public ArrayList<Defeito> getDefeitos() {
         return defeitos;
@@ -226,21 +279,6 @@ public class Experimento  extends Element{
         this.grupos = grupos;
     }
 
-    public Interpretacao getInterpretacao() {
-        return interpretacao;
-    }
-
-    public void setInterpretacao(Interpretacao interpretacao) {
-        this.interpretacao = interpretacao;
-    }
-
-    public ArrayList<ArquivoInterpretacao> getArquivoInterpretacao() {
-        return arquivoInterpretacao;
-    }
-
-    public void setArquivoInterpretacao(ArrayList<ArquivoInterpretacao> arquivoInterpretacao) {
-        this.arquivoInterpretacao = arquivoInterpretacao;
-    }
-
+    
     
 }

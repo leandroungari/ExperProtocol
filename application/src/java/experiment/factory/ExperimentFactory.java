@@ -11,14 +11,14 @@ import bpmn.factory.json.Protocol;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import experiment.Alternativa;
+
 import experiment.ArquivoArtefato;
 import experiment.ArquivoInterpretacao;
 import experiment.ArquivoTecnica;
 import experiment.Artefato;
 import experiment.Caracterizacao;
-import experiment.ClasseDefeito;
-import experiment.Configuracao;
+
+
 import experiment.Contexto;
 import experiment.Cronograma;
 import experiment.Defeito;
@@ -27,16 +27,13 @@ import experiment.Experimentador;
 import experiment.Experimento;
 import experiment.Grupo;
 import experiment.Hipotese;
-import experiment.HipoteseAlternativa;
 import experiment.Instituicao;
 import experiment.Interpretacao;
 import experiment.Metrica;
 import experiment.Participante;
 import experiment.Pessoa;
-import experiment.Resposta;
-import experiment.RespostaConfiguracao;
+
 import experiment.Tecnica;
-import experiment.TipoValidade;
 import experiment.Validade;
 import experiment.VariavelDependente;
 import experiment.VariavelIndependente;
@@ -147,15 +144,15 @@ public class ExperimentFactory {
     public static void initialize(XStream x){
         
         
-        x.alias("Alternativa", Alternativa.class);
+        //x.alias("Alternativa", Alternativa.class);
         x.alias("ArquivoArtefato", ArquivoArtefato.class);
         x.alias("ArquivoInterpretacao", ArquivoInterpretacao.class);
         x.alias("ArquivoTecnica", ArquivoTecnica.class);
         
         x.alias("Artefato", Artefato.class);
         x.alias("Caracterizacao", Caracterizacao.class);
-        x.alias("ClasseDefeito", ClasseDefeito.class);
-        x.alias("Configuracao", Configuracao.class);
+        //x.alias("ClasseDefeito", ClasseDefeito.class);
+        //x.alias("Configuracao", Configuracao.class);
         x.alias("Contexto", Contexto.class);
         x.alias("Cronograma", Cronograma.class);
         x.alias("Defeito", Defeito.class);
@@ -166,7 +163,7 @@ public class ExperimentFactory {
         x.alias("Grupo", Grupo.class);
         
         x.alias("Hipotese", Hipotese.class);
-        x.alias("HipoteseAlternativa", HipoteseAlternativa.class);
+        //x.alias("HipoteseAlternativa", HipoteseAlternativa.class);
         
         x.alias("Instituicao", Instituicao.class);
         x.alias("Interpretacao", Interpretacao.class);
@@ -174,11 +171,11 @@ public class ExperimentFactory {
         x.alias("Metrica", Metrica.class);
         x.alias("Participante", Participante.class);
         x.alias("Pessoa", Pessoa.class);
-        x.alias("Resposta", Resposta.class);
-        x.alias("RespostaConfiguracao", RespostaConfiguracao.class);
+        //x.alias("Resposta", Resposta.class);
+        //x.alias("RespostaConfiguracao", RespostaConfiguracao.class);
         
         x.alias("Tecnica", Tecnica.class);
-        x.alias("TipoValidade", TipoValidade.class);
+        //x.alias("TipoValidade", TipoValidade.class);
 
         x.alias("Validade", Validade.class);
         x.alias("VariavelDependente", VariavelDependente.class);

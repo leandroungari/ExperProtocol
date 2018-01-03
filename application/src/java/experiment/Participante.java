@@ -11,8 +11,8 @@ public class Participante extends Element {
     //private int estudo_idestudo;
     //private int grupo_idgrupo;
     
-    private ArrayList<Resposta> respostas = new ArrayList<>();
-
+    //private ArrayList<Resposta> respostas = new ArrayList<>();
+    private String grupo;
     private Pessoa pessoa;
 
     public Participante() {
@@ -28,17 +28,27 @@ public class Participante extends Element {
         return pessoa;
     }
 
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
+    }
+
+    
+    
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
 
-    public ArrayList<Resposta> getRespostas() {
+    /*public ArrayList<Resposta> getRespostas() {
         return respostas;
     }
 
     public void setRespostas(ArrayList<Resposta> respostas) {
         this.respostas = respostas;
-    }
+    }*/
     
     
     

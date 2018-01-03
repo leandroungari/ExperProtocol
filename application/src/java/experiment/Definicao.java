@@ -1,15 +1,18 @@
-package experiment;
+    package experiment;
 
 
 
-
+//definição do gqm
 public class Definicao  extends Element{
 
     //private int iddefinicao;
     private String objetivo;
-    private String analisar;
+    //private String analisar;
+    //proposito
     private String finalidade;
+    //enfoque
     private String respeito;
+    
     private String pontodevista;
     private String contexto;
     //private int estudo_idestudo;
@@ -19,10 +22,10 @@ public class Definicao  extends Element{
         super("definicao");
     }
 
-    public Definicao(String objetivo, String analisar, String finalidade, String respeito, String pontodevista, String contexto) {
+    public Definicao(String objetivo, String finalidade, String respeito, String pontodevista, String contexto) {
         super("definicao");
         this.objetivo = objetivo;
-        this.analisar = analisar;
+        //this.analisar = analisar;
         this.finalidade = finalidade;
         this.respeito = respeito;
         this.pontodevista = pontodevista;
@@ -39,13 +42,13 @@ public class Definicao  extends Element{
         this.objetivo = objetivo;
     }
 
-    public String getAnalisar() {
+    /*public String getAnalisar() {
         return analisar;
     }
 
     public void setAnalisar(String analisar) {
         this.analisar = analisar;
-    }
+    }*/
 
     public String getFinalidade() {
         return finalidade;

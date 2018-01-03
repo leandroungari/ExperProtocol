@@ -7,10 +7,11 @@ public class Caracterizacao  extends Element{
     
     //private int idcaracterizacao;
     private String questao;
-    private String tipo;
-    //private int estudo_idestudo;
     
-    private ArrayList<Configuracao> configuracoes = new ArrayList<>();
+    private ArrayList<Metrica> metricas = new ArrayList<>();
+    
+    
+    //private ArrayList<Configuracao> configuracoes = new ArrayList<>();
     private boolean protegido = false;
 
     public Caracterizacao() {
@@ -20,7 +21,7 @@ public class Caracterizacao  extends Element{
     public Caracterizacao(String questao, String tipo) {
         super("caracterizacao");
         this.questao = questao;
-        this.tipo = tipo;
+        //this.tipo = tipo;
     }
 
     public String getQuestao() {
@@ -30,14 +31,33 @@ public class Caracterizacao  extends Element{
     public void setQuestao(String questao) {
         this.questao = questao;
     }
-
+    
+    /*
     public String getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }*/
+
+    public ArrayList<Metrica> getMetricas() {
+        return metricas;
     }
+
+    public void setMetricas(ArrayList<Metrica> metricas) {
+        this.metricas = metricas;
+    }
+
+    /*public ArrayList<Configuracao> getConfiguracoes() {
+        return configuracoes;
+    }
+
+    public void setConfiguracoes(ArrayList<Configuracao> configuracoes) {
+        this.configuracoes = configuracoes;
+    }*/
+    
+    
 
     public boolean isProtegido() {
         return protegido;

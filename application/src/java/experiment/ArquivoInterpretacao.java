@@ -15,9 +15,6 @@ public class ArquivoInterpretacao extends Element {
         super("arquivoInterpretacao");
     }
   
-    
-    
-
     public String getPath_arquivo() {
         return path_arquivo;
     }

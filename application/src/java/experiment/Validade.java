@@ -5,7 +5,7 @@ public class Validade extends Element {
     //private int idvalidade;
     //private int estudo_idestudo;
     //private int idtipo_validade;
-    private TipoValidade tipo;
+    private String tipo;
     private String validade;
     private boolean protegido = false;
 
@@ -13,20 +13,16 @@ public class Validade extends Element {
         super("validade");
     }
 
-    public Validade(TipoValidade tipo, String validade) {
-        super("validade");
-        this.tipo = tipo;
-        this.validade = validade;
-    }
-
-    public TipoValidade getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoValidade tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
+    
+    
+    
     public String getValidade() {
         return validade;
     }

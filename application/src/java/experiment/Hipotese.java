@@ -12,8 +12,8 @@ public class Hipotese extends Element {
     //private int idexperimento;
     //private int idhipotese;
     
-    private ArrayList<VariavelDependente> variaveisDependentes = new ArrayList<>();
-    private ArrayList<VariavelIndependente> variaveisIndependentes = new ArrayList<>();
+    //private ArrayList<VariavelDependente> variaveisDependentes = new ArrayList<>();
+    //private ArrayList<VariavelIndependente> variaveisIndependentes = new ArrayList<>();
     
     private boolean protegido = false;
 
@@ -52,7 +52,7 @@ public class Hipotese extends Element {
         this.hipoteseAlternativa = hipoteseAlternativa;
     }
 
-    public ArrayList<VariavelDependente> getVariaveisDependentes() {
+    /*public ArrayList<VariavelDependente> getVariaveisDependentes() {
         return variaveisDependentes;
     }
 
@@ -66,7 +66,7 @@ public class Hipotese extends Element {
 
     public void setVariaveisIndependentes(ArrayList<VariavelIndependente> variaveisIndependentes) {
         this.variaveisIndependentes = variaveisIndependentes;
-    }
+    }*/
 
     public boolean isProtegido() {
         return protegido;

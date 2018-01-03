@@ -99,18 +99,46 @@
 		<div class="close">x</div>
 		<div class="content">
 			<ul>
-				<li class="li-01">Objeto de Estudo</li>
-				<div class="block-01"></div>
-				<li class="li-02">Propósito</li>
-				<div class="block-02"></div>
-				<li class="li-03">Enfoque de Qualidade</li>
-				<div class="block-03"></div>
-				<li class="li-04">Perspectiva</li>
-				<div class="block-04"></div>
-				<li class="li-05">Contexto</li>
-				<div class="block-05"></div>
+				<li class="li-02">Visão Geral do Experimento</li>
+				<div class="block-02">
+					<input type="text" name="nome-geral">
+					<input type="text" name="descricao-geral">
+					<input type="text" name="tema-geral">
+					<input type="text" name="areatecnica-geral">
+					<input type="text" name="tipo-geral">
+					<input type="text" name="dominio-geral">
+					<input type="text" name="idioma-geral">
+					<input type="submit" class="adicionar-block-02" value="Adicionar">
+				</div>
+				<li class="li-01">Definição do Experimento</li>
+				<div class="block-01">
+					<input type="text" name="objeto-estudo">
+					<input type="text" name="proposito">
+					<input type="text" name="enfoque">
+					<input type="text" name="perspectiva">
+					<input type="text" name="contexto">
+					<input type="submit" class="adicionar-block-01" value="Adicionar">
+				</div>
 				<li class="li-06">Questões</li>
-				<div class="block-06"></div>
+				<div class="block-06">
+					<input type="text" name="id-questao">
+					<input type="text" name="questao">
+					<input type="submit" class="adicionar-block-06" value="Adicionar">
+				</div>
+				<li class="li-20">Métricas</li>
+				<div class="block-20">
+					<input type="text" name="id-metrica">
+					<input type="text" name="metrica">
+					<textarea name="metrica-descricao" id="" cols="30" rows="10"></textarea>
+					<p>Selecione a questão respectiva: </p>
+					<select name="opcao-questao">
+						<option value="01">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+					</select>
+					<input type="submit" class="adicionar-block-20" value="Adicionar">
+				</div>
+
 			</ul>
 		</div>
 	</div>
@@ -120,24 +148,101 @@
 		<div class="close">x</div>
 		<div class="content">
 			<ul>
+
 				<li class="li-07">Hipótese Nula e Alternativa</li>
-				<div class="block-07"></div>
+				<div class="block-07">
+					<input type="text" name="nula">
+					<input type="text" name="alternativa">
+					<input type="submit" class="adicionar-block-07" value="Adicionar">
+				</div>
+
 				<li class="li-08">Variáveis Dependentes</li>
-				<div class="block-08"></div>
+				<div class="block-08">
+					<input type="text" name="dependente">
+					<input type="submit" class="adicionar-block-08" value="Adicionar">
+				</div>
+
 				<li class="li-09">Variáveis Independentes</li>
-				<div class="block-09"></div>
+				<div class="block-09">
+					<input type="text" name="independente">
+					<input type="submit" class="adicionar-block-09" value="Adicionar">
+				</div>
+
 				<li class="li-10">Seleção de Participantes</li>
-				<div class="block-10"></div>
-				<li class="li-11">Instrumentação - Ferramentas Informatizadas</li>
-				<div class="block-11"></div>
-				<li class="li-12">Instrumentação - Materiais de Realização de Testes</li>
-				<div class="block-12"></div>
-				<li class="li-13">Instrumentação - Materiais de Treinamento</li>
-				<div class="block-13"></div>
-				<li class="li-14">Instrumentação - Questionários</li>
-				<div class="block-14"></div>
-				<li class="li-15">Instrumentação - Formulários</li>
-				<div class="block-15"></div>
+				<div class="block-10">
+					<input type="text" name="nome-participante">
+					<input type="email" name="email-participante">
+					<input type="text" name="telefone-participante">
+					<input type="text" name="nome-instituicao">
+					<input type="text" name="sigla-instituicao">
+					<input type="text" name="pais-instituicao">
+					<select name="nome-grupo-participante">
+						<option value="a">a</option>
+						<option value="b">b</option>
+						<option value="c">c</option>
+					</select>
+					<input type="submit" class="adicionar-block-10" value="Adicionar">
+				</div>
+
+				<li class="li-11">Artefato - Ferramentas Informatizadas</li>
+				<div class="block-11">
+					<input type="text" name="id-formulario">
+					<input type="text" name="ferramenta">
+					<input type="submit" class="adicionar-block-11" value="Adicionar">
+				</div>
+
+				<li class="li-12">Artefato - Materiais de Realização de Testes</li>
+				<div class="block-12">
+					<input type="text" name="id-materiais">
+					<input type="text" name="materiais">
+					<input type="submit" class="adicionar-block-12" value="Adicionar">
+				</div>
+
+				<li class="li-13">Artefato - Materiais de Treinamento</li>
+				<div class="block-13">
+					<input type="text" name="id-treinamento">
+					<input type="text" name="treinamento">
+					<input type="submit" class="adicionar-block-13" value="Adicionar">
+				</div>
+
+				<li class="li-14">Artefato - Questionários</li>
+				<div class="block-14">
+					<input type="text" name="id-questionario">
+					<input type="text" name="ferramenta">
+					<input type="submit" class="adicionar-block-14" value="Adicionar">
+				</div>
+
+				<li class="li-15">Artefato - Formulários</li>
+				<div class="block-15">
+					<input type="text" name="id-formulario">
+					<input type="text" name="formulario">
+					<input type="submit" class="adicionar-block-15" value="Adicionar">
+				</div>
+
+				<li class="li-15">Arquivos de artefato</li>
+				<div class="block-15">
+					<input type="text" name="id-arquivo">
+					<input type="text" name="caminho-arquivo">
+					<select name="select-artefato">
+						<option value="teste">teste</option>
+						<option value="teste2">teste2</option>
+					</select>
+					<input type="submit" class="adicionar-block-15" value="Adicionar">
+				</div>
+
+				<li class="li-03">Validade</li>
+				<div class="block-03">
+					<input type="text" name="validade-tipo">
+					<textarea type="text" name="validade-avaliacao" cols="40" rows="10">
+						<input type="submit" class="adicionar-block-03" value="Adicionar">
+				</div>
+
+				<li class="li-04">Grupo</li>
+				<div class="block-04">
+					<input type="text" name="grupo-identificador">
+					<textarea type="text" name="grupo-observacao" cols="40" rows="10">
+						<input type="submit" class="adicionar-block-04" value="Adicionar">
+				</div>
 			</ul>
 		</div>
 	</div>
@@ -148,7 +253,14 @@
 		<div class="content">
 			<ul>
 				<li class="li-16">Atividade do cronograma</li>
-				<div class="block-16"></div>
+				<div class="block-16">
+					<input type="text" name="cronograma-definicao">
+					<input type="date" name="cronograma-data-inicial">
+					<input type="date" name="cronograma-data-final">
+					<input type="text" name="cronograma-tipo">
+					<input type="text" name="cronograma-tempo">
+					<input type="submit" class="adicionar-block-16" value="Adicionar">
+				</div>
 			</ul>
 		</div>
 	</div>
@@ -159,9 +271,31 @@
 		<div class="content">
 			<ul>
 				<li class="li-17">Defeito</li>
-				<div class="block-17"></div>
+				<div class="block-17">
+					<input type="text" name="defeito-identificacao">
+					<input type="text" name="defeito-local">
+					<input type="text" name="defeito-requisito">
+					<input type="text" name="defeito-classe">
+					<textarea name="defeito-descricao" cols="30" rows="10"></textarea>
+					<input type="submit" class="adicionar-block-17" value="Adicionar">
+				</div>
 				<li class="li-18">Análise Estatística</li>
-				<div class="block-18"></div>
+				<div class="block-18">
+					<input type="text" name="interpretacao-id">
+					<input type="text" name="interpretacao-resultados">
+					<input type="submit" class="adicionar-block-18" value="Adicionar">
+				</div>
+
+				<li class="li-25">Análise Estatística - Arquivo</li>
+				<div class="block-25">
+					<input type="file" name="interpretacao-arquivo">
+					<select name="opcao-interpretacao">
+						<option value="i">i</option>
+						<option value="g">g</option>
+						<option value="h">h</option>
+					</select>
+					<input type="submit" class="adicionar-block-25" value="Adicionar">
+				</div>
 			</ul>
 		</div>
 	</div>
@@ -172,6 +306,10 @@
 		<div class="content">
 			<ul>
 				<li class="li-19">Conclusão</li>
+				<div class="block-19">
+					<input type="text" name="conclusao">
+					<input type="submit" class="adicionar-block-19" value="Adicionar">
+				</div>
 			</ul>
 		</div>
 	</div>
