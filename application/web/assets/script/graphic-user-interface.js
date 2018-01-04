@@ -7,6 +7,17 @@ function loadGUI() {
     /////////////////////////////////////////////
 
     /**
+     * Lista de opções formularios
+     */
+    $("[class*='li-']").click(function(event){
+
+        
+        const [element, id] = event.target.className.split("-");
+        
+        $(`.block-${id}`).slideToggle();    
+    });
+
+    /**
      * Mostra o painel de abrir arquivo
      */
     let box01 = document.querySelector('.box-01');

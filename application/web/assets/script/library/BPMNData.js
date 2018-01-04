@@ -35,7 +35,7 @@ class BPMNData extends BPMNElement {
 		if (name.icon == "data-store") {
 			this.points = [
 				{ x: 20, y: 0 },
-				{ x: 0, y: 20 },
+				{ x: 0, y: 40 },
 				{ x: 0, y: -20 },
 				{ x: -20, y: 0 }
 			];

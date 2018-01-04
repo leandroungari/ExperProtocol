@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/experiment/Caracterizacao.java</file>
-            <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/bpmn/BusinessProcessDiagram.java</file>
-            <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/experiment/Alternativa.java</file>
             <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/experiment/Experimento.java</file>
-            <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/experiment/Interpretacao.java</file>
-            <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/experiment/Definicao.java</file>
-            <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/experiment/Metrica.java</file>
+            <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/experiment/Conclusao.java</file>
+            <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/experiment/Defeito.java</file>
         </group>
     </open-files>
 </project-private>
