@@ -21,8 +21,6 @@ public class Experimento  extends Element{
     
     private BusinessProcessDiagram diagrama;
     
-    //private Calendar data_inicial;
-    
     private ArrayList<Experimentador> experimentadores = new ArrayList<>();
     
     private Definicao definicao = new Definicao();

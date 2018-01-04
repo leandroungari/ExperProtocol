@@ -9,14 +9,108 @@ function loadGUI() {
     /**
      * Lista de opções formularios
      */
-    $("[class*='li-']").click(function(event){
+    $("[class*='li-']").click(function (event) {
 
-        
+
         const [element, id] = event.target.className.split("-");
-        
-        $(`.block-${id}`).slideToggle();    
+
+        $(`.block-${id}`).slideToggle();
     });
 
+    /**
+     * Adicionar o dado recurso do bloco ao experimento
+     */
+    $("[class*='adicionar-block-']").click(function (event) {
+
+        let number = event.target.className.split(" ")[1].split('-')[2];
+        //console.log(number);
+
+        switch (number) {
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+
+            case "":
+
+                break;
+        }
+
+        $('.caixa-experimento').slideUp();
+
+    });
     /**
      * Mostra o painel de abrir arquivo
      */
@@ -266,14 +360,14 @@ function loadGUI() {
         }, 1000);
     });
 
-    $('.caixa-experimento .close').click(function() {
+    $('.caixa-experimento .close').click(function () {
 
         $(this).parent().animate({
             top: -500
         }, 1000);
     });
-        
-     
+
+
 
     document.querySelector('.radio-pt').addEventListener('click', () => {
 

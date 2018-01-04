@@ -94,6 +94,73 @@
 		</div>
 	</div>
 
+	<div class="caixa-experimento apresentacao">
+		<div class="titulo">Fase de Apresentação e Empacotamento</div>
+		<div class="close">x</div>
+		<div class="content">
+			<ul>
+				<li class="li-19">Conclusão</li>
+				<div class="block-19">
+					<p>Conclusão</p><textarea name="conclusao" cols="30" rows="10"></textarea>
+					<input type="submit" class="btn adicionar-block-19" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
+				</div>
+			</ul>
+		</div>
+	</div>
+
+	<div class="caixa-experimento analise">
+		<div class="titulo">Fase de Análise e Interpretação</div>
+		<div class="close">x</div>
+		<div class="content">
+			<ul>
+				<li class="li-17">Defeito</li>
+				<div class="block-17">
+					<p>ID</p><input type="text" name="defeito-identificacao">
+					<p>Local</p><input type="text" name="defeito-local">
+					<p>Requisito</p><input type="text" name="defeito-requisito">
+					<p>Classe</p><input type="text" name="defeito-classe">
+					<p>Descrição</p><textarea name="defeito-descricao" cols="30" rows="10"></textarea>
+					<input type="submit" class="btn adicionar-block-17" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
+				</div>
+				<li class="li-18">Análise Estatística</li>
+				<div class="block-18">
+					<p>ID</p><input type="text" name="interpretacao-id">
+					<p>Resultados</p><input type="text" name="interpretacao-resultados">
+					<input type="submit" class="btn adicionar-block-18" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
+				</div>
+
+				<li class="li-25">Análise Estatística - Arquivo</li>
+				<div class="block-25">
+					<p>Selecione o arquivo</p><input type="file" name="interpretacao-arquivo">
+					<p>Selecione a análise estatística correspondente: </p><select name="opcao-interpretacao">
+						<option value="i">i</option>
+						<option value="g">g</option>
+						<option value="h">h</option>
+					</select>
+					<input type="submit" class="btn adicionar-block-25" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
+				</div>
+			</ul>
+		</div>
+	</div>
+
+	<div class="caixa-experimento execucao">
+		<div class="titulo">Fase de Execução</div>
+		<div class="close">x</div>
+		<div class="content">
+			<ul>
+				<li class="li-16">Atividade do cronograma</li>
+				<div class="block-16">
+					<p>Definição</p><input type="text" name="cronograma-definicao">
+					<p>Data Inicial</p><input type="date" name="cronograma-data-inicial">
+					<p>Data Final</p><input type="date" name="cronograma-data-final">
+					<p>Tipo</p><input type="text" name="cronograma-tipo">
+					<p>Tempo</p><input type="text" name="cronograma-tempo">
+					<input type="submit" class="btn adicionar-block-16" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
+				</div>
+			</ul>
+		</div>
+	</div>
+
 	<div class="caixa-experimento definicao">
 		<div class="titulo">Fase de Definição</div>
 		<div class="close">x</div>
@@ -234,86 +301,25 @@
 				<li class="li-03">Validade</li>
 				<div class="block-03">
 					<p>Tipo</p><input type="text" name="validade-tipo">
-					<p>Avaliação</p><textarea type="text" name="validade-avaliacao" cols="40" rows="10">
+					<p>Avaliação</p><textarea type="text" name="validade-avaliacao" cols="40" rows="10"></textarea>
 						<input type="submit" class="btn adicionar-block-03" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 
 				<li class="li-04">Grupo</li>
 				<div class="block-04">
 					<p>ID</p><input type="text" name="grupo-identificador">
-					<p>Observação</p><textarea type="text" name="grupo-observacao" cols="40" rows="10">
-						<input type="submit" class="btn adicionar-block-04" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
+					<p>Observação</p><textarea type="text" name="grupo-observacao" cols="40" rows="10"></textarea>
+				<input type="submit" class="btn adicionar-block-04" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 			</ul>
 		</div>
 	</div>
 
-	<div class="caixa-experimento execucao">
-		<div class="titulo">Fase de Execução</div>
-		<div class="close">x</div>
-		<div class="content">
-			<ul>
-				<li class="li-16">Atividade do cronograma</li>
-				<div class="block-16">
-					<p>Definição</p><input type="text" name="cronograma-definicao">
-					<p>Data Inicial</p><input type="date" name="cronograma-data-inicial">
-					<p>Data Final</p><input type="date" name="cronograma-data-final">
-					<p>Tipo</p><input type="text" name="cronograma-tipo">
-					<p>Tempo</p><input type="text" name="cronograma-tempo">
-					<input type="submit" class="btn adicionar-block-16" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
-				</div>
-			</ul>
-		</div>
-	</div>
+	
 
-	<div class="caixa-experimento analise">
-		<div class="titulo">Fase de Análise e Interpretação</div>
-		<div class="close">x</div>
-		<div class="content">
-			<ul>
-				<li class="li-17">Defeito</li>
-				<div class="block-17">
-					<p>ID</p><input type="text" name="defeito-identificacao">
-					<p>Local</p><input type="text" name="defeito-local">
-					<p>Requisito</p><input type="text" name="defeito-requisito">
-					<p>Classe</p><input type="text" name="defeito-classe">
-					<p>Descrição</p><textarea name="defeito-descricao" cols="30" rows="10"></textarea>
-					<input type="submit" class="btn adicionar-block-17" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
-				</div>
-				<li class="li-18">Análise Estatística</li>
-				<div class="block-18">
-					<p>ID</p><input type="text" name="interpretacao-id">
-					<p>Resultados</p><input type="text" name="interpretacao-resultados">
-					<input type="submit" class="btn adicionar-block-18" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
-				</div>
+	
 
-				<li class="li-25">Análise Estatística - Arquivo</li>
-				<div class="block-25">
-					<p>Selecione o arquivo</p><input type="file" name="interpretacao-arquivo">
-					<p>Selecione a análise estatística correspondente: </p><select name="opcao-interpretacao">
-						<option value="i">i</option>
-						<option value="g">g</option>
-						<option value="h">h</option>
-					</select>
-					<input type="submit" class="btn adicionar-block-25" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
-				</div>
-			</ul>
-		</div>
-	</div>
 
-	<div class="caixa-experimento apresentacao">
-		<div class="titulo">Fase de Apresentação e Empacotamento</div>
-		<div class="close">x</div>
-		<div class="content">
-			<ul>
-				<li class="li-19">Conclusão</li>
-				<div class="block-19">
-					<p>Conclusão</p><textarea name="conclusao" cols="30" rows="10"></textarea>
-					<input type="submit" class="btn adicionar-block-19" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
-				</div>
-			</ul>
-		</div>
-	</div>
 
 
 	<div class="box-shadow box-01">
