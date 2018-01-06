@@ -11,6 +11,7 @@ public class ArquivoInterpretacao extends Element {
         this.path_arquivo = path_arquivo;
     }
 
+    
     public ArquivoInterpretacao() {
         super("arquivoInterpretacao");
     }

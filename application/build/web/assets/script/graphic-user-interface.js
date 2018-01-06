@@ -9,103 +9,137 @@ function loadGUI() {
     /**
      * Lista de opções formularios
      */
-    $("[class*='li-']").click(function (event) {
+     $("[class*='li-']").click(function (event) {
 
 
         const [element, id] = event.target.className.split("-");
-
         $(`.block-${id}`).slideToggle();
+        //console.log(id);
+        switch(id){
+
+            case "25":
+            
+            document.querySelector("[name='opcao-interpretacao']").innerHTML = "";
+            BPMNDiagram.experiment
+            .interpretacoes.map((e) => {return e.id})
+            .forEach((e) => {
+
+                let option = document.createElement('option');
+                option.value = e;
+                option.innerHTML = e;
+                
+                document.querySelector("[name='opcao-interpretacao']").appendChild(option);
+            });
+
+            break;
+
+            case "10":
+            
+            document.querySelector("[name='nome-grupo-participante']").innerHTML = "";
+            BPMNDiagram.experiment
+            .grupos.map((e) => {return e.identificacao})
+            .forEach((e) => {
+
+                let option = document.createElement('option');
+                option.value = e;
+                option.innerHTML = e;
+                
+                document.querySelector("[name='nome-grupo-participante']").appendChild(option);
+            });
+
+            break;
+        }
     });
 
     /**
      * Adicionar o dado recurso do bloco ao experimento
      */
-    $("[class*='adicionar-block-']").click(function (event) {
+     $("[class*='adicionar-block-']").click(function (event) {
 
         let number = event.target.className.split(" ")[1].split('-')[2];
         //console.log(number);
 
         switch (number) {
 
-            case "":
+            case "17":
+                DataExperiment.block17();
+            break;
 
-                break;
+            case "18":
+                DataExperiment.block18();
+            break;
 
-            case "":
-
-                break;
-
-            case "":
-
-                break;
-
-            case "":
-
-                break;
+            case "25":
+                DataExperiment.block25();
+            break;
 
             case "":
-
-                break;
+                DataExperiment.block16();
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
 
             case "":
 
-                break;
+            break;
+
+            case "":
+
+            break;
         }
 
         $('.caixa-experimento').slideUp();
@@ -114,14 +148,14 @@ function loadGUI() {
     /**
      * Mostra o painel de abrir arquivo
      */
-    let box01 = document.querySelector('.box-01');
+     let box01 = document.querySelector('.box-01');
 
-    document.querySelector('.open-file').addEventListener('click', () => {
+     document.querySelector('.open-file').addEventListener('click', () => {
 
         box01.style.display = 'block';
     });
 
-    document.querySelector('.open-option-open-dialog').addEventListener('click', (event) => {
+     document.querySelector('.open-option-open-dialog').addEventListener('click', (event) => {
 
 
         event.stopPropagation();
@@ -142,13 +176,13 @@ function loadGUI() {
                     let data = reader.result;
 
                     $.ajax({
-                            url: (window.location.href + "/abrirPacote "),
-                            type: "post",
-                            async: true,
-                            data: data,
-                            cache: false
-                        })
-                        .done(function (data) {
+                        url: (window.location.href + "/abrirPacote "),
+                        type: "post",
+                        async: true,
+                        data: data,
+                        cache: false
+                    })
+                    .done(function (data) {
 
                             //console.log(data);
                             data = JSON.parse(data);
@@ -164,9 +198,9 @@ function loadGUI() {
                             diagram.import(JSON.stringify(dados));
 
                         })
-                        .fail(function () {
-                            console.log("pãã");
-                        });
+                    .fail(function () {
+                        console.log("pãã");
+                    });
                 }
             };
 
@@ -185,20 +219,20 @@ function loadGUI() {
                     let data = reader.result;
 
                     $.ajax({
-                            url: (window.location.href + "/abrirProtocolo"),
-                            type: "post",
-                            async: true,
-                            data: data,
-                            cache: false
-                        })
-                        .done(function (data) {
+                        url: (window.location.href + "/abrirProtocolo"),
+                        type: "post",
+                        async: true,
+                        data: data,
+                        cache: false
+                    })
+                    .done(function (data) {
 
-                            diagram.import(data);
+                        diagram.import(data);
 
-                        })
-                        .fail(function () {
-                            console.log("pãã");
-                        });
+                    })
+                    .fail(function () {
+                        console.log("pãã");
+                    });
                 }
             };
 
@@ -211,7 +245,7 @@ function loadGUI() {
     });
 
 
-    document.querySelector('.cancel-option-open-dialog').addEventListener('click', () => {
+     document.querySelector('.cancel-option-open-dialog').addEventListener('click', () => {
 
         box01.style.display = 'none';
     });
@@ -222,9 +256,9 @@ function loadGUI() {
     /**
      * Mostra o painel de salvar arquivo
      */
-    let box02 = document.querySelector('.box-02');
+     let box02 = document.querySelector('.box-02');
 
-    document.querySelector('.save-file').addEventListener('click', () => {
+     document.querySelector('.save-file').addEventListener('click', () => {
 
         /*let blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
         saveAs(blob, "hello world.txt");*/
@@ -232,7 +266,7 @@ function loadGUI() {
 
     });
 
-    document.querySelector('.save-option-save-dialog').addEventListener('click', () => {
+     document.querySelector('.save-option-save-dialog').addEventListener('click', () => {
 
         let opcao = document.querySelector('[name="opcao-salvar"]').checked;
 
@@ -256,19 +290,19 @@ function loadGUI() {
             }
 
             $.ajax({
-                    url: (window.location.href + "/salvarPacote"),
-                    type: "post",
-                    async: true,
-                    data: `{"box": ${JSON.stringify(data)}}`,
-                    cache: false
-                })
-                .done(function (data) {
+                url: (window.location.href + "/salvarPacote"),
+                type: "post",
+                async: true,
+                data: `{"box": ${JSON.stringify(data)}}`,
+                cache: false
+            })
+            .done(function (data) {
 
-                    saveAs(new Blob([data]), nome);
-                })
-                .fail(function () {
-                    console.log("pãã");
-                });
+                saveAs(new Blob([data]), nome);
+            })
+            .fail(function () {
+                console.log("pãã");
+            });
         } else {
             //Protocolo de Experimentação
 
@@ -288,19 +322,19 @@ function loadGUI() {
             }
 
             $.ajax({
-                    url: (window.location.href + "/salvarProtocolo"),
-                    type: "post",
-                    async: true,
-                    data: data,
-                    cache: false
-                })
-                .done(function (data) {
+                url: (window.location.href + "/salvarProtocolo"),
+                type: "post",
+                async: true,
+                data: data,
+                cache: false
+            })
+            .done(function (data) {
 
-                    saveAs(new Blob([data]), nome);
-                })
-                .fail(function () {
-                    console.log("pãã");
-                });
+                saveAs(new Blob([data]), nome);
+            })
+            .fail(function () {
+                console.log("pãã");
+            });
         }
 
 
@@ -309,7 +343,7 @@ function loadGUI() {
 
     });
 
-    document.querySelector('.cancel-option-save-dialog').addEventListener('click', () => {
+     document.querySelector('.cancel-option-save-dialog').addEventListener('click', () => {
 
         box02.style.display = 'none';
     });
@@ -322,7 +356,7 @@ function loadGUI() {
     /**
      * Carrega um novo diagrama vazio
      */
-    document.querySelector('.new-file').addEventListener('click', () => {
+     document.querySelector('.new-file').addEventListener('click', () => {
 
         if (window.elements.length == 0) window.location.reload();
         else {
@@ -333,7 +367,7 @@ function loadGUI() {
         }
     });
 
-    document.querySelector('.export-file').addEventListener('click', () => {
+     document.querySelector('.export-file').addEventListener('click', () => {
 
 
         if (window.elements.length == 0) {
@@ -346,21 +380,21 @@ function loadGUI() {
     });
 
 
-    document.querySelector('.preferences').addEventListener('click', () => {
+     document.querySelector('.preferences').addEventListener('click', () => {
 
         $('.settings').animate({
             top: 100
         }, 1000);
     });
 
-    document.querySelector('.settings .close').addEventListener('click', () => {
+     document.querySelector('.settings .close').addEventListener('click', () => {
 
         $('.settings').animate({
             top: -500
         }, 1000);
     });
 
-    $('.caixa-experimento .close').click(function () {
+     $('.caixa-experimento .close').click(function () {
 
         $(this).parent().animate({
             top: -500
@@ -369,7 +403,7 @@ function loadGUI() {
 
 
 
-    document.querySelector('.radio-pt').addEventListener('click', () => {
+     document.querySelector('.radio-pt').addEventListener('click', () => {
 
         Object.entries(language.pt).forEach(([k, v]) => {
 
@@ -377,7 +411,7 @@ function loadGUI() {
         });
     });
 
-    document.querySelector('.radio-en').addEventListener('click', () => {
+     document.querySelector('.radio-en').addEventListener('click', () => {
 
         Object.entries(language.en).forEach(([k, v]) => {
 
@@ -423,9 +457,9 @@ function loadGUI() {
             console.log(document.querySelectorAll('[name="item-check"]'));
 
             document.querySelectorAll('[name="item-check"]')
-                .forEach((e) => {
-                    if (e.checked) lista.push(e.value)
-                })
+            .forEach((e) => {
+                if (e.checked) lista.push(e.value)
+            })
 
 
             //console.log(lista)
@@ -585,35 +619,35 @@ function exibirDescricao(id) {
     if (element.vinculos == null || element.vinculos.length == 0) {
 
         d3.select('.box-descricao > .content')
-            .append('p')
-            .style('line-height', "300px")
-            .style('vertical-align', 'middle')
-            .style('text-align', 'center')
-            .text('Não há elementos do experimento vinculados.')
+        .append('p')
+        .style('line-height', "300px")
+        .style('vertical-align', 'middle')
+        .style('text-align', 'center')
+        .text('Não há elementos do experimento vinculados.')
     } else {
 
         element.vinculos.forEach((a) => {
             getObjectById(BPMNDiagram.experiment, a);
 
             d3.select('.box-descricao > .content').append('div')
-                .style('padding', '15px 25px')
-                .attr('class', `item-${result.id} box-item`)
+            .style('padding', '15px 25px')
+            .attr('class', `item-${result.id} box-item`)
 
             //o resultado fica na variavel result
             Object.keys(result).forEach((ele) => {
 
                 if (ele == "id") {
                     d3.select(`.item-${result.id}`)
-                        .append('h1')
-                        .style('font-size', '20px')
-                        .text(`ID: #${result.id}`)
+                    .append('h1')
+                    .style('font-size', '20px')
+                    .text(`ID: #${result.id}`)
                 } else {
                     d3.select(`.item-${result.id}`)
-                        .append('p')
-                        .style('font-size', '14px')
-                        .style('padding', '3px 0')
-                        .style('margin-left', '35px')
-                        .text(`${ele}: ${result[ele]}`)
+                    .append('p')
+                    .style('font-size', '14px')
+                    .style('padding', '3px 0')
+                    .style('margin-left', '35px')
+                    .text(`${ele}: ${result[ele]}`)
                 }
 
             }, result)
@@ -658,37 +692,37 @@ function menuContexto(x, y, categoria, id) {
     if (categoria == "element") {
 
         d3.select('.context-menu')
-            .append('li')
-            .attr('class', 'modificar')
-            .text('Modificar descrição')
-            .on('click', function () {
-                Interface.modificar(id);
-            });
+        .append('li')
+        .attr('class', 'modificar')
+        .text('Modificar descrição')
+        .on('click', function () {
+            Interface.modificar(id);
+        });
 
         //Se for uma lane não adiciona botão de remover
         if (id.indexOf('lane') == -1) {
 
             d3.select('.context-menu')
-                .append('li')
-                .attr('class', 'remover')
-                .text('Remover')
-                .on('click', function () {
+            .append('li')
+            .attr('class', 'remover')
+            .text('Remover')
+            .on('click', function () {
 
-                    Interface.remover(id);
-                    $('.context-menu').trigger('mouseleave');
-                });
+                Interface.remover(id);
+                $('.context-menu').trigger('mouseleave');
+            });
         }
 
         if (BPMNDiagram.experiment != null && id.indexOf('lane') == -1 && id.indexOf('pool')) {
 
             d3.select('.context-menu')
-                .append('li')
-                .attr('class', 'exibir')
-                .text('Exibir detalhes')
-                .on('click', () => {
+            .append('li')
+            .attr('class', 'exibir')
+            .text('Exibir detalhes')
+            .on('click', () => {
 
-                    Interface.exibir(id);
-                })
+                Interface.exibir(id);
+            })
         }
 
         const show = () => {
@@ -701,55 +735,55 @@ function menuContexto(x, y, categoria, id) {
         //se é um objeto de dados
         if (id.indexOf('data') != -1 || id.indexOf('activity') != -1) {
             d3.select('.context-menu')
-                .append('li')
-                .attr('class', 'experimento')
-                .text('Experimento')
-                .attr('class', 'menu-experimento')
-                .append('ul');
+            .append('li')
+            .attr('class', 'experimento')
+            .text('Experimento')
+            .attr('class', 'menu-experimento')
+            .append('ul');
 
             d3.select('.menu-experimento ul')
-                .append('li')
-                .attr('class', 'li-definicao')
-                .text('Definição')
-                .on('click', show)
+            .append('li')
+            .attr('class', 'li-definicao')
+            .text('Definição')
+            .on('click', show)
 
             d3.select('.menu-experimento ul')
-                .append('li')
-                .attr('class', 'li-planejamento')
-                .text('Planejamento')
-                .on('click', show)
+            .append('li')
+            .attr('class', 'li-planejamento')
+            .text('Planejamento')
+            .on('click', show)
 
             d3.select('.menu-experimento ul')
-                .append('li')
-                .attr('class', 'li-execucao')
-                .text('Execução')
-                .on('click', show)
+            .append('li')
+            .attr('class', 'li-execucao')
+            .text('Execução')
+            .on('click', show)
 
             d3.select('.menu-experimento ul')
-                .append('li')
-                .attr('class', 'li-analise')
-                .text('Análise e Interpretação')
-                .on('click', show)
+            .append('li')
+            .attr('class', 'li-analise')
+            .text('Análise e Interpretação')
+            .on('click', show)
 
             d3.select('.menu-experimento ul')
-                .append('li')
-                .attr('class', 'li-apresentacao')
-                .text('Apresentação e Empacotamento')
-                .on('click', show)
+            .append('li')
+            .attr('class', 'li-apresentacao')
+            .text('Apresentação e Empacotamento')
+            .on('click', show)
 
         }
 
     } else {
 
         d3.select('.context-menu')
-            .append('li')
-            .attr('class', 'remover-transicao')
-            .text('Remover')
-            .on('click', () => {
+        .append('li')
+        .attr('class', 'remover-transicao')
+        .text('Remover')
+        .on('click', () => {
 
-                Interface.removerTransicao(id);
-                $('.context-menu').trigger('mouseleave');
-            })
+            Interface.removerTransicao(id);
+            $('.context-menu').trigger('mouseleave');
+        })
     }
 
 

@@ -8,14 +8,12 @@ package experiment;
 /** Class that defines all data a participant in an experiment */
 public class Pessoa extends Element {
 
-    private int idpessoa;
+    
     private String nome;
     private String email;
     private String telefone;
     
-    //private String senha;
-    //private String emailLogin;
-    //private String emailSenha; 
+
     
     private Instituicao instituicao;
 
@@ -23,25 +21,8 @@ public class Pessoa extends Element {
         super("pessoa");
     }
 
-    public Pessoa(int idpessoa, String nome, String email, String telefone/*, String senha, String emailLogin, String emailSenha, */, Instituicao instituicao) {
-        super("pessoa");
-        this.idpessoa = idpessoa;
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        //this.senha = senha;
-        //this.emailLogin = emailLogin;
-        //this.emailSenha = emailSenha;
-        this.instituicao = instituicao;
-    }
+   
 
-    public int getIdpessoa() {
-        return idpessoa;
-    }
-
-    public void setIdpessoa(int idpessoa) {
-        this.idpessoa = idpessoa;
-    }
 
     public String getNome() {
         return nome;

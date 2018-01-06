@@ -1,13 +1,11 @@
 package experiment;
 
 public class Validade extends Element {
-
-    //private int idvalidade;
-    //private int estudo_idestudo;
-    //private int idtipo_validade;
+    
     private String tipo;
     private String validade;
-    private boolean protegido = false;
+    private String avaliacao;
+    
 
     public Validade() {
         super("validade");
@@ -20,6 +18,16 @@ public class Validade extends Element {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public String getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(String avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+    
+    
     
     
     
@@ -31,13 +39,6 @@ public class Validade extends Element {
         this.validade = validade;
     }
 
-    public boolean isProtegido() {
-        return protegido;
-    }
-
-    public void setProtegido(boolean protegido) {
-        this.protegido = protegido;
-    }
-    
+   
     
 }

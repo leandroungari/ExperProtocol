@@ -5,14 +5,12 @@ import java.util.ArrayList;
 
 public class Caracterizacao  extends Element{
     
-    //private int idcaracterizacao;
+    
     private String questao;
     
     private ArrayList<Metrica> metricas = new ArrayList<>();
     
     
-    //private ArrayList<Configuracao> configuracoes = new ArrayList<>();
-    private boolean protegido = false;
 
     public Caracterizacao() {
         super("caracterizacao");
@@ -23,6 +21,9 @@ public class Caracterizacao  extends Element{
         this.questao = questao;
         //this.tipo = tipo;
     }
+
+
+    
 
     public String getQuestao() {
         return questao;
@@ -47,24 +48,6 @@ public class Caracterizacao  extends Element{
 
     public void setMetricas(ArrayList<Metrica> metricas) {
         this.metricas = metricas;
-    }
-
-    /*public ArrayList<Configuracao> getConfiguracoes() {
-        return configuracoes;
-    }
-
-    public void setConfiguracoes(ArrayList<Configuracao> configuracoes) {
-        this.configuracoes = configuracoes;
-    }*/
-    
-    
-
-    public boolean isProtegido() {
-        return protegido;
-    }
-
-    public void setProtegido(boolean protegido) {
-        this.protegido = protegido;
     }
 
     

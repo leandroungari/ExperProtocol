@@ -6,9 +6,7 @@ public class VariavelDependente extends Element {
     
     //private int idvariavel_dependente;
     private String var;
-    //private int estudo_idestudo;
-    //private int hipotese;
-    private boolean protegido = false;
+    
 
     public VariavelDependente() {
         super("variavelDependente");
@@ -29,14 +27,6 @@ public class VariavelDependente extends Element {
     }
 
   
-
-    public boolean isProtegido() {
-        return protegido;
-    }
-
-    public void setProtegido(boolean protegido) {
-        this.protegido = protegido;
-    }
 
     
     

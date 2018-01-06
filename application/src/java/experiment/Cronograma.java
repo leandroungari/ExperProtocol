@@ -7,26 +7,22 @@ import java.util.Calendar;
 
 public class Cronograma extends Element {
 
-    private int idcronograma;
+    
     private String definicao;
     private Calendar data_inicial;
     private Calendar data_final;
     private String tipo;
     private String tempo;
-    //private int estudo_idestudo;
-    private boolean protegido = false;
+    
+    
 
     public Cronograma() {
         super("cronograma");
     }
 
-    public int getIdcronograma() {
-        return idcronograma;
-    }
+    
 
-    public void setIdcronograma(int idcronograma) {
-        this.idcronograma = idcronograma;
-    }
+    
 
     public String getTipo() {
         return tipo;
@@ -75,13 +71,6 @@ public class Cronograma extends Element {
     }
 
 
-    public boolean isProtegido() {
-        return protegido;
-    }
-
-    public void setProtegido(boolean protegido) {
-        this.protegido = protegido;
-    }
 
     
     

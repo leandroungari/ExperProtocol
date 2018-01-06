@@ -5,7 +5,7 @@ package experiment;
 
 public class Experimentador extends Element {
 
-    //private int idexperimentador;
+    private String id;;
     private String nome;
     private String email;
     private String senha;
@@ -21,6 +21,14 @@ public class Experimentador extends Element {
         this.email = email;
         this.senha = senha;
         this.senhanova = senhanova;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     

@@ -5,8 +5,8 @@ package experiment;
 
 public class Defeito extends Element {
 
-    private int iddefeito;
-    private String identificacao;
+    
+    
     private String local;
     private String requisito;
     private String descricao;
@@ -14,20 +14,15 @@ public class Defeito extends Element {
     private String classeDefeito;
     
  
-    private boolean protegido = false;
+    
 
     public Defeito() {
         super("defeito");
     }
 
-    public int getIddefeito() {
-        return iddefeito;
-    }
-
-    public void setIddefeito(int iddefeito) {
-        this.iddefeito = iddefeito;
-    }
-
+  
+    
+    
     
     
     public String getClasseDefeito() {
@@ -39,17 +34,6 @@ public class Defeito extends Element {
     }
 
     
-    
-    
-    
-    public String getIdentificacao() {
-        return identificacao;
-    }
-
-    public void setIdentificacao(String identificacao) {
-        this.identificacao = identificacao;
-    }
-
     public String getLocal() {
         return local;
     }
@@ -75,14 +59,6 @@ public class Defeito extends Element {
     }
 
     
-
-    public boolean isProtegido() {
-        return protegido;
-    }
-
-    public void setProtegido(boolean protegido) {
-        this.protegido = protegido;
-    }
 
     
 }

@@ -8,15 +8,14 @@ import java.util.ArrayList;
  */
 public class Artefato  extends Element{
     
-    //private int idartefato;
+    
     private String nome;
     private String descricao;
     private String tipoArtefato;
     
-    private ArrayList<ArquivoArtefato> arquivosArtefato = new ArrayList<>();
+    private ArrayList<ArquivoArtefato> arquivos = new ArrayList<>();
     
-    //private int estudo_idestudo;
-    private boolean protegido = false;
+    
 
     public Artefato() {
         super("artefato");
@@ -29,14 +28,16 @@ public class Artefato  extends Element{
         this.tipoArtefato = tipoArtefato;
     }
 
-    public ArrayList<ArquivoArtefato> getArquivosArtefato() {
-        return arquivosArtefato;
+    public ArrayList<ArquivoArtefato> getArquivos() {
+        return arquivos;
     }
 
-    public void setArquivosArtefato(ArrayList<ArquivoArtefato> arquivosArtefato) {
-        this.arquivosArtefato = arquivosArtefato;
+    public void setArquivos(ArrayList<ArquivoArtefato> arquivos) {
+        this.arquivos = arquivos;
     }
 
+  
+    
     
     
     
@@ -61,14 +62,6 @@ public class Artefato  extends Element{
     }
 
     
-    public boolean isProtegido() {
-        return protegido;
-    }
-
-    
-    public void setProtegido(boolean protegido) {
-        this.protegido = protegido;
-    }
 
     public String getTipoArtefato() {
         return tipoArtefato;

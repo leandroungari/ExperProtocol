@@ -5,7 +5,7 @@
 //definição do gqm
 public class Definicao  extends Element{
 
-    //private int iddefinicao;
+
     private String objetivo;
     //private String analisar;
     //proposito
@@ -15,8 +15,7 @@ public class Definicao  extends Element{
     
     private String pontodevista;
     private String contexto;
-    //private int estudo_idestudo;
-    private boolean protegido = false;
+    
 
     public Definicao() {
         super("definicao");
@@ -31,6 +30,8 @@ public class Definicao  extends Element{
         this.pontodevista = pontodevista;
         this.contexto = contexto;
     }
+
+  
 
     
     
@@ -82,13 +83,6 @@ public class Definicao  extends Element{
         this.contexto = contexto;
     }
 
-    public boolean isProtegido() {
-        return protegido;
-    }
-
-    public void setProtegido(boolean protegido) {
-        this.protegido = protegido;
-    }
-
+  
     
 }

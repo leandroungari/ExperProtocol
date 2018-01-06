@@ -14,12 +14,13 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import experiment.ArquivoArtefato;
 import experiment.ArquivoInterpretacao;
-import experiment.ArquivoTecnica;
+//import experiment.ArquivoTecnica;
 import experiment.Artefato;
 import experiment.Caracterizacao;
+import experiment.Conclusao;
 
 
-import experiment.Contexto;
+//import experiment.Contexto;
 import experiment.Cronograma;
 import experiment.Defeito;
 import experiment.Definicao;
@@ -33,7 +34,7 @@ import experiment.Metrica;
 import experiment.Participante;
 import experiment.Pessoa;
 
-import experiment.Tecnica;
+//import experiment.Tecnica;
 import experiment.Validade;
 import experiment.VariavelDependente;
 import experiment.VariavelIndependente;
@@ -147,13 +148,14 @@ public class ExperimentFactory {
         //x.alias("Alternativa", Alternativa.class);
         x.alias("ArquivoArtefato", ArquivoArtefato.class);
         x.alias("ArquivoInterpretacao", ArquivoInterpretacao.class);
-        x.alias("ArquivoTecnica", ArquivoTecnica.class);
+        //x.alias("ArquivoTecnica", ArquivoTecnica.class);
         
         x.alias("Artefato", Artefato.class);
         x.alias("Caracterizacao", Caracterizacao.class);
+        x.alias("Conclusao", Conclusao.class);
         //x.alias("ClasseDefeito", ClasseDefeito.class);
         //x.alias("Configuracao", Configuracao.class);
-        x.alias("Contexto", Contexto.class);
+       // x.alias("Contexto", Contexto.class);
         x.alias("Cronograma", Cronograma.class);
         x.alias("Defeito", Defeito.class);
         x.alias("Definicao", Definicao.class);
@@ -174,7 +176,7 @@ public class ExperimentFactory {
         //x.alias("Resposta", Resposta.class);
         //x.alias("RespostaConfiguracao", RespostaConfiguracao.class);
         
-        x.alias("Tecnica", Tecnica.class);
+        //x.alias("Tecnica", Tecnica.class);
         //x.alias("TipoValidade", TipoValidade.class);
 
         x.alias("Validade", Validade.class);

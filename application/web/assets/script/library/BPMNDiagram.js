@@ -18,7 +18,7 @@ class BPMNDiagram {
 		//Lista de elementos que formarão a nova transição
 		window.listaTransicao = [];
 
-
+		
 		//////////////////////////////////////////
 		///
 
@@ -82,7 +82,7 @@ class BPMNDiagram {
 		let transitions = [];
 		let protocol = data.protocol;
 
-		console.log(data);
+		//console.log(data);
 
 		if (protocol.element != null) {
 			this.analyse(protocol.element, transitions);
@@ -257,8 +257,8 @@ class BPMNDiagram {
 			case "lane":
 
 				novoElemento = new BPMNPool(xcoor, ycoor, name, 0, false, element.id.substring(1));
-				console.log(novoElemento.width + "");
-				console.log(element)
+				//console.log(novoElemento.width + "");
+				//console.log(element)
 				break;
 
 			case "annotation":

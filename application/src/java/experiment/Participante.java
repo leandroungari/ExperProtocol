@@ -6,12 +6,7 @@ import java.util.ArrayList;
 
 public class Participante extends Element {
 
-    //private int idparticipante;
-    //private int pessoa_idpessoa;
-    //private int estudo_idestudo;
-    //private int grupo_idgrupo;
     
-    //private ArrayList<Resposta> respostas = new ArrayList<>();
     private String grupo;
     private Pessoa pessoa;
 

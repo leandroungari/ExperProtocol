@@ -38,6 +38,7 @@
 	<script src="assets/script/FileSaver.min.js"></script>
 	<script src="assets/script/jquery-3.2.1.min.js"></script>
 
+	<script src="assets/script/DataExperiment.js"></script>
 	<script src="assets/script/language.js"></script>
 	<script src="assets/script/graphic-user-interface.js"></script>
 
@@ -101,6 +102,7 @@
 			<ul>
 				<li class="li-19">Conclusão</li>
 				<div class="block-19">
+					<p>ID</p><input type="text" name="conclusao-id" >
 					<p>Conclusão</p><textarea name="conclusao" cols="30" rows="10"></textarea>
 					<input type="submit" class="btn adicionar-block-19" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
@@ -132,7 +134,8 @@
 				<li class="li-25">Análise Estatística - Arquivo</li>
 				<div class="block-25">
 					<p>Selecione o arquivo</p><input type="file" name="interpretacao-arquivo">
-					<p>Selecione a análise estatística correspondente: </p><select name="opcao-interpretacao">
+					<p>Selecione a análise estatística correspondente: </p>
+					<select name="opcao-interpretacao">
 						<option value="i">i</option>
 						<option value="g">g</option>
 						<option value="h">h</option>
@@ -150,6 +153,7 @@
 			<ul>
 				<li class="li-16">Atividade do cronograma</li>
 				<div class="block-16">
+					<p>ID</p><input type="text" name="cronograma-id">
 					<p>Definição</p><input type="text" name="cronograma-definicao">
 					<p>Data Inicial</p><input type="date" name="cronograma-data-inicial">
 					<p>Data Final</p><input type="date" name="cronograma-data-final">
@@ -180,7 +184,7 @@
 				<li class="li-01">Definição do Experimento</li>
 				<div class="block-01">
 					<p>Objeto de Estudo</p><input type="text" name="objeto-estudo">
-					<p>Propósito</p><input type="text" name="proposito">
+					<p>Finalidade</p><input type="text" name="finalidade-estudo">
 					<p>Enfoque de Qualidade</p><input type="text" name="enfoque">
 					<p>Perspectiva</p><input type="text" name="perspectiva">
 					<p>Contexto</p><input type="text" name="contexto">
@@ -218,6 +222,7 @@
 
 				<li class="li-07">Hipótese Nula e Alternativa</li>
 				<div class="block-07">
+					<p>ID</p><input type="text" name="hipotese-id">
 					<p>Hipótese Nula</p><input type="text" name="nula">
 					<p>Hipótese Alternativa</p><input type="text" name="alternativa">
 					<input type="submit" class="btn adicionar-block-07" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
@@ -225,18 +230,21 @@
 
 				<li class="li-08">Variáveis Dependentes</li>
 				<div class="block-08">
+					<p>ID</p><input type="text" name="id-dependente">
 					<p>Variável Dependente</p><input type="text" name="dependente">
 					<input type="submit" class="btn adicionar-block-08" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 
 				<li class="li-09">Variáveis Independentes</li>
 				<div class="block-09">
+					<p>ID</p><input type="text" name="id-independente">
 					<p>Variável Independente</p><input type="text" name="independente">
 					<input type="submit" class="btn adicionar-block-09" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 
 				<li class="li-10">Seleção de Participantes</li>
 				<div class="block-10">
+					<p>ID</p><input type="text" name="id-participante">
 					<p>Nome</p><input type="text" name="nome-participante">
 					<p>E-mail</p><input type="email" name="email-participante">
 					<p>Telefone</p><input type="text" name="telefone-participante">
@@ -256,6 +264,7 @@
 				<div class="block-11">
 					<p>ID</p><input type="text" name="id-ferramenta">
 					<p>Ferramenta</p><input type="text" name="ferramenta">
+					<p>Descrição</p><textarea name="ferramenta-descricao" cols="30" rows="10"></textarea>
 					<input type="submit" class="btn adicionar-block-11" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 
@@ -263,6 +272,7 @@
 				<div class="block-12">
 					<p>ID</p><input type="text" name="id-materiais">
 					<p>Material</p><input type="text" name="materiais">
+					<p>Descrição</p><textarea name="materiais-descricao" cols="30" rows="10"></textarea>
 					<input type="submit" class="btn adicionar-block-12" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 
@@ -270,6 +280,7 @@
 				<div class="block-13">
 					<p>ID</p><input type="text" name="id-treinamento">
 					<p>Treinamento</p><input type="text" name="treinamento">
+					<p>Descrição</p><textarea name="treinamento-descricao" cols="30" rows="10"></textarea>
 					<input type="submit" class="btn adicionar-block-13" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 
@@ -277,6 +288,7 @@
 				<div class="block-14">
 					<p>ID</p><input type="text" name="id-questionario">
 					<p>Questionário</p><input type="text" name="questionario">
+					<p>Descrição</p><textarea name="questionario-descricao" cols="30" rows="10"></textarea>
 					<input type="submit" class="btn adicionar-block-14" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 
@@ -284,32 +296,35 @@
 				<div class="block-15">
 					<p>ID</p><input type="text" name="id-formulario">
 					<p>Formulário</p><input type="text" name="formulario">
+					<p>Descrição</p><textarea name="formulario-descricao" cols="30" rows="10"></textarea>
 					<input type="submit" class="btn adicionar-block-15" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 
-				<li class="li-15">Arquivos de artefato</li>
-				<div class="block-15">
-					<p>ID</p><input type="text" name="id-arquivo">
+				<li class="li-05">Arquivos de artefato</li>
+				<div class="block-05">
 					<p>Selecione o arquivo: </p><input type="file" name="caminho-arquivo">
-					<p>Selecione o artefato correspondente: </p><select name="select-artefato">
+					<p>Selecione o artefato correspondente: </p>
+					<select name="select-artefato">
 						<option value="teste">teste</option>
 						<option value="teste2">teste2</option>
 					</select>
-					<input type="submit" class="btn adicionar-block-15" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
+					<input type="submit" class="btn adicionar-block-05" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 
 				<li class="li-03">Validade</li>
 				<div class="block-03">
+					<p>ID</p><input type="text" name="id-validade">
 					<p>Tipo</p><input type="text" name="validade-tipo">
 					<p>Avaliação</p><textarea type="text" name="validade-avaliacao" cols="40" rows="10"></textarea>
-						<input type="submit" class="btn adicionar-block-03" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
+					<input type="submit" class="btn adicionar-block-03" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 
 				<li class="li-04">Grupo</li>
 				<div class="block-04">
 					<p>ID</p><input type="text" name="grupo-identificador">
-					<p>Observação</p><textarea type="text" name="grupo-observacao" cols="40" rows="10"></textarea>
-				<input type="submit" class="btn adicionar-block-04" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
+					<p>Observação</p>
+					<textarea type="text" name="grupo-observacao" cols="40" rows="10"></textarea>
+					<input type="submit" class="btn adicionar-block-04" value="Adicionar" style="margin-top: 25px; margin-left: 150px; margin-bottom: 35px;">
 				</div>
 			</ul>
 		</div>

@@ -16,7 +16,7 @@ public class Experimento  extends Element{
     private String tipo;
     private String dominio;
     private String idioma;
-    private int status;
+    //private int status;
     private int replicacao;
     
     private BusinessProcessDiagram diagrama;
@@ -28,23 +28,15 @@ public class Experimento  extends Element{
     private ArrayList<Caracterizacao> questoes = new ArrayList<>();
     
     private ArrayList<Hipotese> hipoteses = new ArrayList<>();
-    
+    private ArrayList<Cronograma> cronogramas = new ArrayList<>();
     private ArrayList<VariavelDependente> variaveisDependentes = new ArrayList<>();
-    
     private ArrayList<VariavelIndependente> variaveisIndependentes = new ArrayList<>();
-
     private ArrayList<Participante> participantes = new ArrayList<>();
-    
     private ArrayList<Artefato> artefatos = new ArrayList<>();
-    
     private ArrayList<Validade> validades = new ArrayList<>();
-    
     private ArrayList<Grupo> grupos = new ArrayList<>();
-    
     private ArrayList<Defeito> defeitos = new ArrayList<>();
-
     private ArrayList<Interpretacao> interpretacoes = new ArrayList<>();
-    
     private ArrayList<Conclusao> conclusoes = new ArrayList<>();
 
     public Experimento() {
@@ -74,6 +66,14 @@ public class Experimento  extends Element{
 
     public void setConclusoes(ArrayList<Conclusao> conclusoes) {
         this.conclusoes = conclusoes;
+    }
+
+    public ArrayList<Cronograma> getCronogramas() {
+        return cronogramas;
+    }
+
+    public void setCronogramas(ArrayList<Cronograma> cronogramas) {
+        this.cronogramas = cronogramas;
     }
 
     
@@ -179,13 +179,7 @@ public class Experimento  extends Element{
         this.idioma = idioma;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
+    
 
     public int getReplicacao() {
         return replicacao;

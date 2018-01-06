@@ -18,7 +18,31 @@ window.onload = function () {
 	.on("dblclick.zoom", null);
 
 	BPMNDiagram.protocol = null;
-	BPMNDiagram.experiment = null;
+	BPMNDiagram.experiment = {
+		nome: "",
+		descricao: "",
+		tema: "",
+		areatecnica: "",
+		tipo: "",
+		dominio: "",
+		idioma: "",
+		replicacao: 0,
+		diagrama: {},
+		cronogramas: [],
+		experimentadores: [],
+		definicao: {},
+		questoes: [],
+		hipoteses: [],
+		variaveisDependentes: [],
+		variaveisIndependentes: [],
+		participantes: [],
+		artefatos: [],
+		validades: [],
+		grupos: [],
+		defeitos: [],
+		interpretacoes: [],
+		conclusoes: []
+	}
 
 
 	loadGUI();

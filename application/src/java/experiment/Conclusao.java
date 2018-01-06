@@ -11,7 +11,7 @@ package experiment;
  */
 public class Conclusao extends Element{
     
-    private String id;
+    
     private String conclusao;
 
     public Conclusao() {
@@ -19,13 +19,6 @@ public class Conclusao extends Element{
         super("conclusao");
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getConclusao() {
         return conclusao;

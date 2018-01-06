@@ -6,6 +6,7 @@ package experiment;
 public class Instituicao extends Element {
 
     //private int idinstituicao;
+    
     private String nome;
     private String sigla;
     private String pais;
@@ -21,6 +22,8 @@ public class Instituicao extends Element {
         this.pais = pais;
     }
 
+    
+    
     public String getNome() {
         return nome;
     }
