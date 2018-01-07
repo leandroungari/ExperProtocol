@@ -91,22 +91,23 @@ function loadGUI() {
         let number = event.target.className.split(" ")[1].split('-')[2];
         //console.log(number);
 
+        let id = null;
         switch (number) {
 
             case "01":
-            DataExperiment.block01();
+            id = DataExperiment.block01();
             break;
 
             case "02":
-            DataExperiment.block02();
+            id = DataExperiment.block02();
             break;
 
             case "03":
-            DataExperiment.block03();
+            id = DataExperiment.block03();
             break;
 
             case "04":
-            DataExperiment.block04();
+            id = DataExperiment.block04();
             break;
 
             case "05":
@@ -114,74 +115,82 @@ function loadGUI() {
             break;
 
             case "06":
-            DataExperiment.block06();
+            id = DataExperiment.block06();
             break;
 
             case "07":
-            DataExperiment.block07();
+            id = DataExperiment.block07();
             break;
 
             case "08":
-            DataExperiment.block08();
+            id = DataExperiment.block08();
             break;
 
             case "09":
-            DataExperiment.block09();
+            id = DataExperiment.block09();
             break;
 
             case "10":
-            DataExperiment.block10();
+            id = DataExperiment.block10();
             break;
 
             case "11":
-            DataExperiment.block11();
+            id = DataExperiment.block11();
             break;
 
             case "12":
-            DataExperiment.block12();
+            id = DataExperiment.block12();
             break;
 
             case "13":
-            DataExperiment.block13();
+            id = DataExperiment.block13();
             break;
 
             case "14":
-            DataExperiment.block14();
+            id = DataExperiment.block14();
             break;
 
             case "15":
-            DataExperiment.block15();
+            id = DataExperiment.block15();
             break;
 
             case "16":
-            DataExperiment.block16();
+            id = DataExperiment.block16();
             break;
 
             case "17":
-            DataExperiment.block17();
+            id = DataExperiment.block17();
             break;
 
             case "18":
-            DataExperiment.block18();
+            id = DataExperiment.block18();
             break;
 
             case "19":
-            DataExperiment.block19();
+            id = DataExperiment.block19();
             break;
 
             case "20":
-            DataExperiment.block20();
+            id = DataExperiment.block20();
             break;
+
+            case "21":
+            id = DataExperiment.block21();
+            break;
+
 
             case "25":
             DataExperiment.block25();
             break;
 
-            
-            
         }
+        //console.log(`.block-${id}`);
+        $(`.block-${number}`).slideUp();
 
-        $('.caixa-experimento').slideUp();
+        if (id != null) {
+
+            get(Interface.opcaoData).vinculos.push(id);
+        }
 
     });
     /**
@@ -772,6 +781,9 @@ function menuContexto(x, y, categoria, id) {
 
         //se é um objeto de dados
         if (id.indexOf('data') != -1) {
+
+            Interface.opcaoData = id;
+
             d3.select('.context-menu')
             .append('li')
             .attr('class', 'experimento')

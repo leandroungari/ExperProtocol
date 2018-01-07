@@ -111,7 +111,7 @@ public class ExperimentFactory {
         xstream.alias("box", ExperimentBox.class);
         xstream.alias("protocol", Protocol.class);
         xstream.autodetectAnnotations(true);
-        
+        System.out.println(json);
         box = (ExperimentBox) xstream.fromXML(json);
         
         experimento = box.getExperimento();

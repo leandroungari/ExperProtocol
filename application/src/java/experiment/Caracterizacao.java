@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Caracterizacao  extends Element{
     
-    
+    private String id;
     private String questao;
     
     private ArrayList<Metrica> metricas = new ArrayList<>();
@@ -16,12 +16,15 @@ public class Caracterizacao  extends Element{
         super("caracterizacao");
     }
 
-    public Caracterizacao(String questao, String tipo) {
-        super("caracterizacao");
-        this.questao = questao;
-        //this.tipo = tipo;
+    public String getId() {
+        return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
 
     
 

@@ -259,6 +259,17 @@ class DataExperiment {
         
     }
 
+    static block21(){
+
+        BPMNDiagram.experiment.experimentadores.push({
+            id: name("id-experimentador").value,
+            nome: name("nome-experimentador").value,
+            email: name("email-experimentador").value
+        });
+
+        return name("id-experimentador").value;
+    }
+
     static block25(){
 
         BPMNDiagram.experiment.interpretacoes
