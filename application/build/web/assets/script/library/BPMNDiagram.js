@@ -964,7 +964,7 @@ class BPMNDiagram {
 						d3.select(this).attr('transform', `translate(${off[0] + (offset[0] > 0 ? offset[0] : 0)},${off[1] + (offset[1] > 0 ? offset[1] : 0)})`);
 
 						let target = get(d3.select(this).attr('id'));
-						console.log(target)
+						//console.log(target)
 						if (offset[0] > 0) {
 							target.x += offset[0];
 						}

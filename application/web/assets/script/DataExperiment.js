@@ -8,16 +8,20 @@ class DataExperiment {
     static block01(){
 
         BPMNDiagram.experiment.definicao = {
+            id: "definicao-01",
             objetivo: name("objeto-estudo").value,
             finalidade: name("finalidade-estudo").value,
             respeito: name("enfoque").value,
             pontodevista: name("perspectiva").value,
             contexto: name("contexto").value
         }
+
+        return BPMNDiagram.experiment.definicao.id;
     }
 
     static block02(){
 
+        BPMNDiagram.experiment.id = "experiment-01";
         BPMNDiagram.experiment.nome = name("nome-geral").value;
         BPMNDiagram.experiment.descricao = name("descricao-geral").value;
         BPMNDiagram.experiment.tema = name("tema-geral").value;
@@ -26,6 +30,7 @@ class DataExperiment {
         BPMNDiagram.experiment.dominio = name("dominio-geral").value; 
         BPMNDiagram.experiment.idioma = name("idioma-geral").value; 
 
+        return BPMNDiagram.experiment.id;
     }
 
     static block03(){
@@ -35,6 +40,8 @@ class DataExperiment {
             tipo: name("validade-tipo").value,
             avaliacao: name("validade-avaliacao").value
         });
+
+        return name("id-validade").value;
     }
 
     static block04(){
@@ -43,6 +50,8 @@ class DataExperiment {
             id: name("grupo-identificador").value,
             observacao: name("grupo-observacao").value
         });
+
+        return name("grupo-identificador").value;
     }
 
     static block05(){
@@ -64,6 +73,8 @@ class DataExperiment {
             questao: name("questao").value,
             metricas: []
         });
+
+        return name("id-questao").value;
     }
 
     static block07(){
@@ -73,6 +84,8 @@ class DataExperiment {
             hipoteseNula: name("nula").value,
             hipoteseAlternativa: name("alternativa").value
         });
+
+        return name("hipotese-id").value;
     }
 
     static block08(){
@@ -81,6 +94,8 @@ class DataExperiment {
             id: name("id-dependente").value,
             var: name("dependente").value
         });
+
+        return name("id-dependente").value;
     }
 
     static block09(){
@@ -89,6 +104,8 @@ class DataExperiment {
             id: name("id-independente").value,
             var: name("independente").value
         });
+
+        return name("id-independente").value;
     }
 
     static block10(){
@@ -107,6 +124,8 @@ class DataExperiment {
                 }
             }
         });
+
+        return name("id-participante").value;
     }
 
     static block11(){
@@ -118,6 +137,8 @@ class DataExperiment {
             tipo: "Ferramentas Informatizadas",
             arquivos: []
         });
+
+        return name("id-ferramenta").value;
     }
 
     static block12(){
@@ -129,6 +150,8 @@ class DataExperiment {
             tipo: "Materiais de Realização de Testes",
             arquivos: []
         });
+
+        return name("id-materiais").value;
     }
 
     static block13(){
@@ -141,6 +164,8 @@ class DataExperiment {
             tipo: "Materiais de Treinamento",
             arquivos: []
         });
+
+        return name("id-treinamento").value;
     }
 
     static block14(){
@@ -152,6 +177,8 @@ class DataExperiment {
             tipo: "Questionários",
             arquivos: []
         });
+
+        return name("id-questionario").value;
     }
 
     static block15(){
@@ -163,6 +190,8 @@ class DataExperiment {
             tipo: "Formulários",
             arquivos: []
         });
+
+        return name("id-formulario").value;
     }
 
     static block16(){
@@ -175,6 +204,8 @@ class DataExperiment {
             tipo: name("cronograma-tipo").value,
             tempo: name("cronograma-tempo").value
         });
+
+        return name("cronograma-id").value;
     }
 
     static block17(){
@@ -186,6 +217,8 @@ class DataExperiment {
             classeDefeito: name("defeito-classe").value,
             descricao: name("defeito-descricao").value 
         });
+
+        return name("defeito-identificacao").value;
     }
 
     static block18(){
@@ -195,6 +228,8 @@ class DataExperiment {
             resultados: name("interpretacao-resultados").value,
             arquivos: []
         });
+
+        return name("interpretacao-id").value;
     }
 
     static block19(){
@@ -203,6 +238,8 @@ class DataExperiment {
             id: name("conclusao-id").value,
             conclusao: name("conclusao").value
         });
+
+        return name("conclusao-id").value;
     }
 
     static block20(){
@@ -218,6 +255,7 @@ class DataExperiment {
             });
         });
 
+        return name("id-metrica").value;
         
     }
 

@@ -33,11 +33,27 @@ function loadGUI() {
 
             break;
 
+            case "20":
+            
+            document.querySelector("[name='opcao-questao']").innerHTML = "";
+            BPMNDiagram.experiment
+            .questoes.map((e) => {return e.id})
+            .forEach((e) => {
+
+                let option = document.createElement('option');
+                option.value = e;
+                option.innerHTML = e;
+                
+                document.querySelector("[name='opcao-questao']").appendChild(option);
+            });
+
+            break;
+
             case "10":
             
             document.querySelector("[name='nome-grupo-participante']").innerHTML = "";
             BPMNDiagram.experiment
-            .grupos.map((e) => {return e.identificacao})
+            .grupos.map((e) => {return e.id})
             .forEach((e) => {
 
                 let option = document.createElement('option');
@@ -45,6 +61,22 @@ function loadGUI() {
                 option.innerHTML = e;
                 
                 document.querySelector("[name='nome-grupo-participante']").appendChild(option);
+            });
+
+            break;
+
+            case "05":
+            
+            document.querySelector("[name='select-artefato']").innerHTML = "";
+            BPMNDiagram.experiment
+            .artefatos.map((e) => {return e.id})
+            .forEach((e) => {
+
+                let option = document.createElement('option');
+                option.value = e;
+                option.innerHTML = e;
+                
+                document.querySelector("[name='select-artefato']").appendChild(option);
             });
 
             break;
@@ -61,85 +93,92 @@ function loadGUI() {
 
         switch (number) {
 
+            case "01":
+            DataExperiment.block01();
+            break;
+
+            case "02":
+            DataExperiment.block02();
+            break;
+
+            case "03":
+            DataExperiment.block03();
+            break;
+
+            case "04":
+            DataExperiment.block04();
+            break;
+
+            case "05":
+            DataExperiment.block05();
+            break;
+
+            case "06":
+            DataExperiment.block06();
+            break;
+
+            case "07":
+            DataExperiment.block07();
+            break;
+
+            case "08":
+            DataExperiment.block08();
+            break;
+
+            case "09":
+            DataExperiment.block09();
+            break;
+
+            case "10":
+            DataExperiment.block10();
+            break;
+
+            case "11":
+            DataExperiment.block11();
+            break;
+
+            case "12":
+            DataExperiment.block12();
+            break;
+
+            case "13":
+            DataExperiment.block13();
+            break;
+
+            case "14":
+            DataExperiment.block14();
+            break;
+
+            case "15":
+            DataExperiment.block15();
+            break;
+
+            case "16":
+            DataExperiment.block16();
+            break;
+
             case "17":
-                DataExperiment.block17();
+            DataExperiment.block17();
             break;
 
             case "18":
-                DataExperiment.block18();
+            DataExperiment.block18();
+            break;
+
+            case "19":
+            DataExperiment.block19();
+            break;
+
+            case "20":
+            DataExperiment.block20();
             break;
 
             case "25":
-                DataExperiment.block25();
+            DataExperiment.block25();
             break;
 
-            case "":
-                DataExperiment.block16();
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
-
-            case "":
-
-            break;
+            
+            
         }
 
         $('.caixa-experimento').slideUp();
@@ -396,9 +435,7 @@ function loadGUI() {
 
      $('.caixa-experimento .close').click(function () {
 
-        $(this).parent().animate({
-            top: -500
-        }, 1000);
+        $(this).parent().slideToggle();
     });
 
 
@@ -725,15 +762,16 @@ function menuContexto(x, y, categoria, id) {
             })
         }
 
-        const show = () => {
+        const show = (event) => {
             //console.log();
-            $(`.${d3.event.target.className.substring(3)}`).animate({
-                top: 100
-            }, 1000);
+            //$(`.${d3.event.target.className.substring(3)}`).animate({
+            //    top: 100
+            //}, 1000);
+            $(`.${event.target.className.substring(3)}`).slideToggle();
         };
 
         //se é um objeto de dados
-        if (id.indexOf('data') != -1 || id.indexOf('activity') != -1) {
+        if (id.indexOf('data') != -1) {
             d3.select('.context-menu')
             .append('li')
             .attr('class', 'experimento')
@@ -745,32 +783,41 @@ function menuContexto(x, y, categoria, id) {
             .append('li')
             .attr('class', 'li-definicao')
             .text('Definição')
-            .on('click', show)
+            //.on('click', show)
+
+            $('.li-definicao').click(show);
 
             d3.select('.menu-experimento ul')
             .append('li')
             .attr('class', 'li-planejamento')
             .text('Planejamento')
-            .on('click', show)
+            //.on('click', show)
+
+            $('.li-planejamento').click(show);
 
             d3.select('.menu-experimento ul')
             .append('li')
             .attr('class', 'li-execucao')
             .text('Execução')
-            .on('click', show)
+            //.on('click', show)
+            //
+            $('.li-execucao').click(show);
 
             d3.select('.menu-experimento ul')
             .append('li')
             .attr('class', 'li-analise')
             .text('Análise e Interpretação')
-            .on('click', show)
+            //.on('click', show)
+
+            $('.li-analise').click(show);
 
             d3.select('.menu-experimento ul')
             .append('li')
             .attr('class', 'li-apresentacao')
             .text('Apresentação e Empacotamento')
-            .on('click', show)
+            //.on('click', show)
 
+            $('.li-apresentacao').click(show);
         }
 
     } else {
