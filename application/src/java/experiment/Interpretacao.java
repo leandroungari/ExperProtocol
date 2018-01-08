@@ -1,5 +1,6 @@
 package experiment;
 
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import java.util.ArrayList;
 
 
@@ -10,6 +11,7 @@ public class Interpretacao  extends Element{
     
     private String resultados;
     
+    @XStreamImplicit(itemFieldName = "arquivos")
     private ArrayList<ArquivoInterpretacao> arquivos = new ArrayList<>();
     //private int idChaveEx;
 

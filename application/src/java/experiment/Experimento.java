@@ -1,6 +1,7 @@
 package experiment;
 
 import bpmn.BusinessProcessDiagram;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import java.util.ArrayList;
 
 
@@ -21,27 +22,51 @@ public class Experimento  extends Element{
     
     private BusinessProcessDiagram diagrama;
     
-    private ArrayList<Experimentador> experimentadores = new ArrayList<>();
+    @XStreamImplicit(itemFieldName = "experimentadores")
+    private ArrayList<Experimentador> experimentadores;
     
     private Definicao definicao = new Definicao();
     
+    @XStreamImplicit(itemFieldName = "questoes")
     private ArrayList<Caracterizacao> questoes = new ArrayList<>();
-    
+    @XStreamImplicit(itemFieldName = "hipoteses")
     private ArrayList<Hipotese> hipoteses = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "cronogramas")
     private ArrayList<Cronograma> cronogramas = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "variaveisDependentes")
     private ArrayList<VariavelDependente> variaveisDependentes = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "variaveisIndependentes")
     private ArrayList<VariavelIndependente> variaveisIndependentes = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "participantes")
     private ArrayList<Participante> participantes = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "artefatos")
     private ArrayList<Artefato> artefatos = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "validades")
     private ArrayList<Validade> validades = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "grupos")
     private ArrayList<Grupo> grupos = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "defeitos")
     private ArrayList<Defeito> defeitos = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "interpretacoes")
     private ArrayList<Interpretacao> interpretacoes = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "conclusoes")
     private ArrayList<Conclusao> conclusoes = new ArrayList<>();
 
     public Experimento() {
         
         super("experimento");
+        this.experimentadores = new ArrayList<>();
+        
     }
 
     public ArrayList<Caracterizacao> getQuestoes() {

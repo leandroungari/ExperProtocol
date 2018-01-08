@@ -7,9 +7,10 @@ public class Grupo extends Element {
 
     
     private String observacao;
- 
-    private ArrayList<ArquivoInterpretacao> arquivosInterpretacaoGrupo = new ArrayList<>();
-    private ArrayList<Interpretacao> interpretacoes = new ArrayList<>();
+    
+    
+    //private ArrayList<ArquivoInterpretacao> arquivosInterpretacaoGrupo = new ArrayList<>();
+    //private ArrayList<Interpretacao> interpretacoes = new ArrayList<>();
     
     
    
@@ -29,7 +30,7 @@ public class Grupo extends Element {
     }
 
    
-
+    /*
     public ArrayList<ArquivoInterpretacao> getArquivosInterpretacaoGrupo() {
         return arquivosInterpretacaoGrupo;
     }
@@ -45,6 +46,6 @@ public class Grupo extends Element {
     public void setInterpretacoes(ArrayList<Interpretacao> interpretacoes) {
         this.interpretacoes = interpretacoes;
     }
-    
+    */
     
 }

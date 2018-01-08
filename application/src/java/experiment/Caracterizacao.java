@@ -1,13 +1,15 @@
 package experiment;
 
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import java.util.ArrayList;
 
 
 public class Caracterizacao  extends Element{
     
-    private String id;
+    //private String id;
     private String questao;
     
+    @XStreamImplicit
     private ArrayList<Metrica> metricas = new ArrayList<>();
     
     
@@ -16,14 +18,7 @@ public class Caracterizacao  extends Element{
         super("caracterizacao");
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    
     
 
     
