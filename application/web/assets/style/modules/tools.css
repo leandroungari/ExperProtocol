@@ -235,7 +235,7 @@
 	margin-top: 4px;
 }
 
-[class*="block-"] input[type='text'] {
+[class*="block-"] input[type='text'], [class*="block-"] input[type='email'], [class*="block-"] input[type='date']   {
 	padding: 3px 6px;
 }
 

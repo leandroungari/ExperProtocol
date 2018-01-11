@@ -10,7 +10,10 @@ let language = {
         ".language-text": "Idioma padrão:",
         ".opcao-pt": "Português Brasileiro",
         ".opcao-en": "Inglês",
-    },
+        ".box-descricao .titulo": "Exibir detalhes",
+
+        ".apresentacao .titulo": "Fase de Apresentação e Empacotamento",
+    },  ".apresentacao .li-19": "Conclusão"
     en : {
         ".open-file": "Open ...",
         ".new-file": "New",
@@ -21,5 +24,6 @@ let language = {
         ".language-text": "Default language:",
         ".opcao-pt": "Brazilian Portuguese",
         ".opcao-en": "English",
+        ".box-descricao .titulo": "View details",
     }
 };

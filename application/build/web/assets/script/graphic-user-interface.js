@@ -2,6 +2,7 @@ function loadGUI() {
 
 
     BPMNDiagram.createBoxMenu();
+
     /////////////////////////////////////////////
     /////////////////////////////////////////////
     /////////////////////////////////////////////
@@ -455,6 +456,8 @@ function loadGUI() {
 
             document.querySelector(k).innerHTML = v;
         });
+
+        $(".caixa-experimento .btn").val("Adicionar");
     });
 
      document.querySelector('.radio-en').addEventListener('click', () => {
@@ -463,6 +466,8 @@ function loadGUI() {
 
             document.querySelector(k).innerHTML = v;
         });
+
+        $(".caixa-experimento .btn").val("Add");
     });
 
     //////////////////////////////////////////////////////
@@ -472,9 +477,7 @@ function loadGUI() {
 
     $('.box-descricao .close').click(function () {
 
-        $('.box-descricao').animate({
-            top: -420
-        });
+        $('.box-descricao').slideUp();
     });
 
     $('.painel-lateral .button').click(function () {
@@ -634,13 +637,13 @@ class Interface {
         $('.painel-lateral .button').trigger('click');
     }
 
-    static vincular(id) {
+    /*static vincular(id) {
 
         Interface.id = id;
         painelVinculação(id)
         $('.painel-lateral .button').trigger('click');
 
-    }
+    }*/
 
     static exibir(id) {
 
@@ -651,10 +654,7 @@ class Interface {
         exibirDescricao(id);
 
 
-
-        $('.box-descricao').animate({
-            top: ($(document).height() / 2 - 200)
-        });
+        $('.box-descricao').slideDown();
     }
 }
 
@@ -670,24 +670,29 @@ function exibirDescricao(id) {
         .style('vertical-align', 'middle')
         .style('text-align', 'center')
         .text('Não há elementos do experimento vinculados.')
+
     } else {
 
         element.vinculos.forEach((a) => {
+
             getObjectById(BPMNDiagram.experiment, a);
+
+            console.log(result);
 
             d3.select('.box-descricao > .content').append('div')
             .style('padding', '15px 25px')
             .attr('class', `item-${result.id} box-item`)
 
+            d3.select(`.item-${result.id}`).raise()
+            .append('h1')
+            .style('font-size', '16px')
+            .text(`Identificador: ${result.id}`)
+
             //o resultado fica na variavel result
             Object.keys(result).forEach((ele) => {
 
-                if (ele == "id") {
-                    d3.select(`.item-${result.id}`)
-                    .append('h1')
-                    .style('font-size', '20px')
-                    .text(`ID: #${result.id}`)
-                } else {
+                if (ele != "id" && !isObject(result[ele]) && !Array.isArray(result[ele]) && result[ele] != null ) {
+
                     d3.select(`.item-${result.id}`)
                     .append('p')
                     .style('font-size', '14px')
@@ -695,8 +700,17 @@ function exibirDescricao(id) {
                     .style('margin-left', '35px')
                     .text(`${ele}: ${result[ele]}`)
                 }
+                /*else if (Array.isArray(result[ele])) {
 
-            }, result)
+                    d3.select(`.item-${result.id}`)
+                    .append('p')
+                    .style('font-size', '14px')
+                    .style('padding', '3px 0')
+                    .style('margin-left', '35px')
+                    .text(`${ele}: ${result[ele].join(", ")}.`);
+                }*/
+
+            }, result);
         });
     }
 }
@@ -715,10 +729,18 @@ function getObjectById(object, id) {
         }
     }
 
+    if (Array.isArray(object)) {
+
+        object.forEach((a) => {
+
+            getObjectById(a, id);
+        });
+    }
+
     if (!isObject(object)) return;
 
     Object.keys(object).forEach((a) => {
-
+        //console.log(a);
         getObjectById(object[a], id);
     });
 
@@ -757,18 +779,6 @@ function menuContexto(x, y, categoria, id) {
                 Interface.remover(id);
                 $('.context-menu').trigger('mouseleave');
             });
-        }
-
-        if (BPMNDiagram.experiment != null && id.indexOf('lane') == -1 && id.indexOf('pool')) {
-
-            d3.select('.context-menu')
-            .append('li')
-            .attr('class', 'exibir')
-            .text('Exibir detalhes')
-            .on('click', () => {
-
-                Interface.exibir(id);
-            })
         }
 
         const show = (event) => {
@@ -830,6 +840,19 @@ function menuContexto(x, y, categoria, id) {
             //.on('click', show)
 
             $('.li-apresentacao').click(show);
+
+
+            //////////////////
+            d3.select('.context-menu')
+            .append('li')
+            .attr('class', 'exibir')
+            .text('Exibir detalhes');
+
+            $('.exibir').click(() => {
+
+                Interface.exibir(id);
+            });
+            
         }
 
     } else {
