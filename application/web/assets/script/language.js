@@ -219,23 +219,23 @@ let language = {
 
         //faltam esses
 
-        ".planejamento .li-14": "Artefato - Questionários",
-        ".block-14 .questionario": "Questionário",
+        ".planejamento .li-14": "Artifact - Questionnaires",
+        ".block-14 .questionario": "Question",
         ".block-14 .descricao": "Description",
 
-        ".planejamento .li-15": "Artefato - Formulários",
-        ".block-15 .formulario": "Formulário",
+        ".planejamento .li-15": "Artifact - Forms",
+        ".block-15 .formulario": "Form",
         ".block-15 .descricao": "Description",
 
-        ".planejamento .li-05": "Arquivos de artefato",
-        ".block-05 .arquivo": "Selecione o arquivo: ",
-        ".block-05 .artefato": "Selecione o artefato correspondente: ",
+        ".planejamento .li-05": "Artifact files",
+        ".block-05 .arquivo": "Select the file: ",
+        ".block-05 .artefato": "Select the corresponding artifact: ",
 
-        ".planejamento .li-03": "Validade",
+        ".planejamento .li-03": "Validity",
         ".block-03 .tipo": "Type",
-        ".block-03 .avaliacao": "Avaliação",
+        ".block-03 .avaliacao": "Avaliation",
 
         ".planejamento .li-04": "Group",
-        ".block-04 .observacao": "Observação"
+        ".block-04 .observacao": "Observation"
     }
 };
