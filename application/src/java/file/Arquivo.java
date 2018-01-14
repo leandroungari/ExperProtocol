@@ -47,7 +47,7 @@ public class Arquivo {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         
         File directoryToZip = new File("C:\\projects\\workspace\\testing\\stuff");
 
@@ -57,7 +57,7 @@ public class Arquivo {
         System.out.println("---Creating zip file");
         writeZipFile(directoryToZip, fileList);
         System.out.println("---Done");
-    }
+    }*/
 
     public static void getAllFiles(File dir, List<File> fileList) {
         try {

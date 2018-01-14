@@ -7,7 +7,7 @@
 	z-index: 500;
 }
 
-.box-open-dialog, .box-save-dialog{
+.box-open-dialog, .box-save-dialog, .create-package-box{
 	display: block;
 	position: absolute;
 	background: #fff;
@@ -20,13 +20,13 @@
 	font: 14px Tahoma!important;
 }
 
-.box-open-dialog .options, .box-save-dialog .options{
+.box-open-dialog .options, .box-save-dialog .options, .create-package-box .options{
 	display: inline-block;
 	width: 100%;
 	text-align: center;
 }
 
-.box-save-dialog input[type='text']{
+.box-save-dialog input[type='text'], .create-package-box input[type='text']{
 	padding: 3px 5px;
 	font: 14px Tahoma;
 }

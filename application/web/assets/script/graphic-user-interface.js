@@ -188,10 +188,14 @@ function loadGUI() {
         //console.log(`.block-${id}`);
         $(`.block-${number}`).slideUp();
 
+        $("input[type='text'], input[type='email'], input[type='password'], textarea",".caixa-experimento").val("");
+
         if (id != null) {
 
             get(Interface.opcaoData).vinculos.push(id);
         }
+
+
 
     });
     /**
@@ -347,7 +351,7 @@ function loadGUI() {
                     var reader = new FileReader();
 
                     reader.addEventListener("load", function () {
-                        
+
                         saveAs(new Blob([this.result]), arquivo.path_arquivo.name);
                         
                         e.arquivos[i].path_arquivo = arquivo.path_arquivo.name;
@@ -368,7 +372,7 @@ function loadGUI() {
                     var reader = new FileReader();
 
                     reader.addEventListener("load", function () {
-                        
+
                         saveAs(new Blob([this.result]), arquivo.path_arquivo.name);
                         
                         e.arquivos[i].path_arquivo = arquivo.path_arquivo.name;
@@ -455,7 +459,44 @@ function loadGUI() {
         box02.style.display = 'none';
     });
 
+     document.querySelector('.create-package').addEventListener('click', () => {
 
+        document.querySelector('.box-03').style.display = 'block';
+    });
+
+     document.querySelector('.create-package-box .gerar').addEventListener('click', () => {
+
+        let data = {
+            caminho: document.querySelector("[name='caminho-pasta']").value,
+            interpretacoes: BPMNDiagram.interpretacoesArquivos,
+            artefatos: BPMNDiagram.artefatosArquivos,
+            nome: BPMNDiagram.nomePacote
+        }
+
+        console.log(data);
+
+        $.ajax({
+            url: (window.location.href + "/comprimirPacote"),
+            type: "post",
+            async: true,
+            data: JSON.stringify(data),
+            cache: false
+        })
+        .done(function (data) {
+            console.log('oi');
+            //saveAs(new Blob([data]), nome);
+            
+            document.querySelector('.box-03').style.display = 'none';
+        })
+        .fail(function () {
+            console.log("pãã");
+        });
+    });
+
+     document.querySelector('.create-package-box .cancelar').addEventListener('click', () => {
+
+        document.querySelector('.box-03').style.display = 'none';
+    });
 
     //////////////////////////////////////////////
     //////////////////////////////////////////////

@@ -217,6 +217,12 @@
 	text-decoration: underline;
 }
 
+.caixa-experimento textarea {
+
+	font: 12px Tahoma;
+	padding: 5px 3px;
+}
+
 /**
  *
  * Blocos formulario
@@ -238,6 +244,8 @@
 [class*="block-"] input[type='text'], [class*="block-"] input[type='email'], [class*="block-"] input[type='date']   {
 	padding: 3px 6px;
 }
+
+
 
 /**
  * Botão
