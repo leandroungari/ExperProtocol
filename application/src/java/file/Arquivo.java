@@ -58,7 +58,6 @@ public class Arquivo {
         writeZipFile(directoryToZip, fileList);
         System.out.println("---Done");
     }*/
-
     public static void getAllFiles(File dir, List<File> fileList) {
         try {
             File[] files = dir.listFiles();
@@ -76,48 +75,88 @@ public class Arquivo {
         }
     }
 
-    public static void writeZipFile(File directoryToZip, List<File> fileList) {
-
+    public static void toZip(String dir2zip, ZipOutputStream zos) {
         try {
-            FileOutputStream fos = new FileOutputStream(directoryToZip.getName() + ".zip");
-            ZipOutputStream zos = new ZipOutputStream(fos);
-
-            for (File file : fileList) {
-                if (!file.isDirectory()) { // we only zip files, not directories
-                    addToZip(directoryToZip, file, zos);
+            //create a new File object based on the directory we 
+            //have to zip 
+            File zipDir = new File(dir2zip);
+            //get a listing of the directory content 
+            String[] dirList = zipDir.list();
+            byte[] readBuffer = new byte[2156];
+            int bytesIn = 0;
+            //loop through dirList, and zip the files 
+            for (int i = 0; i < dirList.length; i++) {
+                File f = new File(zipDir, dirList[i]);
+                if (f.isDirectory()) {
+                    //if the File object is a directory, call this 
+                    //function again to add its content recursively 
+                    String filePath = f.getPath();
+                    toZip(filePath, zos);
+                    //loop again 
+                    continue;
                 }
-            }
 
-            zos.close();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+                FileInputStream fis = new FileInputStream(f);
+                //create a new zip 
+                //entry 
+                ZipEntry anEntry = new ZipEntry(f.getName());
+                //place the zip entry in the ZipOutputStream object 
+                zos.putNextEntry(anEntry);
+                //now write the content of the file to the ZipOutputStream 
+                while ((bytesIn = fis.read(readBuffer)) != -1) {
+                    zos.write(readBuffer, 0, bytesIn);
+                }
+                //close the Stream 
+                fis.close();
+            }
+        } catch (Exception e) {
+            //handle exception 
         }
+
     }
 
-    public static void addToZip(File directoryToZip, File file, ZipOutputStream zos) throws FileNotFoundException,
-            IOException {
+    public static void addDirToArchive(ZipOutputStream zos, File srcFile, String base) {
 
-        FileInputStream fis = new FileInputStream(file);
+        File[] files = srcFile.listFiles();
 
-        // we want the zipEntry's path to be a relative path that is relative
-        // to the directory being zipped, so chop off the rest of the path
-        String zipFilePath = file.getCanonicalPath().substring(directoryToZip.getCanonicalPath().length() + 1,
-                file.getCanonicalPath().length());
-        System.out.println("Writing '" + zipFilePath + "' to zip file");
-        ZipEntry zipEntry = new ZipEntry(zipFilePath);
-        zos.putNextEntry(zipEntry);
+        System.out.println("Adding directory: " + srcFile.getName());
 
-        byte[] bytes = new byte[1024];
-        int length;
-        while ((length = fis.read(bytes)) >= 0) {
-            zos.write(bytes, 0, length);
+        for (int i = 0; i < files.length; i++) {
+
+            // if the file is directory, use recursion
+            if (files[i].isDirectory()) {
+                addDirToArchive(zos, files[i], base);
+                continue;
+            }
+
+            try {
+
+                System.out.println("tAdding file: " + files[i].getName());
+
+                // create byte buffer
+                byte[] buffer = new byte[1024];
+
+                FileInputStream fis = new FileInputStream(files[i]);
+
+                zos.putNextEntry(new ZipEntry(files[i].getPath().substring(base.length())));
+
+                int length;
+
+                while ((length = fis.read(buffer)) > 0) {
+                    zos.write(buffer, 0, length);
+                }
+
+                zos.closeEntry();
+
+                // close the InputStream
+                fis.close();
+
+            } catch (IOException ioe) {
+                System.out.println("IOException :" + ioe);
+            }
+
         }
 
-        zos.closeEntry();
-        fis.close();
     }
 
 }

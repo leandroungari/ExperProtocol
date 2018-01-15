@@ -13,6 +13,7 @@ import file.InterfaceZIP;
 import file.LabPackage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,6 +22,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.zip.ZipOutputStream;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,55 +48,118 @@ public class comprimirPacote extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
+
         Scanner servlet = new Scanner(new InputStreamReader(request.getInputStream()));
-        
+
         String json = "{\"interface\": " + servlet.nextLine() + "}";
         servlet.close();
-        
+
         System.out.println(json);
-        
+
         XStream xstream = new XStream(new JettisonMappedXmlDriver());
         xstream.alias("interface", InterfaceZIP.class);
         xstream.autodetectAnnotations(true);
-        
+
         InterfaceZIP i = (InterfaceZIP) xstream.fromXML(json);
-        
+
         //System.out.println(i);
         //return (Protocol) xstream.fromXML(json);
-        
         LabPackage pacote = LabPackage.getInstance(i);
-        
+
         ArrayList<File> listaArquivos = new ArrayList<>();
-        
+
         Arquivo.getAllFiles(new File(pacote.getCaminho()), listaArquivos);
         /*
         for(File f: listaArquivos){
             
             System.out.println(f.getName());
         }*/
-        
+
         String caminhoPasta = pacote.getCaminho() + "/" + pacote.getNome();
         File pasta = new File(caminhoPasta);
         if (pasta.mkdirs()) {
-            
-            
+
             //adicionado o arquivo principal do xml
             File principal = null;
-            
-            for(File f: listaArquivos) {
-                
+
+            for (File f : listaArquivos) {
+
                 if (f.getName().equals(i.getNome())) {
-                    
+
                     principal = f;
                 }
             }
+
+            if (principal != null) {
+                Arquivo.upload(caminhoPasta, i.getNome(), new FileInputStream(principal));
+            }
+
+            //arquivos interpretacao
+            String interpretacaoPasta = caminhoPasta + "/interpretacao_arquivos";
+            File pastaInterpretacao = new File(interpretacaoPasta);
+            if (pastaInterpretacao.mkdirs()) {
+
+                for (File f : listaArquivos) {
+
+                    if (pacote.getInterpretacoes() != null && pacote.getInterpretacoes().indexOf(f.getName()) != -1) {
+
+                        Arquivo.upload(interpretacaoPasta, f.getName(), new FileInputStream(f));
+                    }
+                }
+
+            }
+
+            //arquivos interpretacao
+            String artefatoPasta = caminhoPasta + "/artefato_arquivos";
+            File pastaArtefato = new File(artefatoPasta);
+            if (pastaArtefato.mkdirs()) {
+
+                for (File f : listaArquivos) {
+
+                    if (pacote.getArtefatos() != null && pacote.getArtefatos().indexOf(f.getName()) != -1) {
+
+                        Arquivo.upload(artefatoPasta, f.getName(), new FileInputStream(f));
+                    }
+                }
+
+            }
+
+            /*try {
+                
+                
+                ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(pacote.getCaminho() + "/" + pacote.getNome() + ".zip"));
+                
+                Arquivo.toZip(caminhoPasta, zos); 
+    
+                zos.close();
+            } catch (Exception e) {
+                
+                System.out.println(e);
+            }*/
             
-            if (principal != null) Arquivo.upload(caminhoPasta, i.getNome(), new FileInputStream(principal));
+            
+            String zipFile = pacote.getCaminho() + "/" + pacote.getNome() + ".zip";
+            String base = pacote.getCaminho() + "/";
+            String srcDir = caminhoPasta;
+
+            try {
+
+                FileOutputStream fos = new FileOutputStream(zipFile);
+
+                ZipOutputStream zos = new ZipOutputStream(fos);
+
+                File srcFile = new File(srcDir);
+
+                Arquivo.addDirToArchive(zos, srcFile, base);
+
+                // close the ZipOutputStream
+                zos.close();
+
+            } catch (IOException ioe) {
+                System.out.println("Error creating zip file: " + ioe);
+            }
         }
-        
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
