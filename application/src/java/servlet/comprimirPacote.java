@@ -92,6 +92,7 @@ public class comprimirPacote extends HttpServlet {
 
             if (principal != null) {
                 Arquivo.upload(caminhoPasta, i.getNome(), new FileInputStream(principal));
+                principal.delete();
             }
 
             //arquivos interpretacao
@@ -104,6 +105,7 @@ public class comprimirPacote extends HttpServlet {
                     if (pacote.getInterpretacoes() != null && pacote.getInterpretacoes().indexOf(f.getName()) != -1) {
 
                         Arquivo.upload(interpretacaoPasta, f.getName(), new FileInputStream(f));
+                        f.delete();
                     }
                 }
 
@@ -119,6 +121,7 @@ public class comprimirPacote extends HttpServlet {
                     if (pacote.getArtefatos() != null && pacote.getArtefatos().indexOf(f.getName()) != -1) {
 
                         Arquivo.upload(artefatoPasta, f.getName(), new FileInputStream(f));
+                        f.delete();
                     }
                 }
 
@@ -154,6 +157,8 @@ public class comprimirPacote extends HttpServlet {
 
                 // close the ZipOutputStream
                 zos.close();
+                
+                Arquivo.delete(new File(caminhoPasta));
 
             } catch (IOException ioe) {
                 System.out.println("Error creating zip file: " + ioe);
