@@ -117,7 +117,30 @@ let language = {
         ".block-03 .avaliacao": "Avaliação",
 
         ".planejamento .li-04": "Grupo",
-        ".block-04 .observacao": "Observação"
+        ".block-04 .observacao": "Observação",
+
+
+        /////////////////
+        ".text-open": "Selecione o formato de arquivo:",
+        ".input-open": "Pacote de Laboratório",
+        ".protocolo-open": "Protocolo de Experimentação",
+        ".open-option-open-dialog": "Abrir",
+        ".cancel-option-open-dialog": "Cancelar",
+
+        ".arquivo-save": "Arquivo",
+        ".save-option-save-dialog": "Salvar",
+        ".cancel-option-save-dialog": "Cancelar",
+
+        ".box-03-comprimir": "Comprimir pacote de laboratório",
+        ".box-03-entre": "Entre com o caminho da pasta com os arquivos do pacote de laboratório:",
+        ".box-03-pasta": "Caminho da pasta ",
+
+        ".gerar": "Salvar",
+        ".cancelar": "Cancelar",
+
+        ".modificar-elemento": "Modificar Elemento",
+        ".text-info": "Sem seleção",
+        ".salvar-alteracoes": "Salvar Alterações"
     },  
     en : {
         ".open-file": "Open ...",
@@ -238,6 +261,28 @@ let language = {
         ".block-03 .avaliacao": "Avaliation",
 
         ".planejamento .li-04": "Group",
-        ".block-04 .observacao": "Observation"
+        ".block-04 .observacao": "Observation",
+
+        /////////////////
+        ".text-open": "Select the file format:",
+        ".input-open": "Lab Package",
+        ".protocolo-open": "Experimental Protocol",
+        ".open-option-open-dialog": "Open",
+        ".cancel-option-open-dialog": "Cancel",
+
+        ".arquivo-save": "File",
+        ".save-option-save-dialog": "Save",
+        ".cancel-option-save-dialog": "Cancel",
+
+        ".box-03-comprimir": "Compress laboratory package",
+        ".box-03-entre": "Enter the folder path with the lab package files:",
+        ".box-03-pasta": "Folder path ",
+
+        ".gerar": "Save",
+        ".cancelar": "Cancel",
+
+        ".modificar-elemento": "Modify Item",
+        ".text-info": "No selection",
+        ".salvar-alteracoes": "Save editions"
     }
 };
