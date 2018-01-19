@@ -9,7 +9,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_NONE = {
 			type: 'start-event',
 			icon: 'start-event-none',
-			title: { pt: "Evento de início", en: "Start event" },
+			title: { pt: "Início de evento", en: "Start event" },
 			content: `<path
 			d="M 1015.4766 98.927734 C 654.77914 97.73011 308.67409 330.79447 171.77539 664.19141 C 27.656559 994.34375 102.53842 1404.4752 354.63672 1661.9629 C 597.1004 1922.9548 996.58594 2018.7494 1331.1562 1896.6348 C 1677.896 1778.5613 1933.8798 1438.0411 1947.7949 1071.543 C 1971.1343 711.41229 1759.2596 352.12165 1434.8418 195.25 C 1307.8073 131.85595 1165.9493 98.797018 1024 99 C 1021.1581 98.961456 1018.3167 98.937164 1015.4766 98.927734 z M 1040.8281 198.90039 C 1393.9006 200.83863 1726.4328 456.25906 1817.7461 797.92969 C 1914.7762 1124.8373 1783.5324 1503.3352 1501.8398 1696.9551 C 1209.2273 1912.0295 775.29926 1896.4689 498.97656 1660.7988 C 220.5625 1438.8189 120.90473 1028.2233 263.75 702.61719 C 387.55746 401.60486 698.33782 195.17882 1024 199 C 1029.6138 198.90237 1035.2238 198.86962 1040.8281 198.90039 z "
 			style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;baseline-shift:baseline;text-anchor:start;white-space:normal;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:99.99999237;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />`
@@ -17,7 +17,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_NON_INTERRUPTING_PARALLEL_MULTIPLE = {
 			type: 'start-event',
 			icon: 'start-event-non-interrupting-parallel-multiple',
-			title: { en: 'Start event non-interrupting parallel multiple' },
+			title: { pt: 'Início de evento sem interrupção paralelo múltiplo', en: 'Start event non-interrupting parallel multiple' },
 			content: `<g transform="translate(0,995.63783)">
 			<g
 			transform="matrix(0.74578486,0,0,0.64639158,-1085.7848,-2914.814)" />
@@ -30,7 +30,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_CONDITION = {
 			type: 'start-event',
 			icon: 'start-event-condition',
-			title: { en: 'Start event condition' },
+			title: { pt: 'Início de evento condicional', en: 'Start event condition' },
 			content: `<path
 			id="path4481"
 			d="M 1024 99.003906 C 513.72933 99.003906 99 513.72455 99 1023.998 C 99 1534.2716 513.72866 1949.002 1024 1949.002 C 1534.2712 1949.002 1949 1534.2716 1949 1023.998 C 1949 513.72456 1534.2706 99.003906 1024 99.003906 z M 1024 199.00391 C 1480.2276 199.00391 1849 567.76828 1849 1023.998 C 1849 1480.2279 1480.227 1849.002 1024 1849.002 C 567.77288 1849.002 199 1480.2279 199 1023.998 C 199 567.76828 567.77221 199.00391 1024 199.00391 z M 713.99414 633.96484 L 713.99414 659.0918 L 713.99414 1414.0352 L 817.54883 1414.0352 L 1230.2617 1414.0352 L 1334.0059 1414.0352 L 1334.0059 633.96484 L 713.99414 633.96484 z M 763.88086 684.03516 L 1283.9277 684.03516 L 1283.9277 1363.9551 L 1230.2617 1363.9551 L 817.54883 1363.9551 L 763.88086 1363.9551 L 763.88086 684.03516 z M 817.54883 760.57617 L 817.54883 810.46094 L 1230.2617 810.46094 L 1230.2617 760.57617 L 817.54883 760.57617 z M 817.54883 911.18164 L 817.54883 961.25977 L 1230.2617 961.25977 L 1230.2617 911.18164 L 817.54883 911.18164 z M 817.54883 1085.2207 L 817.54883 1135.1152 L 1230.2617 1135.1152 L 1230.2617 1085.2207 L 817.54883 1085.2207 z M 817.54883 1242.4434 L 817.54883 1292.3398 L 1230.2617 1292.3398 L 1230.2617 1242.4434 L 817.54883 1242.4434 z "
@@ -39,7 +39,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_MESSAGE = {
 			type: 'start-event',
 			icon: 'start-event-message',
-			title: { en: 'Start event message' },
+			title: { pt: 'Início de evento de mensagem', en: 'Start event message' },
 			content: `<path
 			id="path4481"
 			d="M 1024,99 C 660.243,94.066359 309.75108,328.17005 171.77443,664.19216 27.655596,994.3445 102.53809,1404.4753 354.63638,1661.963 c 242.46368,260.9919 641.95021,356.7855 976.52052,234.6709 346.7397,-118.0735 602.7227,-458.5932 616.6378,-825.0913 C 1971.1341,711.41193 1759.2592,352.12132 1434.8414,195.24966 1307.8069,131.85562 1165.9493,98.797017 1024,99 Z m 0,100 c 359.2827,-6.24861 700.9839,251.83638 793.7466,598.93035 97.0301,326.90765 -34.2142,705.40425 -315.9068,899.02415 C 1209.2273,1912.0289 775.30015,1896.4688 498.97745,1660.7987 220.5634,1438.8188 120.90394,1028.223 263.74921,702.61685 387.55667,401.60453 698.33781,195.17882 1024,199 Z M 604.375,703.95117 c 0,213.36588 0,426.73173 0,640.09763 279.75,0 559.5,0 839.25,0 0,-213.3659 0,-426.73175 0,-640.09763 -279.75,0 -559.5,0 -839.25,0 z m 186.43359,100.00391 c 155.43814,0 310.87631,0 466.31441,0 -82.5961,50.82446 -165.1995,162.39824 -247.7853,174.57168 C 936.49735,920.33284 863.65273,862.14425 790.80859,803.95508 Z m 552.93751,58.87304 c 0,127.07226 0,254.14448 0,381.21678 -213.1641,0 -426.32813,0 -639.49219,0 0,-127.0625 0,-254.12499 0,-381.18748 106.55077,85.15235 213.09674,170.31068 319.65229,255.45708 106.6181,-85.1562 213.2266,-170.32429 319.8399,-255.48638 z"
@@ -48,7 +48,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_NON_INTERRUPTING_MESSAGE = {
 			type: 'start-event',
 			icon: 'start-event-non-interrupting-message',
-			title: { en: 'Start event non-interrupting message' },
+			title: { pt: 'Início de evento de mensagem sem interrupção', en: 'Start event non-interrupting message' },
 			content: `<g transform="translate(0,995.63783)">
 			<g
 			id="layer1-4"
@@ -62,7 +62,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_NON_INTERRUPTING_TIMER = {
 			type: 'start-event',
 			icon: 'start-event-non-interrupting-timer',
-			title: { en: 'Start event non-interrupting timer' },
+			title: { pt: 'Início de evento de temporizador sem interrupção', en: 'Start event non-interrupting timer' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -78,7 +78,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_ESCALATION = {
 			type: 'start-event',
 			icon: 'start-event-escalation',
-			title: { en: 'Start event escalation' },
+			title: { pt: 'Início de evento de intensificação', en: 'Start event escalation' },
 			content: `<path
 			id="path4481"
 			d="M 1024,99 C 660.243,94.066359 309.75108,328.17005 171.77443,664.19216 27.655596,994.3445 102.53809,1404.4753 354.63638,1661.963 c 242.46368,260.9919 641.95021,356.7855 976.52052,234.6709 346.7397,-118.0735 602.7227,-458.5932 616.6378,-825.0913 C 1971.1341,711.41193 1759.2592,352.12132 1434.8414,195.24966 1307.8069,131.85562 1165.9493,98.797017 1024,99 Z m 0,100 c 359.2827,-6.24861 700.9839,251.83638 793.7466,598.93035 97.0301,326.90765 -34.2142,705.40425 -315.9068,899.02415 C 1209.2273,1912.0289 775.30015,1896.4688 498.97745,1660.7987 220.5634,1438.8188 120.90394,1028.223 263.74921,702.61685 387.55667,401.60453 698.33781,195.17882 1024,199 Z m 0,415.40039 c -96.78456,269.33118 -158.21489,549.86631 -255,819.19731 88.7945,-88.2724 166.21051,-187.1603 255,-275.4375 85,91.8125 170,183.625 255,275.4375 -86.6176,-272.5605 -168.3825,-546.6368 -255,-819.19731 z m 1.8535,169.49609 c 47.5548,149.64144 92.4451,300.11442 140,449.75582 -46.6667,-50.4069 -93.3333,-100.8138 -140,-151.2207 -39.45607,34.5998 -141.91956,166.9537 -135.34814,138.2206 50.43047,-143.9123 83.79567,-293.21245 135.34814,-436.75572 z"
@@ -87,7 +87,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_NON_INTERRUPTING_MULTIPLE = {
 			type: 'start-event',
 			icon: 'start-event-non-interrupting-multiple',
-			title: { en: 'Start event non-interrupting multiple' },
+			title: { pt: 'Início de evento múltiplo sem interrupção', en: 'Start event non-interrupting multiple' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -103,7 +103,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_PARALLEL_MULTIPLE = {
 			type: 'start-event',
 			icon: 'start-event-parallel-multiple',
-			title: { en: 'Start event parallel multiple' },
+			title: { pt: 'Início de evento paralelo múltiplo', en: 'Start event parallel multiple' },
 			content: `<path
 			id="path4481"
 			d="M 1015.4766 98.931641 C 654.77914 97.734019 308.67409 330.79839 171.77539 664.19531 C 27.656538 994.34767 102.53843 1404.4792 354.63672 1661.9668 C 597.10038 1922.9588 996.58594 2018.7533 1331.1562 1896.6387 C 1677.896 1778.5651 1933.8798 1438.045 1947.7949 1071.5469 C 1971.1343 711.41621 1759.2596 352.12556 1434.8418 195.25391 C 1307.7978 131.85731 1165.959 98.802864 1024 99.003906 C 1021.1581 98.965362 1018.3167 98.941071 1015.4766 98.931641 z M 1040.8281 198.9043 C 1393.9006 200.84253 1726.4328 456.26297 1817.7461 797.93359 C 1914.7762 1124.8413 1783.5324 1503.339 1501.8398 1696.959 C 1209.2274 1912.0334 775.29924 1896.4728 498.97656 1660.8027 C 220.56252 1438.8228 120.90471 1028.2274 263.75 702.62109 C 387.19784 401.88703 698.74823 194.96711 1024 199.00391 C 1029.6138 198.90627 1035.2238 198.87353 1040.8281 198.9043 z M 880 624 L 880 880 L 624 880 L 624 1168 L 880 1168 L 880 1424 L 1168 1424 L 1168 1168 L 1424 1168 L 1424 879.99805 L 1168 879.99805 L 1168 624 L 880 624 z M 928 672 L 1120 672 L 1120 928 L 1376 928 L 1376 1120 L 1120 1120 L 1120 1376 L 928 1376 L 928 1118.5 L 672 1118.5 L 672 928 L 928 928 L 928 672 z "
@@ -112,7 +112,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_SIGNAL = {
 			type: 'start-event',
 			icon: 'start-event-signal',
-			title: { en: 'Start event signal' },
+			title: { pt: 'Início de evento de sinal', en: 'Start event signal' },
 			content: `<path
 			id="path4481"
 			d="M 1024,99 C 660.243,94.066359 309.75108,328.17005 171.77443,664.19216 27.655596,994.3445 102.53809,1404.4753 354.63638,1661.963 c 242.46368,260.9919 641.95021,356.7855 976.52052,234.6709 346.7397,-118.0735 602.7227,-458.5932 616.6378,-825.0913 C 1971.1341,711.41193 1759.2592,352.12132 1434.8414,195.24966 1307.8069,131.85562 1165.9493,98.797017 1024,99 Z m 0,100 c 359.2827,-6.24861 700.9839,251.83638 793.7466,598.93035 97.0301,326.90765 -34.2142,705.40425 -315.9068,899.02415 C 1209.2273,1912.0289 775.30015,1896.4688 498.97745,1660.7987 220.5634,1438.8188 120.90394,1028.223 263.74921,702.61685 387.55667,401.60453 698.33781,195.17882 1024,199 Z m 0,391.875 c -131.15512,235.41657 -262.30987,470.8333 -393.46484,706.25 262.30988,0 524.61974,0 786.92964,0 C 1286.3099,1061.7083 1155.1549,826.29167 1024,590.875 Z m 0,102.73633 c 102.7917,184.50456 205.5833,369.00907 308.375,553.51367 -205.5833,0 -411.16667,0 -616.75,0 C 818.41667,1062.6204 921.20833,878.11589 1024,693.61133 Z"
@@ -121,7 +121,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_MULTIPLE = {
 			type: 'start-event',
 			icon: 'start-event-multiple',
-			title: { en: 'Start event multiple' },
+			title: {pt: 'Início de evento multiplo', en: 'Start event multiple' },
 			content: `<path
 			id="path4481"
 			d="M 1024,99 C 660.243,94.066359 309.75108,328.17005 171.77443,664.19216 27.655596,994.3445 102.53809,1404.4753 354.63638,1661.963 c 242.46368,260.9919 641.95021,356.7855 976.52052,234.6709 346.7397,-118.0735 602.7227,-458.5932 616.6378,-825.0913 C 1971.1341,711.41193 1759.2592,352.12132 1434.8414,195.24966 1307.8069,131.85562 1165.9493,98.797017 1024,99 Z m 0,100 c 359.2827,-6.24861 700.9839,251.83638 793.7466,598.93035 97.0301,326.90765 -34.2142,705.40425 -315.9068,899.02415 C 1209.2273,1912.0289 775.30015,1896.4688 498.97745,1660.7987 220.5634,1438.8188 120.90394,1028.223 263.74921,702.61685 387.55667,401.60453 698.33781,195.17882 1024,199 Z m 0,365.95312 c -146.99589,106.7066 -293.98803,213.41837 -440.98247,320.12696 56.14648,172.65562 112.29297,345.31122 168.43945,517.96682 181.69401,0 363.38802,0 545.08202,0 56.1465,-172.6556 112.293,-345.3112 168.4395,-517.96682 C 1317.9877,778.37109 1170.9948,671.66211 1024.002,564.95312 Z m -0,61.77735 c 127.3926,92.47982 254.7852,184.95963 382.1778,277.43945 -48.6589,149.63478 -97.3177,299.26948 -145.9766,448.90428 -157.4661,0 -314.93228,0 -472.39842,0 C 739.14193,1203.4394 690.48307,1053.8047 641.82422,904.16992 769.21548,811.6901 896.60674,719.21029 1023.998,626.73047 Z"
@@ -130,7 +130,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_NON_INTERRUPTING_CONDITION = {
 			type: 'start-event',
 			icon: 'start-event-non-interrupting-condition',
-			title: { en: 'Start event non-interrupting condition' },
+			title: { pt: 'Início de evento condicional sem interrupção', en: 'Start event non-interrupting condition' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -146,7 +146,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_COMPENSATION = {
 			type: 'start-event',
 			icon: 'start-event-compensation',
-			title: { en: 'Start event compensation' },
+			title: { pt: 'Início de evento de compensação', en: 'Start event compensation' },
 			content: `<path
 			id="path4481"
 			d="M 1024,99 C 660.243,94.066359 309.75108,328.17005 171.77443,664.19216 27.655596,994.3445 102.53809,1404.4753 354.63638,1661.963 c 242.46368,260.9919 641.95021,356.7855 976.52052,234.6709 346.7397,-118.0735 602.7227,-458.5932 616.6378,-825.0913 C 1971.1341,711.41193 1759.2592,352.12132 1434.8414,195.24966 1307.8069,131.85562 1165.9493,98.797017 1024,99 Z m 0,100 c 359.2827,-6.24861 700.9839,251.83638 793.7466,598.93035 97.0301,326.90765 -34.2142,705.40425 -315.9068,899.02415 C 1209.2273,1912.0289 775.30015,1896.4688 498.97745,1660.7987 220.5634,1438.8188 120.90394,1028.223 263.74921,702.61685 387.55667,401.60453 698.33781,195.17882 1024,199 Z M 991.27539,721.17383 C 848.35091,822.08332 705.42643,922.99281 562.50195,1023.9023 c 142.93434,100.9607 285.84746,201.9514 428.77344,302.9239 0,-97.5716 0,-195.1433 0,-292.7149 138.01701,97.6523 276.15791,195.1299 414.22261,292.7149 0,-201.8841 0,-403.76825 0,-605.65237 -138.0742,97.51042 -276.1484,195.02085 -414.22261,292.53127 0,-97.51042 0,-195.02085 0,-292.53127 z m -50.07812,96.375 c 0,137.44402 0,274.88807 0,412.33207 C 843.81446,1161.1569 746.43164,1092.433 649.04883,1023.709 746.43164,954.98894 843.81446,886.26889 941.19727,817.54883 Z m 414.41403,0 c 0,137.57292 0,275.14587 0,412.71877 -97.3828,-68.7884 -194.7656,-137.5769 -292.1484,-206.3653 97.3828,-68.78449 194.7656,-137.56898 292.1484,-206.35347 z"
@@ -156,7 +156,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_NON_INTERRUPTING_SIGNAL = {
 			type: 'start-event',
 			icon: 'start-event-non-interrupting-signal',
-			title: { en: 'Start event non-interrupting signal' },
+			title: { pt: 'Início de evento de sinal sem interrupção', en: 'Start event non-interrupting signal' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -172,7 +172,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_ERROR = {
 			type: 'start-event',
 			icon: 'start-event-error',
-			title: { en: 'Start event error' },
+			title: {pt: 'Início de evento de erro', en: 'Start event error' },
 			content: `<path
 			id="path4481"
 			d="M 1024,99 C 660.243,94.066359 309.75108,328.17005 171.77443,664.19216 27.655596,994.3445 102.53809,1404.4753 354.63638,1661.963 c 242.46368,260.9919 641.95021,356.7855 976.52052,234.6709 346.7397,-118.0735 602.7227,-458.5932 616.6378,-825.0913 C 1971.1341,711.41193 1759.2592,352.12132 1434.8414,195.24966 1307.8069,131.85562 1165.9493,98.797017 1024,99 Z m 0,100 c 359.2827,-6.24861 700.9839,251.83638 793.7466,598.93035 97.0301,326.90765 -34.2142,705.40425 -315.9068,899.02415 C 1209.2273,1912.0289 775.30015,1896.4688 498.97745,1660.7987 220.5634,1438.8188 120.90394,1028.223 263.74921,702.61685 387.55667,401.60453 698.33781,195.17882 1024,199 Z m 354.5293,430.83594 C 1308.4505,771.89583 1238.3718,913.95571 1168.293,1056.0156 1081.1576,942.67772 994.02215,829.33983 906.88672,716.00195 827.74805,950.056 748.60937,1184.1101 669.4707,1418.1641 c 88.72396,-114.043 177.44792,-228.0859 266.17188,-342.1289 91.52082,104.7233 183.04172,209.4466 274.56252,314.1699 56.1081,-253.4564 112.2161,-506.91277 168.3242,-760.36916 z M 930.13281,854.69531 c 82.85289,105.04233 165.70569,210.08469 248.55859,315.12699 20.6927,-46.0651 41.3854,-92.1302 62.0781,-138.1953 -19.8105,79.7038 -39.6211,159.4075 -59.4316,239.1113 -84.5651,-99.4805 -169.1302,-198.9609 -253.69532,-298.44142 -34.30859,53.03912 -68.61719,106.07812 -102.92578,159.11722 35.13867,-92.2396 70.27734,-184.47919 105.41601,-276.71879 z"
@@ -182,7 +182,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_TIMER = {
 			type: 'start-event',
 			icon: 'start-event-timer',
-			title: { en: 'Start event timer' },
+			title: {pt: 'Início de evento de temporizador', en: 'Start event timer' },
 			content: `<path
 			id="path4481"
 			d="M 1024 99.003906 C 513.72933 99.003906 99 513.72455 99 1023.998 C 99 1534.2716 513.72866 1949.002 1024 1949.002 C 1534.2712 1949.002 1949 1534.2716 1949 1023.998 C 1949 513.72456 1534.2706 99.003906 1024 99.003906 z M 1024 199.00391 C 1480.2276 199.00391 1849 567.76828 1849 1023.998 C 1849 1480.2279 1480.227 1849.002 1024 1849.002 C 567.77288 1849.002 199 1480.2279 199 1023.998 C 199 567.76828 567.77221 199.00391 1024 199.00391 z M 1015.7109 584.94922 C 844.18238 586.16124 680.61062 698.83384 617.39258 858.23438 C 551.60238 1014.0352 587.9735 1205.804 706.27734 1326.6758 C 821.30364 1450.5055 1010.8318 1496.1399 1169.584 1438.1035 C 1335.9435 1381.4288 1458.1568 1216.8728 1462.5605 1040.9141 C 1471.423 869.96886 1368.6862 700.94487 1214.002 628.34766 C 1154.9754 599.76876 1089.4568 584.89006 1023.8848 584.97656 C 1021.1584 584.93938 1018.4336 584.92998 1015.7109 584.94922 z M 1031.3535 664.92188 C 1188.0597 665.62293 1335.0681 781.44157 1371.6113 934.09766 C 1412.3101 1083.1162 1343.7408 1253.0336 1210.25 1331.1133 C 1073.9496 1416.6566 881.77957 1393.858 769.85547 1278.0039 C 651.74153 1164.0604 630.70808 966.91853 721.32422 830.26953 C 785.50272 728.32303 903.37456 663.80296 1023.8848 664.97656 C 1026.3766 664.92937 1028.8661 664.91075 1031.3535 664.92188 z M 1137.3047 766.99414 C 1097.3373 839.50324 1057.3697 912.01238 1017.4023 984.52148 C 980.36993 988.45928 971.57232 1044.6426 1005.7402 1059.627 C 1028.3101 1075.2933 1045.9874 1049.2348 1066.5332 1050.1328 L 1249.8262 1050.1328 L 1249.8262 1000.1328 L 1065.8887 1000.1328 C 1104.2904 930.46481 1142.6921 860.79691 1181.0938 791.12891 C 1166.4974 783.08401 1151.9011 775.03904 1137.3047 766.99414 z "
@@ -192,7 +192,7 @@ class BPMNSettings{
 		BPMNEvent.START_EVENT_NON_INTERRUPTING_ESCALATION = {
 			type: 'start-event',
 			icon: 'start-event-non-interrupting-escalation',
-			title: { en: 'Start event non-interrupting escalation' },
+			title: {pt: 'Início de evento de intensificação sem interrupção', en: 'Start event non-interrupting escalation' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -210,7 +210,7 @@ class BPMNSettings{
 		BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_TIMER = {
 			type: 'intermediate-event',
 			icon: 'intermediate-event-catch-non-interrupting-timer',
-			title: { en: 'Intermediate event catch non-interrupting timer' },
+			title: { pt: '', en: 'Intermediate event catch non-interrupting timer' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -226,7 +226,7 @@ class BPMNSettings{
 		BPMNEvent.INTERMEDIATE_EVENT_CATCH_SIGNAL = {
 			type: 'intermediate-event',
 			icon: 'intermediate-event-catch-signal',
-			title: { en: 'Intermediate event catch signal' },
+			title: { pt: '', en: 'Intermediate event catch signal' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -243,7 +243,7 @@ class BPMNSettings{
 		BPMNEvent.INTERMEDIATE_EVENT_CATCH_TIMER = {
 			type: 'intermediate-event',
 			icon: 'intermediate-event-catch-timer',
-			title: { en: 'Intermediate event catch timer' },
+			title: { pt: '', en: 'Intermediate event catch timer' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -257,7 +257,7 @@ class BPMNSettings{
 		BPMNEvent.INTERMEDIATE_EVENT_CATCH_MESSAGE = {
 			type: 'intermediate-event',
 			icon: 'intermediate-event-catch-message',
-			title: { en: 'Intermediate event catch message' },
+			title: { pt: '', en: 'Intermediate event catch message' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -274,7 +274,7 @@ class BPMNSettings{
 		BPMNEvent.INTERMEDIATE_EVENT_CATCH_NON_INTERRUPTING_ESCALATION = {
 			type: 'intermediate-event',
 			icon: 'intermediate-event-catch-non-interrupting-escalation',
-			title: { en: 'Intermediate event catch non-interrupting escalation' },
+			title: { pt: '', en: 'Intermediate event catch non-interrupting escalation' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -290,7 +290,7 @@ class BPMNSettings{
 		BPMNEvent.INTERMEDIATE_EVENT_THROW_MESSAGE = {
 			type: 'intermediate-event',
 			icon: 'intermediate-event-throw-message',
-			title: { en: 'Intermediate event throw message' },
+			title: { pt: '', en: 'Intermediate event throw message' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -307,7 +307,7 @@ class BPMNSettings{
 		BPMNEvent.INTERMEDIATE_EVENT_CATCH_CANCEL = {
 			type: 'intermediate-event',
 			icon: 'intermediate-event-catch-cancel',
-			title: { en: 'Intermediate event catch cancel' },
+			title: { pt: '', en: 'Intermediate event catch cancel' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -320,7 +320,7 @@ class BPMNSettings{
 		BPMNEvent.INTERMEDIATE_EVENT_CATCH_PARALLEL_MULTIPLE = {
 			type: 'intermediate-event',
 			icon: 'intermediate-event-catch-parallel-multiple',
-			title: { en: 'Intermediate event catch parallel multiple' },
+			title: { pt: '', en: 'Intermediate event catch parallel multiple' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">
@@ -333,7 +333,7 @@ class BPMNSettings{
 		BPMNEvent.INTERMEDIATE_EVENT_CATCH_ERROR = {
 			type: 'intermediate-event',
 			icon: 'intermediate-event-catch-error',
-			title: { en: 'Intermediate event catch error' },
+			title: { pt: '', en: 'Intermediate event catch error' },
 			content: `<g
 			transform="translate(0,995.63783)"
 			id="layer1">

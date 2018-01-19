@@ -550,8 +550,10 @@ function loadGUI() {
         Object.entries(language.pt).forEach(([k, v]) => {
 
             document.querySelector(k).innerHTML = v;
+
         });
 
+        BPMNDiagram.language = "pt-br";
         $(".caixa-experimento .btn").val("Adicionar");
     });
 
@@ -562,6 +564,7 @@ function loadGUI() {
             document.querySelector(k).innerHTML = v;
         });
 
+        BPMNDiagram.language = "en-us";
         $(".caixa-experimento .btn").val("Add");
     });
 
@@ -772,43 +775,290 @@ function exibirDescricao(id) {
 
             getObjectById(BPMNDiagram.experiment, a);
 
-            console.log(result);
 
             d3.select('.box-descricao > .content').append('div')
             .style('padding', '15px 25px')
             .attr('class', `item-${result.id} box-item`)
 
-            d3.select(`.item-${result.id}`).raise()
-            .append('h1')
-            .style('font-size', '16px')
-            .text(`Identificador: ${result.id}`)
-
             //o resultado fica na variavel result
-            Object.keys(result).forEach((ele) => {
+            
+            let valores = Object.entries(formatarTexto(result));
+            
+            valores.forEach(([attribute, value]) => {
 
-                if (ele != "id" && !isObject(result[ele]) && !Array.isArray(result[ele]) && result[ele] != null ) {
+                d3.select(`.item-${result.id}`)
+                .append('p')
+                .style('font-size', '14px')
+                .style('padding', '3px 0')
+                .style('margin-left', '35px')
+                .text(`${attribute}: ${value}`)
 
-                    d3.select(`.item-${result.id}`)
-                    .append('p')
-                    .style('font-size', '14px')
-                    .style('padding', '3px 0')
-                    .style('margin-left', '35px')
-                    .text(`${ele}: ${result[ele]}`)
-                }
-                /*else if (Array.isArray(result[ele])) {
+            });
 
-                    d3.select(`.item-${result.id}`)
-                    .append('p')
-                    .style('font-size', '14px')
-                    .style('padding', '3px 0')
-                    .style('margin-left', '35px')
-                    .text(`${ele}: ${result[ele].join(", ")}.`);
-                }*/
 
-            }, result);
         });
     }
 }
+
+const formatarTexto = (object) => {
+
+    if (BPMNDiagram.language == 'pt-br') {
+
+        if (object.id.includes("definicao")) {
+            return {
+                "Definição": "",
+                "Objetivo": object.objetivo,
+                "Finalidade": object.finalidade,
+                "Enfoque": object.respeito,
+                "Ponto de vista": object.pontodevista,
+                "Contexto": object.contexto
+            };
+        }
+        else if (object.id.includes("experiment")) {
+            return {
+                "Experimento":"",
+                "Nome": object.nome,
+                "Descrição": object.descricao,
+                "Tema": object.tema,
+                "Área Técnica": object.areatecnica,
+                "Tipo": object.tipo,
+                "Domínio": object.dominio,
+                "Idioma": object.idioma,
+            };
+        }
+        else if (object.id.includes("validade")) {
+            return {
+                "Validade":"",
+                "Tipo": object.tipo,
+                "Avaliação": object.avaliacao,
+            };
+        }
+        else if (object.id.includes("grupo")) {
+            return {
+                "Grupo":"",
+                "Identificação": object.id.substring("grupo".length),
+                "Observação": object.observacao,
+            };
+        }
+        else if (object.id.includes("questao")) {
+            return {
+                "Questão": object.questao,
+            };
+        }
+        else if (object.id.includes("hipotese")) {
+            return {
+                "Hipótese Nula": object.hipoteseNula,
+                "Hipótese Alternativa": object.hipoteseAlternativa,
+            };
+        }
+        else if (object.id.includes("dependente")) {
+            return {
+                "Variável Dependente": object.var,
+            };
+        }
+        else if (object.id.includes("independente")) {
+            return {
+                "Variável Independente": object.var,
+            };
+        }
+        else if (object.id.includes("participante")) {
+            return {
+                "Participante":"",
+                "Grupo": object.grupo,
+                "Nome": object.pessoa.nome,
+                "E-mail": object.pessoa.email,
+                "Telefone": object.pessoa.telefone,
+                "Nome da Instituição": object.pessoa.instituicao.nome,
+                "Sigla da Instituição": object.pessoa.instituicao.sigla,
+                "País da Instituição": object.pessoa.instituicao.pais,
+            };
+        }
+        else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
+            return {
+                "Ferramenta":"",
+                "Nome": object.nome,
+                "Descrição": object.descricao,
+                "Tipo": object.tipo,
+
+            };
+        }
+        else if (object.id.includes("cronograma")) {
+            return {
+                "Cronograma":"",
+                "Definição": object.definicao,
+                "Data Inicial": object.data_inicial,
+                "Data Final": object.data_final,
+                "Tipo": object.tipo,
+                "Tempo": object.tempo,
+            };
+        }
+        else if (object.id.includes("defeito")) {
+            return {
+                "Defeito": "",
+                "Local": object.local,
+                "Requisito": object.requisito,
+                "Classe de defeito": object.classeDefeito,
+                "Descrição": object.descricao,
+            };
+        }
+        else if (object.id.includes("interpretacao")) {
+            return {
+                "Interpretação": "",
+                "Resultados": object.resultados,
+            };
+        }
+        else if (object.id.includes("conclusao")) {
+            return {
+                "Conclusão": object.conclusao
+            };
+        }
+        else if (object.id.includes("metrica")) {
+            return {
+                "Métrica": object.metrica,
+                "Descrição": object.descricao,
+            };
+        }
+        else if (object.id.includes("experimentador")) {
+            return {
+                "Experimentador": "",
+                "Nome": object.nome,
+                "E-mail": object.email,
+            };
+        }
+
+
+    } else {
+
+        ////////////////////////////
+        ////////////////////////////
+        ////////////////////////////
+        ////////////////////////////
+        /// English
+        /// 
+        
+        if (object.id.includes("definicao")) {
+            return {
+                "Definition": "",
+                "Objective": object.objetivo,
+                "Finality": object.finalidade,
+                "Approach": object.respeito,
+                "Viewpoint": object.pontodevista,
+                "Context": object.contexto
+            };
+        }
+        else if (object.id.includes("experiment")) {
+            return {
+                "Experiment":"",
+                "Name": object.nome,
+                "Description": object.descricao,
+                "Topic": object.tema,
+                "Area Técnica": object.areatecnica,
+                "Type": object.tipo,
+                "Domain": object.dominio,
+                "Language": object.idioma,
+            };
+        }
+        else if (object.id.includes("validade")) {
+            return {
+                "Validity":"",
+                "Type": object.tipo,
+                "Avaliation": object.avaliacao,
+            };
+        }
+        else if (object.id.includes("grupo")) {
+            return {
+                "Group":"",
+                "Identification": object.id.substring("grupo".length),
+                "Observation": object.observacao,
+            };
+        }
+        else if (object.id.includes("questao")) {
+            return {
+                "Question": object.questao,
+            };
+        }
+        else if (object.id.includes("hipotese")) {
+            return {
+                "Null Hypothesys": object.hipoteseNula,
+                "Alternative Hypothesys": object.hipoteseAlternativa,
+            };
+        }
+        else if (object.id.includes("dependente")) {
+            return {
+                "Dependent Variable": object.var,
+            };
+        }
+        else if (object.id.includes("independente")) {
+            return {
+                "Independent Variable": object.var,
+            };
+        }
+        else if (object.id.includes("participante")) {
+            return {
+                "Participant":"",
+                "Group": object.grupo,
+                "Name": object.pessoa.nome,
+                "E-mail": object.pessoa.email,
+                "Telephone": object.pessoa.telefone,
+                "Institution name": object.pessoa.instituicao.nome,
+                "Institution initials": object.pessoa.instituicao.sigla,
+                "Institution country": object.pessoa.instituicao.pais,
+            };
+        }
+        else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
+            return {
+                "Tool":"",
+                "Name": object.nome,
+                "Description": object.descricao,
+                "Type": object.tipo,
+
+            };
+        }
+        else if (object.id.includes("cronograma")) {
+            return {
+                "Schedule":"",
+                "Definition": object.definicao,
+                "Initial date": object.data_inicial,
+                "Final date": object.data_final,
+                "Type": object.tipo,
+                "Time": object.tempo,
+            };
+        }
+        else if (object.id.includes("defeito")) {
+            return {
+                "Defect": "",
+                "Location": object.local,
+                "Requeriment": object.requisito,
+                "Defect class": object.classeDefeito,
+                "Description": object.descricao,
+            };
+        }
+        else if (object.id.includes("interpretacao")) {
+            return {
+                "Interpretation": "",
+                "Results": object.resultados,
+            };
+        }
+        else if (object.id.includes("conclusao")) {
+            return {
+                "Conclusion": object.conclusao
+            };
+        }
+        else if (object.id.includes("metrica")) {
+            return {
+                "Métric": object.metrica,
+                "Description": object.descricao,
+            };
+        }
+        else if (object.id.includes("experimentador")) {
+            return {
+                "Experimenter": "",
+                "Name": object.nome,
+                "E-mail": object.email,
+            };
+        }
+    }
+};
 
 var result;
 

@@ -17,6 +17,8 @@ window.onload = function () {
 	.style('background-color','#fff')
 	.on("dblclick.zoom", null);
 
+	BPMNDiagram.language = "pt-br";
+
 	BPMNDiagram.protocol = null;
 	BPMNDiagram.experiment = {
 		nome: "",

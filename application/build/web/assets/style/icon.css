@@ -3,14 +3,6 @@
 	height: 36px;
 }
 
-.collapsibleList{
-    font-family: Tahoma;
-    font-size: 14px;
-}
-
-.collapsibleList li{
-    
-}
 
 .list-array{
     font-weight: bold;
@@ -97,7 +89,7 @@
     right: 15px;
     line-height: 25px; vertical-align: middle;
     text-align: center;
-    /*border-radius: 50%;*/ 
+    
     cursor: pointer;
     font-family: sans-serif;
     width: 25px; height: 25px;
@@ -110,9 +102,9 @@
     border-bottom: 1px solid #ccc; 
 }
 
-.box-item:last-child{
+/*.box-item:last-child{
     border-bottom: 0;
-}
+}*/
 
 
 /*
