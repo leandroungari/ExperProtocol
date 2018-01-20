@@ -14,8 +14,8 @@ function loadGUI() {
 
 
         const [element, id] = event.target.className.split("-");
-        $(`.block-${id}`).slideToggle();
-        //console.log(id);
+        
+        
         switch(id){
 
             case "25":
@@ -82,6 +82,10 @@ function loadGUI() {
 
             break;
         }
+
+
+
+        $(`.block-${id}`).slideToggle();
     });
 
     /**
@@ -735,13 +739,6 @@ class Interface {
         $('.painel-lateral .button').trigger('click');
     }
 
-    /*static vincular(id) {
-
-        Interface.id = id;
-        painelVinculação(id)
-        $('.painel-lateral .button').trigger('click');
-
-    }*/
 
     static exibir(id) {
 
@@ -778,7 +775,7 @@ function exibirDescricao(id) {
 
             d3.select('.box-descricao > .content').append('div')
             .style('padding', '15px 25px')
-            .attr('class', `item-${result.id} box-item`)
+            .attr('class', `item-${result.id}`)
 
             //o resultado fica na variavel result
             
@@ -789,13 +786,25 @@ function exibirDescricao(id) {
                 d3.select(`.item-${result.id}`)
                 .append('p')
                 .style('font-size', '14px')
-                .style('padding', '3px 0')
-                .style('margin-left', '35px')
+                .style('padding', '2px 0')
+                .style('margin-left', '25px')
                 .text(`${attribute}: ${value}`)
 
             });
 
+            let str = document.querySelector(`.item-${result.id} > p`).innerHTML;
+            if (str[str.length - 2] == ':') {
 
+                document.querySelector(`.item-${result.id} > p`).innerHTML = str.substring(0, str.length - 2);
+            }
+            else {
+                document.querySelector(`.item-${result.id} > p`).innerHTML = str;
+            }
+
+            d3.select(`.item-${result.id} > p`)
+            .style('font', 'bold 20px DinPro')
+            .style('margin-bottom','5px')
+            .style('text-transform', 'uppercase');
         });
     }
 }
@@ -842,22 +851,26 @@ const formatarTexto = (object) => {
         }
         else if (object.id.includes("questao")) {
             return {
+                "Questão": "",
                 "Questão": object.questao,
             };
         }
         else if (object.id.includes("hipotese")) {
             return {
+                "Hipóteses": "",
                 "Hipótese Nula": object.hipoteseNula,
                 "Hipótese Alternativa": object.hipoteseAlternativa,
             };
         }
         else if (object.id.includes("dependente")) {
             return {
+                "Variável": "",
                 "Variável Dependente": object.var,
             };
         }
         else if (object.id.includes("independente")) {
             return {
+                "Variável": "",
                 "Variável Independente": object.var,
             };
         }
@@ -874,12 +887,17 @@ const formatarTexto = (object) => {
             };
         }
         else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
+
+            let lista = object.arquivos.map((u) => { 
+
+                return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
+            });
             return {
-                "Ferramenta":"",
+                "Artefato":"",
                 "Nome": object.nome,
                 "Descrição": object.descricao,
                 "Tipo": object.tipo,
-
+                "Arquivo(s)": lista.join(", "),
             };
         }
         else if (object.id.includes("cronograma")) {
@@ -902,18 +920,29 @@ const formatarTexto = (object) => {
             };
         }
         else if (object.id.includes("interpretacao")) {
+
+            let lista = object.arquivos.map((u) => { 
+                
+                
+                return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
+            });
+
+
             return {
                 "Interpretação": "",
                 "Resultados": object.resultados,
+                "Arquivo(s)": lista.join(", "),
             };
         }
         else if (object.id.includes("conclusao")) {
             return {
-                "Conclusão": object.conclusao
+                "Conclusão": "",
+                "Observação": object.conclusao
             };
         }
         else if (object.id.includes("metrica")) {
             return {
+                "Métrica": "",
                 "Métrica": object.metrica,
                 "Descrição": object.descricao,
             };
@@ -974,22 +1003,26 @@ const formatarTexto = (object) => {
         }
         else if (object.id.includes("questao")) {
             return {
+                "Question": "",
                 "Question": object.questao,
             };
         }
         else if (object.id.includes("hipotese")) {
             return {
+                "Hypothesys": "",
                 "Null Hypothesys": object.hipoteseNula,
                 "Alternative Hypothesys": object.hipoteseAlternativa,
             };
         }
         else if (object.id.includes("dependente")) {
             return {
+                "Variable": "",
                 "Dependent Variable": object.var,
             };
         }
         else if (object.id.includes("independente")) {
             return {
+                "Variable": "",
                 "Independent Variable": object.var,
             };
         }
@@ -1006,12 +1039,18 @@ const formatarTexto = (object) => {
             };
         }
         else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
+            
+            let lista = object.arquivos.map((u) => { 
+            
+                return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
+            });
+
             return {
-                "Tool":"",
+                "Artifact":"",
                 "Name": object.nome,
                 "Description": object.descricao,
                 "Type": object.tipo,
-
+                "Archive(s)": lista.join(", "),
             };
         }
         else if (object.id.includes("cronograma")) {
@@ -1034,19 +1073,28 @@ const formatarTexto = (object) => {
             };
         }
         else if (object.id.includes("interpretacao")) {
+            
+            let lista = object.arquivos.map((u) => { 
+
+                return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
+            });
+
             return {
                 "Interpretation": "",
                 "Results": object.resultados,
+                "Archive(s)": lista.join(", "),
             };
         }
         else if (object.id.includes("conclusao")) {
             return {
-                "Conclusion": object.conclusao
+                "Conclusion": "",
+                "Observation": object.conclusao
             };
         }
         else if (object.id.includes("metrica")) {
             return {
-                "Métric": object.metrica,
+                "Metric": "",
+                "Metric": object.metrica,
                 "Description": object.descricao,
             };
         }
