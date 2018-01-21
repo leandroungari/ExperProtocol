@@ -23,6 +23,9 @@ public class Protocol {
     @XStreamImplicit
     private ArrayList<Element> elements;
 
+    private int width;
+    private int height;
+    
     public Protocol() {
         
         this.elements = new ArrayList<>();
@@ -31,6 +34,24 @@ public class Protocol {
     public Protocol(ArrayList<Element> elements) {
         this.elements = elements;
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+    
+    
 
     public ArrayList<Element> getElements() {
         return elements;

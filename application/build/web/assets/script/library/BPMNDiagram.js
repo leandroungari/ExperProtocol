@@ -204,6 +204,10 @@ class BPMNDiagram {
 		this.link(transitions);
 		BPMNSettings.diagramSelector = this.selector;
 
+		d3.select(diagram.selector)
+		.attr('width', protocol.width)
+		.attr('height', protocol.height)
+
 	}
 
 	link(array) {
@@ -426,7 +430,8 @@ class BPMNDiagram {
 				let diagram = {
 
 
-
+					width: BPMNDiagram.diagram.width,
+					height: BPMNDiagram.diagram.height,
 					elements: []
 
 				}
