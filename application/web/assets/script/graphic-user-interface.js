@@ -553,7 +553,7 @@ function loadGUI() {
 
         let select;
         Object.entries(language.pt).forEach(([k, v]) => {
-            
+
             select = document.querySelector(k);
             if (select != null) select.innerHTML = v;
         });
@@ -563,10 +563,10 @@ function loadGUI() {
     });
 
      document.querySelector('.radio-en').addEventListener('click', () => {
-        
+
         let select;
         Object.entries(language.en).forEach(([k, v]) => {
-            
+
             select = document.querySelector(k);
             if (select != null) select.innerHTML = v;
         });
@@ -639,7 +639,19 @@ function loadGUI() {
             });
 
             let objeto = get(Interface.id);
-            objeto.atualizar(lista);
+            
+            if (Interface.id == diagram.selector) {
+
+                BPMNDiagram.diagram.Largura = Number.parseInt(lista[0]);
+                BPMNDiagram.diagram.Altura = Number.parseInt(lista[1]);
+
+                d3.select(diagram.selector)
+                .attr('width', BPMNDiagram.diagram.Largura)
+                .attr('height', BPMNDiagram.diagram.Altura);
+            }
+            else {
+                objeto.atualizar(lista);
+            }
 
         }
 
@@ -661,6 +673,10 @@ function loadGUI() {
 
 
 function get(id) {
+
+    if (id == diagram.selector) {
+        return BPMNDiagram.diagram;
+    }
 
     return window.elements.filter((value) => {
         return value.id == "#" + id
@@ -735,6 +751,13 @@ class Interface {
         Interface.id = id;
 
         painelLateral(id);
+
+        $('.painel-lateral .button').trigger('click');
+    }
+
+    static modificarPainel(){
+
+        painelLateral(diagram.selector);
 
         $('.painel-lateral .button').trigger('click');
     }
@@ -922,8 +945,8 @@ const formatarTexto = (object) => {
         else if (object.id.includes("interpretacao")) {
 
             let lista = object.arquivos.map((u) => { 
-                
-                
+
+
                 return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
             });
 
@@ -1039,9 +1062,9 @@ const formatarTexto = (object) => {
             };
         }
         else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
-            
+
             let lista = object.arquivos.map((u) => { 
-            
+
                 return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
             });
 
@@ -1073,7 +1096,7 @@ const formatarTexto = (object) => {
             };
         }
         else if (object.id.includes("interpretacao")) {
-            
+
             let lista = object.arquivos.map((u) => { 
 
                 return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
@@ -1248,6 +1271,18 @@ function menuContexto(x, y, categoria, id) {
             
         }
 
+    } else if (categoria == "panel") {
+
+        d3.select('.context-menu')
+        .append('li')
+        .attr('class', 'modificar-painel')
+        .text((BPMNDiagram.language == 'pt-br' ? 'Modificar painel' : 'Modify panel' ))
+        .on('click', () => {
+
+            Interface.modificarPainel();
+            $('.context-menu').trigger('mouseleave');
+        })
+
     } else {
 
         d3.select('.context-menu')
@@ -1272,11 +1307,24 @@ function painelLateral(id) {
 
     let element = get(id);
 
-    for (let a in element.attributes) {
+    if (id == diagram.selector) {
 
-        painel.append('label').text(textLabel(a));
-        painel.append('input').attr('value', element.attributes[a]);
+        Object.entries(element).forEach( ([k,v]) => {
 
+            painel.append('label').text(textLabel(k));
+            painel.append('input').attr('value', v);
+        });
+
+        Interface.id = id;
+    }
+    else {
+
+        for (let a in element.attributes) {
+
+            painel.append('label').text(textLabel(a));
+            painel.append('input').attr('value', element.attributes[a]);
+
+        }
     }
 
     $('.painel-lateral .button-save').css('display', 'inline');

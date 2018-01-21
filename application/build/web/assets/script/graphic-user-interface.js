@@ -551,10 +551,11 @@ function loadGUI() {
 
      document.querySelector('.radio-pt').addEventListener('click', () => {
 
+        let select;
         Object.entries(language.pt).forEach(([k, v]) => {
 
-            document.querySelector(k).innerHTML = v;
-
+            select = document.querySelector(k);
+            if (select != null) select.innerHTML = v;
         });
 
         BPMNDiagram.language = "pt-br";
@@ -563,9 +564,11 @@ function loadGUI() {
 
      document.querySelector('.radio-en').addEventListener('click', () => {
 
+        let select;
         Object.entries(language.en).forEach(([k, v]) => {
 
-            document.querySelector(k).innerHTML = v;
+            select = document.querySelector(k);
+            if (select != null) select.innerHTML = v;
         });
 
         BPMNDiagram.language = "en-us";
@@ -621,10 +624,7 @@ function loadGUI() {
 
             lista.forEach((a) => {
 
-
-
                 elemento.vinculos.push(a);
-
             });
 
             BPMNDiagram.painelVinculacao = false;
@@ -639,7 +639,19 @@ function loadGUI() {
             });
 
             let objeto = get(Interface.id);
-            objeto.atualizar(lista);
+            
+            if (Interface.id == diagram.selector) {
+
+                BPMNDiagram.diagram.Largura = Number.parseInt(lista[0]);
+                BPMNDiagram.diagram.Altura = Number.parseInt(lista[1]);
+
+                d3.select(diagram.selector)
+                .attr('width', BPMNDiagram.diagram.Largura)
+                .attr('height', BPMNDiagram.diagram.Altura);
+            }
+            else {
+                objeto.atualizar(lista);
+            }
 
         }
 
@@ -661,6 +673,10 @@ function loadGUI() {
 
 
 function get(id) {
+
+    if (id == diagram.selector) {
+        return BPMNDiagram.diagram;
+    }
 
     return window.elements.filter((value) => {
         return value.id == "#" + id
@@ -735,6 +751,13 @@ class Interface {
         Interface.id = id;
 
         painelLateral(id);
+
+        $('.painel-lateral .button').trigger('click');
+    }
+
+    static modificarPainel(){
+
+        painelLateral(diagram.selector);
 
         $('.painel-lateral .button').trigger('click');
     }
@@ -922,8 +945,8 @@ const formatarTexto = (object) => {
         else if (object.id.includes("interpretacao")) {
 
             let lista = object.arquivos.map((u) => { 
-                
-                
+
+
                 return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
             });
 
@@ -1039,9 +1062,9 @@ const formatarTexto = (object) => {
             };
         }
         else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
-            
+
             let lista = object.arquivos.map((u) => { 
-            
+
                 return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
             });
 
@@ -1073,7 +1096,7 @@ const formatarTexto = (object) => {
             };
         }
         else if (object.id.includes("interpretacao")) {
-            
+
             let lista = object.arquivos.map((u) => { 
 
                 return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
@@ -1155,7 +1178,7 @@ function menuContexto(x, y, categoria, id) {
         d3.select('.context-menu')
         .append('li')
         .attr('class', 'modificar')
-        .text('Modificar descrição')
+        .text((BPMNDiagram.language == 'pt-br' ? 'Modificar descrição' : 'Modify description'))
         .on('click', function () {
             Interface.modificar(id);
         });
@@ -1166,7 +1189,7 @@ function menuContexto(x, y, categoria, id) {
             d3.select('.context-menu')
             .append('li')
             .attr('class', 'remover')
-            .text('Remover')
+            .text((BPMNDiagram.language == 'pt-br' ? 'Remover' : 'Remove' ))
             .on('click', function () {
 
                 Interface.remover(id);
@@ -1190,14 +1213,14 @@ function menuContexto(x, y, categoria, id) {
             d3.select('.context-menu')
             .append('li')
             .attr('class', 'experimento')
-            .text('Experimento')
+            .text((BPMNDiagram.language == 'pt-br' ? 'Experimento' : 'Experiment'))
             .attr('class', 'menu-experimento')
             .append('ul');
 
             d3.select('.menu-experimento ul')
             .append('li')
             .attr('class', 'li-definicao')
-            .text('Definição')
+            .text((BPMNDiagram.language == 'pt-br' ? 'Definição' : 'Definition'))
             //.on('click', show)
 
             $('.li-definicao').click(show);
@@ -1205,7 +1228,7 @@ function menuContexto(x, y, categoria, id) {
             d3.select('.menu-experimento ul')
             .append('li')
             .attr('class', 'li-planejamento')
-            .text('Planejamento')
+            .text((BPMNDiagram.language == 'pt-br' ? 'Planejamento' : 'Planning'))
             //.on('click', show)
 
             $('.li-planejamento').click(show);
@@ -1213,7 +1236,7 @@ function menuContexto(x, y, categoria, id) {
             d3.select('.menu-experimento ul')
             .append('li')
             .attr('class', 'li-execucao')
-            .text('Execução')
+            .text((BPMNDiagram.language == 'pt-br' ? 'Execução' : 'Execution'))
             //.on('click', show)
             //
             $('.li-execucao').click(show);
@@ -1221,7 +1244,7 @@ function menuContexto(x, y, categoria, id) {
             d3.select('.menu-experimento ul')
             .append('li')
             .attr('class', 'li-analise')
-            .text('Análise e Interpretação')
+            .text((BPMNDiagram.language == 'pt-br' ? 'Análise e Interpretação': 'Analysis and Interpretation'))
             //.on('click', show)
 
             $('.li-analise').click(show);
@@ -1229,7 +1252,7 @@ function menuContexto(x, y, categoria, id) {
             d3.select('.menu-experimento ul')
             .append('li')
             .attr('class', 'li-apresentacao')
-            .text('Apresentação e Empacotamento')
+            .text((BPMNDiagram.language == 'pt-br' ? 'Apresentação e Empacotamento' : 'Presentation and Packaging'))
             //.on('click', show)
 
             $('.li-apresentacao').click(show);
@@ -1239,7 +1262,7 @@ function menuContexto(x, y, categoria, id) {
             d3.select('.context-menu')
             .append('li')
             .attr('class', 'exibir')
-            .text('Exibir detalhes');
+            .text((BPMNDiagram.language == 'pt-br' ? 'Exibir detalhes' : 'Show details'));
 
             $('.exibir').click(() => {
 
@@ -1248,12 +1271,24 @@ function menuContexto(x, y, categoria, id) {
             
         }
 
+    } else if (categoria == "panel") {
+
+        d3.select('.context-menu')
+        .append('li')
+        .attr('class', 'modificar-painel')
+        .text((BPMNDiagram.language == 'pt-br' ? 'Modificar painel' : 'Modify panel' ))
+        .on('click', () => {
+
+            Interface.modificarPainel();
+            $('.context-menu').trigger('mouseleave');
+        })
+
     } else {
 
         d3.select('.context-menu')
         .append('li')
         .attr('class', 'remover-transicao')
-        .text('Remover')
+        .text((BPMNDiagram.language == 'pt-br' ? 'Remover' : 'Remove' ))
         .on('click', () => {
 
             Interface.removerTransicao(id);
@@ -1272,12 +1307,37 @@ function painelLateral(id) {
 
     let element = get(id);
 
-    for (let a in element.attributes) {
+    if (id == diagram.selector) {
 
-        painel.append('label').text(a);
-        painel.append('input').attr('value', element.attributes[a]);
+        Object.entries(element).forEach( ([k,v]) => {
 
+            painel.append('label').text(textLabel(k));
+            painel.append('input').attr('value', v);
+        });
+
+        Interface.id = id;
+    }
+    else {
+
+        for (let a in element.attributes) {
+
+            painel.append('label').text(textLabel(a));
+            painel.append('input').attr('value', element.attributes[a]);
+
+        }
     }
 
     $('.painel-lateral .button-save').css('display', 'inline');
 }
+
+let labels = {
+
+    "Largura": "Width",
+    "Altura": "Height",
+    "Descrição": "Description"
+}
+
+const textLabel = (text) => {
+
+    return (BPMNDiagram.language == 'pt-br' ? text : labels[text]);
+};

@@ -18,7 +18,13 @@ window.onload = function () {
 
 	BPMNDiagram.language = "pt-br";
 
+	BPMNDiagram.diagram = {
+		Largura: window.innerWidth,
+		Altura: window.innerHeight
+	};
+
 	BPMNDiagram.protocol = null;
+
 	BPMNDiagram.experiment = {
 		nome: "",
 		descricao: "",

@@ -4,7 +4,6 @@ window.onload = function () {
 
 
 	let selector = ".bpmn-diagram";
-
 	diagram = new BPMNDiagram(selector);
 
 
@@ -13,13 +12,19 @@ window.onload = function () {
 	BPMNSettings.diagramSelector = selector;
 
 
-	d3.select("svg")
+	d3.select(selector)
 	.style('background-color','#fff')
 	.on("dblclick.zoom", null);
 
 	BPMNDiagram.language = "pt-br";
 
+	BPMNDiagram.diagram = {
+		Largura: window.innerWidth,
+		Altura: window.innerHeight
+	};
+
 	BPMNDiagram.protocol = null;
+
 	BPMNDiagram.experiment = {
 		nome: "",
 		descricao: "",

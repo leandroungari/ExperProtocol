@@ -35,50 +35,29 @@ class BPMNDiagram {
 		function zoomed() {
 			svg.attr("transform", d3.event.transform);
 			console.log(d3.event.transform + " ");
-		}
-		*/
+		}*/
+		
 
 		
 
 		window.addEventListener( 'mousewheel', (event) => {
 
-			let transform = document.querySelector(diagram.selector).transform.baseVal[0];
-			let scale;
-
-			let translate = [
-
-			];
-
-
-			//console.log(transform);
-			if (transform == null) {
-				scale = 1;
-				translate.push(0);
-				translate.push(0);
-			}
-			else {
-				translate.push(transform.matrix.e);
-				translate.push(transform.matrix.f);
-				scale = transform.matrix.a;
-			}
-
-			console.log(transform);
 			
+			let transform = BPMNDiagram.getTransform(this.selector);
 
+			
 			if (event.deltaY == -53) {
-				scale -= 0.05;
+				if (transform.scale > 0.2) transform.scale -= 0.05;
 			}
 			else {
-				scale += 0.05;
+				if (transform.scale < 2) transform.scale += 0.05;
 			}
-
 			
 			d3.select(this.selector)
-			.attr('transform', `scale(${scale}) 
-								translate(${translate[0]}, ${translate[1]})`
-			);
+			.attr('transform', `scale(${transform.scale}) translate(${transform.translate[0]}, ${transform.translate[1]})`);
+			
 
-			console.log(document.querySelector(diagram.selector).transform.baseVal[0].matrix);
+			
 		});
 
 		
@@ -100,17 +79,18 @@ class BPMNDiagram {
 
 				if (lista.findIndex((e) => { return this.newElement.icon == e; }) != -1) return;
 
-				let offsetX, offsetY;
+				let viewport = [window.innerWidth/2, window.innerHeight/2];
 
-				if (document.querySelector(this.selector).transform.baseVal[0] != null) {
-					offsetX = document.querySelector(this.selector).transform.baseVal[0].matrix.e;
-					offsetY = document.querySelector(this.selector).transform.baseVal[0].matrix.f;
-				}
-				else {
-					offsetX = offsetY = 0;
-				}
 
-				let element = this.createElement(event.x - offsetX, event.y - offsetY, this.numElements++);
+				let transform = BPMNDiagram.getTransform(this.selector);
+
+				//console.log(transform.translate);
+				//let element = this.createElement(event.x - offsetX, event.y - offsetY, this.numElements++);
+				let element = this.createElement((event.x - transform.translate[0]) - ((event.x - viewport[0] - transform.translate[0]*transform.scale)/transform.scale) * (transform.scale - 1), 
+												 (event.y - transform.translate[1]) - ((event.y - viewport[1] - transform.translate[1]*transform.scale)/transform.scale) * (transform.scale - 1), 
+					this.numElements++
+					);
+
 				element.container = this.selector;
 				window.elements.push(element);
 
@@ -120,6 +100,91 @@ class BPMNDiagram {
 
 		});
 
+	}
+
+	/*static scalePanel(){
+
+		let transform = BPMNDiagram.getTransform(diagram.selector);
+		
+		let box = [
+		Number.parseInt(document.querySelector(diagram.selector).getAttribute('width')), 
+		Number.parseInt(document.querySelector(diagram.selector).getAttribute('height'))
+		];
+
+		let screen = [window.innerWidth, window.innerHeight];
+
+		let center = [screen[0]/2, screen[1]/2]; 
+		
+		let diff = [];
+
+		//left
+		diff[0] = ((box[0]/2)*transform.scale - center[0]);
+
+		//right
+		diff[1] = (center[0] + (box[0]/2)*transform.scale - screen[0]);
+
+		//top
+		diff[2] =((box[1]/2)*transform.scale - center[1]);
+
+		//bottom
+		diff[3] = (center[1] + (box[1]/2)*transform.scale) - screen[1];
+
+		let result = diff.filter(e => e < 0).sort((a,b) => { 
+			if (a < b) return -1;
+			else if (a > b) return 1;
+			return 0;  
+		});
+
+		console.log(diff)
+
+		//não precisa sofrer reescala
+		if (result.length == 0) return;
+
+		let valor = -result[0];
+		let distancia = valor/transform.scale;
+
+		console.log(box[0] + "---" + distancia)
+
+		d3.select(diagram.selector)
+		.attr('width', box[0] + 2*distancia)
+		.attr('height', box[1] + 2*distancia)
+		.attr('transform', `scale(${transform.scale}) translate(${transform.translate[0] - distancia}, ${transform.translate[1] - distancia})`)
+
+	}*/
+
+	static getTransform(selector){
+		
+		let result = {}, transform;
+
+		let translateStr = document.querySelector(selector).getAttribute('transform');
+
+		if (translateStr == null) transform = ["","",""];
+		else transform = translateStr.split(' ');
+
+
+		if (transform[0].includes("scale") ){
+			
+			let scale = transform[0];
+			result.scale = Number.parseFloat(scale.substring(6, scale.length - 1));
+			
+		}
+		else {
+			
+			result.scale = 1;
+		}
+
+
+		if (transform[1].includes("translate")) {
+
+			let translate = transform[1] + (transform[2] != null ? transform[2] : "");
+			result.translate = translate.substring(10, translate.length - 1).split(",").map(u => Number.parseInt(u));
+		}
+		else {
+
+			result.translate = [0, 0];
+		}
+
+		return result;
 	}
 
 	import(json) {
@@ -714,7 +779,7 @@ class BPMNDiagram {
 				y: 0
 			};
 
-		
+
 			
 		}
 
@@ -744,11 +809,6 @@ class BPMNDiagram {
 			ponto = BPMNDiagram.posicionarContainer(alvo, tc);
 			pontoOposto = BPMNDiagram.posicionarContainer(tc, alvo);
 
-			//let points = d3.select('#' + alvo.transicoesOrigem[x]).attr('points').split(" ");
-			console.log(alvo)
-			console.log(tc)
-			//console.log(ponto)
-			//console.log(pontoOposto)
 			
 			d3.select('#' + alvo.transicoesOrigem[x])
 			.attr('points', `${alvo.x + alvo.points[t.pontoOrigem].x + ponto.x},${alvo.y + alvo.points[t.pontoOrigem].y + ponto.y} 
@@ -814,7 +874,7 @@ class BPMNDiagram {
 			})
 			.on('end', function () {
 
-				d3.select(this).style('cursor', 'normal');
+				d3.select(this).style('cursor', 'auto');
 
 			})
 			);
@@ -928,22 +988,38 @@ class BPMNDiagram {
 		})
 
 
-		let x, y;
+		d3.select(diagram.selector)
+		.on('contextmenu', function() {
+
+
+			d3.event.preventDefault();
+			d3.event.stopPropagation();
+			window.menuContexto(d3.event.x, d3.event.y, "panel", d3.select(this).attr('class'));
+			BPMNDiagram.refreshListener();
+
+		})
+
+
+		let x, y, scale;
 		d3.select(diagram.selector)
 		.call(d3.drag()
 			.on('start', function () {
 				x = d3.event.x; y = d3.event.y;
 
-				let transform = document.querySelector(diagram.selector).transform.baseVal[0];
-				if (transform != null) {
+				let transform = BPMNDiagram.getTransform(diagram.selector);
+				
+				scale = transform.scale;
+				x -= transform.translate[0];
+				y -= transform.translate[1];
 
-					x -= transform.matrix.e;
-					y -= transform.matrix.f;
-				}
+				$(diagram.selector).css('cursor', 'move');
+				
 			})
 			.on('drag', function () {
 
-				d3.select(this).attr('transform', `translate(${d3.event.x - x},${d3.event.y - y})`);
+
+
+				d3.select(this).attr('transform', `scale(${scale}) translate(${d3.event.x - x},${d3.event.y - y})`);
 
 				window.elements.filter((e) => { return e.transicoesOrigem != null && e.transicoesOrigem.length > 0; }).forEach((e) => {
 
@@ -954,6 +1030,8 @@ class BPMNDiagram {
 
 			})
 			.on('end', function () {
+
+				$(diagram.selector).css('cursor', 'auto');
 
 				let offset = [
 				d3.event.x - x,
@@ -966,7 +1044,7 @@ class BPMNDiagram {
 				if (offset[0] > 0 || offset[0] + width < window.innerWidth) {
 					d3.select(this).attr('width', width + Math.abs(offset[0]));
 					if (offset[0] > 0) {
-						d3.select(this).attr('transform', `translate(0,${offset[1]})`);
+						d3.select(this).attr('transform', `scale(${scale}) translate(0,${offset[1]})`);
 						offset[0] = 0;
 					}
 
@@ -975,7 +1053,7 @@ class BPMNDiagram {
 				if (offset[1] > 0 || offset[1] + height < window.innerHeight) {
 					d3.select(this).attr('height', height + Math.abs(offset[1]));
 					if (offset[1] > 0) {
-						d3.select(this).attr('transform', `translate(${offset[0]}, 0)`);
+						d3.select(this).attr('transform', `scale(${scale}) translate(${offset[0]}, 0)`);
 						offset[1] = 0;
 					}
 				}
@@ -995,21 +1073,21 @@ class BPMNDiagram {
 					d3.select(this).attr('transform', `translate(${off[0] + (offset[0] > 0 ? offset[0] : 0)},${off[1] + (offset[1] > 0 ? offset[1] : 0)})`);
 
 					let target = get(d3.select(this).attr('id'));
-						//console.log(target)
-						if (offset[0] > 0) {
-							target.x += offset[0];
-						}
 
-						if (offset[1] > 0) {
-							target.y += offset[1];
-						}
-						
+					if (offset[0] > 0) {
+						target.x += offset[0];
+					}
 
-						BPMNDiagram.corrigirTransições(target);
-					});
+					if (offset[1] > 0) {
+						target.y += offset[1];
+					}
+
+
+					BPMNDiagram.corrigirTransições(target);
+				});
 
 				
-				})
+			})
 			);
 	}
 

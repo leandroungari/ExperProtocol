@@ -52,11 +52,11 @@ class BPMNDiagram {
 			else {
 				if (transform.scale < 2) transform.scale += 0.05;
 			}
-
-
 			
 			d3.select(this.selector)
 			.attr('transform', `scale(${transform.scale}) translate(${transform.translate[0]}, ${transform.translate[1]})`);
+			
+
 			
 		});
 
@@ -88,8 +88,8 @@ class BPMNDiagram {
 				//let element = this.createElement(event.x - offsetX, event.y - offsetY, this.numElements++);
 				let element = this.createElement((event.x - transform.translate[0]) - ((event.x - viewport[0] - transform.translate[0]*transform.scale)/transform.scale) * (transform.scale - 1), 
 												 (event.y - transform.translate[1]) - ((event.y - viewport[1] - transform.translate[1]*transform.scale)/transform.scale) * (transform.scale - 1), 
-												 this.numElements++
-				);
+					this.numElements++
+					);
 
 				element.container = this.selector;
 				window.elements.push(element);
@@ -101,6 +101,56 @@ class BPMNDiagram {
 		});
 
 	}
+
+	/*static scalePanel(){
+
+		let transform = BPMNDiagram.getTransform(diagram.selector);
+		
+		let box = [
+		Number.parseInt(document.querySelector(diagram.selector).getAttribute('width')), 
+		Number.parseInt(document.querySelector(diagram.selector).getAttribute('height'))
+		];
+
+		let screen = [window.innerWidth, window.innerHeight];
+
+		let center = [screen[0]/2, screen[1]/2]; 
+		
+		let diff = [];
+
+		//left
+		diff[0] = ((box[0]/2)*transform.scale - center[0]);
+
+		//right
+		diff[1] = (center[0] + (box[0]/2)*transform.scale - screen[0]);
+
+		//top
+		diff[2] =((box[1]/2)*transform.scale - center[1]);
+
+		//bottom
+		diff[3] = (center[1] + (box[1]/2)*transform.scale) - screen[1];
+
+		let result = diff.filter(e => e < 0).sort((a,b) => { 
+			if (a < b) return -1;
+			else if (a > b) return 1;
+			return 0;  
+		});
+
+		console.log(diff)
+
+		//não precisa sofrer reescala
+		if (result.length == 0) return;
+
+		let valor = -result[0];
+		let distancia = valor/transform.scale;
+
+		console.log(box[0] + "---" + distancia)
+
+		d3.select(diagram.selector)
+		.attr('width', box[0] + 2*distancia)
+		.attr('height', box[1] + 2*distancia)
+		.attr('transform', `scale(${transform.scale}) translate(${transform.translate[0] - distancia}, ${transform.translate[1] - distancia})`)
+
+	}*/
 
 	static getTransform(selector){
 		
@@ -126,7 +176,7 @@ class BPMNDiagram {
 
 		if (transform[1].includes("translate")) {
 
-			let translate = transform[1] + transform[2];
+			let translate = transform[1] + (transform[2] != null ? transform[2] : "");
 			result.translate = translate.substring(10, translate.length - 1).split(",").map(u => Number.parseInt(u));
 		}
 		else {
@@ -935,6 +985,18 @@ class BPMNDiagram {
 
 			window.menuContexto(d3.event.x, d3.event.y, "transition", d3.select(this).attr('id'));
 			BPMNDiagram.refreshListener();
+		})
+
+
+		d3.select(diagram.selector)
+		.on('contextmenu', function() {
+
+
+			d3.event.preventDefault();
+			d3.event.stopPropagation();
+			window.menuContexto(d3.event.x, d3.event.y, "panel", d3.select(this).attr('class'));
+			BPMNDiagram.refreshListener();
+
 		})
 
 
