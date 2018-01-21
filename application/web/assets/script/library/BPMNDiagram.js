@@ -35,8 +35,8 @@ class BPMNDiagram {
 		function zoomed() {
 			svg.attr("transform", d3.event.transform);
 			console.log(d3.event.transform + " ");
-		}
-		*/
+		}*/
+		
 
 		
 
@@ -45,17 +45,19 @@ class BPMNDiagram {
 			
 			let transform = BPMNDiagram.getTransform(this.selector);
 
-			console.log(transform);
+			
 			if (event.deltaY == -53) {
 				if (transform.scale > 0.2) transform.scale -= 0.05;
 			}
 			else {
 				if (transform.scale < 2) transform.scale += 0.05;
 			}
+
+
 			
 			d3.select(this.selector)
 			.attr('transform', `scale(${transform.scale}) translate(${transform.translate[0]}, ${transform.translate[1]})`);
-			console.log(document.querySelector(diagram.selector).transform.baseVal[0].matrix);
+			
 		});
 
 		
@@ -77,17 +79,18 @@ class BPMNDiagram {
 
 				if (lista.findIndex((e) => { return this.newElement.icon == e; }) != -1) return;
 
-				let offsetX, offsetY;
+				let viewport = [window.innerWidth/2, window.innerHeight/2];
 
-				if (document.querySelector(this.selector).transform.baseVal[0] != null) {
-					offsetX = document.querySelector(this.selector).transform.baseVal[0].matrix.e;
-					offsetY = document.querySelector(this.selector).transform.baseVal[0].matrix.f;
-				}
-				else {
-					offsetX = offsetY = 0;
-				}
 
-				let element = this.createElement(event.x - offsetX, event.y - offsetY, this.numElements++);
+				let transform = BPMNDiagram.getTransform(this.selector);
+
+				console.log(transform.translate);
+				//let element = this.createElement(event.x - offsetX, event.y - offsetY, this.numElements++);
+				let element = this.createElement((event.x - transform.translate[0]) - ((event.x - viewport[0] - transform.translate[0]*transform.scale)/transform.scale) * (transform.scale - 1), 
+												 (event.y - transform.translate[1]) - ((event.y - viewport[1] - transform.translate[1]*transform.scale)/transform.scale) * (transform.scale - 1), 
+												 this.numElements++
+				);
+
 				element.container = this.selector;
 				window.elements.push(element);
 
@@ -757,8 +760,8 @@ class BPMNDiagram {
 			pontoOposto = BPMNDiagram.posicionarContainer(tc, alvo);
 
 			//let points = d3.select('#' + alvo.transicoesOrigem[x]).attr('points').split(" ");
-			console.log(alvo)
-			console.log(tc)
+			//console.log(alvo)
+			//console.log(tc)
 			//console.log(ponto)
 			//console.log(pontoOposto)
 			
