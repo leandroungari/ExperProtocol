@@ -759,11 +759,6 @@ class BPMNDiagram {
 			ponto = BPMNDiagram.posicionarContainer(alvo, tc);
 			pontoOposto = BPMNDiagram.posicionarContainer(tc, alvo);
 
-			//let points = d3.select('#' + alvo.transicoesOrigem[x]).attr('points').split(" ");
-			//console.log(alvo)
-			//console.log(tc)
-			//console.log(ponto)
-			//console.log(pontoOposto)
 			
 			d3.select('#' + alvo.transicoesOrigem[x])
 			.attr('points', `${alvo.x + alvo.points[t.pontoOrigem].x + ponto.x},${alvo.y + alvo.points[t.pontoOrigem].y + ponto.y} 

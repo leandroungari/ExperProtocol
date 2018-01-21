@@ -13,8 +13,6 @@ class BPMNLane {
 		this.id = `${pool}lane${id}`;
 		this.container = pool;
 
-
-
 		this.width = ( get(this.container.substring(1)) == null ? 570 : get(this.container.substring(1)).width - 30);
 		this.height = 200;
 
@@ -177,7 +175,7 @@ class BPMNPool extends BPMNSwimlane {
 
 	addLaneBelow() {
 
-		console.log(this.width);
+		
 		let distancia = 0;
 		//console.log(this.width + "");
 		for (let x in this.lanes) {
@@ -239,8 +237,8 @@ class BPMNPool extends BPMNSwimlane {
 	}
 
     insert(id) {
-    	console.log(this.width);
-    	//console.log(this.width + "");
+    	
+    	
 		let distancia = 0;
 
 		for (let x in this.lanes) {
