@@ -86,10 +86,12 @@ class BPMNDiagram {
 
 				//console.log(transform.translate);
 				//let element = this.createElement(event.x - offsetX, event.y - offsetY, this.numElements++);
-				let element = this.createElement((event.x - transform.translate[0]) - ((event.x - viewport[0] - transform.translate[0]*transform.scale)/transform.scale) * (transform.scale - 1), 
-												 (event.y - transform.translate[1]) - ((event.y - viewport[1] - transform.translate[1]*transform.scale)/transform.scale) * (transform.scale - 1), 
+				let element = this.createElement((event.x - transform.translate[0]) - ((event.x - viewport[0])/transform.scale) * (transform.scale - 1), 
+												 (event.y - transform.translate[1]) - ((event.y - viewport[1])/transform.scale) * (transform.scale - 1), 
 					this.numElements++
 					);
+
+				
 
 				element.container = this.selector;
 				window.elements.push(element);
@@ -428,7 +430,6 @@ class BPMNDiagram {
 			export() {
 
 				let diagram = {
-
 
 					width: BPMNDiagram.diagram.width,
 					height: BPMNDiagram.diagram.height,
@@ -1038,7 +1039,7 @@ class BPMNDiagram {
 
 				$(diagram.selector).css('cursor', 'auto');
 
-				let offset = [
+				/*let offset = [
 				d3.event.x - x,
 				d3.event.y - y
 				];
@@ -1089,7 +1090,7 @@ class BPMNDiagram {
 
 
 					BPMNDiagram.corrigirTransições(target);
-				});
+				});*/
 
 				
 			})

@@ -5,7 +5,9 @@
         <group>
             <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/file/LabPackage.java</file>
             <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/servlet/comprimirPacote.java</file>
+            <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/bpmn/factory/json/Protocol.java</file>
             <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/experiment/Experimentador.java</file>
+            <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/experiment/factory/ExperimentFactory.java</file>
             <file>file:/home/leandroungari/Documents/ExperProtocol/application/src/java/file/Arquivo.java</file>
         </group>
     </open-files>
