@@ -624,10 +624,7 @@ function loadGUI() {
 
             lista.forEach((a) => {
 
-
-
                 elemento.vinculos.push(a);
-
             });
 
             BPMNDiagram.painelVinculacao = false;
