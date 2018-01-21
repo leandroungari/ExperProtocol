@@ -84,7 +84,7 @@ class BPMNDiagram {
 
 				let transform = BPMNDiagram.getTransform(this.selector);
 
-				console.log(transform.translate);
+				//console.log(transform.translate);
 				//let element = this.createElement(event.x - offsetX, event.y - offsetY, this.numElements++);
 				let element = this.createElement((event.x - transform.translate[0]) - ((event.x - viewport[0] - transform.translate[0]*transform.scale)/transform.scale) * (transform.scale - 1), 
 												 (event.y - transform.translate[1]) - ((event.y - viewport[1] - transform.translate[1]*transform.scale)/transform.scale) * (transform.scale - 1), 

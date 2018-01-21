@@ -13,7 +13,9 @@ class BPMNLane {
 		this.id = `${pool}lane${id}`;
 		this.container = pool;
 
-		this.width = 570;
+
+
+		this.width = ( get(this.container.substring(1)) == null ? 570 : get(this.container.substring(1)).width - 30);
 		this.height = 200;
 
 		this.attributes = {
@@ -97,7 +99,7 @@ class BPMNPool extends BPMNSwimlane {
 	}
 
 	addLaneAbove() {
-		console.log(this.width + "");
+		console.log(this.width);
 		let id = `${this.id}lane${this.numLanes}`.substring(1);
 
 		d3.select(`${this.id} .content-swim`)
@@ -175,6 +177,7 @@ class BPMNPool extends BPMNSwimlane {
 
 	addLaneBelow() {
 
+		console.log(this.width);
 		let distancia = 0;
 		//console.log(this.width + "");
 		for (let x in this.lanes) {
@@ -236,7 +239,8 @@ class BPMNPool extends BPMNSwimlane {
 	}
 
     insert(id) {
-    	console.log(this.width + "");
+    	console.log(this.width);
+    	//console.log(this.width + "");
 		let distancia = 0;
 
 		for (let x in this.lanes) {
