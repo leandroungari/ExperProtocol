@@ -13,16 +13,17 @@ class BPMNLane {
 		this.id = `${pool}lane${id}`;
 		this.container = pool;
 
-		this.width = 570;
+		this.width = ( get(this.container.substring(1)) == null ? 570 : get(this.container.substring(1)).width - 30);
 		this.height = 200;
 
 		this.attributes = {
-			Descrição: ''
+			Descrição: '',
+			Altura: 200,
 		}
 
 		this.x = x;
 		this.y = y;
-        this.name = "lane";
+		this.name = "lane";
 
 	}
 
@@ -38,6 +39,38 @@ class BPMNLane {
 
 		this.attributes.Descrição = lista[0];
 		$('.value-lane', this.id).text(this.attributes.Descrição);
+
+		this.attributes.Altura = Number.parseInt(lista[1]);
+		this.height = this.attributes.Altura;
+
+		
+		d3.select(this.id).select('rect').attr('height', this.height);
+
+		let alturaPiscina = get(this.container.substring(1)).lanes.reduce((t, e) => t + e.height, 0);
+		d3.select(this.container).select('.c1').attr('height', alturaPiscina);
+		d3.select(this.container).select('.c2').attr('height', alturaPiscina);
+
+		d3.select(this.container).select('.title-swim')
+		.attr('width', this.height)		
+		.attr('transform', `rotate(-90) translate(${-alturaPiscina + 5}, 8)`);
+
+		d3.select(this.container).select('.title-swim').select('text')
+		.attr('x', alturaPiscina/2 - 5);
+
+		d3.select(`${this.id}`).select('g')
+		.attr('width', this.height)
+		.attr('transform', `rotate(-90) translate(${-this.height + 5}, 8)`);
+
+		d3.select(`${this.id}`).select('g').select('text')
+		.attr('x', this.height/2 - 5);
+
+		let swim = get(this.container.substring(1));
+
+		swim.height = alturaPiscina;
+		swim.dy = alturaPiscina/2;
+
+		//atualizando o posicionamento das raias
+		swim.update();
 	}
 
 	extract() {
@@ -47,11 +80,11 @@ class BPMNLane {
 			type: this.constructor.name,
 			x: this.x,
 			y: this.y,
-            name: this.name,
+			name: this.name,
 			height: this.height,
 			description: this.attributes.Descrição,
 			elements: [],
-            vinculos: this.vinculos
+			vinculos: this.vinculos
 		}
 	}
 
@@ -62,17 +95,17 @@ class BPMNPool extends BPMNSwimlane {
 	constructor(x, y, name, count, hasLane = true, currentId = true) {
 
 		let text = `<g class='title-swim' width="200" transform='rotate(-90) translate(-195,8)'>
-						<text x="95" y="10" class='value-pool' style='font-family:Tahoma; font-size: 12px; text-anchor:middle;' >Exemplo</text>
-					</g>`;
+		<text x="95" y="10" class='value-pool' style='font-family:Tahoma; font-size: 12px; text-anchor:middle;' >Exemplo</text>
+		</g>`;
 
 
 		if (currentId === true) super(`pool${count}`, `<g>${name.content}${text}<g class='content-swim'></g></g>`);
-        else super(currentId, `<g>${name.content}${text}<g class='content-swim'></g></g>`);
-             
-        this.width = 600;
+		else super(currentId, `<g>${name.content}${text}<g class='content-swim'></g></g>`);
+
+		this.width = 600;
 		this.height = 0;
 
-        this.name = name.icon;
+		this.name = name.icon;
 		this.numLanes = 0;
 		this.attributes = {
 			Descrição: "Exemplo",
@@ -87,46 +120,73 @@ class BPMNPool extends BPMNSwimlane {
 		this.dy = this.height / 2;        
 
 		this.element
-			.attr('class', 'item')
-			.attr('transform', `translate(${x - this.dx},${y - this.dy})`);
+		.attr('class', 'item')
+		.attr('transform', `translate(${x - this.dx},${y - this.dy})`);
 
 		this.lanes = [];
 		if (hasLane) this.addLaneBelow();
-                
+
 
 	}
 
+	update() {
+
+		if (this.lanes == null) return; 
+
+
+		let lista = this.lanes.sort((a,b) => { 
+			if (a.y < b.y) return -1;
+			else if (a.y > b.y) return 1;
+			return 0;
+		})
+
+		console.log(lista)
+
+		let posicaoY = 0;
+		lista.forEach((a) => {
+
+			console.log(d3.select(a.id))
+
+			d3.select(a.id)
+			.attr('x', a.x)
+			.attr('y', posicaoY)
+			.attr('transform', `translate(${a.x},${posicaoY})`);
+
+			posicaoY += a.height;
+		});
+	}
+
 	addLaneAbove() {
-		console.log(this.width + "");
+		
 		let id = `${this.id}lane${this.numLanes}`.substring(1);
 
 		d3.select(`${this.id} .content-swim`)
-			.insert('g', ':first-child')
-			.attr('id', id)
-			.attr('class', 'lane')
-			.attr('transform', `translate(30,0)`);
+		.insert('g', ':first-child')
+		.attr('id', id)
+		.attr('class', 'lane')
+		.attr('transform', `translate(30,0)`);
 
 		d3.select(`#${id}`)
-			.append('rect')
-			.attr('stroke-width', 5)
-			.attr('stroke', '#000')
-			.attr('width', this.width-30)
-			.attr('height', 200)
-			.attr('fill', 'transparent');
+		.append('rect')
+		.attr('stroke-width', 5)
+		.attr('stroke', '#000')
+		.attr('width', this.width-30)
+		.attr('height', 200)
+		.attr('fill', 'transparent');
 
 		d3.select(`#${id}`)
-			.append('g')
-			.attr('width', 200)
-			.attr('transform', 'rotate(-90) translate(-195,8)')
-			.append('text')
-			.attr('x', 95)
-			.attr('y', 10)
-			.attr('class', 'value-lane')
-			.attr('style', 'font-family:Tahoma; font-size: 12px; text-anchor:middle;');
+		.append('g')
+		.attr('width', 200)
+		.attr('transform', 'rotate(-90) translate(-195,8)')
+		.append('text')
+		.attr('x', 95)
+		.attr('y', 10)
+		.attr('class', 'value-lane')
+		.attr('style', 'font-family:Tahoma; font-size: 12px; text-anchor:middle;');
 
 		d3.select(`#${id}`)
-			.append('g')
-			.attr('class', 'content-lane')
+		.append('g')
+		.attr('class', 'content-lane')
 
 		for (let x in this.lanes) {
 
@@ -143,15 +203,15 @@ class BPMNPool extends BPMNSwimlane {
 		let distancia = 0;
 		for (let x in this.lanes) distancia += this.lanes[x].height;
 
-		let select = d3.select(this.id);
+			let select = d3.select(this.id);
 
 		select.selectAll(`.c1, .c2`).attr('height', distancia);
 		select.select('.title-swim')
-			.attr(`transform`, `rotate(-90) translate(${(this.numLanes + 1) * (-200) + 5}, 8)`)
-			.attr(`width`, `${(this.numLanes + 1) * (200) - 10}`);
+		.attr(`transform`, `rotate(-90) translate(${-distancia + 5}, 8)`)
+		.attr(`width`, `${distancia}`);
 
 		let x = parseInt(select.select('.title-swim').select('.value-pool').attr('x'));
-		select.select('.title-swim').select('.value-pool').attr('x', x + 100);
+		select.select('.title-swim').select('.value-pool').attr('x', distancia/2 - 5);
 
 		this.numLanes++;
 
@@ -163,18 +223,21 @@ class BPMNPool extends BPMNSwimlane {
 		this.y -= 200;
 
 		d3.select(this.id)
-			.attr('class', 'item')
-			.attr('transform', `translate(${this.x - this.dx},${this.y - this.dy})`);
+		.attr('class', 'item')
+		.attr('transform', `translate(${this.x - this.dx},${this.y - this.dy})`);
 
 		//reposicionando as transições
 		BPMNDiagram.reposicionarTransicoesPool(this);
 
 		BPMNDiagram.refreshListener();
 
+		this.update();
+
 	}
 
 	addLaneBelow() {
 
+		
 		let distancia = 0;
 		//console.log(this.width + "");
 		for (let x in this.lanes) {
@@ -184,32 +247,32 @@ class BPMNPool extends BPMNSwimlane {
 		let id = `${this.id}lane${this.numLanes}`.substring(1);
 
 		d3.select(`${this.id} .content-swim`)
-			.append('g')
-			.attr('id', id)
-			.attr('class', 'lane')
-			.attr('transform', `translate(30,${(distancia)})`);
+		.append('g')
+		.attr('id', id)
+		.attr('class', 'lane')
+		.attr('transform', `translate(30,${(distancia)})`);
 
 		d3.select(`#${id}`)
-			.append('rect')
-			.attr('stroke-width', 5)
-			.attr('stroke', '#000')
-			.attr('width', this.width-30)
-			.attr('height', 200)
-			.attr('fill', 'transparent');
+		.append('rect')
+		.attr('stroke-width', 5)
+		.attr('stroke', '#000')
+		.attr('width', this.width-30)
+		.attr('height', 200)
+		.attr('fill', 'transparent');
 
 		d3.select(`#${id}`)
-			.append('g')
-			.attr('width', 200)
-			.attr('transform', 'rotate(-90) translate(-195,8)')
-			.append('text')
-			.attr('x', 95)
-			.attr('y', 10)
-			.attr('class', 'value-lane')
-			.attr('style', 'font-family:Tahoma; font-size: 12px; text-anchor:middle;');
+		.append('g')
+		.attr('width', 200)
+		.attr('transform', 'rotate(-90) translate(-195,8)')
+		.append('text')
+		.attr('x', 95)
+		.attr('y', 10)
+		.attr('class', 'value-lane')
+		.attr('style', 'font-family:Tahoma; font-size: 12px; text-anchor:middle;');
 
 		d3.select(`#${id}`)
-			.append('g')
-			.attr('class', 'content-lane')
+		.append('g')
+		.attr('class', 'content-lane')
 
 		let l = new BPMNLane(this.numLanes, this.id, 30, distancia);
 		this.lanes.push(l);
@@ -218,13 +281,16 @@ class BPMNPool extends BPMNSwimlane {
 		let select = d3.select(this.id);
 
 		//modificando a piscina
-		select.selectAll(`.c1, .c2`).attr('height', distancia + 200);
+		//
+		distancia += 200;
+
+		select.selectAll(`.c1, .c2`).attr('height', distancia);
 		select.select('.title-swim')
-			.attr(`transform`, `rotate(-90) translate(${(this.numLanes + 1) * (-200) + 5}, 8)`)
-			.attr(`width`, `${(this.numLanes + 1) * (200) - 10}`);
+		.attr(`transform`, `rotate(-90) translate(${-distancia + 5}, 8)`)
+		.attr(`width`, `${distancia}`);
 
 		let x = parseInt(select.select('.title-swim').select('.value-pool').attr('x'));
-		if (this.numLanes != 0) select.select('.title-swim').select('.value-pool').attr('x', x + 100);
+		if (this.numLanes != 0) select.select('.title-swim').select('.value-pool').attr('x', distancia/2 - 5);
 
 		this.numLanes++;
 
@@ -235,8 +301,9 @@ class BPMNPool extends BPMNSwimlane {
 		BPMNDiagram.refreshListener();
 	}
 
-    insert(id) {
-    	console.log(this.width + "");
+	insert(id) {
+
+
 		let distancia = 0;
 
 		for (let x in this.lanes) {
@@ -244,34 +311,34 @@ class BPMNPool extends BPMNSwimlane {
 		}
 
 		id = id.substring(1);
- 
+
 		d3.select(`${this.id} .content-swim`)
-			.append('g')
-			.attr('id', id)
-			.attr('class', 'lane')
-			.attr('transform', `translate(30,${(distancia)})`);
+		.append('g')
+		.attr('id', id)
+		.attr('class', 'lane')
+		.attr('transform', `translate(30,${(distancia)})`);
 
 		d3.select(`#${id}`)
-			.append('rect')
-			.attr('stroke-width', 5)
-			.attr('stroke', '#000')
-			.attr('width', this.width-30)
-			.attr('height', 200)
-			.attr('fill', 'transparent');
+		.append('rect')
+		.attr('stroke-width', 5)
+		.attr('stroke', '#000')
+		.attr('width', this.width-30)
+		.attr('height', 200)
+		.attr('fill', 'transparent');
 
 		d3.select(`#${id}`)
-			.append('g')
-			.attr('width', 200)
-			.attr('transform', 'rotate(-90) translate(-195,8)')
-			.append('text')
-			.attr('x', 95)
-			.attr('y', 10)
-			.attr('class', 'value-lane')
-			.attr('style', 'font-family:Tahoma; font-size: 12px; text-anchor:middle;');
+		.append('g')
+		.attr('width', 200)
+		.attr('transform', 'rotate(-90) translate(-195,8)')
+		.append('text')
+		.attr('x', 95)
+		.attr('y', 10)
+		.attr('class', 'value-lane')
+		.attr('style', 'font-family:Tahoma; font-size: 12px; text-anchor:middle;');
 
 		d3.select(`#${id}`)
-			.append('g')
-			.attr('class', 'content-lane')
+		.append('g')
+		.attr('class', 'content-lane')
 
 		let l = new BPMNLane(this.numLanes, this.id, 30, distancia);
 		this.lanes.push(l);
@@ -280,25 +347,28 @@ class BPMNPool extends BPMNSwimlane {
 		let select = d3.select(this.id);
 
 		//modificando a piscina
-		select.selectAll(`.c1, .c2`).attr('height', distancia + 200);
+		//
+		distancia += 200;
+
+		select.selectAll(`.c1, .c2`).attr('height', distancia);
 		select.select('.title-swim')
-			.attr(`transform`, `rotate(-90) translate(${(this.numLanes + 1) * (-200) + 5}, 8)`)
-			.attr(`width`, `${(this.numLanes + 1) * (200) - 10}`);
+		.attr(`transform`, `rotate(-90) translate(${-distancia + 5}, 8)`)
+		.attr(`width`, `${distancia}`);
 
 		let x = parseInt(select.select('.title-swim').select('.value-pool').attr('x'));
-		if (this.numLanes != 0) select.select('.title-swim').select('.value-pool').attr('x', x + 100);
+		if (this.numLanes != 0) select.select('.title-swim').select('.value-pool').attr('x', distancia/2 - 5);
 
 		this.numLanes++;
 
 		this.height += 200;
 		this.y += 100;
 		this.dy = this.height / 2;
-    
+
 		this.y -= 100;
 
 		d3.select(this.id)
-			.attr('class', 'item')
-			.attr('transform', `translate(${this.x - this.dx},${this.y - this.dy})`);
+		.attr('class', 'item')
+		.attr('transform', `translate(${this.x - this.dx},${this.y - this.dy})`);
 
 		//reposicionando as transições
 		BPMNDiagram.reposicionarTransicoesPool(this);
@@ -332,19 +402,19 @@ class BPMNPool extends BPMNSwimlane {
 			.attr('width', l);
 		});
 	}
-        
-    extract() {
+
+	extract() {
 
 		return {
 			id: this.id,
 			type: this.constructor.name,
 			x: this.x,
 			y: this.y,
-            name: this.name,
+			name: this.name,
 			width: this.width,
 			description: this.attributes.Descrição,
 			elements: [],
-            vinculos: this.vinculos
+			vinculos: this.vinculos
 		}
 	}
 

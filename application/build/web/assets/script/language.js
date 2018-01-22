@@ -96,6 +96,10 @@ let language = {
         ".block-11 .ferramenta": "Ferramenta",
         ".block-11 .descricao": "Descrição",
 
+        ".planejamento .li-12": "Artefato - Materiais de Realização de Testes",
+        ".block-12 .material": "Material",
+        ".block-12 .descricao": "Descrição",
+
         ".planejamento .li-13": "Artefato - Materiais de Treinamento",
         ".block-13 .treinamento": "Treinamento",
         ".block-13 .descricao": "Descrição",
@@ -205,7 +209,7 @@ let language = {
         ".block-06 .questao": "Question",
 
         ".definicao .li-20": "Metrics",
-        ".block-20 .metrica": "Métric",
+        ".block-20 .metrica": "Metric",
         ".block-20 .descricao": "Description",
         ".block-20 .questao": "Select the respective question:",
 
@@ -237,6 +241,10 @@ let language = {
         ".planejamento .li-11": "Artifact - Computer Tools",
         ".block-11 .ferramenta": "Tool",
         ".block-11 .descricao": "Description",
+
+        ".planejamento .li-12": "Artifact - Testing Materials",
+        ".block-12 .material": "Material",
+        ".block-12 .descricao": "Description",
 
         ".planejamento .li-13": "Artifact - Training Materials",
         ".block-13 .treinamento": "Training",
