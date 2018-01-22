@@ -12,7 +12,7 @@ public class Artefato  extends Element{
     
     private String nome;
     private String descricao;
-    private String tipoArtefato;
+    private String tipo;
     
     @XStreamImplicit(itemFieldName = "arquivos")
     private ArrayList<ArquivoArtefato> arquivos = new ArrayList<>();
@@ -27,7 +27,7 @@ public class Artefato  extends Element{
         super("artefato");
         this.nome = nome;
         this.descricao = descricao;
-        this.tipoArtefato = tipoArtefato;
+        this.tipo = tipoArtefato;
     }
 
     public ArrayList<ArquivoArtefato> getArquivos() {
@@ -63,14 +63,16 @@ public class Artefato  extends Element{
         this.descricao = descricao;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     
 
-    public String getTipoArtefato() {
-        return tipoArtefato;
-    }
-
-    public void setTipoArtefato(String tipoArtefato) {
-        this.tipoArtefato = tipoArtefato;
-    }
+    
     
 }

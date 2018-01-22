@@ -932,6 +932,8 @@ const formatarTexto = (object) => {
             };
         }
         else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
+            
+            if (object.arquivos == null) object.arquivos = [];
 
             let lista = object.arquivos.map((u) => { 
 
@@ -965,6 +967,8 @@ const formatarTexto = (object) => {
             };
         }
         else if (object.id.includes("interpretacao")) {
+
+            if (object.arquivos == null) object.arquivos = [];
 
             let lista = object.arquivos.map((u) => { 
 
@@ -1158,7 +1162,7 @@ var result;
 function getObjectById(object, id) {
 
 
-    if (object.hasOwnProperty("id")) {
+    if (object != null && object.hasOwnProperty("id")) {
 
         if (object["id"] == id) {
 

@@ -187,12 +187,7 @@
 	box-shadow: 0 0 8px #ccc;
 }
 
-.menu-experimento:after {
-	content: '▶';
-	position: absolute;
-	top: 2px;
-	right: 15px;
-}
+
 
 .menu-experimento:hover.menu-experimento ul {
 	display: block;

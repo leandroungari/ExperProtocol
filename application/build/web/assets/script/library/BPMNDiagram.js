@@ -767,11 +767,11 @@ class BPMNDiagram {
 
 		let alvo = get(a._groups[0][0].id);
 
-		if (BPMNDiagram.verificarLimites({
+		/*if (BPMNDiagram.verificarLimites({
 			item: alvo,
 			x: d3.event.x,
 			y: d3.event.y
-		}) == false) return;
+		}) == false) return;*/
 
 			a.attr('transform', `translate(${d3.event.x - alvo.dx},${d3.event.y - alvo.dy})`);
 			alvo.x = d3.event.x;

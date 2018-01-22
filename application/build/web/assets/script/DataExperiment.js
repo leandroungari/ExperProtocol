@@ -60,6 +60,8 @@ class DataExperiment {
         .filter((a) => {return a.id == name("select-artefato").value})
         .forEach((e) => {
 
+            if (e.arquivos == null) e.arquivos = [];
+
             e.arquivos.push({
                 path_arquivo: name("interpretacao-arquivo").files[0]
             });
@@ -248,6 +250,8 @@ class DataExperiment {
         .filter((e) => {return e.id == name("opcao-questao").value})
         .forEach((a) => {
 
+            if (a.metricas == null) a.metricas = [];
+
             a.metricas.push({
                 id: "metrica" + name("id-metrica").value,
                 metrica: name("metrica").value,
@@ -275,6 +279,8 @@ class DataExperiment {
         BPMNDiagram.experiment.interpretacoes
         .filter((e) => { return e.id == name("opcao-interpretacao").value})
         .forEach((a) => {
+
+            if (a.arquivos == null) a.arquivos = [];
 
             a.arquivos.push({
                 path_arquivo: name("interpretacao-arquivo").files[0]
