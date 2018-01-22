@@ -211,6 +211,10 @@ class BPMNDiagram {
 		$(diagram.selector).width(protocol.width);
 		$(diagram.selector).height(protocol.height);
 		
+
+		BPMNDiagram.diagram.Largura = protocol.width;
+		BPMNDiagram.diagram.Altura = protocol.height;
+
 		/*d3.select(diagram.selector)
 		.attr('width', protocol.width)
 		.attr('height', protocol.height)*/
@@ -424,9 +428,20 @@ class BPMNDiagram {
 
 		novoElemento.vinculos = [];
 
-		if (element.string != null) element.string.forEach((a) => {
-			novoElemento.vinculos.push(a);
-		});
+		
+		if (element.string != null) {
+
+			let lista = [];
+			if (!Array.isArray(element.string)) {
+
+				lista.push(element.string);
+				element.string = lista;
+			}
+
+			element.string.forEach((a) => {
+				novoElemento.vinculos.push(a);
+			});
+		}
 
 
 			window.elements.push(novoElemento);
@@ -732,8 +747,8 @@ class BPMNDiagram {
 
 		if (entry.item.container == '.bpmn-diagram') {
 			container = {
-				width: d3.select('svg').attr('width'),
-				height: d3.select('svg').attr('height')
+				width: BPMNDiagram.diagram.Largura,
+				height: BPMNDiagram.diagram.Altura
 			}
 		}
 		else {
