@@ -486,6 +486,12 @@ function loadGUI() {
 
      document.querySelector('.create-package-box .gerar').addEventListener('click', () => {
 
+        if (BPMNDiagram.nomePacote == null) {
+
+            window.alert("Você precisa salvar o pacote de laboratório antes!!");
+            return;
+        }
+
         let data = {
             caminho: document.querySelector("[name='caminho-pasta']").value,
             interpretacoes: BPMNDiagram.interpretacoesArquivos,
