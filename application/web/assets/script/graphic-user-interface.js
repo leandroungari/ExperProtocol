@@ -335,6 +335,7 @@ function loadGUI() {
             data.protocol = struct;
             data.experimento = BPMNDiagram.experiment;
 
+            console.log(data);
 
             ////////////////////
             /// Extração dos arquivos

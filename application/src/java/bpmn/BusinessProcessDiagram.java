@@ -15,6 +15,10 @@ public class BusinessProcessDiagram {
 
     
     private ArrayList<Element> elements;
+    
+    private int width;
+    private int height;
+    
     /*private String name;
     private String version;
     private String author;
@@ -22,8 +26,10 @@ public class BusinessProcessDiagram {
     private Calendar creationDate;
     private Calendar modificationDate;*/
 
-    public BusinessProcessDiagram() {
+    public BusinessProcessDiagram(int width, int height) {
         this.elements = new ArrayList<>();
+        this.width = width;
+        this.height = height;
     }
     
     
@@ -34,6 +40,22 @@ public class BusinessProcessDiagram {
 
     public void setElements(ArrayList<Element> elements) {
         this.elements = elements;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     

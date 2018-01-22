@@ -87,7 +87,7 @@ class BPMNDiagram {
 				//console.log(transform.translate);
 				//let element = this.createElement(event.x - offsetX, event.y - offsetY, this.numElements++);
 				let element = this.createElement((event.x - transform.translate[0]) - ((event.x - viewport[0])/transform.scale) * (transform.scale - 1), 
-												 (event.y - transform.translate[1]) - ((event.y - viewport[1])/transform.scale) * (transform.scale - 1), 
+					(event.y - transform.translate[1]) - ((event.y - viewport[1])/transform.scale) * (transform.scale - 1), 
 					this.numElements++
 					);
 
@@ -195,7 +195,7 @@ class BPMNDiagram {
 		let transitions = [];
 		let protocol = data.protocol;
 
-		//console.log(data);
+		console.log(data);
 
 		if (protocol.element != null) {
 			this.analyse(protocol.element, transitions);
@@ -206,9 +206,16 @@ class BPMNDiagram {
 		this.link(transitions);
 		BPMNSettings.diagramSelector = this.selector;
 
-		d3.select(diagram.selector)
+		console.log(d3.select(diagram.selector))
+
+		$(diagram.selector).width(protocol.width);
+		$(diagram.selector).height(protocol.height);
+		
+		/*d3.select(diagram.selector)
 		.attr('width', protocol.width)
-		.attr('height', protocol.height)
+		.attr('height', protocol.height)*/
+
+
 
 	}
 
@@ -318,7 +325,7 @@ class BPMNDiagram {
 
 		let parent = get(pool.id.substring(1));
 		list.forEach((lane) => {
-			//console.log(lane);
+			console.log(lane);
 			parent.insert(lane.id);
 		});
 	}
@@ -337,9 +344,10 @@ class BPMNDiagram {
 		this.numElements++;
 
 
+
 		//corrigir a criação de lanes
 		if (nome == 'lane-none') {
-
+			console.log(element)
 			//console.log("aqui");
 			return;
 		}
@@ -374,19 +382,152 @@ class BPMNDiagram {
 			case "lane":
 
 			novoElemento = new BPMNPool(xcoor, ycoor, name, 0, false, element.id.substring(1));
-				//console.log(novoElemento.width + "");
-				//console.log(element)
+
+			break;
+
+			case "annotation":
+
+			novoElemento = new BPMNTextAnnotation(xcoor, ycoor, name, 0);
+
+			break;
+
+			case "activity":
+
+			novoElemento = new BPMNActivity(xcoor, ycoor, name, 0);
+
+			break;
+
+			default:
+
+			console.log("erro");
+		}
+
+
+
+
+		let idAntigo = novoElemento.id;
+		novoElemento.id = element.id;
+
+
+		novoElemento.element = d3.select(idAntigo);
+		novoElemento.element.attr('id', novoElemento.id.substring(1));
+		novoElemento.element = d3.select(novoElemento.id.substring(1));
+
+		novoElemento.container = element.container;
+
+		let attributes = [
+		element.description,
+		element.width
+		];
+
+		novoElemento.atualizar(attributes);
+
+		novoElemento.vinculos = [];
+
+		if (element.string != null) element.string.forEach((a) => {
+			novoElemento.vinculos.push(a);
+		});
+
+
+			window.elements.push(novoElemento);
+			BPMNSettings.diagramSelector = this.selector;
+
+		}
+
+		export() {
+
+			console.log(BPMNDiagram.diagram);
+
+			let diagram = {
+
+				width: BPMNDiagram.diagram.Largura,
+				height: BPMNDiagram.diagram.Altura,
+				elements: []
+
+			}
+
+			window.elements.filter((e) => { return e.container == this.selector }).forEach((e) => {
+				let novo = e.extract();
+				diagram.elements.push(novo);
+			});
+
+			diagram.elements.forEach((e) => {
+
+				window.elements
+				.filter((a) => {
+
+					if (a.container == null) return false;
+
+					let c = (a.container.startsWith('#') ? a.container : `#${a.container}`);
+					return c == e.id;
+				})
+				.forEach((el) => {
+
+					let novo = el.extract();
+					e.elements.push(novo);
+
+					window.elements
+					.filter((al) => {
+
+						if (al.container == null) return false;
+
+						let c = (al.container.startsWith('#') ? al.container : `#${al.container}`);
+						return c == novo.id;
+					})
+					.forEach((o) => {
+
+						let novoE = o.extract();
+						novo.elements.push(novoE);
+					});
+				});
+
+
+			}, window.elements);
+
+			return diagram;
+		}
+
+		createElement(xcoor, ycoor, count) {
+
+			let name = this.newElement;
+
+			let novoElemento;
+			switch (name.type) {
+
+				case "start-event":
+				case "intermediate-event":
+				case "end-event":
+
+				novoElemento = new BPMNEvent(xcoor, ycoor, name, count);
+
+				break;
+
+				case "gateway":
+
+				novoElemento = new BPMNGateway(xcoor, ycoor, name, count);
+
+				break;
+
+				case "data":
+
+				novoElemento = new BPMNData(xcoor, ycoor, name, count);
+
+				break;
+
+				case "lane":
+
+				novoElemento = new BPMNPool(xcoor, ycoor, name, count);
 				break;
 
 				case "annotation":
 
-				novoElemento = new BPMNTextAnnotation(xcoor, ycoor, name, 0);
+				novoElemento = new BPMNTextAnnotation(xcoor, ycoor, name, count);
 
 				break;
 
 				case "activity":
 
-				novoElemento = new BPMNActivity(xcoor, ycoor, name, 0);
+				novoElemento = new BPMNActivity(xcoor, ycoor, name, count);
 
 				break;
 
@@ -395,215 +536,83 @@ class BPMNDiagram {
 				console.log("erro");
 			}
 
+			return novoElemento;
+		}
 
+		setIconMouse(element = null) {
 
+			if (element == null) {
 
-			let idAntigo = novoElemento.id;
-			novoElemento.id = element.id;
+				document.querySelector('.mouse-icon').removeEventListener('mouse', function () { });
+				this.icon.style.display = 'none';
+				return;
+			}
 
+			this.newElement = element;
+			this.icon.className = 'mouse-icon bpmn-icon-' + element.icon;
+			this.icon.style.display = 'block';
 
-			novoElemento.element = d3.select(idAntigo);
-			novoElemento.element.attr('id', novoElemento.id.substring(1));
-			novoElemento.element = d3.select(novoElemento.id.substring(1));
+			this.component.addEventListener('mousemove', (event) => {
 
-			novoElemento.container = element.container;
-
-			let attributes = [
-			element.description,
-			element.width
-			];
-
-			novoElemento.atualizar(attributes);
-
-			novoElemento.vinculos = [];
-
-			if (element.string != null) element.string.forEach((a) => {
-				novoElemento.vinculos.push(a);
+				event.stopPropagation();
+				this.icon.style.top = (event.y - 10) + 'px';
+				this.icon.style.left = (event.x + 10) + 'px';
 			});
+		}
 
+		static calcularTransicao(origem, destino) {
 
-				window.elements.push(novoElemento);
-				BPMNSettings.diagramSelector = this.selector;
+			let a = get(origem);
+			let b = get(destino);
 
-			}
+			let transicao = {};
+			transicao.origem = origem;
+			transicao.destino = destino;
 
-			export() {
+			origem = (a.container == '.bpmn-diagram' ? { x: 0, y: 0 } : get(a.container.substring(1)));
+			destino = (b.container == '.bpmn-diagram' ? { x: 0, y: 0 } : get(b.container.substring(1)));
 
-				let diagram = {
+			let distancia = new Array();
+			let l = 0, m = 0;
 
-					width: BPMNDiagram.diagram.width,
-					height: BPMNDiagram.diagram.height,
-					elements: []
+			let po, pd;
 
-				}
+			if ((a.container != '.bpmn-diagram' && b.container != '.bpmn-diagram') &&
+				(a.container.substring(0, a.container.indexOf('lane')) != b.container.substring(0, b.container.indexOf('lane')))) {
 
-				window.elements.filter((e) => { return e.container == this.selector }).forEach((e) => {
-					let novo = e.extract();
-					diagram.elements.push(novo);
-				});
+				po = get(get(a.container.substring(1)).container.substring(1));
+			pd = get(get(b.container.substring(1)).container.substring(1));
 
-				diagram.elements.forEach((e) => {
+			for (let i = 0; i < a.points.length; i++) {
 
-					window.elements
-					.filter((a) => {
+				distancia[i] = new Array();
+				for (let j = 0; j < b.points.length; j++) {
 
-						if (a.container == null) return false;
-
-						let c = (a.container.startsWith('#') ? a.container : `#${a.container}`);
-						return c == e.id;
-					})
-					.forEach((el) => {
-
-						let novo = el.extract();
-						e.elements.push(novo);
-
-						window.elements
-						.filter((al) => {
-
-							if (al.container == null) return false;
-
-							let c = (al.container.startsWith('#') ? al.container : `#${al.container}`);
-							return c == novo.id;
-						})
-						.forEach((o) => {
-
-							let novoE = o.extract();
-							novo.elements.push(novoE);
-						});
-					});
-
-
-				}, window.elements);
-
-				return diagram;
-			}
-
-			createElement(xcoor, ycoor, count) {
-
-				let name = this.newElement;
-
-				let novoElemento;
-				switch (name.type) {
-
-					case "start-event":
-					case "intermediate-event":
-					case "end-event":
-
-					novoElemento = new BPMNEvent(xcoor, ycoor, name, count);
-
-					break;
-
-					case "gateway":
-
-					novoElemento = new BPMNGateway(xcoor, ycoor, name, count);
-
-					break;
-
-					case "data":
-
-					novoElemento = new BPMNData(xcoor, ycoor, name, count);
-
-					break;
-
-					case "lane":
-
-					novoElemento = new BPMNPool(xcoor, ycoor, name, count);
-					break;
-
-					case "annotation":
-
-					novoElemento = new BPMNTextAnnotation(xcoor, ycoor, name, count);
-
-					break;
-
-					case "activity":
-
-					novoElemento = new BPMNActivity(xcoor, ycoor, name, count);
-
-					break;
-
-					default:
-
-					console.log("erro");
-				}
-
-				return novoElemento;
-			}
-
-			setIconMouse(element = null) {
-
-				if (element == null) {
-
-					document.querySelector('.mouse-icon').removeEventListener('mouse', function () { });
-					this.icon.style.display = 'none';
-					return;
-				}
-
-				this.newElement = element;
-				this.icon.className = 'mouse-icon bpmn-icon-' + element.icon;
-				this.icon.style.display = 'block';
-
-				this.component.addEventListener('mousemove', (event) => {
-
-					event.stopPropagation();
-					this.icon.style.top = (event.y - 10) + 'px';
-					this.icon.style.left = (event.x + 10) + 'px';
-				});
-			}
-
-			static calcularTransicao(origem, destino) {
-
-				let a = get(origem);
-				let b = get(destino);
-
-				let transicao = {};
-				transicao.origem = origem;
-				transicao.destino = destino;
-
-				origem = (a.container == '.bpmn-diagram' ? { x: 0, y: 0 } : get(a.container.substring(1)));
-				destino = (b.container == '.bpmn-diagram' ? { x: 0, y: 0 } : get(b.container.substring(1)));
-
-				let distancia = new Array();
-				let l = 0, m = 0;
-
-				let po, pd;
-
-				if ((a.container != '.bpmn-diagram' && b.container != '.bpmn-diagram') &&
-					(a.container.substring(0, a.container.indexOf('lane')) != b.container.substring(0, b.container.indexOf('lane')))) {
-
-					po = get(get(a.container.substring(1)).container.substring(1));
-				pd = get(get(b.container.substring(1)).container.substring(1));
-
-				for (let i = 0; i < a.points.length; i++) {
-
-					distancia[i] = new Array();
-					for (let j = 0; j < b.points.length; j++) {
-
-						distancia[i][j] = Math.sqrt(Math.pow(((a.x + a.points[i].x + origem.x + po.x - po.dx) - (b.x + b.points[j].x + destino.x + pd.x - pd.dx)), 2) + Math.pow(((a.y + a.points[i].y + origem.y + po.y - po.dy) - (b.y + b.points[j].y + destino.y + pd.y - pd.dy)), 2));
-						if (distancia[i][j] < distancia[l][m]) {
-							l = i;
-							m = j;
-						}
+					distancia[i][j] = Math.sqrt(Math.pow(((a.x + a.points[i].x + origem.x + po.x - po.dx) - (b.x + b.points[j].x + destino.x + pd.x - pd.dx)), 2) + Math.pow(((a.y + a.points[i].y + origem.y + po.y - po.dy) - (b.y + b.points[j].y + destino.y + pd.y - pd.dy)), 2));
+					if (distancia[i][j] < distancia[l][m]) {
+						l = i;
+						m = j;
 					}
 				}
 			}
-			else {
-				for (let i = 0; i < a.points.length; i++) {
+		}
+		else {
+			for (let i = 0; i < a.points.length; i++) {
 
-					distancia[i] = new Array();
-					for (let j = 0; j < b.points.length; j++) {
+				distancia[i] = new Array();
+				for (let j = 0; j < b.points.length; j++) {
 
-						distancia[i][j] = Math.sqrt(Math.pow(((a.x + a.points[i].x + origem.x) - (b.x + b.points[j].x + destino.x)), 2) + Math.pow(((a.y + a.points[i].y + origem.y) - (b.y + b.points[j].y + destino.y)), 2));
-						if (distancia[i][j] < distancia[l][m]) {
-							l = i;
-							m = j;
-						}
+					distancia[i][j] = Math.sqrt(Math.pow(((a.x + a.points[i].x + origem.x) - (b.x + b.points[j].x + destino.x)), 2) + Math.pow(((a.y + a.points[i].y + origem.y) - (b.y + b.points[j].y + destino.y)), 2));
+					if (distancia[i][j] < distancia[l][m]) {
+						l = i;
+						m = j;
 					}
 				}
 			}
+		}
 
-			transicao.pontoOrigem = l;
-			transicao.pontoDestino = m;
+		transicao.pontoOrigem = l;
+		transicao.pontoDestino = m;
 		//console.log(l + " --- " + m);
 		transicao.id = '#transicao' + diagram.numElements;
 

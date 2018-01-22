@@ -130,7 +130,7 @@ public class BPMNFactory {
     
     public static void decode(){
         
-        diagram = new BusinessProcessDiagram();
+        diagram = new BusinessProcessDiagram(schema.getWidth(), schema.getHeight());
 
         //percorrendo os elementos
         Element r, s, t;
@@ -609,7 +609,9 @@ public class BPMNFactory {
 
             p.getElements().add(a);
         }
-
+        
+        p.setWidth(d.getWidth());
+        p.setHeight(d.getHeight());
         
 
         return p;
