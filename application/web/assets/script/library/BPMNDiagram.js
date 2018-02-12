@@ -82,26 +82,16 @@ class BPMNDiagram {
 		
 		let viewport = [window.innerWidth / 2, window.innerHeight / 2];
 		
-		let transform = this.getTransform(container);
 		let panel = this.getTransform(this.selector);
+		let transform = this.getTransform(container);
 
 		let element = this.createElement(
-			(x - transform.translate[0] * transform.scale) - ((x - panel.translate[0] * transform.scale - viewport[0])/ transform.scale) * (transform.scale - 1),
-			(y - transform.translate[1] * transform.scale) - ((y - panel.translate[1] * transform.scale - viewport[1])/ transform.scale) * (transform.scale - 1),
+			
+			(x - ((this.selector == container ? 0 : transform.translate[0]) + (this.selector != container ? 0 : panel.translate[0])) * panel.scale) - (((x - (( this.selector != container ? 0 : panel.translate[0]) + ( this.selector == container ? 0 : transform.translate[0])) * (panel.scale)) - viewport[0])/ panel.scale) * (panel.scale - 1),
+			(y - ((this.selector == container ? 0 : transform.translate[1]) + (this.selector != container ? 0 : panel.translate[1])) * panel.scale) - (((y - (( this.selector != container ? 0 : panel.translate[1]) + ( this.selector == container ? 0 : transform.translate[1])) * (panel.scale)) - viewport[1])/ panel.scale) * (panel.scale - 1),
 			this.numElements++
 		);
-		/*let element = this.createElement(
-			(x - transform.translate[0] * transform.scale) - ((x - transform.translate[0] * transform.scale - viewport[0]) / transform.scale) * (transform.scale - 1),
-			(y - transform.translate[1] * transform.scale) - ((y - transform.translate[1] * transform.scale - viewport[1]) / transform.scale) * (transform.scale - 1),
-			this.numElements++
-		);*/
-
-		/*let element = this.createElement(
-			(x - transform.translate[0]) - ((x - viewport[0]) / transform.scale) * (transform.scale - 1),
-			(y - transform.translate[1]) - ((y - viewport[1]) / transform.scale) * (transform.scale - 1),
-			this.numElements++
-		);*/
-
+		
 		element.container = container;
 		
 		window.elements.push(element);
@@ -926,7 +916,6 @@ class BPMNDiagram {
 						} else {
 							//elaborar a inserção de elementos
 							BPMNSettings.diagramSelector = `#${id} .content-lane`;
-							let box = BPMNSettings.diagramSelector;
 
 							/*let container = get(id);
 							let parent = get(`${id}`.substring(0, `${id}`.indexOf('lane')));
@@ -951,7 +940,7 @@ class BPMNDiagram {
 							*/
 							
 							diagram.insertElement(d3.event.x, d3.event.y, `#${id}`);
-							BPMNSettings.diagramSelector = box;
+							BPMNSettings.diagramSelector = diagram.selector;
 						}
 
 						diagram.setIconMouse();
