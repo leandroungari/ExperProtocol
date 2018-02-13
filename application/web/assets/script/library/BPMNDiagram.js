@@ -1,12 +1,5 @@
-"use strict"
-
-
 class BPMNDiagram {
 
-	/** Construtor BPMNDiagram
-	 * 
-	 * @param String selector Refere-se ao seletor do elemento DOM do diagrama. 
-	 */
 	constructor(selector) {
 
 		this.selector = selector;
@@ -37,13 +30,9 @@ class BPMNDiagram {
 				if (transform.scale < 2) transform.scale += 0.05;
 			}
 
-			d3.select(this.selector)
-				.attr('transform', `scale(${transform.scale}) translate(${transform.translate[0]}, ${transform.translate[1]})`);
-
+			d3.select(this.selector).attr('transform', `scale(${transform.scale}) translate(${transform.translate[0]}, ${transform.translate[1]})`);
 
 		});
-
-
 
 		/////////////////////////////////////////
 		this.icon = document.createElement('i');
@@ -73,6 +62,9 @@ class BPMNDiagram {
 	}
 
 	/**
+	 * === NUNCA MAIS MODIFICAR ESTE MÉTODO
+	 * === FORAM SEMANAS PARA QUE ELE FUNCIONASSE POR COMPLETO !!!
+	 * 
 	 * Adição do elemento BPMN a área de desenho.
 	 * @param {Number} x Coordenada no eixo x. 
 	 * @param {Number} y Coordenada no eixo y.
@@ -272,8 +264,6 @@ class BPMNDiagram {
 
 		if (pool.name != 'participant') return;
 
-		//console.log(pool);
-
 		let list = [];
 		if (Array.isArray(pool.element)) {
 
@@ -312,8 +302,6 @@ class BPMNDiagram {
 		let ycoor = element.y;
 		let novoElemento;
 		this.numElements++;
-
-
 
 		//corrigir a criação de lanes
 		if (nome == 'lane-none') {
@@ -742,11 +730,11 @@ class BPMNDiagram {
 
 		let alvo = get(a._groups[0][0].id);
 
-		/*if (BPMNDiagram.verificarLimites({
+		if (BPMNDiagram.verificarLimites({
 			item: alvo,
 			x: d3.event.x,
 			y: d3.event.y
-		}) == false) return;*/
+		}) == false) return;
 
 		a.attr('transform', `translate(${d3.event.x - alvo.dx},${d3.event.y - alvo.dy})`);
 		alvo.x = d3.event.x;
@@ -798,7 +786,6 @@ class BPMNDiagram {
 	static corrigirTransições(alvo) {
 
 		let ponto, pontoOposto;
-		//console.log(alvo)
 
 		for (let x in alvo.transicoesOrigem) {
 
@@ -814,12 +801,8 @@ class BPMNDiagram {
 			ponto = BPMNDiagram.posicionarContainer(alvo, tc);
 			pontoOposto = BPMNDiagram.posicionarContainer(tc, alvo);
 
-
 			d3.select('#' + alvo.transicoesOrigem[x])
-				.attr('points', `${alvo.x + alvo.points[t.pontoOrigem].x + ponto.x},${alvo.y + alvo.points[t.pontoOrigem].y + ponto.y} 
-				${tc.x + tc.points[t.pontoDestino].x + pontoOposto.x},${tc.y + tc.points[t.pontoDestino].y + pontoOposto.y}
-				`);
-
+			.attr('points', `${alvo.x + alvo.points[t.pontoOrigem].x + ponto.x},${alvo.y + alvo.points[t.pontoOrigem].y + ponto.y} ${tc.x + tc.points[t.pontoDestino].x + pontoOposto.x},${tc.y + tc.points[t.pontoDestino].y + pontoOposto.y}`);
 
 		}
 
@@ -827,7 +810,7 @@ class BPMNDiagram {
 
 			let t = get(alvo.transicoesDestino[x]);
 			let tc = get(t.origem);
-			//console.log(tc)
+			
 			let transicao = BPMNDiagram.calcularTransicao(t.origem, t.destino);
 			t.pontoOrigem = transicao.pontoOrigem;
 			t.pontoDestino = transicao.pontoDestino;
@@ -835,20 +818,14 @@ class BPMNDiagram {
 			ponto = BPMNDiagram.posicionarContainer(alvo, tc);
 			pontoOposto = BPMNDiagram.posicionarContainer(tc, alvo);
 
-			//let points = d3.select('#' + alvo.transicoesDestino[x]).attr('points').split(" ");
-			//${tc.x + tc.points[t.pontoDestino].x + ponto.x},${tc.y + tc.points[t.pontoDestino].y + ponto.y}
 			d3.select('#' + alvo.transicoesDestino[x])
-				.attr('points', `${tc.x + tc.points[t.pontoOrigem].x + pontoOposto.x},${tc.y + tc.points[t.pontoOrigem].y + pontoOposto.y}  
-				${alvo.x + alvo.points[t.pontoDestino].x + ponto.x},${alvo.y + alvo.points[t.pontoDestino].y + ponto.y}
-				`);
-
-
-
+			.attr('points', `${tc.x + tc.points[t.pontoOrigem].x + pontoOposto.x},${tc.y + tc.points[t.pontoOrigem].y + pontoOposto.y}  ${alvo.x + alvo.points[t.pontoDestino].x + ponto.x},${alvo.y + alvo.points[t.pontoDestino].y + ponto.y}`);
 		}
 	}
 
 	static reposicionarTransicoesPool(alvo) {
 
+		console.log(alvo)
 		d3.selectAll(`${alvo.id} .content-swim .lane`).each(function () {
 
 			d3.select(this).selectAll(`.content-lane .item`).each(function () {
@@ -862,6 +839,18 @@ class BPMNDiagram {
 	static refreshListener() {
 
 		d3.selectAll('.item')
+			.on('mouseover', function() {
+
+				let element = d3.event.target;
+				
+				while(element.getAttribute('class') != 'item') element = element.parentElement;
+				
+				element.focus();
+				
+			})
+			.on('blur', function() {
+
+			})
 			.call(d3.drag()
 				.on('start', function () {
 					BPMNDiagram.dragStartX = d3.event.x;
@@ -914,30 +903,8 @@ class BPMNDiagram {
 							let swim = get(`${id}`.substring(0, `${id}`.indexOf('lane')));
 							swim.addLaneAbove();
 						} else {
-							//elaborar a inserção de elementos
+							
 							BPMNSettings.diagramSelector = `#${id} .content-lane`;
-
-							/*let container = get(id);
-							let parent = get(`${id}`.substring(0, `${id}`.indexOf('lane')));
-
-							let offsetX, offsetY;
-
-							if (document.querySelector(BPMNSettings.diagramSelector).transform.baseVal[0] != null) {
-								offsetX = document.querySelector(BPMNSettings.diagramSelector).transform.baseVal[0].matrix.e;
-								offsetY = document.querySelector(BPMNSettings.diagramSelector).transform.baseVal[0].matrix.f;
-							} else {
-								offsetX = offsetY = 0;
-							}
-
-							if (document.querySelector(diagram.selector).transform.baseVal[0] != null) {
-								offsetX += document.querySelector(diagram.selector).transform.baseVal[0].matrix.e;
-								offsetY += document.querySelector(diagram.selector).transform.baseVal[0].matrix.f;
-							}
-
-							let element = diagram.createElement(d3.event.x - (parent.x - parent.dx + container.x + offsetX), d3.event.y - (parent.y - parent.dy + container.y + offsetY), diagram.numElements++);
-							element.container = container.id;
-							window.elements.push(element);
-							*/
 							
 							diagram.insertElement(d3.event.x, d3.event.y, `#${id}`);
 							BPMNSettings.diagramSelector = diagram.selector;

@@ -139,21 +139,22 @@ class BPMNPool extends BPMNSwimlane {
 			else if (a.y > b.y) return 1;
 			return 0;
 		})
-
-		console.log(lista)
-
+	
 		let posicaoY = 0;
 		lista.forEach((a) => {
-
-			console.log(d3.select(a.id))
 
 			d3.select(a.id)
 			.attr('x', a.x)
 			.attr('y', posicaoY)
 			.attr('transform', `translate(${a.x},${posicaoY})`);
 
+			//atualiza y do objeto
+			a.y = posicaoY;
+
 			posicaoY += a.height;
 		});
+
+		BPMNDiagram.reposicionarTransicoesPool(get(this.id.substring(1)));
 	}
 
 	addLaneAbove() {
@@ -401,6 +402,8 @@ class BPMNPool extends BPMNSwimlane {
 			d3.select(this).select('rect')
 			.attr('width', l);
 		});
+
+
 	}
 
 	extract() {
