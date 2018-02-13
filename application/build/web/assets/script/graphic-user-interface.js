@@ -276,7 +276,7 @@ function loadGUI() {
                 }
             };
 
-            reader.readAsBinaryString(valor);
+            reader.readAsText(valor);
 
         } else {
             //protocolo de experimentação
@@ -308,10 +308,8 @@ function loadGUI() {
                 }
             };
 
-            reader.readAsBinaryString(valor);
-
+            reader.readAsText(valor);
         }
-
 
         box01.style.display = 'none';
     });
@@ -629,19 +627,13 @@ function loadGUI() {
         if (BPMNDiagram.painelVinculacao == true) {
 
             let lista = [];
-            //salvar a vinculação
-            console.log(document.querySelectorAll('[name="item-check"]'));
-
+    
             document.querySelectorAll('[name="item-check"]')
             .forEach((e) => {
                 if (e.checked) lista.push(e.value)
             })
 
-
-            //console.log(lista)
             let elemento = get(Interface.id);
-
-
             elemento.vinculos = [];
 
             lista.forEach((a) => {
@@ -667,9 +659,23 @@ function loadGUI() {
                 BPMNDiagram.diagram.Largura = Number.parseInt(lista[0]);
                 BPMNDiagram.diagram.Altura = Number.parseInt(lista[1]);
 
+                let transform = diagram.getTransform(diagram.selector);
+
+                /*let oldBounds = {
+                    width:  document.querySelector(diagram.selector).getAttribute('width'),
+                    height: document.querySelector(diagram.selector).getAttribute('height')
+                };*/
+    
                 d3.select(diagram.selector)
                 .attr('width', BPMNDiagram.diagram.Largura)
                 .attr('height', BPMNDiagram.diagram.Altura);
+
+                d3.select(diagram.selector)
+                .attr('transform', `scale(${1}) translate(${transform.translate[0]},${transform.translate[1]})`);
+
+                //d3.select(diagram.selector)
+                //.attr('transform', `scale(${transform.scale}) translate(${transform.translate[0] - (BPMNDiagram.diagram.Largura - oldBounds.width)/(transform.scale) * (transform.scale - 1)}, ${transform.translate[1] - (BPMNDiagram.diagram.Altura - oldBounds.height)/(transform.scale) * (transform.scale - 1)})`);
+                
             }
             else {
                 objeto.atualizar(lista);
@@ -748,24 +754,16 @@ class Interface {
 
         let transicao = get(id);
 
-        window.elements.filter((e) => {
-            return e.transicoesOrigem != null;
-        }).forEach((a) => {
+        window.elements.filter(e => e.transicoesOrigem != null)
+        .forEach((a) => {
 
-            a.transicoesOrigem = a.transicoesOrigem.filter((u) => {
-                return u != id;
-            });
-            a.transicoesDestino = a.transicoesDestino.filter((u) => {
-                return u != id;
-            });
+            a.transicoesOrigem = a.transicoesOrigem.filter(u => u != id);
+            a.transicoesDestino = a.transicoesDestino.filter(u => u != id);
         });
 
-        window.elements = window.elements.filter((a) => {
-            return a.id != `#${id}`;
-        });
+        window.elements = window.elements.filter(a => a.id != `#${id}`);
 
         d3.select(`#${id}`).remove();
-
     }
 
     static modificar(id) {
@@ -793,7 +791,6 @@ class Interface {
 
         exibirDescricao(id);
 
-
         $('.box-descricao').slideDown();
     }
 }
@@ -817,13 +814,11 @@ function exibirDescricao(id) {
 
             getObjectById(BPMNDiagram.experiment, a);
 
-
             d3.select('.box-descricao > .content').append('div')
             .style('padding', '15px 25px')
             .attr('class', `item-${result.id}`)
 
             //o resultado fica na variavel result
-            
             let valores = Object.entries(formatarTexto(result));
             
             valores.forEach(([attribute, value]) => {
@@ -834,17 +829,12 @@ function exibirDescricao(id) {
                 .style('padding', '2px 0')
                 .style('margin-left', '25px')
                 .text(`${attribute}: ${value}`)
-
             });
 
             let str = document.querySelector(`.item-${result.id} > p`).innerHTML;
-            if (str[str.length - 2] == ':') {
-
-                document.querySelector(`.item-${result.id} > p`).innerHTML = str.substring(0, str.length - 2);
-            }
-            else {
-                document.querySelector(`.item-${result.id} > p`).innerHTML = str;
-            }
+            if (str[str.length - 2] == ':') document.querySelector(`.item-${result.id} > p`).innerHTML = str.substring(0, str.length - 2);
+            else document.querySelector(`.item-${result.id} > p`).innerHTML = str;
+            
 
             d3.select(`.item-${result.id} > p`)
             .style('font', 'bold 20px DinPro')
@@ -935,10 +925,8 @@ const formatarTexto = (object) => {
             
             if (object.arquivos == null) object.arquivos = [];
 
-            let lista = object.arquivos.map((u) => { 
-
-                return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
-            });
+            let lista = object.arquivos.map(u => (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo));
+            
             return {
                 "Artefato":"",
                 "Nome": object.nome,
@@ -970,12 +958,7 @@ const formatarTexto = (object) => {
 
             if (object.arquivos == null) object.arquivos = [];
 
-            let lista = object.arquivos.map((u) => { 
-
-
-                return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
-            });
-
+            let lista = object.arquivos.map(u => (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo));
 
             return {
                 "Interpretação": "",
@@ -1089,10 +1072,7 @@ const formatarTexto = (object) => {
         }
         else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
 
-            let lista = object.arquivos.map((u) => { 
-
-                return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
-            });
+            let lista = object.arquivos.map(u => (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo));
 
             return {
                 "Artifact":"",
@@ -1123,10 +1103,7 @@ const formatarTexto = (object) => {
         }
         else if (object.id.includes("interpretacao")) {
 
-            let lista = object.arquivos.map((u) => { 
-
-                return (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo); 
-            });
+            let lista = object.arquivos.map(u => (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo));
 
             return {
                 "Interpretation": "",
@@ -1182,10 +1159,9 @@ function getObjectById(object, id) {
     if (!isObject(object)) return;
 
     Object.keys(object).forEach((a) => {
-        //console.log(a);
+        
         getObjectById(object[a], id);
     });
-
 }
 
 
@@ -1224,10 +1200,7 @@ function menuContexto(x, y, categoria, id) {
         }
 
         const show = (event) => {
-            //console.log();
-            //$(`.${d3.event.target.className.substring(3)}`).animate({
-            //    top: 100
-            //}, 1000);
+          
             $(`.${event.target.className.substring(3)}`).slideDown();
         };
 
@@ -1247,7 +1220,6 @@ function menuContexto(x, y, categoria, id) {
             .append('li')
             .attr('class', 'li-definicao')
             .text((BPMNDiagram.language == 'pt-br' ? 'Definição' : 'Definition'))
-            //.on('click', show)
 
             $('.li-definicao').click(show);
 
@@ -1255,7 +1227,6 @@ function menuContexto(x, y, categoria, id) {
             .append('li')
             .attr('class', 'li-planejamento')
             .text((BPMNDiagram.language == 'pt-br' ? 'Planejamento' : 'Planning'))
-            //.on('click', show)
 
             $('.li-planejamento').click(show);
 
@@ -1263,15 +1234,13 @@ function menuContexto(x, y, categoria, id) {
             .append('li')
             .attr('class', 'li-execucao')
             .text((BPMNDiagram.language == 'pt-br' ? 'Execução' : 'Execution'))
-            //.on('click', show)
-            //
+
             $('.li-execucao').click(show);
 
             d3.select('.menu-experimento ul')
             .append('li')
             .attr('class', 'li-analise')
             .text((BPMNDiagram.language == 'pt-br' ? 'Análise e Interpretação': 'Analysis and Interpretation'))
-            //.on('click', show)
 
             $('.li-analise').click(show);
 
@@ -1279,10 +1248,8 @@ function menuContexto(x, y, categoria, id) {
             .append('li')
             .attr('class', 'li-apresentacao')
             .text((BPMNDiagram.language == 'pt-br' ? 'Apresentação e Empacotamento' : 'Presentation and Packaging'))
-            //.on('click', show)
 
             $('.li-apresentacao').click(show);
-
 
             //////////////////
             d3.select('.context-menu')
@@ -1294,7 +1261,6 @@ function menuContexto(x, y, categoria, id) {
 
                 Interface.exibir(id);
             });
-            
         }
 
     } else if (categoria == "panel") {
@@ -1321,8 +1287,6 @@ function menuContexto(x, y, categoria, id) {
             $('.context-menu').trigger('mouseleave');
         })
     }
-
-
 }
 
 function painelLateral(id) {
@@ -1349,7 +1313,6 @@ function painelLateral(id) {
 
             painel.append('label').text(textLabel(a));
             painel.append('input').attr('value', element.attributes[a]);
-
         }
     }
 
@@ -1363,7 +1326,4 @@ let labels = {
     "Descrição": "Description"
 }
 
-const textLabel = (text) => {
-
-    return (BPMNDiagram.language == 'pt-br' ? text : labels[text]);
-};
+const textLabel = (text => BPMNDiagram.language == 'pt-br' ? text : labels[text]);

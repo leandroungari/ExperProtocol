@@ -151,16 +151,14 @@ class BPMNDiagram {
 
 		if (protocol.element != null) {
 			this.analyse(protocol.element, transitions);
-
 		}
 
 		BPMNSettings.diagramSelector = this.selector;
 		this.link(transitions);
 		BPMNSettings.diagramSelector = this.selector;
 
-		$(diagram.selector).width(protocol.width);
-		$(diagram.selector).height(protocol.height);
-
+		document.querySelector(this.selector).setAttribute('width', protocol.width);
+		document.querySelector(this.selector).setAttribute('height', protocol.height);
 
 		BPMNDiagram.diagram.Largura = protocol.width;
 		BPMNDiagram.diagram.Altura = protocol.height;
@@ -178,12 +176,8 @@ class BPMNDiagram {
 
 		BPMNDiagram.desenharTransicao(transition.origem, transition.destino);
 
-		array = array.filter((t) => {
-			return (!(transition.origem == t.origem && transition.destino == t.destino));
-		}, transition);
-
+		array = array.filter(t => (!(transition.origem == t.origem && transition.destino == t.destino)), transition);
 		this.link(array);
-
 	}
 
 	analyse(array, transitions, container = this.selector) {
@@ -259,7 +253,7 @@ class BPMNDiagram {
 		let parent = get(pool.id.substring(1));
 		list.forEach((lane) => {
 			
-			parent.insert(lane.id);
+			parent.insert(lane.id, lane.x, lane.y, lane.height);
 		});
 	}
 
@@ -281,7 +275,6 @@ class BPMNDiagram {
 
 		if (element.container != this.selector) BPMNSettings.diagramSelector = `${element.container} .content-lane`;
 		else BPMNSettings.diagramSelector = element.container;
-
 
 
 		switch (name.type) {

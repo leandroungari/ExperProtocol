@@ -41,12 +41,13 @@ public class abrirPacote extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         
-        Scanner servlet = new Scanner(new InputStreamReader(request.getInputStream()));
+        Scanner servlet = new Scanner(new InputStreamReader(request.getInputStream(), "UTF-8"));
         
         String xml = "";
         while(servlet.hasNextLine()){
             xml+=servlet.nextLine();
         }
+        
         
         servlet.close();
         
@@ -58,7 +59,7 @@ public class abrirPacote extends HttpServlet {
         
         String json = ExperimentFactory.export();
      
-        PrintStream out = new PrintStream(response.getOutputStream());
+        PrintStream out = new PrintStream(response.getOutputStream(), true, "UTF-8");
         out.println(json);
         out.close();
         

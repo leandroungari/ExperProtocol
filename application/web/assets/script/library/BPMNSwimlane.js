@@ -18,7 +18,7 @@ class BPMNLane {
 
 		this.attributes = {
 			Descrição: '',
-			Altura: 200,
+			Altura: this.height,
 		}
 
 		this.x = x;
@@ -132,7 +132,6 @@ class BPMNPool extends BPMNSwimlane {
 	update() {
 
 		if (this.lanes == null) return; 
-
 
 		let lista = this.lanes.sort((a,b) => { 
 			if (a.y < b.y) return -1;
@@ -302,13 +301,12 @@ class BPMNPool extends BPMNSwimlane {
 		BPMNDiagram.refreshListener();
 	}
 
-	insert(id) {
-
+	insert(id, x, y, height) {
 
 		let distancia = 0;
 
-		for (let x in this.lanes) {
-			distancia += this.lanes[x].height;
+		for (let a in this.lanes) {
+			distancia += this.lanes[a].height;
 		}
 
 		id = id.substring(1);
@@ -324,12 +322,12 @@ class BPMNPool extends BPMNSwimlane {
 		.attr('stroke-width', 5)
 		.attr('stroke', '#000')
 		.attr('width', this.width-30)
-		.attr('height', 200)
+		.attr('height', height)
 		.attr('fill', 'transparent');
 
 		d3.select(`#${id}`)
 		.append('g')
-		.attr('width', 200)
+		.attr('width', height)
 		.attr('transform', 'rotate(-90) translate(-195,8)')
 		.append('text')
 		.attr('x', 95)
@@ -345,27 +343,26 @@ class BPMNPool extends BPMNSwimlane {
 		this.lanes.push(l);
 		window.elements.push(l);
 
+		l.height = height;
+
 		let select = d3.select(this.id);
 
 		//modificando a piscina
 		//
-		distancia += 200;
+		distancia += height;
 
 		select.selectAll(`.c1, .c2`).attr('height', distancia);
 		select.select('.title-swim')
 		.attr(`transform`, `rotate(-90) translate(${-distancia + 5}, 8)`)
 		.attr(`width`, `${distancia}`);
 
-		let x = parseInt(select.select('.title-swim').select('.value-pool').attr('x'));
+		//let x = parseInt(select.select('.title-swim').select('.value-pool').attr('x'));
 		if (this.numLanes != 0) select.select('.title-swim').select('.value-pool').attr('x', distancia/2 - 5);
 
 		this.numLanes++;
 
-		this.height += 200;
-		this.y += 100;
+		this.height += height;
 		this.dy = this.height / 2;
-
-		this.y -= 100;
 
 		d3.select(this.id)
 		.attr('class', 'item')

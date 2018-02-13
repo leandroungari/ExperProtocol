@@ -1,12 +1,5 @@
-"use strict"
-
-
 class BPMNDiagram {
 
-	/** Construtor BPMNDiagram
-	 * 
-	 * @param String selector Refere-se ao seletor do elemento DOM do diagrama. 
-	 */
 	constructor(selector) {
 
 		this.selector = selector;
@@ -18,18 +11,11 @@ class BPMNDiagram {
 		//Lista de elementos que formarão a nova transição
 		window.listaTransicao = [];
 
-
-		//////////////////////////////////////////
-		///
-
 		this.component = document.querySelector(this.selector);
-
 
 		window.addEventListener('mousewheel', (event) => {
 
-
 			let transform = diagram.getTransform(this.selector);
-
 
 			if (event.deltaY == -53) {
 				if (transform.scale > 0.2) transform.scale -= 0.05;
@@ -37,13 +23,8 @@ class BPMNDiagram {
 				if (transform.scale < 2) transform.scale += 0.05;
 			}
 
-			d3.select(this.selector)
-				.attr('transform', `scale(${transform.scale}) translate(${transform.translate[0]}, ${transform.translate[1]})`);
-
-
+			d3.select(this.selector).attr('transform', `scale(${transform.scale}) translate(${transform.translate[0]}, ${transform.translate[1]})`);
 		});
-
-
 
 		/////////////////////////////////////////
 		this.icon = document.createElement('i');
@@ -73,6 +54,9 @@ class BPMNDiagram {
 	}
 
 	/**
+	 * === NUNCA MAIS MODIFICAR ESTE MÉTODO
+	 * === FORAM SEMANAS PARA QUE ELE FUNCIONASSE POR COMPLETO !!!
+	 * 
 	 * Adição do elemento BPMN a área de desenho.
 	 * @param {Number} x Coordenada no eixo x. 
 	 * @param {Number} y Coordenada no eixo y.
@@ -82,14 +66,16 @@ class BPMNDiagram {
 		
 		let viewport = [window.innerWidth / 2, window.innerHeight / 2];
 		
+		let panel = this.getTransform(this.selector);
 		let transform = this.getTransform(container);
-		
+
 		let element = this.createElement(
-			(x - transform.translate[0]) - ((x - viewport[0]) / transform.scale) * (transform.scale - 1),
-			(y - transform.translate[1]) - ((y - viewport[1]) / transform.scale) * (transform.scale - 1),
+			
+			(x - ((this.selector == container ? 0 : transform.translate[0]) + (this.selector != container ? 0 : panel.translate[0])) * panel.scale) - (((x - (( this.selector != container ? 0 : panel.translate[0]) + ( this.selector == container ? 0 : transform.translate[0])) * (panel.scale)) - viewport[0])/ panel.scale) * (panel.scale - 1),
+			(y - ((this.selector == container ? 0 : transform.translate[1]) + (this.selector != container ? 0 : panel.translate[1])) * panel.scale) - (((y - (( this.selector != container ? 0 : panel.translate[1]) + ( this.selector == container ? 0 : transform.translate[1])) * (panel.scale)) - viewport[1])/ panel.scale) * (panel.scale - 1),
 			this.numElements++
 		);
-
+		
 		element.container = container;
 		
 		window.elements.push(element);
@@ -122,14 +108,14 @@ class BPMNDiagram {
 			result.scale = 1;
 			result = this.getTranslate(result, transform);
 
-			/*if (this.selector != selector) {
+			if (this.selector != selector) {
 
 				let pool = get(selector.substring(1, selector.indexOf('lane')));
 				let panel = this.getTransform(this.selector);
 				
 				result.translate[0] += pool.x - pool.dx + panel.translate[0];
 				result.translate[1] += pool.y - pool.dy + panel.translate[1];
-			}*/
+			}
 		}
 
 		return result;
@@ -163,31 +149,19 @@ class BPMNDiagram {
 		let transitions = [];
 		let protocol = data.protocol;
 
-		console.log(data);
-
 		if (protocol.element != null) {
 			this.analyse(protocol.element, transitions);
-
 		}
 
 		BPMNSettings.diagramSelector = this.selector;
 		this.link(transitions);
 		BPMNSettings.diagramSelector = this.selector;
 
-		console.log(d3.select(diagram.selector))
-
-		$(diagram.selector).width(protocol.width);
-		$(diagram.selector).height(protocol.height);
-
+		document.querySelector(this.selector).setAttribute('width', protocol.width);
+		document.querySelector(this.selector).setAttribute('height', protocol.height);
 
 		BPMNDiagram.diagram.Largura = protocol.width;
 		BPMNDiagram.diagram.Altura = protocol.height;
-
-		/*d3.select(diagram.selector)
-		.attr('width', protocol.width)
-		.attr('height', protocol.height)*/
-
-
 
 	}
 
@@ -202,12 +176,8 @@ class BPMNDiagram {
 
 		BPMNDiagram.desenharTransicao(transition.origem, transition.destino);
 
-		array = array.filter((t) => {
-			return (!(transition.origem == t.origem && transition.destino == t.destino));
-		}, transition);
-
+		array = array.filter(t => (!(transition.origem == t.origem && transition.destino == t.destino)), transition);
 		this.link(array);
-
 	}
 
 	analyse(array, transitions, container = this.selector) {
@@ -263,25 +233,16 @@ class BPMNDiagram {
 			//elementos
 			this.analyse(array.element, transitions, array.id);
 		}
-
 	}
 
 	createLanes(pool) {
 
 		if (pool.name != 'participant') return;
 
-		//console.log(pool);
-
 		let list = [];
-		if (Array.isArray(pool.element)) {
-
-			pool.element.forEach((t) => {
-				list.push(t);
-			});
-		} else {
-
-			list.push(pool.element);
-		}
+		if (Array.isArray(pool.element)) pool.element.forEach(t => list.push(t));
+		else list.push(pool.element);
+		
 
 		list.sort((a, b) => {
 			if (a.y < b.y) return -1;
@@ -289,12 +250,10 @@ class BPMNDiagram {
 			return 0;
 		});
 
-
-
 		let parent = get(pool.id.substring(1));
 		list.forEach((lane) => {
-			console.log(lane);
-			parent.insert(lane.id);
+			
+			parent.insert(lane.id, lane.x, lane.y, lane.height);
 		});
 	}
 
@@ -311,18 +270,11 @@ class BPMNDiagram {
 		let novoElemento;
 		this.numElements++;
 
-
-
 		//corrigir a criação de lanes
-		if (nome == 'lane-none') {
-			console.log(element)
-			//console.log("aqui");
-			return;
-		}
+		if (nome == 'lane-none') return;
 
 		if (element.container != this.selector) BPMNSettings.diagramSelector = `${element.container} .content-lane`;
 		else BPMNSettings.diagramSelector = element.container;
-
 
 
 		switch (name.type) {
@@ -370,12 +322,8 @@ class BPMNDiagram {
 				console.log("erro");
 		}
 
-
-
-
 		let idAntigo = novoElemento.id;
 		novoElemento.id = element.id;
-
 
 		novoElemento.element = d3.select(idAntigo);
 		novoElemento.element.attr('id', novoElemento.id.substring(1));
@@ -389,9 +337,7 @@ class BPMNDiagram {
 		];
 
 		novoElemento.atualizar(attributes);
-
 		novoElemento.vinculos = [];
-
 
 		if (element.string != null) {
 
@@ -407,22 +353,17 @@ class BPMNDiagram {
 			});
 		}
 
-
 		window.elements.push(novoElemento);
 		BPMNSettings.diagramSelector = this.selector;
-
 	}
 
 	export () {
-
-		console.log(BPMNDiagram.diagram);
 
 		let diagram = {
 
 			width: BPMNDiagram.diagram.Largura,
 			height: BPMNDiagram.diagram.Altura,
 			elements: []
-
 		}
 
 		window.elements.filter((e) => {
@@ -600,7 +541,7 @@ class BPMNDiagram {
 
 		transicao.pontoOrigem = l;
 		transicao.pontoDestino = m;
-		//console.log(l + " --- " + m);
+		
 		transicao.id = '#transicao' + diagram.numElements;
 
 		return transicao;
@@ -702,10 +643,7 @@ class BPMNDiagram {
 			type = "sequence-flow"
 		}
 
-
-
 		//Adiciona a nova transição a lista de transições de cada elemento
-		//let t = document.querySelector('#' + 'transicao' + diagram.numElements);
 		a.transicoesOrigem.push('transicao' + diagram.numElements);
 		b.transicoesDestino.push('transicao' + diagram.numElements);
 
@@ -740,11 +678,11 @@ class BPMNDiagram {
 
 		let alvo = get(a._groups[0][0].id);
 
-		/*if (BPMNDiagram.verificarLimites({
+		if (BPMNDiagram.verificarLimites({
 			item: alvo,
 			x: d3.event.x,
 			y: d3.event.y
-		}) == false) return;*/
+		}) == false) return;
 
 		a.attr('transform', `translate(${d3.event.x - alvo.dx},${d3.event.y - alvo.dy})`);
 		alvo.x = d3.event.x;
@@ -781,9 +719,6 @@ class BPMNDiagram {
 				x: 0,
 				y: 0
 			};
-
-
-
 		}
 
 		return ponto;
@@ -796,7 +731,6 @@ class BPMNDiagram {
 	static corrigirTransições(alvo) {
 
 		let ponto, pontoOposto;
-		//console.log(alvo)
 
 		for (let x in alvo.transicoesOrigem) {
 
@@ -812,12 +746,8 @@ class BPMNDiagram {
 			ponto = BPMNDiagram.posicionarContainer(alvo, tc);
 			pontoOposto = BPMNDiagram.posicionarContainer(tc, alvo);
 
-
 			d3.select('#' + alvo.transicoesOrigem[x])
-				.attr('points', `${alvo.x + alvo.points[t.pontoOrigem].x + ponto.x},${alvo.y + alvo.points[t.pontoOrigem].y + ponto.y} 
-				${tc.x + tc.points[t.pontoDestino].x + pontoOposto.x},${tc.y + tc.points[t.pontoDestino].y + pontoOposto.y}
-				`);
-
+			.attr('points', `${alvo.x + alvo.points[t.pontoOrigem].x + ponto.x},${alvo.y + alvo.points[t.pontoOrigem].y + ponto.y} ${tc.x + tc.points[t.pontoDestino].x + pontoOposto.x},${tc.y + tc.points[t.pontoDestino].y + pontoOposto.y}`);
 
 		}
 
@@ -825,7 +755,7 @@ class BPMNDiagram {
 
 			let t = get(alvo.transicoesDestino[x]);
 			let tc = get(t.origem);
-			//console.log(tc)
+			
 			let transicao = BPMNDiagram.calcularTransicao(t.origem, t.destino);
 			t.pontoOrigem = transicao.pontoOrigem;
 			t.pontoDestino = transicao.pontoDestino;
@@ -833,19 +763,13 @@ class BPMNDiagram {
 			ponto = BPMNDiagram.posicionarContainer(alvo, tc);
 			pontoOposto = BPMNDiagram.posicionarContainer(tc, alvo);
 
-			//let points = d3.select('#' + alvo.transicoesDestino[x]).attr('points').split(" ");
-			//${tc.x + tc.points[t.pontoDestino].x + ponto.x},${tc.y + tc.points[t.pontoDestino].y + ponto.y}
 			d3.select('#' + alvo.transicoesDestino[x])
-				.attr('points', `${tc.x + tc.points[t.pontoOrigem].x + pontoOposto.x},${tc.y + tc.points[t.pontoOrigem].y + pontoOposto.y}  
-				${alvo.x + alvo.points[t.pontoDestino].x + ponto.x},${alvo.y + alvo.points[t.pontoDestino].y + ponto.y}
-				`);
-
-
-
+			.attr('points', `${tc.x + tc.points[t.pontoOrigem].x + pontoOposto.x},${tc.y + tc.points[t.pontoOrigem].y + pontoOposto.y}  ${alvo.x + alvo.points[t.pontoDestino].x + ponto.x},${alvo.y + alvo.points[t.pontoDestino].y + ponto.y}`);
 		}
 	}
 
 	static reposicionarTransicoesPool(alvo) {
+
 
 		d3.selectAll(`${alvo.id} .content-swim .lane`).each(function () {
 
@@ -857,9 +781,21 @@ class BPMNDiagram {
 		});
 	}
 
+	getTargetByClass(target, className) {
+		
+		let element = target;
+		while(element.getAttribute('class') != className) element = element.parentElement;
+		
+		return element;
+	}
+
 	static refreshListener() {
 
 		d3.selectAll('.item')
+			.on('mouseover', function() {
+				
+				diagram.getTargetByClass(d3.event.target, 'item').focus();
+			})
 			.call(d3.drag()
 				.on('start', function () {
 					BPMNDiagram.dragStartX = d3.event.x;
@@ -912,34 +848,11 @@ class BPMNDiagram {
 							let swim = get(`${id}`.substring(0, `${id}`.indexOf('lane')));
 							swim.addLaneAbove();
 						} else {
-							//elaborar a inserção de elementos
+							
 							BPMNSettings.diagramSelector = `#${id} .content-lane`;
-							let box = BPMNSettings.diagramSelector;
-
-							/*let container = get(id);
-							let parent = get(`${id}`.substring(0, `${id}`.indexOf('lane')));
-
-							let offsetX, offsetY;
-
-							if (document.querySelector(BPMNSettings.diagramSelector).transform.baseVal[0] != null) {
-								offsetX = document.querySelector(BPMNSettings.diagramSelector).transform.baseVal[0].matrix.e;
-								offsetY = document.querySelector(BPMNSettings.diagramSelector).transform.baseVal[0].matrix.f;
-							} else {
-								offsetX = offsetY = 0;
-							}
-
-							if (document.querySelector(diagram.selector).transform.baseVal[0] != null) {
-								offsetX += document.querySelector(diagram.selector).transform.baseVal[0].matrix.e;
-								offsetY += document.querySelector(diagram.selector).transform.baseVal[0].matrix.f;
-							}
-
-							let element = diagram.createElement(d3.event.x - (parent.x - parent.dx + container.x + offsetX), d3.event.y - (parent.y - parent.dy + container.y + offsetY), diagram.numElements++);
-							element.container = container.id;
-							window.elements.push(element);
-							*/
 							
 							diagram.insertElement(d3.event.x, d3.event.y, `#${id}`);
-							BPMNSettings.diagramSelector = box;
+							BPMNSettings.diagramSelector = diagram.selector;
 						}
 
 						diagram.setIconMouse();
@@ -1021,24 +934,14 @@ class BPMNDiagram {
 				})
 				.on('drag', function () {
 
-
-
 					d3.select(this).attr('transform', `scale(${scale}) translate(${d3.event.x - x},${d3.event.y - y})`);
 
-					window.elements.filter((e) => {
-						return e.transicoesOrigem != null && e.transicoesOrigem.length > 0;
-					}).forEach((e) => {
-
-						BPMNDiagram.reposicionarTransicoesPool(e);
-					});
-
-
-
+					window.elements.filter(e => e.transicoesOrigem != null && e.transicoesOrigem.length > 0)
+					.forEach(e => BPMNDiagram.reposicionarTransicoesPool(e));
 				})
 				.on('end', function () {
 
 					$(diagram.selector).css('cursor', 'auto');
-
 				})
 			);
 	}
@@ -1147,8 +1050,6 @@ class BPMNDiagram {
 			],
 			[
 				BPMNLane.PARTICIPANT,
-				//BPMNLane.LANE_DIVIDE_THREE,
-				//BPMNLane.LANE_DIVIDE_TWO,
 				BPMNLane.LANE_INSERT_BELOW,
 				BPMNLane.LANE_INSERT_ABOVE
 			],

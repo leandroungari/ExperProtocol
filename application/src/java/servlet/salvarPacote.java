@@ -49,7 +49,7 @@ public class salvarPacote extends HttpServlet {
         
         String xml = ExperimentFactory.toXML();
         
-        PrintStream out = new PrintStream(response.getOutputStream());
+        PrintStream out = new PrintStream(response.getOutputStream(), true, "UTF-8");
         out.println(xml);
         out.close();
     }

@@ -8,10 +8,13 @@ package servlet;
 import bpmn.BusinessProcessDiagram;
 import bpmn.factory.BPMNFactory;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +42,7 @@ public class abrirProtocolo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        Scanner servlet = new Scanner(new InputStreamReader(request.getInputStream()));
+        Scanner servlet = new Scanner(new InputStreamReader(request.getInputStream(), "UTF-8"));
         
         String xml = "";
         while (servlet.hasNextLine()) {
