@@ -825,7 +825,7 @@ class BPMNDiagram {
 
 	static reposicionarTransicoesPool(alvo) {
 
-		console.log(alvo)
+
 		d3.selectAll(`${alvo.id} .content-swim .lane`).each(function () {
 
 			d3.select(this).selectAll(`.content-lane .item`).each(function () {

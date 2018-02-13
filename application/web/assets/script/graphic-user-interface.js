@@ -629,19 +629,13 @@ function loadGUI() {
         if (BPMNDiagram.painelVinculacao == true) {
 
             let lista = [];
-            //salvar a vinculação
-            console.log(document.querySelectorAll('[name="item-check"]'));
-
+    
             document.querySelectorAll('[name="item-check"]')
             .forEach((e) => {
                 if (e.checked) lista.push(e.value)
             })
 
-
-            //console.log(lista)
             let elemento = get(Interface.id);
-
-
             elemento.vinculos = [];
 
             lista.forEach((a) => {
@@ -667,9 +661,23 @@ function loadGUI() {
                 BPMNDiagram.diagram.Largura = Number.parseInt(lista[0]);
                 BPMNDiagram.diagram.Altura = Number.parseInt(lista[1]);
 
+                let transform = diagram.getTransform(diagram.selector);
+
+                /*let oldBounds = {
+                    width:  document.querySelector(diagram.selector).getAttribute('width'),
+                    height: document.querySelector(diagram.selector).getAttribute('height')
+                };*/
+    
                 d3.select(diagram.selector)
                 .attr('width', BPMNDiagram.diagram.Largura)
                 .attr('height', BPMNDiagram.diagram.Altura);
+
+                d3.select(diagram.selector)
+                .attr('transform', `scale(${1}) translate(${transform.translate[0]},${transform.translate[1]})`);
+
+                //d3.select(diagram.selector)
+                //.attr('transform', `scale(${transform.scale}) translate(${transform.translate[0] - (BPMNDiagram.diagram.Largura - oldBounds.width)/(transform.scale) * (transform.scale - 1)}, ${transform.translate[1] - (BPMNDiagram.diagram.Altura - oldBounds.height)/(transform.scale) * (transform.scale - 1)})`);
+                
             }
             else {
                 objeto.atualizar(lista);
