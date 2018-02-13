@@ -11,18 +11,11 @@ class BPMNDiagram {
 		//Lista de elementos que formarão a nova transição
 		window.listaTransicao = [];
 
-
-		//////////////////////////////////////////
-		///
-
 		this.component = document.querySelector(this.selector);
-
 
 		window.addEventListener('mousewheel', (event) => {
 
-
 			let transform = diagram.getTransform(this.selector);
-
 
 			if (event.deltaY == -53) {
 				if (transform.scale > 0.2) transform.scale -= 0.05;
@@ -31,7 +24,6 @@ class BPMNDiagram {
 			}
 
 			d3.select(this.selector).attr('transform', `scale(${transform.scale}) translate(${transform.translate[0]}, ${transform.translate[1]})`);
-
 		});
 
 		/////////////////////////////////////////
@@ -157,8 +149,6 @@ class BPMNDiagram {
 		let transitions = [];
 		let protocol = data.protocol;
 
-		console.log(data);
-
 		if (protocol.element != null) {
 			this.analyse(protocol.element, transitions);
 
@@ -168,20 +158,12 @@ class BPMNDiagram {
 		this.link(transitions);
 		BPMNSettings.diagramSelector = this.selector;
 
-		console.log(d3.select(diagram.selector))
-
 		$(diagram.selector).width(protocol.width);
 		$(diagram.selector).height(protocol.height);
 
 
 		BPMNDiagram.diagram.Largura = protocol.width;
 		BPMNDiagram.diagram.Altura = protocol.height;
-
-		/*d3.select(diagram.selector)
-		.attr('width', protocol.width)
-		.attr('height', protocol.height)*/
-
-
 
 	}
 
@@ -257,7 +239,6 @@ class BPMNDiagram {
 			//elementos
 			this.analyse(array.element, transitions, array.id);
 		}
-
 	}
 
 	createLanes(pool) {
@@ -265,15 +246,9 @@ class BPMNDiagram {
 		if (pool.name != 'participant') return;
 
 		let list = [];
-		if (Array.isArray(pool.element)) {
-
-			pool.element.forEach((t) => {
-				list.push(t);
-			});
-		} else {
-
-			list.push(pool.element);
-		}
+		if (Array.isArray(pool.element)) pool.element.forEach(t => list.push(t));
+		else list.push(pool.element);
+		
 
 		list.sort((a, b) => {
 			if (a.y < b.y) return -1;
@@ -281,11 +256,9 @@ class BPMNDiagram {
 			return 0;
 		});
 
-
-
 		let parent = get(pool.id.substring(1));
 		list.forEach((lane) => {
-			console.log(lane);
+			
 			parent.insert(lane.id);
 		});
 	}
@@ -304,11 +277,7 @@ class BPMNDiagram {
 		this.numElements++;
 
 		//corrigir a criação de lanes
-		if (nome == 'lane-none') {
-			console.log(element)
-			//console.log("aqui");
-			return;
-		}
+		if (nome == 'lane-none') return;
 
 		if (element.container != this.selector) BPMNSettings.diagramSelector = `${element.container} .content-lane`;
 		else BPMNSettings.diagramSelector = element.container;
@@ -360,12 +329,8 @@ class BPMNDiagram {
 				console.log("erro");
 		}
 
-
-
-
 		let idAntigo = novoElemento.id;
 		novoElemento.id = element.id;
-
 
 		novoElemento.element = d3.select(idAntigo);
 		novoElemento.element.attr('id', novoElemento.id.substring(1));
@@ -379,9 +344,7 @@ class BPMNDiagram {
 		];
 
 		novoElemento.atualizar(attributes);
-
 		novoElemento.vinculos = [];
-
 
 		if (element.string != null) {
 
@@ -397,22 +360,17 @@ class BPMNDiagram {
 			});
 		}
 
-
 		window.elements.push(novoElemento);
 		BPMNSettings.diagramSelector = this.selector;
-
 	}
 
 	export () {
-
-		console.log(BPMNDiagram.diagram);
 
 		let diagram = {
 
 			width: BPMNDiagram.diagram.Largura,
 			height: BPMNDiagram.diagram.Altura,
 			elements: []
-
 		}
 
 		window.elements.filter((e) => {
@@ -590,7 +548,7 @@ class BPMNDiagram {
 
 		transicao.pontoOrigem = l;
 		transicao.pontoDestino = m;
-		//console.log(l + " --- " + m);
+		
 		transicao.id = '#transicao' + diagram.numElements;
 
 		return transicao;
@@ -692,10 +650,7 @@ class BPMNDiagram {
 			type = "sequence-flow"
 		}
 
-
-
 		//Adiciona a nova transição a lista de transições de cada elemento
-		//let t = document.querySelector('#' + 'transicao' + diagram.numElements);
 		a.transicoesOrigem.push('transicao' + diagram.numElements);
 		b.transicoesDestino.push('transicao' + diagram.numElements);
 
@@ -771,9 +726,6 @@ class BPMNDiagram {
 				x: 0,
 				y: 0
 			};
-
-
-
 		}
 
 		return ponto;
@@ -836,20 +788,20 @@ class BPMNDiagram {
 		});
 	}
 
+	getTargetByClass(target, className) {
+		
+		let element = target;
+		while(element.getAttribute('class') != className) element = element.parentElement;
+		
+		return element;
+	}
+
 	static refreshListener() {
 
 		d3.selectAll('.item')
 			.on('mouseover', function() {
-
-				let element = d3.event.target;
 				
-				while(element.getAttribute('class') != 'item') element = element.parentElement;
-				
-				element.focus();
-				
-			})
-			.on('blur', function() {
-
+				diagram.getTargetByClass(d3.event.target, 'item').focus();
 			})
 			.call(d3.drag()
 				.on('start', function () {
@@ -989,24 +941,14 @@ class BPMNDiagram {
 				})
 				.on('drag', function () {
 
-
-
 					d3.select(this).attr('transform', `scale(${scale}) translate(${d3.event.x - x},${d3.event.y - y})`);
 
-					window.elements.filter((e) => {
-						return e.transicoesOrigem != null && e.transicoesOrigem.length > 0;
-					}).forEach((e) => {
-
-						BPMNDiagram.reposicionarTransicoesPool(e);
-					});
-
-
-
+					window.elements.filter(e => e.transicoesOrigem != null && e.transicoesOrigem.length > 0)
+					.forEach(e => BPMNDiagram.reposicionarTransicoesPool(e));
 				})
 				.on('end', function () {
 
 					$(diagram.selector).css('cursor', 'auto');
-
 				})
 			);
 	}
@@ -1115,8 +1057,6 @@ class BPMNDiagram {
 			],
 			[
 				BPMNLane.PARTICIPANT,
-				//BPMNLane.LANE_DIVIDE_THREE,
-				//BPMNLane.LANE_DIVIDE_TWO,
 				BPMNLane.LANE_INSERT_BELOW,
 				BPMNLane.LANE_INSERT_ABOVE
 			],
