@@ -56,6 +56,13 @@ class DataExperiment {
 
     static block05(){
 
+        if (name("caminho-arquivo").files[0] == null) return; 
+
+        BPMNDiagram.experiment.artefatos.push({
+            artefatoId: name("select-artefato").value,
+            arquivo: name("caminho-arquivo").files[0]
+        });
+        
         BPMNDiagram.experiment.artefatos
         .filter((a) => {return a.id == name("select-artefato").value})
         .forEach((e) => {
@@ -63,7 +70,7 @@ class DataExperiment {
             if (e.arquivos == null) e.arquivos = [];
 
             e.arquivos.push({
-                path_arquivo: name("interpretacao-arquivo").files[0]
+                path_arquivo: name("caminho-arquivo").files[0].name
             });
         });
     }
@@ -276,6 +283,8 @@ class DataExperiment {
 
     static block25(){
 
+        if (name("interpretacao-arquivo").files[0] == null) return;
+
         BPMNDiagram.interpretacoesArquivos.push({
             interpretacaoId: name("opcao-interpretacao").value,
             arquivo: name("interpretacao-arquivo").files[0]
@@ -287,8 +296,8 @@ class DataExperiment {
 
             if (a.arquivos == null) a.arquivos = [];
 
-            a.arquivos.push({
-                path_arquivo: name("interpretacao-arquivo").files[0]
+             a.arquivos.push({
+                path_arquivo: name("interpretacao-arquivo").files[0].name
             });
         });
 

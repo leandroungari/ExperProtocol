@@ -1,11 +1,7 @@
 function loadGUI() {
 
-
     BPMNDiagram.createBoxMenu();
 
-    /////////////////////////////////////////////
-    /////////////////////////////////////////////
-    /////////////////////////////////////////////
 
     /**
      * Lista de opções formularios
@@ -91,8 +87,6 @@ function loadGUI() {
                 break;
         }
 
-
-
         $(`.block-${id}`).slideToggle();
     });
 
@@ -102,7 +96,6 @@ function loadGUI() {
     $("[class*='adicionar-block-']").click(function (event) {
 
         let number = event.target.className.split(" ")[1].split('-')[2];
-        //console.log(number);
 
         let id = null;
         switch (number) {
@@ -191,24 +184,17 @@ function loadGUI() {
                 id = DataExperiment.block21();
                 break;
 
-
             case "25":
                 DataExperiment.block25();
                 break;
 
         }
-        //console.log(`.block-${id}`);
+        
         $(`.block-${number}`).slideUp();
 
         $("input[type='text'], input[type='email'], input[type='password'], textarea", ".caixa-experimento").val("");
 
-        if (id != null) {
-
-            get(Interface.opcaoData).vinculos.push(id);
-        }
-
-
-
+        if (id != null) get(Interface.opcaoData).vinculos.push(id);
     });
     /**
      * Mostra o painel de abrir arquivo
@@ -227,8 +213,7 @@ function loadGUI() {
         event.preventDefault();
 
         let opcao = document.querySelector('[name="opcao-abrir"]').checked;
-        //console.log(opcao);
-        //console.log(event.dataTransfer.files);
+        
         if (opcao) {
             //pacote de laboratório
             let valor = document.querySelector('[name="fileInput"]').files[0];
@@ -250,7 +235,6 @@ function loadGUI() {
                         .done(function (data) {
 
                             data = JSON.parse(data);
-
 
                             let dados = {};
                             dados.protocol = (data.box.protocol == "" ? JSON.parse("{\"element\": []}") : data.box.protocol);
@@ -351,7 +335,7 @@ function loadGUI() {
 
             //modificar o armazenamento e escrita dos arquivos, além de como recuperar os arquivos após a
             //leitura
-            BPMNDiagram.experiment.interpretacoes.forEach((e) => {
+            /*BPMNDiagram.experiment.interpretacoes.forEach((e) => {
 
                 e.arquivos.forEach((arquivo, i) => {
 
@@ -369,9 +353,22 @@ function loadGUI() {
 
                     reader.readAsDataURL(arquivo.path_arquivo);
                 });
+            });*/
+
+            BPMNDiagram.interpretacoesArquivos.forEach((arquivo) => {
+
+                var reader = new FileReader();
+
+                reader.addEventListener("load", function () {
+
+                    saveAs(new Blob([this.result]), arquivo.path_arquivo.name);
+
+                }, false);
+
+                reader.readAsDataURL(arquivo.path_arquivo);
             });
 
-            BPMNDiagram.experiment.artefatos.forEach((e) => {
+            /*BPMNDiagram.experiment.artefatos.forEach((e) => {
 
 
                 e.arquivos.forEach((arquivo, i) => {
@@ -390,6 +387,19 @@ function loadGUI() {
 
                     reader.readAsDataURL(arquivo.path_arquivo);
                 });
+            });*/
+
+            BPMNDiagram.artefatosArquivos.forEach((arquivo) => {
+
+                var reader = new FileReader();
+
+                reader.addEventListener("load", function () {
+
+                    saveAs(new Blob([this.result]), arquivo.path_arquivo.name);
+
+                }, false);
+
+                reader.readAsDataURL(arquivo.path_arquivo);
             });
 
             let nome = document.querySelector("[name='nome-arquivo']").value;
