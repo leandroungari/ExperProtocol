@@ -681,6 +681,61 @@ class BPMNDiagram {
 		BPMNDiagram.refreshListener();
 	}
 
+	readExperiment(experiment) {
+
+		Object.entries(experiment)
+		.forEach(([property, value]) => BPMNDiagram.experiment[property] = value);
+
+		let listOfProperties = [
+			"cronogramas", 
+			"experimentadores", 
+			"questoes", 
+			"hipoteses", 
+			"variaveisIndependentes", 
+			"variaveisDependentes",
+			"participantes",
+			"artefatos",
+			"validades",
+			"grupos",
+			"defeitos",
+			"interpretacoes",
+			"conclusoes"
+		];
+
+		/*let subList = [
+			"arquivos",
+			"metricas"
+		];*/
+
+		Object.entries(BPMNDiagram.experiment)
+		.forEach(([property, value]) => {
+
+			if (listOfProperties.includes(property)) {
+
+				if (!Array.isArray(value)) {
+					BPMNDiagram.experiment[property] = [value];
+				}
+
+				if (property == "interpretacoes" ||
+					property == "artefatos" 	 
+				) {
+
+					BPMNDiagram.experiment[property].forEach(a => {
+						if (a.arquivos == null) a.arquivos = [];
+						else if (!Array.isArray(a.arquivos)) a.arquivos = [a.arquivos];
+					});
+				}
+				else if (property == "questoes") {
+
+					BPMNDiagram.experiment[property].forEach(a => {
+						if (a.metricas == null) a.metricas = [];
+						else if (!Array.isArray(a.metricas)) a.metricas = [a.metricas];
+					});
+				}
+			}
+		});
+	}
+
 	static verificarLimites(entry) {
 		let container;
 

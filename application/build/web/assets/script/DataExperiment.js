@@ -276,6 +276,11 @@ class DataExperiment {
 
     static block25(){
 
+        BPMNDiagram.interpretacoesArquivos.push({
+            interpretacaoId: name("opcao-interpretacao").value,
+            arquivo: name("interpretacao-arquivo").files[0]
+        });
+
         BPMNDiagram.experiment.interpretacoes
         .filter((e) => { return e.id == name("opcao-interpretacao").value})
         .forEach((a) => {

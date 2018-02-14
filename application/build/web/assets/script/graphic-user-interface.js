@@ -10,77 +10,85 @@ function loadGUI() {
     /**
      * Lista de opções formularios
      */
-     $("[class*='li-']").click(function (event) {
+    $("[class*='li-']").click(function (event) {
 
 
         const [element, id] = event.target.className.split("-");
-        
-        
-        switch(id){
+
+
+        switch (id) {
 
             case "25":
-            
-            document.querySelector("[name='opcao-interpretacao']").innerHTML = "";
-            BPMNDiagram.experiment
-            .interpretacoes.map((e) => {return e.id})
-            .forEach((e) => {
 
-                let option = document.createElement('option');
-                option.value = e;
-                option.innerHTML = e;
-                
-                document.querySelector("[name='opcao-interpretacao']").appendChild(option);
-            });
+                document.querySelector("[name='opcao-interpretacao']").innerHTML = "";
+                BPMNDiagram.experiment
+                    .interpretacoes.map((e) => {
+                        return e.id
+                    })
+                    .forEach((e) => {
 
-            break;
+                        let option = document.createElement('option');
+                        option.value = e;
+                        option.innerHTML = e;
+
+                        document.querySelector("[name='opcao-interpretacao']").appendChild(option);
+                    });
+
+                break;
 
             case "20":
-            
-            document.querySelector("[name='opcao-questao']").innerHTML = "";
-            BPMNDiagram.experiment
-            .questoes.map((e) => {return e.id})
-            .forEach((e) => {
 
-                let option = document.createElement('option');
-                option.value = e;
-                option.innerHTML = e;
-                
-                document.querySelector("[name='opcao-questao']").appendChild(option);
-            });
+                document.querySelector("[name='opcao-questao']").innerHTML = "";
+                BPMNDiagram.experiment
+                    .questoes.map((e) => {
+                        return e.id
+                    })
+                    .forEach((e) => {
 
-            break;
+                        let option = document.createElement('option');
+                        option.value = e;
+                        option.innerHTML = e;
+
+                        document.querySelector("[name='opcao-questao']").appendChild(option);
+                    });
+
+                break;
 
             case "10":
-            
-            document.querySelector("[name='nome-grupo-participante']").innerHTML = "";
-            BPMNDiagram.experiment
-            .grupos.map((e) => {return e.id})
-            .forEach((e) => {
 
-                let option = document.createElement('option');
-                option.value = e;
-                option.innerHTML = e;
-                
-                document.querySelector("[name='nome-grupo-participante']").appendChild(option);
-            });
+                document.querySelector("[name='nome-grupo-participante']").innerHTML = "";
+                BPMNDiagram.experiment
+                    .grupos.map((e) => {
+                        return e.id
+                    })
+                    .forEach((e) => {
 
-            break;
+                        let option = document.createElement('option');
+                        option.value = e;
+                        option.innerHTML = e;
+
+                        document.querySelector("[name='nome-grupo-participante']").appendChild(option);
+                    });
+
+                break;
 
             case "05":
-            
-            document.querySelector("[name='select-artefato']").innerHTML = "";
-            BPMNDiagram.experiment
-            .artefatos.map((e) => {return e.id})
-            .forEach((e) => {
 
-                let option = document.createElement('option');
-                option.value = e;
-                option.innerHTML = e;
-                
-                document.querySelector("[name='select-artefato']").appendChild(option);
-            });
+                document.querySelector("[name='select-artefato']").innerHTML = "";
+                BPMNDiagram.experiment
+                    .artefatos.map((e) => {
+                        return e.id
+                    })
+                    .forEach((e) => {
 
-            break;
+                        let option = document.createElement('option');
+                        option.value = e;
+                        option.innerHTML = e;
+
+                        document.querySelector("[name='select-artefato']").appendChild(option);
+                    });
+
+                break;
         }
 
 
@@ -91,7 +99,7 @@ function loadGUI() {
     /**
      * Adicionar o dado recurso do bloco ao experimento
      */
-     $("[class*='adicionar-block-']").click(function (event) {
+    $("[class*='adicionar-block-']").click(function (event) {
 
         let number = event.target.className.split(" ")[1].split('-')[2];
         //console.log(number);
@@ -100,99 +108,99 @@ function loadGUI() {
         switch (number) {
 
             case "01":
-            id = DataExperiment.block01();
-            break;
+                id = DataExperiment.block01();
+                break;
 
             case "02":
-            id = DataExperiment.block02();
-            break;
+                id = DataExperiment.block02();
+                break;
 
             case "03":
-            id = DataExperiment.block03();
-            break;
+                id = DataExperiment.block03();
+                break;
 
             case "04":
-            id = DataExperiment.block04();
-            break;
+                id = DataExperiment.block04();
+                break;
 
             case "05":
-            DataExperiment.block05();
-            break;
+                DataExperiment.block05();
+                break;
 
             case "06":
-            id = DataExperiment.block06();
-            break;
+                id = DataExperiment.block06();
+                break;
 
             case "07":
-            id = DataExperiment.block07();
-            break;
+                id = DataExperiment.block07();
+                break;
 
             case "08":
-            id = DataExperiment.block08();
-            break;
+                id = DataExperiment.block08();
+                break;
 
             case "09":
-            id = DataExperiment.block09();
-            break;
+                id = DataExperiment.block09();
+                break;
 
             case "10":
-            id = DataExperiment.block10();
-            break;
+                id = DataExperiment.block10();
+                break;
 
             case "11":
-            id = DataExperiment.block11();
-            break;
+                id = DataExperiment.block11();
+                break;
 
             case "12":
-            id = DataExperiment.block12();
-            break;
+                id = DataExperiment.block12();
+                break;
 
             case "13":
-            id = DataExperiment.block13();
-            break;
+                id = DataExperiment.block13();
+                break;
 
             case "14":
-            id = DataExperiment.block14();
-            break;
+                id = DataExperiment.block14();
+                break;
 
             case "15":
-            id = DataExperiment.block15();
-            break;
+                id = DataExperiment.block15();
+                break;
 
             case "16":
-            id = DataExperiment.block16();
-            break;
+                id = DataExperiment.block16();
+                break;
 
             case "17":
-            id = DataExperiment.block17();
-            break;
+                id = DataExperiment.block17();
+                break;
 
             case "18":
-            id = DataExperiment.block18();
-            break;
+                id = DataExperiment.block18();
+                break;
 
             case "19":
-            id = DataExperiment.block19();
-            break;
+                id = DataExperiment.block19();
+                break;
 
             case "20":
-            id = DataExperiment.block20();
-            break;
+                id = DataExperiment.block20();
+                break;
 
             case "21":
-            id = DataExperiment.block21();
-            break;
+                id = DataExperiment.block21();
+                break;
 
 
             case "25":
-            DataExperiment.block25();
-            break;
+                DataExperiment.block25();
+                break;
 
         }
         //console.log(`.block-${id}`);
         $(`.block-${number}`).slideUp();
 
-        $("input[type='text'], input[type='email'], input[type='password'], textarea",".caixa-experimento").val("");
+        $("input[type='text'], input[type='email'], input[type='password'], textarea", ".caixa-experimento").val("");
 
         if (id != null) {
 
@@ -205,14 +213,14 @@ function loadGUI() {
     /**
      * Mostra o painel de abrir arquivo
      */
-     let box01 = document.querySelector('.box-01');
+    let box01 = document.querySelector('.box-01');
 
-     document.querySelector('.open-file').addEventListener('click', () => {
+    document.querySelector('.open-file').addEventListener('click', () => {
 
         box01.style.display = 'block';
     });
 
-     document.querySelector('.open-option-open-dialog').addEventListener('click', (event) => {
+    document.querySelector('.open-option-open-dialog').addEventListener('click', (event) => {
 
 
         event.stopPropagation();
@@ -233,33 +241,31 @@ function loadGUI() {
                     let data = reader.result;
 
                     $.ajax({
-                        url: (window.location.href + "/abrirPacote "),
-                        type: "post",
-                        async: true,
-                        data: data,
-                        cache: false
-                    })
-                    .done(function (data) {
+                            url: (window.location.href + "/abrirPacote "),
+                            type: "post",
+                            async: true,
+                            data: data,
+                            cache: false
+                        })
+                        .done(function (data) {
 
-                            //console.log(data);
                             data = JSON.parse(data);
-                            //console.log(data);
+
 
                             let dados = {};
-
                             dados.protocol = (data.box.protocol == "" ? JSON.parse("{\"element\": []}") : data.box.protocol);
 
                             //ajustando experimento
-                            Object.entries(data.box.experimento).forEach( ([property, value]) =>  BPMNDiagram.property = value);
+                            diagram.readExperiment(data.box.experimento);
 
                             //atribuindo protocolo
                             BPMNDiagram.protocol = dados.protocol;
 
                             diagram.import(JSON.stringify(dados));
                         })
-                    .fail(function () {
-                        console.log("pãã");
-                    });
+                        .fail(function () {
+                            console.log("pãã");
+                        });
                 }
             };
 
@@ -278,20 +284,20 @@ function loadGUI() {
                     let data = reader.result;
 
                     $.ajax({
-                        url: (window.location.href + "/abrirProtocolo"),
-                        type: "post",
-                        async: true,
-                        data: data,
-                        cache: false
-                    })
-                    .done(function (data) {
+                            url: (window.location.href + "/abrirProtocolo"),
+                            type: "post",
+                            async: true,
+                            data: data,
+                            cache: false
+                        })
+                        .done(function (data) {
 
-                        diagram.import(data);
+                            diagram.import(data);
 
-                    })
-                    .fail(function () {
-                        console.log("pãã");
-                    });
+                        })
+                        .fail(function () {
+                            console.log("pãã");
+                        });
                 }
             };
 
@@ -302,7 +308,7 @@ function loadGUI() {
     });
 
 
-     document.querySelector('.cancel-option-open-dialog').addEventListener('click', () => {
+    document.querySelector('.cancel-option-open-dialog').addEventListener('click', () => {
 
         box01.style.display = 'none';
     });
@@ -313,17 +319,15 @@ function loadGUI() {
     /**
      * Mostra o painel de salvar arquivo
      */
-     let box02 = document.querySelector('.box-02');
+    let box02 = document.querySelector('.box-02');
 
-     document.querySelector('.save-file').addEventListener('click', () => {
+    document.querySelector('.save-file').addEventListener('click', () => {
 
-        /*let blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-        saveAs(blob, "hello world.txt");*/
+
         box02.style.display = 'block';
-
     });
 
-     document.querySelector('.save-option-save-dialog').addEventListener('click', () => {
+    document.querySelector('.save-option-save-dialog').addEventListener('click', () => {
 
         let opcao = document.querySelector('[name="opcao-salvar"]').checked;
 
@@ -335,21 +339,19 @@ function loadGUI() {
             data.protocol = struct;
             data.experimento = BPMNDiagram.experiment;
 
-            console.log(data);
-
             ////////////////////
             /// Extração dos arquivos
             /// 
-            
+
             //lista de arquivos das interpretacoes
             BPMNDiagram.interpretacoesArquivos = [];
 
             //lista de arquivos dos artefatos
             BPMNDiagram.artefatosArquivos = [];
-            
-            
-            BPMNDiagram.experiment.interpretacoes.forEach((e) => {
 
+            //modificar o armazenamento e escrita dos arquivos, além de como recuperar os arquivos após a
+            //leitura
+            BPMNDiagram.experiment.interpretacoes.forEach((e) => {
 
                 e.arquivos.forEach((arquivo, i) => {
 
@@ -358,7 +360,7 @@ function loadGUI() {
                     reader.addEventListener("load", function () {
 
                         saveAs(new Blob([this.result]), arquivo.path_arquivo.name);
-                        
+
                         e.arquivos[i].path_arquivo = arquivo.path_arquivo.name;
 
                         BPMNDiagram.interpretacoesArquivos.push(e.arquivos[i].path_arquivo);
@@ -379,7 +381,7 @@ function loadGUI() {
                     reader.addEventListener("load", function () {
 
                         saveAs(new Blob([this.result]), arquivo.path_arquivo.name);
-                        
+
                         e.arquivos[i].path_arquivo = arquivo.path_arquivo.name;
 
                         BPMNDiagram.artefatosArquivos.push(e.arquivos[i].path_arquivo);
@@ -405,19 +407,19 @@ function loadGUI() {
             BPMNDiagram.nomePacote = nome;
 
             $.ajax({
-                url: (window.location.href + "/salvarPacote"),
-                type: "post",
-                async: true,
-                data: `{"box": ${JSON.stringify(data)}}`,
-                cache: false
-            })
-            .done(function (data) {
+                    url: (window.location.href + "/salvarPacote"),
+                    type: "post",
+                    async: true,
+                    data: `{"box": ${JSON.stringify(data)}}`,
+                    cache: false
+                })
+                .done(function (data) {
 
-                saveAs(new Blob([data]), nome);
-            })
-            .fail(function () {
-                console.log("pãã");
-            });
+                    saveAs(new Blob([data]), nome);
+                })
+                .fail(function () {
+                    console.log("pãã");
+                });
 
         } else {
             //Protocolo de Experimentação
@@ -438,19 +440,19 @@ function loadGUI() {
             }
 
             $.ajax({
-                url: (window.location.href + "/salvarProtocolo"),
-                type: "post",
-                async: true,
-                data: data,
-                cache: false
-            })
-            .done(function (data) {
+                    url: (window.location.href + "/salvarProtocolo"),
+                    type: "post",
+                    async: true,
+                    data: data,
+                    cache: false
+                })
+                .done(function (data) {
 
-                saveAs(new Blob([data]), nome);
-            })
-            .fail(function () {
-                console.log("pãã");
-            });
+                    saveAs(new Blob([data]), nome);
+                })
+                .fail(function () {
+                    console.log("pãã");
+                });
         }
 
 
@@ -459,17 +461,17 @@ function loadGUI() {
 
     });
 
-     document.querySelector('.cancel-option-save-dialog').addEventListener('click', () => {
+    document.querySelector('.cancel-option-save-dialog').addEventListener('click', () => {
 
         box02.style.display = 'none';
     });
 
-     document.querySelector('.create-package').addEventListener('click', () => {
+    document.querySelector('.create-package').addEventListener('click', () => {
 
         document.querySelector('.box-03').style.display = 'block';
     });
 
-     document.querySelector('.create-package-box .gerar').addEventListener('click', () => {
+    document.querySelector('.create-package-box .gerar').addEventListener('click', () => {
 
         if (BPMNDiagram.nomePacote == null) {
 
@@ -484,27 +486,26 @@ function loadGUI() {
             nome: BPMNDiagram.nomePacote
         }
 
-        console.log(data);
 
         $.ajax({
-            url: (window.location.href + "/comprimirPacote"),
-            type: "post",
-            async: true,
-            data: JSON.stringify(data),
-            cache: false
-        })
-        .done(function (data) {
-            console.log('oi');
-            //saveAs(new Blob([data]), nome);
-            
-            document.querySelector('.box-03').style.display = 'none';
-        })
-        .fail(function () {
-            console.log("pãã");
-        });
+                url: (window.location.href + "/comprimirPacote"),
+                type: "post",
+                async: true,
+                data: JSON.stringify(data),
+                cache: false
+            })
+            .done(function (data) {
+                console.log('oi');
+                //saveAs(new Blob([data]), nome);
+
+                document.querySelector('.box-03').style.display = 'none';
+            })
+            .fail(function () {
+                console.log("pãã");
+            });
     });
 
-     document.querySelector('.create-package-box .cancelar').addEventListener('click', () => {
+    document.querySelector('.create-package-box .cancelar').addEventListener('click', () => {
 
         document.querySelector('.box-03').style.display = 'none';
     });
@@ -515,7 +516,7 @@ function loadGUI() {
     /**
      * Carrega um novo diagrama vazio
      */
-     document.querySelector('.new-file').addEventListener('click', () => {
+    document.querySelector('.new-file').addEventListener('click', () => {
 
         if (window.elements.length == 0) window.location.reload();
         else {
@@ -526,7 +527,7 @@ function loadGUI() {
         }
     });
 
-     document.querySelector('.export-file').addEventListener('click', () => {
+    document.querySelector('.export-file').addEventListener('click', () => {
 
 
         if (window.elements.length == 0) {
@@ -539,24 +540,24 @@ function loadGUI() {
     });
 
 
-     document.querySelector('.preferences').addEventListener('click', () => {
+    document.querySelector('.preferences').addEventListener('click', () => {
 
         $('.settings').slideDown();
     });
 
-     document.querySelector('.settings .close').addEventListener('click', () => {
+    document.querySelector('.settings .close').addEventListener('click', () => {
 
         $('.settings').slideUp();
     });
 
-     $('.caixa-experimento .close').click(function () {
+    $('.caixa-experimento .close').click(function () {
 
         $(this).parent().slideToggle();
     });
 
 
 
-     document.querySelector('.radio-pt').addEventListener('click', () => {
+    document.querySelector('.radio-pt').addEventListener('click', () => {
 
         let select;
         Object.entries(language.pt).forEach(([k, v]) => {
@@ -569,7 +570,7 @@ function loadGUI() {
         $(".caixa-experimento .btn").val("Adicionar");
     });
 
-     document.querySelector('.radio-en').addEventListener('click', () => {
+    document.querySelector('.radio-en').addEventListener('click', () => {
 
         let select;
         Object.entries(language.en).forEach(([k, v]) => {
@@ -614,11 +615,11 @@ function loadGUI() {
         if (BPMNDiagram.painelVinculacao == true) {
 
             let lista = [];
-    
+
             document.querySelectorAll('[name="item-check"]')
-            .forEach((e) => {
-                if (e.checked) lista.push(e.value)
-            })
+                .forEach((e) => {
+                    if (e.checked) lista.push(e.value)
+                })
 
             let elemento = get(Interface.id);
             elemento.vinculos = [];
@@ -640,7 +641,7 @@ function loadGUI() {
             });
 
             let objeto = get(Interface.id);
-            
+
             if (Interface.id == diagram.selector) {
 
                 BPMNDiagram.diagram.Largura = Number.parseInt(lista[0]);
@@ -652,19 +653,18 @@ function loadGUI() {
                     width:  document.querySelector(diagram.selector).getAttribute('width'),
                     height: document.querySelector(diagram.selector).getAttribute('height')
                 };*/
-    
-                d3.select(diagram.selector)
-                .attr('width', BPMNDiagram.diagram.Largura)
-                .attr('height', BPMNDiagram.diagram.Altura);
 
                 d3.select(diagram.selector)
-                .attr('transform', `scale(${1}) translate(${transform.translate[0]},${transform.translate[1]})`);
+                    .attr('width', BPMNDiagram.diagram.Largura)
+                    .attr('height', BPMNDiagram.diagram.Altura);
+
+                d3.select(diagram.selector)
+                    .attr('transform', `scale(${1}) translate(${transform.translate[0]},${transform.translate[1]})`);
 
                 //d3.select(diagram.selector)
                 //.attr('transform', `scale(${transform.scale}) translate(${transform.translate[0] - (BPMNDiagram.diagram.Largura - oldBounds.width)/(transform.scale) * (transform.scale - 1)}, ${transform.translate[1] - (BPMNDiagram.diagram.Altura - oldBounds.height)/(transform.scale) * (transform.scale - 1)})`);
-                
-            }
-            else {
+
+            } else {
                 objeto.atualizar(lista);
             }
 
@@ -742,11 +742,11 @@ class Interface {
         let transicao = get(id);
 
         window.elements.filter(e => e.transicoesOrigem != null)
-        .forEach((a) => {
+            .forEach((a) => {
 
-            a.transicoesOrigem = a.transicoesOrigem.filter(u => u != id);
-            a.transicoesDestino = a.transicoesDestino.filter(u => u != id);
-        });
+                a.transicoesOrigem = a.transicoesOrigem.filter(u => u != id);
+                a.transicoesDestino = a.transicoesDestino.filter(u => u != id);
+            });
 
         window.elements = window.elements.filter(a => a.id != `#${id}`);
 
@@ -762,7 +762,7 @@ class Interface {
         $('.painel-lateral .button').trigger('click');
     }
 
-    static modificarPainel(){
+    static modificarPainel() {
 
         painelLateral(diagram.selector);
 
@@ -789,11 +789,11 @@ function exibirDescricao(id) {
     if (element.vinculos == null || element.vinculos.length == 0) {
 
         d3.select('.box-descricao > .content')
-        .append('p')
-        .style('line-height', "300px")
-        .style('vertical-align', 'middle')
-        .style('text-align', 'center')
-        .text('Não há elementos do experimento vinculados.')
+            .append('p')
+            .style('line-height', "300px")
+            .style('vertical-align', 'middle')
+            .style('text-align', 'center')
+            .text('Não há elementos do experimento vinculados.')
 
     } else {
 
@@ -802,31 +802,31 @@ function exibirDescricao(id) {
             getObjectById(BPMNDiagram.experiment, a);
 
             d3.select('.box-descricao > .content').append('div')
-            .style('padding', '15px 25px')
-            .attr('class', `item-${result.id}`)
+                .style('padding', '15px 25px')
+                .attr('class', `item-${result.id}`)
 
             //o resultado fica na variavel result
             let valores = Object.entries(formatarTexto(result));
-            
+
             valores.forEach(([attribute, value]) => {
 
                 d3.select(`.item-${result.id}`)
-                .append('p')
-                .style('font-size', '14px')
-                .style('padding', '2px 0')
-                .style('margin-left', '25px')
-                .text(`${attribute}: ${value}`)
+                    .append('p')
+                    .style('font-size', '14px')
+                    .style('padding', '2px 0')
+                    .style('margin-left', '25px')
+                    .text(`${attribute}: ${value}`)
             });
 
             let str = document.querySelector(`.item-${result.id} > p`).innerHTML;
             if (str[str.length - 2] == ':') document.querySelector(`.item-${result.id} > p`).innerHTML = str.substring(0, str.length - 2);
             else document.querySelector(`.item-${result.id} > p`).innerHTML = str;
-            
+
 
             d3.select(`.item-${result.id} > p`)
-            .style('font', 'bold 20px DinPro')
-            .style('margin-bottom','5px')
-            .style('text-transform', 'uppercase');
+                .style('font', 'bold 20px DinPro')
+                .style('margin-bottom', '5px')
+                .style('text-transform', 'uppercase');
         });
     }
 }
@@ -844,17 +844,15 @@ const formatarTexto = (object) => {
                 "Ponto de vista": object.pontodevista,
                 "Contexto": object.contexto
             };
-        }
-        else if (object.id.includes("experimentador")) {
+        } else if (object.id.includes("experimentador")) {
             return {
                 "Experimentador": "",
                 "Nome": object.nome,
                 "E-mail": object.email,
             };
-        }
-        else if (object.id.includes("experiment")) {
+        } else if (object.id.includes("experiment")) {
             return {
-                "Experimento":"",
+                "Experimento": "",
                 "Nome": object.nome,
                 "Descrição": object.descricao,
                 "Tema": object.tema,
@@ -863,49 +861,42 @@ const formatarTexto = (object) => {
                 "Domínio": object.dominio,
                 "Idioma": object.idioma,
             };
-        }
-        else if (object.id.includes("validade")) {
+        } else if (object.id.includes("validade")) {
             return {
-                "Validade":"",
+                "Validade": "",
                 "Tipo": object.tipo,
                 "Avaliação": object.avaliacao,
             };
-        }
-        else if (object.id.includes("grupo")) {
+        } else if (object.id.includes("grupo")) {
             return {
-                "Grupo":"",
+                "Grupo": "",
                 "Identificação": object.id.substring("grupo".length),
                 "Observação": object.observacao,
             };
-        }
-        else if (object.id.includes("questao")) {
+        } else if (object.id.includes("questao")) {
             return {
                 "Questão": "",
                 "Questão": object.questao,
             };
-        }
-        else if (object.id.includes("hipotese")) {
+        } else if (object.id.includes("hipotese")) {
             return {
                 "Hipóteses": "",
                 "Hipótese Nula": object.hipoteseNula,
                 "Hipótese Alternativa": object.hipoteseAlternativa,
             };
-        }
-        else if (object.id.includes("dependente")) {
+        } else if (object.id.includes("dependente")) {
             return {
                 "Variável": "",
                 "Variável Dependente": object.var,
             };
-        }
-        else if (object.id.includes("independente")) {
+        } else if (object.id.includes("independente")) {
             return {
                 "Variável": "",
                 "Variável Independente": object.var,
             };
-        }
-        else if (object.id.includes("participante")) {
+        } else if (object.id.includes("participante")) {
             return {
-                "Participante":"",
+                "Participante": "",
                 "Grupo": object.grupo,
                 "Nome": object.pessoa.nome,
                 "E-mail": object.pessoa.email,
@@ -914,32 +905,29 @@ const formatarTexto = (object) => {
                 "Sigla da Instituição": object.pessoa.instituicao.sigla,
                 "País da Instituição": object.pessoa.instituicao.pais,
             };
-        }
-        else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
-            
+        } else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
+
             if (object.arquivos == null) object.arquivos = [];
 
             let lista = object.arquivos.map(u => (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo));
-            
+
             return {
-                "Artefato":"",
+                "Artefato": "",
                 "Nome": object.nome,
                 "Descrição": object.descricao,
                 "Tipo": object.tipo,
                 "Arquivo(s)": lista.join(", "),
             };
-        }
-        else if (object.id.includes("cronograma")) {
+        } else if (object.id.includes("cronograma")) {
             return {
-                "Cronograma":"",
+                "Cronograma": "",
                 "Definição": object.definicao,
                 "Data Inicial": object.data_inicial,
                 "Data Final": object.data_final,
                 "Tipo": object.tipo,
                 "Tempo": object.tempo,
             };
-        }
-        else if (object.id.includes("defeito")) {
+        } else if (object.id.includes("defeito")) {
             return {
                 "Defeito": "",
                 "Local": object.local,
@@ -947,8 +935,7 @@ const formatarTexto = (object) => {
                 "Classe de defeito": object.classeDefeito,
                 "Descrição": object.descricao,
             };
-        }
-        else if (object.id.includes("interpretacao")) {
+        } else if (object.id.includes("interpretacao")) {
 
             if (object.arquivos == null) object.arquivos = [];
 
@@ -959,21 +946,19 @@ const formatarTexto = (object) => {
                 "Resultados": object.resultados,
                 "Arquivo(s)": lista.join(", "),
             };
-        }
-        else if (object.id.includes("conclusao")) {
+        } else if (object.id.includes("conclusao")) {
             return {
                 "Conclusão": "",
                 "Observação": object.conclusao
             };
-        }
-        else if (object.id.includes("metrica")) {
+        } else if (object.id.includes("metrica")) {
             return {
                 "Métrica": "",
                 "Métrica": object.metrica,
                 "Descrição": object.descricao,
             };
         }
-        
+
 
 
     } else {
@@ -984,7 +969,7 @@ const formatarTexto = (object) => {
         ////////////////////////////
         /// English
         /// 
-        
+
         if (object.id.includes("definicao")) {
             return {
                 "Definition": "",
@@ -994,17 +979,15 @@ const formatarTexto = (object) => {
                 "Viewpoint": object.pontodevista,
                 "Context": object.contexto
             };
-        }
-        else if (object.id.includes("experimentador")) {
+        } else if (object.id.includes("experimentador")) {
             return {
                 "Experimenter": "",
                 "Name": object.nome,
                 "E-mail": object.email,
             };
-        }
-        else if (object.id.includes("experiment")) {
+        } else if (object.id.includes("experiment")) {
             return {
-                "Experiment":"",
+                "Experiment": "",
                 "Name": object.nome,
                 "Description": object.descricao,
                 "Topic": object.tema,
@@ -1013,49 +996,42 @@ const formatarTexto = (object) => {
                 "Domain": object.dominio,
                 "Language": object.idioma,
             };
-        }
-        else if (object.id.includes("validade")) {
+        } else if (object.id.includes("validade")) {
             return {
-                "Validity":"",
+                "Validity": "",
                 "Type": object.tipo,
                 "Avaliation": object.avaliacao,
             };
-        }
-        else if (object.id.includes("grupo")) {
+        } else if (object.id.includes("grupo")) {
             return {
-                "Group":"",
+                "Group": "",
                 "Identification": object.id.substring("grupo".length),
                 "Observation": object.observacao,
             };
-        }
-        else if (object.id.includes("questao")) {
+        } else if (object.id.includes("questao")) {
             return {
                 "Question": "",
                 "Question": object.questao,
             };
-        }
-        else if (object.id.includes("hipotese")) {
+        } else if (object.id.includes("hipotese")) {
             return {
                 "Hypothesys": "",
                 "Null Hypothesys": object.hipoteseNula,
                 "Alternative Hypothesys": object.hipoteseAlternativa,
             };
-        }
-        else if (object.id.includes("dependente")) {
+        } else if (object.id.includes("dependente")) {
             return {
                 "Variable": "",
                 "Dependent Variable": object.var,
             };
-        }
-        else if (object.id.includes("independente")) {
+        } else if (object.id.includes("independente")) {
             return {
                 "Variable": "",
                 "Independent Variable": object.var,
             };
-        }
-        else if (object.id.includes("participante")) {
+        } else if (object.id.includes("participante")) {
             return {
-                "Participant":"",
+                "Participant": "",
                 "Group": object.grupo,
                 "Name": object.pessoa.nome,
                 "E-mail": object.pessoa.email,
@@ -1064,30 +1040,27 @@ const formatarTexto = (object) => {
                 "Institution initials": object.pessoa.instituicao.sigla,
                 "Institution country": object.pessoa.instituicao.pais,
             };
-        }
-        else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
+        } else if (object.id.includes("ferramenta") || object.id.includes("material") || object.id.includes("treinamento") || object.id.includes("questionario") || object.id.includes("formulario")) {
 
             let lista = object.arquivos.map(u => (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo));
 
             return {
-                "Artifact":"",
+                "Artifact": "",
                 "Name": object.nome,
                 "Description": object.descricao,
                 "Type": object.tipo,
                 "Archive(s)": lista.join(", "),
             };
-        }
-        else if (object.id.includes("cronograma")) {
+        } else if (object.id.includes("cronograma")) {
             return {
-                "Schedule":"",
+                "Schedule": "",
                 "Definition": object.definicao,
                 "Initial date": object.data_inicial,
                 "Final date": object.data_final,
                 "Type": object.tipo,
                 "Time": object.tempo,
             };
-        }
-        else if (object.id.includes("defeito")) {
+        } else if (object.id.includes("defeito")) {
             return {
                 "Defect": "",
                 "Location": object.local,
@@ -1095,8 +1068,7 @@ const formatarTexto = (object) => {
                 "Defect class": object.classeDefeito,
                 "Description": object.descricao,
             };
-        }
-        else if (object.id.includes("interpretacao")) {
+        } else if (object.id.includes("interpretacao")) {
 
             let lista = object.arquivos.map(u => (u.path_arquivo.name != null ? u.path_arquivo.name : u.path_arquivo));
 
@@ -1105,21 +1077,19 @@ const formatarTexto = (object) => {
                 "Results": object.resultados,
                 "Archive(s)": lista.join(", "),
             };
-        }
-        else if (object.id.includes("conclusao")) {
+        } else if (object.id.includes("conclusao")) {
             return {
                 "Conclusion": "",
                 "Observation": object.conclusao
             };
-        }
-        else if (object.id.includes("metrica")) {
+        } else if (object.id.includes("metrica")) {
             return {
                 "Metric": "",
                 "Metric": object.metrica,
                 "Description": object.descricao,
             };
         }
-        
+
     }
 };
 
@@ -1148,7 +1118,7 @@ function getObjectById(object, id) {
     if (!isObject(object)) return;
 
     Object.keys(object).forEach((a) => {
-        
+
         getObjectById(object[a], id);
     });
 }
@@ -1167,29 +1137,29 @@ function menuContexto(x, y, categoria, id) {
     if (categoria == "element") {
 
         d3.select('.context-menu')
-        .append('li')
-        .attr('class', 'modificar')
-        .text((BPMNDiagram.language == 'pt-br' ? 'Modificar descrição' : 'Modify description'))
-        .on('click', function () {
-            Interface.modificar(id);
-        });
+            .append('li')
+            .attr('class', 'modificar')
+            .text((BPMNDiagram.language == 'pt-br' ? 'Modificar descrição' : 'Modify description'))
+            .on('click', function () {
+                Interface.modificar(id);
+            });
 
         //Se for uma lane não adiciona botão de remover
         if (id.indexOf('lane') == -1) {
 
             d3.select('.context-menu')
-            .append('li')
-            .attr('class', 'remover')
-            .text((BPMNDiagram.language == 'pt-br' ? 'Remover' : 'Remove' ))
-            .on('click', function () {
+                .append('li')
+                .attr('class', 'remover')
+                .text((BPMNDiagram.language == 'pt-br' ? 'Remover' : 'Remove'))
+                .on('click', function () {
 
-                Interface.remover(id);
-                $('.context-menu').trigger('mouseleave');
-            });
+                    Interface.remover(id);
+                    $('.context-menu').trigger('mouseleave');
+                });
         }
 
         const show = (event) => {
-          
+
             $(`.${event.target.className.substring(3)}`).slideDown();
         };
 
@@ -1199,52 +1169,52 @@ function menuContexto(x, y, categoria, id) {
             Interface.opcaoData = id;
 
             d3.select('.context-menu')
-            .append('li')
-            .attr('class', 'experimento')
-            .text((BPMNDiagram.language == 'pt-br' ? 'Experimento' : 'Experiment'))
-            .attr('class', 'menu-experimento')
-            .append('ul');
+                .append('li')
+                .attr('class', 'experimento')
+                .text((BPMNDiagram.language == 'pt-br' ? 'Experimento' : 'Experiment'))
+                .attr('class', 'menu-experimento')
+                .append('ul');
 
             d3.select('.menu-experimento ul')
-            .append('li')
-            .attr('class', 'li-definicao')
-            .text((BPMNDiagram.language == 'pt-br' ? 'Definição' : 'Definition'))
+                .append('li')
+                .attr('class', 'li-definicao')
+                .text((BPMNDiagram.language == 'pt-br' ? 'Definição' : 'Definition'))
 
             $('.li-definicao').click(show);
 
             d3.select('.menu-experimento ul')
-            .append('li')
-            .attr('class', 'li-planejamento')
-            .text((BPMNDiagram.language == 'pt-br' ? 'Planejamento' : 'Planning'))
+                .append('li')
+                .attr('class', 'li-planejamento')
+                .text((BPMNDiagram.language == 'pt-br' ? 'Planejamento' : 'Planning'))
 
             $('.li-planejamento').click(show);
 
             d3.select('.menu-experimento ul')
-            .append('li')
-            .attr('class', 'li-execucao')
-            .text((BPMNDiagram.language == 'pt-br' ? 'Execução' : 'Execution'))
+                .append('li')
+                .attr('class', 'li-execucao')
+                .text((BPMNDiagram.language == 'pt-br' ? 'Execução' : 'Execution'))
 
             $('.li-execucao').click(show);
 
             d3.select('.menu-experimento ul')
-            .append('li')
-            .attr('class', 'li-analise')
-            .text((BPMNDiagram.language == 'pt-br' ? 'Análise e Interpretação': 'Analysis and Interpretation'))
+                .append('li')
+                .attr('class', 'li-analise')
+                .text((BPMNDiagram.language == 'pt-br' ? 'Análise e Interpretação' : 'Analysis and Interpretation'))
 
             $('.li-analise').click(show);
 
             d3.select('.menu-experimento ul')
-            .append('li')
-            .attr('class', 'li-apresentacao')
-            .text((BPMNDiagram.language == 'pt-br' ? 'Apresentação e Empacotamento' : 'Presentation and Packaging'))
+                .append('li')
+                .attr('class', 'li-apresentacao')
+                .text((BPMNDiagram.language == 'pt-br' ? 'Apresentação e Empacotamento' : 'Presentation and Packaging'))
 
             $('.li-apresentacao').click(show);
 
             //////////////////
             d3.select('.context-menu')
-            .append('li')
-            .attr('class', 'exibir')
-            .text((BPMNDiagram.language == 'pt-br' ? 'Exibir detalhes' : 'Show details'));
+                .append('li')
+                .attr('class', 'exibir')
+                .text((BPMNDiagram.language == 'pt-br' ? 'Exibir detalhes' : 'Show details'));
 
             $('.exibir').click(() => {
 
@@ -1255,26 +1225,26 @@ function menuContexto(x, y, categoria, id) {
     } else if (categoria == "panel") {
 
         d3.select('.context-menu')
-        .append('li')
-        .attr('class', 'modificar-painel')
-        .text((BPMNDiagram.language == 'pt-br' ? 'Modificar painel' : 'Modify panel' ))
-        .on('click', () => {
+            .append('li')
+            .attr('class', 'modificar-painel')
+            .text((BPMNDiagram.language == 'pt-br' ? 'Modificar painel' : 'Modify panel'))
+            .on('click', () => {
 
-            Interface.modificarPainel();
-            $('.context-menu').trigger('mouseleave');
-        })
+                Interface.modificarPainel();
+                $('.context-menu').trigger('mouseleave');
+            })
 
     } else {
 
         d3.select('.context-menu')
-        .append('li')
-        .attr('class', 'remover-transicao')
-        .text((BPMNDiagram.language == 'pt-br' ? 'Remover' : 'Remove' ))
-        .on('click', () => {
+            .append('li')
+            .attr('class', 'remover-transicao')
+            .text((BPMNDiagram.language == 'pt-br' ? 'Remover' : 'Remove'))
+            .on('click', () => {
 
-            Interface.removerTransicao(id);
-            $('.context-menu').trigger('mouseleave');
-        })
+                Interface.removerTransicao(id);
+                $('.context-menu').trigger('mouseleave');
+            })
     }
 }
 
@@ -1288,15 +1258,14 @@ function painelLateral(id) {
 
     if (id == diagram.selector) {
 
-        Object.entries(element).forEach( ([k,v]) => {
+        Object.entries(element).forEach(([k, v]) => {
 
             painel.append('label').text(textLabel(k));
             painel.append('input').attr('value', v);
         });
 
         Interface.id = id;
-    }
-    else {
+    } else {
 
         for (let a in element.attributes) {
 

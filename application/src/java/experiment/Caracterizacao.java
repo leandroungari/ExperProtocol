@@ -9,7 +9,7 @@ public class Caracterizacao  extends Element{
     //private String id;
     private String questao;
     
-    @XStreamImplicit
+    @XStreamImplicit(itemFieldName = "metricas")
     private ArrayList<Metrica> metricas = new ArrayList<>();
     
     
