@@ -88,9 +88,7 @@ class BPMNDiagram {
 	 */
 	getTransform(selector) {
 
-		let result = {},
-			transform;
-
+		let result = {}, transform;
 		let translateStr = document.querySelector(selector).getAttribute('transform');
 		
 		if (translateStr == null) transform = ["", "", ""];
@@ -100,7 +98,6 @@ class BPMNDiagram {
 
 			let scale = transform[0];
 			result.scale = Number.parseFloat(scale.substring(6, scale.length - 1));
-
 			result = this.getTranslate(result, transform);
 
 		} else {
@@ -162,7 +159,6 @@ class BPMNDiagram {
 
 		BPMNDiagram.diagram.Largura = protocol.width;
 		BPMNDiagram.diagram.Altura = protocol.height;
-
 	}
 
 	link(array) {
@@ -554,11 +550,11 @@ class BPMNDiagram {
 
 		let transicao = BPMNDiagram.calcularTransicao(origem, destino);
 
-		origem = (a.container == '.bpmn-diagram' ? {
+		origem = (a.container == diagram.selector ? {
 			x: 0,
 			y: 0
 		} : get(a.container.substring(1)));
-		destino = (b.container == '.bpmn-diagram' ? {
+		destino = (b.container == diagram.selector ? {
 			x: 0,
 			y: 0
 		} : get(b.container.substring(1)));
@@ -582,15 +578,45 @@ class BPMNDiagram {
 		else if (a.id.startsWith("#data") && b.id.startsWith("#data")) {
 			return;
 		} else if (a.id.startsWith("#data") || b.id.startsWith("#data")) {
+			
+			let ox, oy, dx, dy;
+
+			ox = a.x + a.points[transicao.pontoOrigem].x;
+			oy = a.y + a.points[transicao.pontoOrigem].y;
+			dx = b.x + b.points[transicao.pontoDestino].x;
+			dy = b.y + b.points[transicao.pontoDestino].y;
+			
+			if (a.container.substring(0, a.container.indexOf('lane')) != b.container.substring(0, b.container.indexOf('lane'))) {
+				
+				let po = get(get(a.container.substring(1)).container.substring(1));
+				let pd = get(get(b.container.substring(1)).container.substring(1));
+
+				ox += origem.x + po.x - po.dx;
+				oy += origem.y + po.y - po.dy;
+				dx += destino.x + pd.x - pd.dx;
+				dy += destino.y + pd.y - pd.dy;
+
+				container = `${diagram.selector} .transition`;
+
+			} else if (a.container != b.container) {
+	
+				ox += origem.x;
+				oy += origem.y;
+				dx += destino.x;
+				dy += destino.y;
+			}
+			
 			d3.select(container).append('polyline')
 				.attr('id', 'transicao' + diagram.numElements)
 				.attr('stroke-dasharray', '1.5,3')
-				.attr('points', `${a.x + a.points[transicao.pontoOrigem].x},${a.y + a.points[transicao.pontoOrigem].y} ${b.x + b.points[transicao.pontoDestino].x},${b.y + b.points[transicao.pontoDestino].y}`)
+				.attr('points', `${ox},${oy} ${dx},${dy}`)
 				.attr('stroke', '#000')
 				.attr('stroke-width', '2.1')
 				.attr('marker-end', 'url(#arrow)');
 
 			type = "data-association";
+
+
 		} else if (a.container.substring(0, a.container.indexOf('lane')) != b.container.substring(0, b.container.indexOf('lane'))) {
 
 			let ox, oy, dx, dy;
@@ -616,6 +642,7 @@ class BPMNDiagram {
 			d3.select(`${container} .transition`).raise();
 
 			type = "message-flow";
+
 		} else {
 
 
@@ -794,7 +821,7 @@ class BPMNDiagram {
 		d3.selectAll('.item')
 			.on('mouseover', function() {
 				
-				diagram.getTargetByClass(d3.event.target, 'item').focus();
+				//diagram.getTargetByClass(d3.event.target, 'item').focus();
 			})
 			.call(d3.drag()
 				.on('start', function () {

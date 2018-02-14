@@ -249,26 +249,13 @@ function loadGUI() {
 
                             dados.protocol = (data.box.protocol == "" ? JSON.parse("{\"element\": []}") : data.box.protocol);
 
-                            BPMNDiagram.experiment = data.box.experimento;
-
                             //ajustando experimento
-                            if (BPMNDiagram.experiment.artefatos == null) BPMNDiagram.experiment.artefatos = [];
-                            if (BPMNDiagram.experiment.conclusoes == null) BPMNDiagram.experiment.conclusoes = [];
-                            if (BPMNDiagram.experiment.cronogramas == null) BPMNDiagram.experiment.cronogramas = [];
-                            if (BPMNDiagram.experiment.defeitos == null) BPMNDiagram.experiment.defeitos = [];
-                            if (BPMNDiagram.experiment.experimentadores == null) BPMNDiagram.experiment.experimentadores = [];
-                            if (BPMNDiagram.experiment.hipoteses == null) BPMNDiagram.experiment.hipoteses = [];
-                            if (BPMNDiagram.experiment.interpretacoes == null) BPMNDiagram.experiment.interpretacoes = [];
-                            if (BPMNDiagram.experiment.participantes == null) BPMNDiagram.experiment.participantes = [];
-                            if (BPMNDiagram.experiment.questoes == null) BPMNDiagram.experiment.questoes = [];
-                            if (BPMNDiagram.experiment.validades == null) BPMNDiagram.experiment.validades = [];
-                            if (BPMNDiagram.experiment.variaveisDependentes == null) BPMNDiagram.experiment.variaveisDependentes = [];
-                            if (BPMNDiagram.experiment.variaveisIndependentes == null) BPMNDiagram.experiment.variaveisIndependentes = [];
+                            Object.entries(data.box.experimento).forEach( ([property, value]) =>  BPMNDiagram.property = value);
 
+                            //atribuindo protocolo
                             BPMNDiagram.protocol = dados.protocol;
 
                             diagram.import(JSON.stringify(dados));
-
                         })
                     .fail(function () {
                         console.log("pãã");
