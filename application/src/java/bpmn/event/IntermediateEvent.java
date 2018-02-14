@@ -20,9 +20,9 @@ public class IntermediateEvent extends Event{
     public IntermediateEvent() {
     }
 
-    public IntermediateEvent(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public IntermediateEvent(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("intermediate-event-none");
+        setName("floatermediate-event-none");
     }
     
     

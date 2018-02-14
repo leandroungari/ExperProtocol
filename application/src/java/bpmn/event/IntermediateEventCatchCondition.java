@@ -20,9 +20,9 @@ public class IntermediateEventCatchCondition extends IntermediateEvent{
     public IntermediateEventCatchCondition() {
     }
 
-    public IntermediateEventCatchCondition(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public IntermediateEventCatchCondition(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("intermediate-event-catch-condition");
+        setName("floatermediate-event-catch-condition");
     }
     
     

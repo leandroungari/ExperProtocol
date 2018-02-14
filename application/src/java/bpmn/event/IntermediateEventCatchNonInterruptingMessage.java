@@ -20,9 +20,9 @@ public class IntermediateEventCatchNonInterruptingMessage extends IntermediateEv
     public IntermediateEventCatchNonInterruptingMessage() {
     }
 
-    public IntermediateEventCatchNonInterruptingMessage(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public IntermediateEventCatchNonInterruptingMessage(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("intermediate-event-catch-non-interrupting-message");
+        setName("floatermediate-event-catch-non-floaterrupting-message");
     }
     
     

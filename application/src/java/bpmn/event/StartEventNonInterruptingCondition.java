@@ -20,9 +20,9 @@ public class StartEventNonInterruptingCondition extends StartEvent{
     public StartEventNonInterruptingCondition() {
     }
 
-    public StartEventNonInterruptingCondition(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public StartEventNonInterruptingCondition(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("start-event-non-interrupting-condition");
+        setName("start-event-non-floaterrupting-condition");
     }
     
     

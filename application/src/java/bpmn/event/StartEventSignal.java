@@ -20,7 +20,7 @@ public class StartEventSignal extends StartEvent{
     public StartEventSignal() {
     }
 
-    public StartEventSignal(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public StartEventSignal(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         setName("start-event-signal");
     }

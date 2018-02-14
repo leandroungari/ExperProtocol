@@ -20,9 +20,9 @@ public class IntermediateEventCatchSignal extends IntermediateEvent{
     public IntermediateEventCatchSignal() {
     }
 
-    public IntermediateEventCatchSignal(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public IntermediateEventCatchSignal(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("intermediate-event-catch-signal");
+        setName("floatermediate-event-catch-signal");
     }
     
     

@@ -20,7 +20,7 @@ public class EndEventMessage extends EndEvent{
     public EndEventMessage() {
     }
 
-    public EndEventMessage(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public EndEventMessage(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         setName("end-event-message");
     }

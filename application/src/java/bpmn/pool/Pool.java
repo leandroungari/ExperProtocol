@@ -20,14 +20,14 @@ public class Pool extends Element{
     
   
     private ArrayList<Lane> lanes;  
-    private int width;
+    private float width;
     
 
     
     public Pool() {
     }
 
-    public Pool(String id, int x, int y, int width, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public Pool(String id, float x, float y, float width, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
     
         this.width = width;
@@ -43,11 +43,11 @@ public class Pool extends Element{
         this.lanes = lanes;
     }
 
-    public int getWidth() {
+    public float getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(float width) {
         this.width = width;
     }
 

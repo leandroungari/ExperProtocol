@@ -20,7 +20,7 @@ public class GatewayXOR extends Gateway{
     public GatewayXOR() {
     }
 
-    public GatewayXOR(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public GatewayXOR(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         setName("gateway-xor");
     }

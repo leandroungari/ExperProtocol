@@ -20,9 +20,9 @@ public class StartEventNonInterruptingSignal extends StartEvent {
     public StartEventNonInterruptingSignal() {
     }
 
-    public StartEventNonInterruptingSignal(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public StartEventNonInterruptingSignal(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("start-event-non-interrupting-signal");
+        setName("start-event-non-floaterrupting-signal");
     }
     
     

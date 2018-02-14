@@ -20,7 +20,7 @@ public class DataInput extends Artifact{
     public DataInput() {
     }
 
-    public DataInput(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public DataInput(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         this.setName("data-input");
     }

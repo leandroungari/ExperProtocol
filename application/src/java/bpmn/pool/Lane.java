@@ -17,24 +17,24 @@ import java.util.ArrayList;
 @XStreamAlias("Lane")
 public class Lane extends Element{
 
-    private int height;
+    private float height;
 
     
     public Lane() {
     }
 
-    public Lane(String id, int x, int y, int height, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public Lane(String id, float x, float y, float height, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         this.height = height;
         this.setType("BPMNLane");
         setName("lane-none");
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(float height) {
         this.height = height;
     }
 

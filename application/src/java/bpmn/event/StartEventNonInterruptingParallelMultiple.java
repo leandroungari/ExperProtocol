@@ -20,9 +20,9 @@ public class StartEventNonInterruptingParallelMultiple extends StartEvent{
     public StartEventNonInterruptingParallelMultiple() {
     }
 
-    public StartEventNonInterruptingParallelMultiple(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public StartEventNonInterruptingParallelMultiple(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("start-event-non-interrupting-parallel-multiple");
+        setName("start-event-non-floaterrupting-parallel-multiple");
     }
     
 }

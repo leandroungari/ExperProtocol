@@ -20,7 +20,7 @@ public class StartEventMessage extends StartEvent{
     public StartEventMessage() {
     }
 
-    public StartEventMessage(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public StartEventMessage(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         setName("start-event-message");
     }

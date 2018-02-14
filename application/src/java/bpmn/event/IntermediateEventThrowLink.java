@@ -20,9 +20,9 @@ public class IntermediateEventThrowLink extends IntermediateEvent{
     public IntermediateEventThrowLink() {
     }
 
-    public IntermediateEventThrowLink(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public IntermediateEventThrowLink(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("intermediate-event-throw-link");
+        setName("floatermediate-event-throw-link");
     }
     
     

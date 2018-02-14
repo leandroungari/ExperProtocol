@@ -20,7 +20,7 @@ public class GatewayParallel extends Gateway{
     public GatewayParallel() {
     }
 
-    public GatewayParallel(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public GatewayParallel(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         setName("gateway-parallel");
     }

@@ -20,9 +20,9 @@ public class IntermediateEventCatchNonInterruptingParallelMultiple extends Inter
     public IntermediateEventCatchNonInterruptingParallelMultiple() {
     }
 
-    public IntermediateEventCatchNonInterruptingParallelMultiple(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public IntermediateEventCatchNonInterruptingParallelMultiple(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("intermediate-event-catch-non-interrupting-parallel-multiple");
+        setName("floatermediate-event-catch-non-floaterrupting-parallel-multiple");
     }
     
     

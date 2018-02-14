@@ -20,7 +20,7 @@ public class Event extends Element{
     public Event() {
     }
 
-    public Event(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public Event(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         this.setType("BPMNEvent");
     }

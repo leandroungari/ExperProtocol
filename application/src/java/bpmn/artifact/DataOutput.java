@@ -20,7 +20,7 @@ public class DataOutput extends Artifact{
     public DataOutput() {
     }
 
-    public DataOutput(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public DataOutput(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         this.setName("data-output");
     }

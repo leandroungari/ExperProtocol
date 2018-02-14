@@ -845,6 +845,13 @@ const formatarTexto = (object) => {
                 "Contexto": object.contexto
             };
         }
+        else if (object.id.includes("experimentador")) {
+            return {
+                "Experimentador": "",
+                "Nome": object.nome,
+                "E-mail": object.email,
+            };
+        }
         else if (object.id.includes("experiment")) {
             return {
                 "Experimento":"",
@@ -966,13 +973,7 @@ const formatarTexto = (object) => {
                 "Descrição": object.descricao,
             };
         }
-        else if (object.id.includes("experimentador")) {
-            return {
-                "Experimentador": "",
-                "Nome": object.nome,
-                "E-mail": object.email,
-            };
-        }
+        
 
 
     } else {
@@ -992,6 +993,13 @@ const formatarTexto = (object) => {
                 "Approach": object.respeito,
                 "Viewpoint": object.pontodevista,
                 "Context": object.contexto
+            };
+        }
+        else if (object.id.includes("experimentador")) {
+            return {
+                "Experimenter": "",
+                "Name": object.nome,
+                "E-mail": object.email,
             };
         }
         else if (object.id.includes("experiment")) {
@@ -1111,13 +1119,7 @@ const formatarTexto = (object) => {
                 "Description": object.descricao,
             };
         }
-        else if (object.id.includes("experimentador")) {
-            return {
-                "Experimenter": "",
-                "Name": object.nome,
-                "E-mail": object.email,
-            };
-        }
+        
     }
 };
 

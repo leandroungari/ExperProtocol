@@ -20,7 +20,7 @@ public class StartEventError extends StartEvent{
     public StartEventError() {
     }
 
-    public StartEventError(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public StartEventError(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         setName("start-event-error");
     }

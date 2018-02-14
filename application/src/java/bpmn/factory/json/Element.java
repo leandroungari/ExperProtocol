@@ -17,14 +17,14 @@ import java.util.ArrayList;
 public class Element {
     
     private String id;
-    private int x;
-    private int y;
+    private float x;
+    private float y;
     
     private String type;
     private String name;
     
-    private int width;
-    private int height;
+    private float width;
+    private float height;
     
     private String description;
     @XStreamImplicit
@@ -34,7 +34,7 @@ public class Element {
     @XStreamImplicit
     private ArrayList<String> vinculos;
 
-    public Element(String id, int x, int y, String type, String name, int width, int height, String description, ArrayList<Element> elements, ArrayList<Transicao> transitions, ArrayList<String> vinculos) {
+    public Element(String id, float x, float y, String type, String name, float width, float height, String description, ArrayList<Element> elements, ArrayList<Transicao> transitions, ArrayList<String> vinculos) {
         this.id = id;
         this.x = x;
         this.y = y;
@@ -70,7 +70,7 @@ public class Element {
         this.id = id;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
@@ -78,7 +78,7 @@ public class Element {
         this.x = x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
@@ -86,7 +86,7 @@ public class Element {
         this.y = y;
     }
 
-    public int getWidth() {
+    public float getWidth() {
         return width;
     }
 
@@ -94,7 +94,7 @@ public class Element {
         this.width = width;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 

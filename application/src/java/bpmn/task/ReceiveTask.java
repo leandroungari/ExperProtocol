@@ -20,7 +20,7 @@ public class ReceiveTask extends Task {
     public ReceiveTask() {
     }
 
-    public ReceiveTask(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public ReceiveTask(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         setName("receive-task");
     }

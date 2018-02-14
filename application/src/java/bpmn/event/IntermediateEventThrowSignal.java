@@ -20,9 +20,9 @@ public class IntermediateEventThrowSignal extends IntermediateEvent{
     public IntermediateEventThrowSignal() {
     }
 
-    public IntermediateEventThrowSignal(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public IntermediateEventThrowSignal(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("intermediate-event-throw-signal");
+        setName("floatermediate-event-throw-signal");
     }
     
     

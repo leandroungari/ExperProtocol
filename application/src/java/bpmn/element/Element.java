@@ -22,9 +22,9 @@ public class Element {
 
     private String id;
 
-    private int x;
+    private float x;
 
-    private int y;
+    private float y;
     
     private String description;
     
@@ -42,7 +42,7 @@ public class Element {
     public Element() {
     }
 
-    public Element(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public Element(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         this.id = id;
         this.x = x;
         this.y = y;
@@ -83,11 +83,11 @@ public class Element {
         return id;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
@@ -103,11 +103,11 @@ public class Element {
         this.id = id;
     }
 
-    public void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
 

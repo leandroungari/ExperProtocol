@@ -22,7 +22,7 @@ public class TextAnnotation extends Artifact{
      
     }
 
-    public TextAnnotation(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public TextAnnotation(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
         this.setType("BPMNTextAnnotation");
         this.setName("text-annotation");

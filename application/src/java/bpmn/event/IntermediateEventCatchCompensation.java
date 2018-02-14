@@ -20,9 +20,9 @@ public class IntermediateEventCatchCompensation extends IntermediateEvent{
     public IntermediateEventCatchCompensation() {
     }
 
-    public IntermediateEventCatchCompensation(String id, int x, int y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
+    public IntermediateEventCatchCompensation(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("intermediate-event-catch-compensation");
+        setName("floatermediate-event-catch-compensation");
     }
     
     
