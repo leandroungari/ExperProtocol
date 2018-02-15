@@ -154,6 +154,13 @@ class BPMNDiagram {
 		this.link(transitions);
 		BPMNSettings.diagramSelector = this.selector;
 
+		this.setDiagramHeight(protocol);
+	}
+
+	setDiagramHeight(protocol) {
+		
+		console.log(protocol);
+
 		document.querySelector(this.selector).setAttribute('width', protocol.width);
 		document.querySelector(this.selector).setAttribute('height', protocol.height);
 
@@ -247,10 +254,7 @@ class BPMNDiagram {
 		});
 
 		let parent = get(pool.id.substring(1));
-		list.forEach((lane) => {
-			
-			parent.insert(lane.id, lane.x, lane.y, lane.height);
-		});
+		list.forEach(lane => parent.insert(lane.id, lane.x, lane.y, lane.height));
 	}
 
 	classify(element) {
@@ -271,7 +275,6 @@ class BPMNDiagram {
 
 		if (element.container != this.selector) BPMNSettings.diagramSelector = `${element.container} .content-lane`;
 		else BPMNSettings.diagramSelector = element.container;
-
 
 		switch (name.type) {
 
@@ -701,11 +704,6 @@ class BPMNDiagram {
 			"interpretacoes",
 			"conclusoes"
 		];
-
-		/*let subList = [
-			"arquivos",
-			"metricas"
-		];*/
 
 		Object.entries(BPMNDiagram.experiment)
 		.forEach(([property, value]) => {

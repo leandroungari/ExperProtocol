@@ -250,7 +250,6 @@ function loadGUI() {
 
                             //atribuindo protocolo
                             BPMNDiagram.protocol = dados.protocol;
-
                             diagram.import(JSON.stringify(dados));
                         })
                         .fail(function () {
@@ -281,7 +280,8 @@ function loadGUI() {
                             cache: false
                         })
                         .done(function (data) {
-
+                            console.log(data)
+                            //BPMNDiagram.protocol = dados.protocol;
                             diagram.import(data);
 
                         })

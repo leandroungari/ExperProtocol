@@ -26,8 +26,9 @@ public class Protocol {
     private int width;
     private int height;
     
-    public Protocol() {
-        
+    public Protocol(int width, int height) {
+        this.width = width;
+        this.height = height;
         this.elements = new ArrayList<>();
     }
 

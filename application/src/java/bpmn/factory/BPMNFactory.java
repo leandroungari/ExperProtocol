@@ -257,6 +257,7 @@ public class BPMNFactory {
         //x.autodetectAnnotations(true);
         BusinessProcessDiagram b = (BusinessProcessDiagram) x.fromXML(xml);
         diagram = b;
+        System.out.println(b.getWidth() + " --- " + b.getHeight());
         return b;
     }
 
@@ -514,7 +515,7 @@ public class BPMNFactory {
 
         String s;
 
-        schema = new Protocol();
+        schema = new Protocol(diagram.getWidth(), diagram.getHeight());
         schema.setElements(new ArrayList<>());
 
         bpmn.factory.json.Element a, b, c;
@@ -566,7 +567,7 @@ public class BPMNFactory {
     public static Protocol export(BusinessProcessDiagram d) {
 
     
-        Protocol p = new Protocol();
+        Protocol p = new Protocol(d.getWidth(), d.getHeight());
         p.setElements(new ArrayList<>());
 
         bpmn.factory.json.Element a, b, c;
