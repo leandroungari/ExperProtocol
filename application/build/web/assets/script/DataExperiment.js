@@ -58,7 +58,7 @@ class DataExperiment {
 
         if (name("caminho-arquivo").files[0] == null) return; 
 
-        BPMNDiagram.experiment.artefatos.push({
+        BPMNDiagram.artefatosArquivos.push({
             artefatoId: name("select-artefato").value,
             arquivo: name("caminho-arquivo").files[0]
         });

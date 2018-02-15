@@ -189,7 +189,7 @@ function loadGUI() {
                 break;
 
         }
-        
+
         $(`.block-${number}`).slideUp();
 
         $("input[type='text'], input[type='email'], input[type='password'], textarea", ".caixa-experimento").val("");
@@ -212,8 +212,14 @@ function loadGUI() {
         event.stopPropagation();
         event.preventDefault();
 
+        //lista de arquivos das interpretacoes
+        BPMNDiagram.interpretacoesArquivos = [];
+
+        //lista de arquivos dos artefatos
+        BPMNDiagram.artefatosArquivos = [];
+
         let opcao = document.querySelector('[name="opcao-abrir"]').checked;
-        
+
         if (opcao) {
             //pacote de laboratório
             let valor = document.querySelector('[name="fileInput"]').files[0];
@@ -327,79 +333,27 @@ function loadGUI() {
             /// Extração dos arquivos
             /// 
 
-            //lista de arquivos das interpretacoes
-            BPMNDiagram.interpretacoesArquivos = [];
-
-            //lista de arquivos dos artefatos
-            BPMNDiagram.artefatosArquivos = [];
-
-            //modificar o armazenamento e escrita dos arquivos, além de como recuperar os arquivos após a
-            //leitura
-            /*BPMNDiagram.experiment.interpretacoes.forEach((e) => {
-
-                e.arquivos.forEach((arquivo, i) => {
-
-                    var reader = new FileReader();
-
-                    reader.addEventListener("load", function () {
-
-                        saveAs(new Blob([this.result]), arquivo.path_arquivo.name);
-
-                        e.arquivos[i].path_arquivo = arquivo.path_arquivo.name;
-
-                        BPMNDiagram.interpretacoesArquivos.push(e.arquivos[i].path_arquivo);
-
-                    }, false);
-
-                    reader.readAsDataURL(arquivo.path_arquivo);
-                });
-            });*/
-
             BPMNDiagram.interpretacoesArquivos.forEach((arquivo) => {
 
                 var reader = new FileReader();
-
                 reader.addEventListener("load", function () {
 
-                    saveAs(new Blob([this.result]), arquivo.path_arquivo.name);
-
+                    saveAs(new Blob([this.result]), arquivo.arquivo.name);
                 }, false);
 
-                reader.readAsDataURL(arquivo.path_arquivo);
+                reader.readAsDataURL(arquivo.arquivo);
             });
 
-            /*BPMNDiagram.experiment.artefatos.forEach((e) => {
-
-
-                e.arquivos.forEach((arquivo, i) => {
-
-                    var reader = new FileReader();
-
-                    reader.addEventListener("load", function () {
-
-                        saveAs(new Blob([this.result]), arquivo.path_arquivo.name);
-
-                        e.arquivos[i].path_arquivo = arquivo.path_arquivo.name;
-
-                        BPMNDiagram.artefatosArquivos.push(e.arquivos[i].path_arquivo);
-
-                    }, false);
-
-                    reader.readAsDataURL(arquivo.path_arquivo);
-                });
-            });*/
 
             BPMNDiagram.artefatosArquivos.forEach((arquivo) => {
 
                 var reader = new FileReader();
-
                 reader.addEventListener("load", function () {
 
-                    saveAs(new Blob([this.result]), arquivo.path_arquivo.name);
-
+                    saveAs(new Blob([this.result]), arquivo.arquivo.name);
                 }, false);
 
-                reader.readAsDataURL(arquivo.path_arquivo);
+                reader.readAsDataURL(arquivo.arquivo);
             });
 
             let nome = document.querySelector("[name='nome-arquivo']").value;
@@ -409,9 +363,7 @@ function loadGUI() {
                 return;
             }
 
-            if (nome.indexOf(".xml") == -1) {
-                nome = `${nome}.xml`;
-            }
+            if (nome.indexOf(".xml") == -1) nome = `${nome}.xml`;
 
             //nome do arquivo
             BPMNDiagram.nomePacote = nome;
@@ -433,10 +385,8 @@ function loadGUI() {
 
         } else {
             //Protocolo de Experimentação
-
             let struct = diagram.export();
             let data = JSON.stringify(struct);
-
 
             let nome = document.querySelector("[name='nome-arquivo']").value;
 
@@ -445,9 +395,7 @@ function loadGUI() {
                 return;
             }
 
-            if (nome.indexOf(".bpmn") == -1) {
-                nome = `${nome}.bpmn`;
-            }
+            if (nome.indexOf(".bpmn") == -1) nome = `${nome}.bpmn`;
 
             $.ajax({
                     url: (window.location.href + "/salvarProtocolo"),
@@ -488,14 +436,15 @@ function loadGUI() {
             window.alert("Você precisa salvar o pacote de laboratório antes!!");
             return;
         }
-
+        
         let data = {
             caminho: document.querySelector("[name='caminho-pasta']").value,
-            interpretacoes: BPMNDiagram.interpretacoesArquivos,
-            artefatos: BPMNDiagram.artefatosArquivos,
+            interpretacoes: BPMNDiagram.interpretacoesArquivos.map(a => a.arquivo.name),
+            artefatos: BPMNDiagram.artefatosArquivos.map(a => a.arquivo.name),
             nome: BPMNDiagram.nomePacote
         }
 
+        console.log(data)
 
         $.ajax({
                 url: (window.location.href + "/comprimirPacote"),
@@ -505,8 +454,6 @@ function loadGUI() {
                 cache: false
             })
             .done(function (data) {
-                console.log('oi');
-                //saveAs(new Blob([data]), nome);
 
                 document.querySelector('.box-03').style.display = 'none';
             })

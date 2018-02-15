@@ -51,6 +51,12 @@ window.onload = function () {
 		conclusoes: []
 	}
 
+	//lista de arquivos das interpretacoes
+	BPMNDiagram.interpretacoesArquivos = [];
+
+	//lista de arquivos dos artefatos
+	BPMNDiagram.artefatosArquivos = [];
+
 
 	loadGUI();
 
