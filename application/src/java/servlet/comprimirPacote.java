@@ -5,7 +5,6 @@
  */
 package servlet;
 
-import bpmn.factory.json.Protocol;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import file.Arquivo;
@@ -15,12 +14,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.zip.ZipOutputStream;
 import javax.servlet.ServletException;
@@ -49,12 +44,12 @@ public class comprimirPacote extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        Scanner servlet = new Scanner(new InputStreamReader(request.getInputStream()));
+        String json;
+        try (Scanner servlet = new Scanner(new InputStreamReader(request.getInputStream()))) {
+            json = "{\"interface\": " + servlet.nextLine() + "}";
+        }
 
-        String json = "{\"interface\": " + servlet.nextLine() + "}";
-        servlet.close();
-
-        System.out.println(json);
+        
 
         XStream xstream = new XStream(new JettisonMappedXmlDriver());
         xstream.alias("interface", InterfaceZIP.class);
@@ -127,19 +122,6 @@ public class comprimirPacote extends HttpServlet {
 
             }
 
-            /*try {
-                
-                
-                ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(pacote.getCaminho() + "/" + pacote.getNome() + ".zip"));
-                
-                Arquivo.toZip(caminhoPasta, zos); 
-    
-                zos.close();
-            } catch (Exception e) {
-                
-                System.out.println(e);
-            }*/
-            
             
             String zipFile = pacote.getCaminho() + "/" + pacote.getNome() + ".zip";
             String base = pacote.getCaminho() + "/";

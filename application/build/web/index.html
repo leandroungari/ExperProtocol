@@ -4,6 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ExperProtocol Tool</title>
+	<meta name="theme-color" content="#ffffff" />
+	
 	<link rel="stylesheet" href="assets/style/base/bpmn.css">
 	<link rel="stylesheet" href="assets/style/layout/painel-desenho.css">
 	<link rel="stylesheet" href="assets/style/icon.css">
@@ -38,8 +40,10 @@
 	<script src="assets/script/FileSaver.min.js"></script>
 	<script src="assets/script/jquery-3.2.1.min.js"></script>
 
-	<script src="assets/script/DataExperiment.js"></script>
 	<script src="assets/script/language.js"></script>
+
+	<script src="assets/script/DataExperiment.js"></script>
+	<script src="assets/script/InterfaceGrafica.js"></script>
 	<script src="assets/script/graphic-user-interface.js"></script>
 
 	<script src="assets/script/index.js"></script>
@@ -392,6 +396,23 @@
 			<br>
 			<p class="options">
 				<span class="gerar text-button">Salvar</span>
+				<span class="cancelar text-button">Cancelar</span>
+			</p>
+		</div>
+	</div>
+
+	<div class="box-shadow box-04">
+		<div class="open-package-box">
+			<p class="box-04-comprimir">Abrir pacote de laboratório</p><br>
+			<p class="box-03-entre">Entre com o caminho da pasta com os arquivos do pacote de laboratório:</p>
+			<br>
+			<form>
+				<label class="box-03-pasta" for="nome-arquivo">Caminho da pasta </label>
+				<input autocomplete="off" type='text' name='caminho-pasta-abrir-lista'></input>
+			</form>
+			<br>
+			<p class="options">
+				<span class="gerar text-button">Carregar</span>
 				<span class="cancelar text-button">Cancelar</span>
 			</p>
 		</div>

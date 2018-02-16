@@ -144,7 +144,14 @@ let language = {
 
         ".modificar-elemento": "Modificar Elemento",
         ".text-info": "Sem seleção",
-        ".salvar-alteracoes": "Salvar Alterações"
+        ".salvar-alteracoes": "Salvar Alterações",
+
+        ".box-04-comprimir": "Abrir pacote de laboratório",
+        ".open-package-box .gerar": "Carregar",
+
+
+
+        
     },  
     en : {
         ".open-file": "Open ...",
@@ -291,6 +298,9 @@ let language = {
 
         ".modificar-elemento": "Modify Item",
         ".text-info": "No selection",
-        ".salvar-alteracoes": "Save editions"
+        ".salvar-alteracoes": "Save editions",
+
+        ".box-04-comprimir": "Open lab package",
+        ".open-package-box .gerar": "Load",
     }
 };
