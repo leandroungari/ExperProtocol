@@ -124,6 +124,11 @@ let language = {
         ".block-04 .observacao": "Observação",
 
 
+        ".definicao .li-22": "Objetivos",
+        ".block-22 .objetivo": "Objetivo",
+        ".block-22 .descricao": "Descrição",
+        ".block-22 .questao": "Selecione a questão respectiva: ",
+
         /////////////////
         ".text-open": "Selecione o formato de arquivo:",
         ".input-open": "Pacote de Laboratório",
@@ -277,6 +282,12 @@ let language = {
 
         ".planejamento .li-04": "Group",
         ".block-04 .observacao": "Observation",
+
+        ".definicao .li-22": "Goals",
+        ".block-22 .objetivo": "Goal",
+        ".block-22 .descricao": "Description",
+        ".block-22 .questao": "Select the respective question: ",
+
 
         /////////////////
         ".text-open": "Select the file format:",

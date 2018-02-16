@@ -255,6 +255,9 @@ class BPMNDiagram {
 
 		let parent = get(pool.id.substring(1));
 		list.forEach(lane => parent.insert(lane.id, lane.x, lane.y, lane.height));
+
+		document.querySelector(`${parent.id} .c1`)
+		.setAttribute('width', parent.width);
 	}
 
 	classify(element) {
@@ -728,6 +731,9 @@ class BPMNDiagram {
 					BPMNDiagram.experiment[property].forEach(a => {
 						if (a.metricas == null) a.metricas = [];
 						else if (!Array.isArray(a.metricas)) a.metricas = [a.metricas];
+					
+						if (a.objetivos == null) a.objetivos = [];
+						else if (!Array.isArray(a.objetivos)) a.objetivos = [a.objetivos];
 					});
 				}
 			}

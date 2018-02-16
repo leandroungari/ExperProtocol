@@ -36,9 +36,7 @@ function loadGUI() {
 
                 document.querySelector("[name='opcao-questao']").innerHTML = "";
                 BPMNDiagram.experiment
-                    .questoes.map((e) => {
-                        return e.id
-                    })
+                    .questoes.map(e => e.id)
                     .forEach((e) => {
 
                         let option = document.createElement('option');
@@ -46,6 +44,22 @@ function loadGUI() {
                         option.innerHTML = e;
 
                         document.querySelector("[name='opcao-questao']").appendChild(option);
+                    });
+
+                break;
+
+            case "22":
+
+                document.querySelector("[name='opcao-questao-objetivo']").innerHTML = "";
+                BPMNDiagram.experiment
+                    .questoes.map(e => e.id)
+                    .forEach((e) => {
+
+                        let option = document.createElement('option');
+                        option.value = e;
+                        option.innerHTML = e;
+
+                        document.querySelector("[name='opcao-questao-objetivo']").appendChild(option);
                     });
 
                 break;
@@ -184,6 +198,10 @@ function loadGUI() {
                 id = DataExperiment.block21();
                 break;
 
+            case "22":
+                id = DataExperiment.block22();
+                break;
+
             case "25":
                 DataExperiment.block25();
                 break;
@@ -276,7 +294,7 @@ function loadGUI() {
     })
 
     document.querySelector('.create-package-box .cancelar').addEventListener('click', () => document.querySelector('.box-03').style.display = 'none');
-    document.querySelector('.open-package-box .cancelar'  ).addEventListener('click', () => document.querySelector('.box-04').style.display = 'none');
+    document.querySelector('.open-package-box .cancelar').addEventListener('click', () => document.querySelector('.box-04').style.display = 'none');
 
     //////////////////////////////////////////////
     //////////////////////////////////////////////
@@ -701,6 +719,13 @@ const formatarTexto = (object) => {
                 "Descrição": object.descricao,
             };
         }
+        else if (object.id.includes("objetivo")) {
+            return {
+                "Objetivo": "",
+                "Objetivo": object.objetivo,
+                "Descrição": object.descricao,
+            };
+        }
 
 
 
@@ -829,6 +854,13 @@ const formatarTexto = (object) => {
             return {
                 "Metric": "",
                 "Metric": object.metrica,
+                "Description": object.descricao,
+            };
+        }
+        else if (object.id.includes("objetivo")) {
+            return {
+                "Goal": "",
+                "Goal": object.objetivo,
                 "Description": object.descricao,
             };
         }
