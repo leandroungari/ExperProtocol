@@ -5,46 +5,36 @@
  */
 package file;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
  *
  * @author leandroungari
  */
-@XStreamAlias("filelist")
 public class FileList {
     
-    @XStreamImplicit(itemFieldName = "interpretacao")
-    private ArrayList<String> listaInterpretacao;
-    @XStreamImplicit(itemFieldName = "artefato")
-    private ArrayList<String> listaArtefato;
+    private ArrayList<File> listaInterpretacao = new ArrayList<>();
+    private ArrayList<File> listaArtefato = new ArrayList<>();
 
- 
-
-    public FileList() {
-        
-        this.listaInterpretacao = new ArrayList<>();
-        this.listaArtefato = new ArrayList<>();
-    }
-
-    public ArrayList<String> getListaInterpretacao() {
+    public ArrayList<File> getListaInterpretacao() {
         return listaInterpretacao;
     }
 
-    public void setListaInterpretacao(ArrayList<String> listaInterpretacao) {
+    public void setListaInterpretacao(ArrayList<File> listaInterpretacao) {
         this.listaInterpretacao = listaInterpretacao;
     }
 
-    public ArrayList<String> getListaArtefato() {
+    public ArrayList<File> getListaArtefato() {
         return listaArtefato;
     }
 
-    public void setListaArtefato(ArrayList<String> listaArtefato) {
+    public void setListaArtefato(ArrayList<File> listaArtefato) {
         this.listaArtefato = listaArtefato;
     }
-    
+
+    public FileList() {
+    }
     
     
     

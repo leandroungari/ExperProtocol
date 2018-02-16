@@ -57,7 +57,10 @@ window.onload = function () {
 	//lista de arquivos dos artefatos
 	BPMNDiagram.artefatosArquivos = [];
 
-
+	//Arquivos do pacote aberto
+	BPMNDiagram.artefatosArquivosPacote = [];
+	BPMNDiagram.interpretacoesArquivosPacote = [];
+	
 	loadGUI();
 
 	$('.painel-lateral .button').trigger('click');

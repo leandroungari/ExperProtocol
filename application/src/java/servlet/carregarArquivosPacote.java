@@ -25,6 +25,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pacote.PacoteLaboratorio;
 
 /**
  *
@@ -60,12 +61,16 @@ public class carregarArquivosPacote extends HttpServlet {
         
         FileList list = new FileList();
         
+        PacoteLaboratorio.interpretacao.clear();
+        PacoteLaboratorio.artefato.clear();
+        
         ////
         Arquivo.getAllFiles(new File(path.getCaminho() + "/interpretacao_arquivos"), listaArquivos);
         
         for(File f: listaArquivos) {
             
-            list.getListaInterpretacao().add(f.getName());
+            PacoteLaboratorio.interpretacao.add(f);
+            list.getListaInterpretacao().add(f);
         }
         
         ////
@@ -74,7 +79,8 @@ public class carregarArquivosPacote extends HttpServlet {
         
         for(File f: listaArquivos) {
             
-            list.getListaArtefato().add(f.getName());
+            PacoteLaboratorio.artefato.add(f);
+            list.getListaArtefato().add(f);
         }
         
         //

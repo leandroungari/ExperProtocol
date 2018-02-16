@@ -2,6 +2,10 @@ class InterfaceGrafica {
 
     static abrirPacoteLaboratorio() {
 
+        //Arquivos do pacote aberto
+	    BPMNDiagram.artefatosArquivosPacote = [];
+	    BPMNDiagram.interpretacoesArquivosPacote = [];
+
         let valor = document.querySelector('[name="fileInput"]').files[0];
         let reader = new FileReader();
 
@@ -201,8 +205,12 @@ class InterfaceGrafica {
         
         let data = {
             caminho: document.querySelector("[name='caminho-pasta']").value,
-            interpretacoes: BPMNDiagram.interpretacoesArquivos.map(a => a.arquivo.name),
-            artefatos: BPMNDiagram.artefatosArquivos.map(a => a.arquivo.name),
+            interpretacoes: BPMNDiagram.interpretacoesArquivos
+                            .map(a => a.arquivo.name)
+                            .concat(BPMNDiagram.interpretacoesArquivosPacote),
+            artefatos: BPMNDiagram.artefatosArquivos
+                            .map(a => a.arquivo.name)
+                            .concat(BPMNDiagram.artefatosArquivosPacote),
             nome: BPMNDiagram.nomePacote
         }
 
@@ -240,7 +248,7 @@ class InterfaceGrafica {
             .done(function (data) {
                 
                 let lista = JSON.parse(data);
-                InterfaceGrafica.abrirArquivos(lista.fileList);
+                InterfaceGrafica.abrirArquivos(lista.filelist);
                 document.querySelector('.box-04').style.display = 'none';
             })
             .fail(function () {
@@ -250,9 +258,14 @@ class InterfaceGrafica {
 
     static abrirArquivos(lista) {
 
-        if (lista.interpretacao != null && !Array.isArray(lista.interpretacao)) lista.interpretacao = [lista.interpretacao]; 
-        if (lista.artefato      != null && !Array.isArray(lista.artefato))      lista.artefato      = [lista.artefato]; 
+        if (lista.listaInterpretacao != null && !Array.isArray(lista.listaInterpretacao)) lista.listaInterpretacao = [lista.interpretacao]; 
+        if (lista.listaArtefato      != null && !Array.isArray(lista.listaArtefato))      lista.listaArtefato      = [lista.artefato]; 
 
         //abrir os arquivos, boa pergunta como!!!
+        console.log(lista);
+
+        //Arquivos do pacote aberto
+	    BPMNDiagram.artefatosArquivosPacote = lista.listaArtefato.map(f => f.file);
+	    BPMNDiagram.interpretacoesArquivosPacote = lista.listaInterpretacao.map(f => f.file);
     }
 }

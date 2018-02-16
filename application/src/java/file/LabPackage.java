@@ -18,10 +18,7 @@ public class LabPackage {
     private String nome;
     private String caminho;
     
-    
     private ArrayList<String> interpretacoes;
-    
-    
     private ArrayList<String> artefatos;
     
     public static LabPackage getInstance(InterfaceZIP zip){

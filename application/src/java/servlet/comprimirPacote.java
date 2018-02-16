@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pacote.PacoteLaboratorio;
 
 /**
  *
@@ -57,20 +58,20 @@ public class comprimirPacote extends HttpServlet {
 
         InterfaceZIP i = (InterfaceZIP) xstream.fromXML(json);
 
-        //System.out.println(i);
-        //return (Protocol) xstream.fromXML(json);
+        
+        
+        ///////////////////////////////
         LabPackage pacote = LabPackage.getInstance(i);
+        String caminhoPasta = pacote.getCaminho() + "/" + pacote.getNome();
+        
 
+        ///////////////////////////////
         ArrayList<File> listaArquivos = new ArrayList<>();
 
         Arquivo.getAllFiles(new File(pacote.getCaminho()), listaArquivos);
-        /*
-        for(File f: listaArquivos){
-            
-            System.out.println(f.getName());
-        }*/
+       
 
-        String caminhoPasta = pacote.getCaminho() + "/" + pacote.getNome();
+        
         File pasta = new File(caminhoPasta);
         if (pasta.mkdirs()) {
 
@@ -121,7 +122,14 @@ public class comprimirPacote extends HttpServlet {
                 }
 
             }
+            
+            ///////////////////////////////
+            //importando os arquivos antigos
+            //se existirem
 
+            PacoteLaboratorio.transferirArquivos(caminhoPasta);
+            
+            ///////////////////////////////
             
             String zipFile = pacote.getCaminho() + "/" + pacote.getNome() + ".zip";
             String base = pacote.getCaminho() + "/";
