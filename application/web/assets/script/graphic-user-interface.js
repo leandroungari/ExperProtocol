@@ -558,6 +558,8 @@ function exibirDescricao(id) {
 
     } else {
 
+        BPMNDiagram.elementoAtual = element;
+
         element.vinculos.forEach((a) => {
 
             getObjectById(BPMNDiagram.experiment, a);

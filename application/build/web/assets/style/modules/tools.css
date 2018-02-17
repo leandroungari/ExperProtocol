@@ -229,14 +229,18 @@
 	padding: 10px 15px;
 }
 
-[class*="block-"] input, [class*="block-"] textarea, [class*="block-"] select {
+[class*="block-"] input, [class*="block-"] textarea, [class*="block-"] select,
+[class*="form-"] input, [class*="form-"] textarea, [class*="form-"] select 
+{
 	display: block;
 	position: relative;
 	margin-bottom: 8px;
 	margin-top: 4px;
 }
 
-[class*="block-"] input[type='text'], [class*="block-"] input[type='email'], [class*="block-"] input[type='date']   {
+[class*="block-"] input[type='text'], [class*="block-"] input[type='email'], [class*="block-"] input[type='date'],
+[class*="form-"] input[type='text'], [class*="form-"] input[type='email'], [class*="form-"] input[type='date']
+{
 	padding: 3px 6px;
 }
 
