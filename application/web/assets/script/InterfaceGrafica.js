@@ -287,6 +287,32 @@ class InterfaceGrafica {
                 .text(`${attribute}: ${value}`)
         });
 
+        valores.forEach(([attribute, value]) => {
+
+            d3.select(`.form-${result.id}`)
+                .append('label')
+                .style('font-size', '14px')
+                .style('padding', '2px 0')
+                .style('margin-left', '25px')
+                .text(`${attribute}`)
+            
+            if (attribute == "Descrição" || attribute == "Description") {
+
+                d3.select(`.form-${result.id}`)
+                    .append('textarea')
+                    .attr('cols', '30')
+                    .attr('rows', '10')
+                    .text(value)
+            }
+            else {
+
+                d3.select(`.form-${result.id}`)
+                    .append('input')
+                    .attr('type', 'text')
+                    .attr('value', value)
+            }
+        });
+
         let str = document.querySelector(`.item-${result.id} > p`).innerHTML;
         if (str[str.length - 2] == ':') document.querySelector(`.item-${result.id} > p`).innerHTML = str.substring(0, str.length - 2);
         else document.querySelector(`.item-${result.id} > p`).innerHTML = str;
@@ -312,6 +338,11 @@ class InterfaceGrafica {
             .style('position', 'absolute')
             .style('top', '10px')
             .style('right', '30px')
+
+        d3.select('.box-descricao > .content').append('div')
+            .style('padding', '15px 25px')
+            .style('position', 'relative')
+            .attr('class', `form-${result.id}`)
     }
 
     static criarBotoes(result) {
