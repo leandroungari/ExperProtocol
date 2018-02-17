@@ -562,65 +562,7 @@ function exibirDescricao(id) {
 
             getObjectById(BPMNDiagram.experiment, a);
 
-            d3.select('.box-descricao > .content').append('div')
-                .style('padding', '15px 25px')
-                .style('position','relative')
-                .attr('class', `item-${result.id}`)
-
-            d3.select(`.item-${result.id}`)
-            .append('div')
-            .attr('class', 'buttons')
-            .style('width', '28px')
-            .style('height', '12px')
-            .style('position', 'absolute')
-            .style('top', '10px')
-            .style('right', '30px')
-            
-
-            d3.select(`.item-${result.id}`).select('.buttons')
-            .append('div')
-            .style('display', 'inline-block')
-            .attr('class', 'modificar')
-            .attr('title', 'Modificar')
-            .style('width', '12px')
-            .style('height', '12px')
-            .style('background-image', `url('./assets/images/modificar.png')`)
-            .style('background-size', '12px 12px')
-            .style('cursor','pointer')
-
-            d3.select(`.item-${result.id}`).select('.buttons')
-            .append('div')
-            .style('display', 'inline-block')
-            .attr('class', 'remover')
-            .attr('title', 'Remover')
-            .style('margin-left', '4px')
-            .style('width', '12px')
-            .style('height', '12px')
-            .style('background-image', `url('./assets/images/excluir.png')`)
-            .style('background-size', '12px 12px')
-            .style('cursor','pointer')
-
-            //o resultado fica na variavel result
-            let valores = Object.entries(formatarTexto(result));
-
-            valores.forEach(([attribute, value]) => {
-
-                d3.select(`.item-${result.id}`)
-                    .append('p')
-                    .style('font-size', '14px')
-                    .style('padding', '2px 0')
-                    .style('margin-left', '25px')
-                    .text(`${attribute}: ${value}`)
-            });
-
-            let str = document.querySelector(`.item-${result.id} > p`).innerHTML;
-            if (str[str.length - 2] == ':') document.querySelector(`.item-${result.id} > p`).innerHTML = str.substring(0, str.length - 2);
-            else document.querySelector(`.item-${result.id} > p`).innerHTML = str;
-
-            d3.select(`.item-${result.id} > p`)
-                .style('font', 'bold 20px DinPro')
-                .style('margin-bottom', '5px')
-                .style('text-transform', 'uppercase');
+            InterfaceGrafica.criarListagem(result);
         });
     }
 }
@@ -678,17 +620,18 @@ const formatarTexto = (object) => {
                 "Hipótese Nula": object.hipoteseNula,
                 "Hipótese Alternativa": object.hipoteseAlternativa,
             };
-        } else if (object.id.includes("dependente")) {
-            return {
-                "Variável": "",
-                "Variável Dependente": object.var,
-            };
+        
         } else if (object.id.includes("independente")) {
             return {
                 "Variável": "",
                 "Variável Independente": object.var,
             };
-        } else if (object.id.includes("participante")) {
+        } else if (object.id.includes("dependente")) {
+            return {
+                "Variável": "",
+                "Variável Dependente": object.var,
+            };
+        }  else if (object.id.includes("participante")) {
             return {
                 "Participante": "",
                 "Grupo": object.grupo,
