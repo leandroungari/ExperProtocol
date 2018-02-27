@@ -40,6 +40,7 @@ window.onload = function () {
 		definicao: {},
 		questoes: [],
 		hipoteses: [],
+		objetivos: [],
 		variaveisDependentes: [],
 		variaveisIndependentes: [],
 		participantes: [],

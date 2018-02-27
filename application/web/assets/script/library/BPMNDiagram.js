@@ -696,7 +696,8 @@ class BPMNDiagram {
 			"cronogramas", 
 			"experimentadores", 
 			"questoes", 
-			"hipoteses", 
+			"hipoteses",
+			"objetivos", 
 			"variaveisIndependentes", 
 			"variaveisDependentes",
 			"participantes",
@@ -731,9 +732,6 @@ class BPMNDiagram {
 					BPMNDiagram.experiment[property].forEach(a => {
 						if (a.metricas == null) a.metricas = [];
 						else if (!Array.isArray(a.metricas)) a.metricas = [a.metricas];
-					
-						if (a.objetivos == null) a.objetivos = [];
-						else if (!Array.isArray(a.objetivos)) a.objetivos = [a.objetivos];
 					});
 				}
 			}

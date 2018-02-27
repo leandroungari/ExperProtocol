@@ -12,20 +12,15 @@ public class Caracterizacao  extends Element{
     @XStreamImplicit(itemFieldName = "metricas")
     private ArrayList<Metrica> metricas = new ArrayList<>();
     
-    @XStreamImplicit(itemFieldName = "objetivos")
-    private ArrayList<Objetivo> objetivos = new ArrayList<>();
+    
 
     public Caracterizacao() {
         super("caracterizacao");
     }
 
-    public ArrayList<Objetivo> getObjetivos() {
-        return objetivos;
-    }
+   
 
-    public void setObjetivos(ArrayList<Objetivo> objetivos) {
-        this.objetivos = objetivos;
-    }
+   
 
 
     public String getQuestao() {

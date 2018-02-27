@@ -29,6 +29,18 @@ public class Experimento  extends Element{
     
     @XStreamImplicit(itemFieldName = "questoes")
     private ArrayList<Caracterizacao> questoes = new ArrayList<>();
+    
+    @XStreamImplicit(itemFieldName = "objetivos")
+    private ArrayList<Objetivo> objetivos = new ArrayList<>();
+
+    public ArrayList<Objetivo> getObjetivos() {
+        return objetivos;
+    }
+
+    public void setObjetivos(ArrayList<Objetivo> objetivos) {
+        this.objetivos = objetivos;
+    }
+    
     @XStreamImplicit(itemFieldName = "hipoteses")
     private ArrayList<Hipotese> hipoteses = new ArrayList<>();
     

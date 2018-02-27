@@ -81,7 +81,6 @@ class DataExperiment {
             id: "questao" + name("id-questao").value,
             questao: name("questao").value,
             metricas: [],
-            objetivos: [],
         });
 
         return "questao" + name("id-questao").value;
@@ -273,17 +272,10 @@ class DataExperiment {
 
     static block22(){
 
-        BPMNDiagram.experiment.questoes
-        .filter((e) => {return e.id == name("opcao-questao-objetivo").value})
-        .forEach((a) => {
-
-            if (a.objetivos == null) a.objetivos = [];
-
-            a.objetivos.push({
-                id: "objetivo" + name("id-objetivo").value,
-                objetivo: name("objetivo").value,
-                descricao: name("objetivo-descricao").value
-            });
+        BPMNDiagram.experiment.objetivos.push({
+            id: "objetivo" + name("id-objetivo").value,
+            objetivo: name("objetivo").value,
+            descricao: name("objetivo-descricao").value
         });
 
         return "objetivo" + name("id-objetivo").value;

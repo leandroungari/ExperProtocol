@@ -563,10 +563,8 @@ class InterfaceGrafica {
             });
         } else if (dataId.includes("objetivo")) {
 
-            BPMNDiagram.experiment.questoes.forEach(questao => {
-
-                questao.objetivos = questao.objetivos.filter(o => o.id != dataId);
-            });
+            BPMNDiagram.experiment.objetivos = BPMNDiagram.experiment.objetivos.filter(o => o.id != dataId);
+            
         } else if (dataId.includes("experimentador")) {
 
             BPMNDiagram.experiment.experimentadores = BPMNDiagram.experiment.experimentadores.filter(e => e.id != dataId)
@@ -748,15 +746,12 @@ class InterfaceGrafica {
             });
         } else if (dataId.includes("objetivo")) {
 
-            BPMNDiagram.experiment.questoes.forEach(questao => {
+            let obj = BPMNDiagram.experiment.objetivos
+            .filter(o => o.id == dataId)[0];
 
-                let obj = questao.objetivos
-                .filter(o => o.id == dataId)[0];
-
-                obj.objetivo = dados[0];
-                obj.descricao = dados[1];
-
-            });
+            obj.objetivo = dados[0];
+            obj.descricao = dados[1];
+            
         } else if (dataId.includes("experimentador")) {
 
             let exp = BPMNDiagram.experiment.experimentadores

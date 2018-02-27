@@ -48,7 +48,7 @@ function loadGUI() {
 
                 break;
 
-            case "22":
+            /*case "22":
 
                 document.querySelector("[name='opcao-questao-objetivo']").innerHTML = "";
                 BPMNDiagram.experiment
@@ -63,7 +63,7 @@ function loadGUI() {
                     });
 
                 break;
-
+            */
             case "10":
 
                 document.querySelector("[name='nome-grupo-participante']").innerHTML = "";
