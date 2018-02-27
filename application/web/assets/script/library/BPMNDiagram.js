@@ -361,6 +361,8 @@ class BPMNDiagram {
 
 	export () {
 
+		if (window.elements.length === 0) return;
+
 		let diagram = {
 
 			width: BPMNDiagram.diagram.Largura,
