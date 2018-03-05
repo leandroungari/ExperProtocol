@@ -22,7 +22,7 @@ public class IntermediateEventCatchCondition extends IntermediateEvent{
 
     public IntermediateEventCatchCondition(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("floatermediate-event-catch-condition");
+        setName("intermediate-event-catch-condition");
     }
     
     

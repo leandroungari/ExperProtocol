@@ -22,7 +22,7 @@ public class IntermediateEventThrowMessage extends IntermediateEvent{
 
     public IntermediateEventThrowMessage(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("floatermediate-event-throw-message");
+        setName("intermediate-event-throw-message");
     }
     
     

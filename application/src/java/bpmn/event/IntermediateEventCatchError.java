@@ -22,7 +22,7 @@ public class IntermediateEventCatchError extends IntermediateEvent{
 
     public IntermediateEventCatchError(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("floatermediate-event-catch-error");
+        setName("intermediate-event-catch-error");
     }
     
     

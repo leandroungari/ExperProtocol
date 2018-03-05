@@ -22,7 +22,7 @@ public class IntermediateEventCatchNonInterruptingSignal extends IntermediateEve
 
     public IntermediateEventCatchNonInterruptingSignal(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("floatermediate-event-catch-non-floaterrupting-signal");
+        setName("intermediate-event-catch-non-floaterrupting-signal");
     }
     
     

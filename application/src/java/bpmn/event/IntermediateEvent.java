@@ -22,7 +22,7 @@ public class IntermediateEvent extends Event{
 
     public IntermediateEvent(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("floatermediate-event-none");
+        setName("intermediate-event-none");
     }
     
     

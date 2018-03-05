@@ -22,7 +22,7 @@ public class IntermediateEventCatchMultiple extends IntermediateEvent{
 
     public IntermediateEventCatchMultiple(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("floatermediate-event-catch-multiple");
+        setName("intermediate-event-catch-multiple");
     }
     
     

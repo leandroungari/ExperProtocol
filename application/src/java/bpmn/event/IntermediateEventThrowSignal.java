@@ -22,7 +22,7 @@ public class IntermediateEventThrowSignal extends IntermediateEvent{
 
     public IntermediateEventThrowSignal(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("floatermediate-event-throw-signal");
+        setName("intermediate-event-throw-signal");
     }
     
     

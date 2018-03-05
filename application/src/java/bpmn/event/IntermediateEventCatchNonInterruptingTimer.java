@@ -22,7 +22,7 @@ public class IntermediateEventCatchNonInterruptingTimer extends IntermediateEven
 
     public IntermediateEventCatchNonInterruptingTimer(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("floatermediate-event-catch-non-floaterrupting-timer");
+        setName("intermediate-event-catch-non-floaterrupting-timer");
     }
     
     

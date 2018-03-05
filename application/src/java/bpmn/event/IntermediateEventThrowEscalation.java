@@ -22,7 +22,7 @@ public class IntermediateEventThrowEscalation extends IntermediateEvent{
 
     public IntermediateEventThrowEscalation(String id, float x, float y, String description, ArrayList<Element> elements, ArrayList<ConnectionObject> transitions, ArrayList<String> vinculos) {
         super(id, x, y, description, elements, transitions, vinculos);
-        setName("floatermediate-event-throw-escalation");
+        setName("intermediate-event-throw-escalation");
     }
     
     
