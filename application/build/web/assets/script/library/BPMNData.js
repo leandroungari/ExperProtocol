@@ -43,7 +43,7 @@ class BPMNData extends BPMNElement {
 		else {
 			this.points = [
 				{ x: 20, y: 0 },
-				{ x: 0, y: 25 },
+				{ x: 0, y: 35 },
 				{ x: 0, y: -25 },
 				{ x: -20, y: 0 }
 			];
