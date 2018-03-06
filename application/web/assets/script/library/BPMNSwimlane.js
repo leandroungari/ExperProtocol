@@ -330,7 +330,7 @@ class BPMNPool extends BPMNSwimlane {
 		.attr('width', height)
 		.attr('transform', 'rotate(-90) translate(-195,8)')
 		.append('text')
-		.attr('x', 95)
+		.attr('x', height/2 - 5)
 		.attr('y', 10)
 		.attr('class', 'value-lane')
 		.attr('style', 'font-family:Tahoma; font-size: 12px; text-anchor:middle;');
@@ -341,9 +341,15 @@ class BPMNPool extends BPMNSwimlane {
 
 		let l = new BPMNLane(this.numLanes, this.id, 30, distancia);
 		this.lanes.push(l);
+
 		window.elements.push(l);
 
 		l.height = height;
+
+		l.attributes = {
+			Descrição: '',
+			Altura: l.height,
+		}
 
 		let select = d3.select(this.id);
 
@@ -356,10 +362,9 @@ class BPMNPool extends BPMNSwimlane {
 		.attr(`transform`, `rotate(-90) translate(${-distancia + 5}, 8)`)
 		.attr(`width`, `${distancia}`);
 
+		this.numLanes++;
 		//let x = parseInt(select.select('.title-swim').select('.value-pool').attr('x'));
 		if (this.numLanes != 0) select.select('.title-swim').select('.value-pool').attr('x', distancia/2 - 5);
-
-		this.numLanes++;
 
 		this.height += height;
 		this.dy = this.height / 2;

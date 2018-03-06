@@ -265,8 +265,6 @@ class BPMNDiagram {
 		let type = element.type;
 		let nome = element.name;
 
-		console.log(`${type} -- ${nome}`);
-
 		let object = eval(type + "." + nome.toUpperCase().replace(/-/g, "_"));
 
 		let name = object;
