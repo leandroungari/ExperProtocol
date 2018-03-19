@@ -159,7 +159,7 @@ class BPMNDiagram {
 
 	setDiagramHeight(protocol) {
 		
-		console.log(protocol);
+		//console.log(protocol);
 
 		document.querySelector(this.selector).setAttribute('width', protocol.width);
 		document.querySelector(this.selector).setAttribute('height', protocol.height);
@@ -241,6 +241,7 @@ class BPMNDiagram {
 	createLanes(pool) {
 
 		if (pool.name != 'participant') return;
+		
 
 		let list = [];
 		if (Array.isArray(pool.element)) pool.element.forEach(t => list.push(t));
@@ -305,8 +306,8 @@ class BPMNDiagram {
 
 			case "lane":
 
-				novoElemento = new BPMNPool(xcoor, ycoor, name, 0, false, element.id.substring(1));
-
+				novoElemento = new BPMNPool(xcoor, ycoor, name, 0, false, element.id.substring(1), element.width);
+				console.log(element);
 				break;
 
 			case "annotation":
@@ -445,6 +446,7 @@ class BPMNDiagram {
 			case "lane":
 
 				novoElemento = new BPMNPool(xcoor, ycoor, name, count);
+				
 				break;
 
 			case "annotation":

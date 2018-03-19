@@ -92,7 +92,7 @@ class BPMNLane {
 
 class BPMNPool extends BPMNSwimlane {
 
-	constructor(x, y, name, count, hasLane = true, currentId = true) {
+	constructor(x, y, name, count, hasLane = true, currentId = true, width = 600) {
 
 		let text = `<g class='title-swim' width="200" transform='rotate(-90) translate(-195,8)'>
 		<text x="95" y="10" class='value-pool' style='font-family:Tahoma; font-size: 12px; text-anchor:middle;' >Exemplo</text>
@@ -102,7 +102,7 @@ class BPMNPool extends BPMNSwimlane {
 		if (currentId === true) super(`pool${count}`, `<g>${name.content}${text}<g class='content-swim'></g></g>`);
 		else super(currentId, `<g>${name.content}${text}<g class='content-swim'></g></g>`);
 
-		this.width = 600;
+		this.width = width;
 		this.height = 0;
 
 		this.name = name.icon;
