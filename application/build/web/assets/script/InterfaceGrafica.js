@@ -703,11 +703,11 @@ class InterfaceGrafica {
             let cro = BPMNDiagram.experiment.cronogramas
             .filter(c => c.id == dataId)[0];
 
-            cro.definicao = data[0];
-            cro.data_inicial = data[1];
-            cro.data_final = data[2];
-            cro.tipo = data[3];
-            cro.tempo = data[4];
+            cro.definicao = dados[0];
+            cro.data_inicial = dados[1];
+            cro.data_final = dados[2];
+            cro.tipo = dados[3];
+            cro.tempo = dados[4];
 
         } else if (dataId.includes("defeito")) {
 

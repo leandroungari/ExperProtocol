@@ -46,47 +46,53 @@ public class carregarArquivosPacote extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
+
         Scanner servlet = new Scanner(new InputStreamReader(request.getInputStream(), "UTF-8"));
-        String json = "{\"filepath\": "+ servlet.nextLine() +"}";
+        String json = "{\"filepath\": " + servlet.nextLine() + "}";
         servlet.close();
-        
+
         XStream xstream = new XStream(new JettisonMappedXmlDriver());
         xstream.alias("filepath", FilePath.class);
         xstream.autodetectAnnotations(true);
-        
+
         FilePath path = (FilePath) xstream.fromXML(json);
         ArrayList<File> listaArquivos = new ArrayList<>();
-        
+
         FileList list = new FileList();
-        
+
         PacoteLaboratorio.interpretacao.clear();
         PacoteLaboratorio.artefato.clear();
-        
+
         ////
-        Arquivo.getAllFiles(new File(path.getCaminho() + "/interpretacao_arquivos"), listaArquivos);
-        
-        for(File f: listaArquivos) {
-            
-            PacoteLaboratorio.interpretacao.add(f);
-            list.getListaInterpretacao().add(f);
+        File p1 = new File(path.getCaminho() + "/interpretacao_arquivos");
+        if (p1.exists()) {
+            Arquivo.getAllFiles(p1, listaArquivos);
+
+            for (File f : listaArquivos) {
+
+                PacoteLaboratorio.interpretacao.add(f);
+                list.getListaInterpretacao().add(f);
+            }
         }
-        
+
         ////
         listaArquivos.clear();
-        Arquivo.getAllFiles(new File(path.getCaminho() + "/artefato_arquivos"), listaArquivos);
-        
-        for(File f: listaArquivos) {
-            
-            PacoteLaboratorio.artefato.add(f);
-            list.getListaArtefato().add(f);
+
+        File p2 = new File(path.getCaminho() + "/artefato_arquivos");
+        if (p2.exists()) {
+            Arquivo.getAllFiles(p2, listaArquivos);
+
+            for (File f : listaArquivos) {
+
+                PacoteLaboratorio.artefato.add(f);
+                list.getListaArtefato().add(f);
+            }
         }
-        
+
         //
         xstream.alias("filelist", FileList.class);
         xstream.autodetectAnnotations(true);
-        
+
         PrintStream out = new PrintStream(response.getOutputStream(), true, "UTF-8");
         out.println(xstream.toXML(list));
         out.close();
