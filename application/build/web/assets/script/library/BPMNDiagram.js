@@ -255,7 +255,10 @@ class BPMNDiagram {
 		});
 
 		let parent = get(pool.id.substring(1));
-		list.forEach(lane => parent.insert(lane.id, lane.x, lane.y, lane.height));
+		list.forEach(lane => {
+			parent.insert(lane.id, lane.x, lane.y, lane.height, lane.description)
+			console.log(lane);
+		});
 
 		document.querySelector(`${parent.id} .c1`)
 		.setAttribute('width', parent.width);
@@ -307,7 +310,7 @@ class BPMNDiagram {
 			case "lane":
 
 				novoElemento = new BPMNPool(xcoor, ycoor, name, 0, false, element.id.substring(1), element.width);
-				console.log(element);
+				//console.log(element);
 				break;
 
 			case "annotation":

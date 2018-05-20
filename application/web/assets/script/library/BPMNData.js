@@ -5,7 +5,7 @@ class BPMNData extends BPMNElement {
 
 		let text = `
 		<g x="500" y="800" width="1400">
-		<text class='value-data' y="2500" dy="250" style="font-size: 500px; font-family:Tahoma; text-anchor:middle;">Descrição</text>
+		<text class='value-data' y="2500" dy="250" style="font-size: 500px; font-family:sans-serif; text-anchor:middle;">Descrição</text>
 		</g>
 		`;
 

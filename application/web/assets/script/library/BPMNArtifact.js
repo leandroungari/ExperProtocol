@@ -21,7 +21,7 @@ class BPMNTextAnnotation extends BPMNArtifact {
 
 		let text = `
 		<g>
-		<text class='value-annotation' y="10" dy="250" style="font-size: 12px; font-family:Tahoma; text-anchor:middle;"></text>
+		<text class='value-annotation' y="10" dy="250" style="font-size: 12px; font-family:sans-serif; text-anchor:middle;"></text>
 		</g>
 		`;
 

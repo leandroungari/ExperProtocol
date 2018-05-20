@@ -19,7 +19,7 @@ class BPMNEvent extends BPMNFlowObject {
 
 		let text = `
 		<g x="500" y="800" width="1400">
-			<text class='value-event' y="2500" dy="250" style="font-size: 500px; font-family:Tahoma; text-anchor:middle;"></text>
+			<text class='value-event' y="2500" dy="250" style="font-size: 500px; font-family:sans-serif; text-anchor:middle;"></text>
 		</g>
 		`;
 
@@ -99,7 +99,7 @@ class BPMNActivity extends BPMNFlowObject {
 		<g transform='scale(${100 / 2000})'>
 			${name.content}
 			<g x="500" y="800" width="1400">
-				<text class='value-activity' y="800" dy="250" style="font-size: 200px; font-family:Tahoma; text-anchor:middle;">Exemplo</text>
+				<text class='value-activity' y="800" dy="250" style="font-size: 200px; font-family:sans-serif; text-anchor:middle;">Exemplo</text>
 			</g>
 		</g>
 	`);
@@ -107,7 +107,7 @@ class BPMNActivity extends BPMNFlowObject {
 		/*
 		<switch>
 					<foreignObject x="150" y="650" width="1700" height="970">
-						<p class="value-activity" xmlns="http://www.w3.org/1999/xhtml" style="font-size: 170px; font-family:Tahoma; text-align: center; line-height: 300px; vertical-align: middle">Exemplo</p>
+						<p class="value-activity" xmlns="http://www.w3.org/1999/xhtml" style="font-size: 170px; font-family:sans-serif; text-align: center; line-height: 300px; vertical-align: middle">Exemplo</p>
 					</foreignObject>
 					<text x="20" y="20">Your SVG viewer cannot display html.</text>
 				</switch>
@@ -188,7 +188,7 @@ class BPMNGateway extends BPMNFlowObject {
 
 		let text = `
 		<g x="500" y="800" width="1400">
-		<text class='value-gateway' y="2500" dy="250" style="font-size: 500px; font-family:Tahoma; text-anchor:middle;"></text>
+		<text class='value-gateway' y="2500" dy="250" style="font-size: 500px; font-family:sans-serif; text-anchor:middle;"></text>
 		</g>
 		`;
 

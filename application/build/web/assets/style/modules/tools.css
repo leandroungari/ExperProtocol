@@ -109,7 +109,7 @@
 .painel-lateral label {
 	display: block;
 	margin-top: 15px;
-	font: 14px Tahoma;
+	font: 14px sans-serif;
 	margin-bottom: 3px;
 	margin-left: 10px;
 }
@@ -124,7 +124,7 @@
 	position: relative;
 	text-align: center;
 	top: 20px;
-	font: 14px Tahoma;
+	font: 14px sans-serif;
 }
 
 .painel-lateral .button-save {
@@ -159,7 +159,7 @@
 }
 
 .context-menu li {
-	font: 12px Tahoma;
+	font: 12px sans-serif;
 	line-height: 26px;
 	vertical-align: middle;
 	text-align: justify;
@@ -214,7 +214,7 @@
 
 .caixa-experimento textarea {
 
-	font: 12px Tahoma;
+	font: 12px sans-serif;
 	padding: 5px 3px;
 }
 

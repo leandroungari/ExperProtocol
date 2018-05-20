@@ -95,7 +95,7 @@ class BPMNPool extends BPMNSwimlane {
 	constructor(x, y, name, count, hasLane = true, currentId = true, width = 600) {
 
 		let text = `<g class='title-swim' width="200" transform='rotate(-90) translate(-195,8)'>
-		<text x="95" y="10" class='value-pool' style='font-family:Tahoma; font-size: 12px; text-anchor:middle;' >Exemplo</text>
+		<text x="95" y="10" class='value-pool' style='font-family:sans-serif; font-size: 12px; text-anchor:middle;' >Exemplo</text>
 		</g>`;
 
 
@@ -182,7 +182,7 @@ class BPMNPool extends BPMNSwimlane {
 		.attr('x', 95)
 		.attr('y', 10)
 		.attr('class', 'value-lane')
-		.attr('style', 'font-family:Tahoma; font-size: 12px; text-anchor:middle;');
+		.attr('style', 'font-family:sans-serif; font-size: 12px; text-anchor:middle;');
 
 		d3.select(`#${id}`)
 		.append('g')
@@ -268,7 +268,7 @@ class BPMNPool extends BPMNSwimlane {
 		.attr('x', 95)
 		.attr('y', 10)
 		.attr('class', 'value-lane')
-		.attr('style', 'font-family:Tahoma; font-size: 12px; text-anchor:middle;');
+		.attr('style', 'font-family:sans-serif; font-size: 12px; text-anchor:middle;');
 
 		d3.select(`#${id}`)
 		.append('g')
@@ -301,7 +301,7 @@ class BPMNPool extends BPMNSwimlane {
 		BPMNDiagram.refreshListener();
 	}
 
-	insert(id, x, y, height) {
+	insert(id, x, y, height, description) {
 
 		let distancia = 0;
 
@@ -333,7 +333,8 @@ class BPMNPool extends BPMNSwimlane {
 		.attr('x', height/2 - 5)
 		.attr('y', 10)
 		.attr('class', 'value-lane')
-		.attr('style', 'font-family:Tahoma; font-size: 12px; text-anchor:middle;');
+		.attr('style', 'font-family:sans-serif; font-size: 12px; text-anchor:middle;')
+		.text(description)
 
 		d3.select(`#${id}`)
 		.append('g')
