@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Experimento  extends Element{
 
-    //private int idestudo;
     private String nome;
     private String descricao;
     private String tema;
@@ -17,7 +16,6 @@ public class Experimento  extends Element{
     private String tipo;
     private String dominio;
     private String idioma;
-    //private int status;
     private int replicacao;
     
     private BusinessProcessDiagram diagrama;
